@@ -1,0 +1,87 @@
+//
+//  PrefixHeader.pch
+//  DeepBooks
+//
+//  Created by 王祥伟 on 2025/2/26.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#ifdef __OBJC__
+
+#import "DeepBooks-Swift.h"
+#import "DBVariableCopywriting.h"
+
+#import <objc/runtime.h>
+#import "NSObject+DBKit.h"
+#import "UIView+DBKit.h"
+#import "UIFont+DBKit.h"
+#import "NSString+DBKit.h"
+#import "UIColor+DBKit.h"
+#import "UIScreen+DBKit.h"
+#import "UIApplication+DBKit.h"
+#import "UIDevice+DBKit.h"
+#import "UIImage+DBKit.h"
+#import "NSDate+DBKit.h"
+#import "NSData+DBKit.h"
+#import "UIControl+DBKit.h"
+#import "UIButton+DBKit.h"
+#import "NSArray+DBKit.h"
+#import "UITextView+DBKit.h"
+#import "UIImageView+DBKit.h"
+#import "NSUserDefaults+DBKit.h"
+#import "NSAttributedString+DBKit.h"
+#import "UINavigationController+FDFullscreenPopGesture.h"
+
+#import "LEEAlert.h"
+#import "UIScrollView+EmptyDataSet.h"
+
+#import "DBRouter.h"
+#import "DBAFNetWorking.h"
+#import "DBCommonConfig.h"
+#import "DBBookModel.h"
+#import "DBEmptyView.h"
+#import "DBAppSetting.h"
+#import "DBUnityAdConfig.h"
+#import "DBAdBannerView.h"
+#import "DBProcessBookConfig.h"
+
+#import <Masonry.h>
+#import <MJRefresh.h>
+#import <JXCategoryView.h>
+#import <YYModel.h>
+
+#import "DBBaseLabel.h"
+#import "DBConstantString.h"
+
+static inline BOOL DBEmptyObj(id thing) {
+    return thing == nil || [thing isEqual:[NSNull null]]
+    || ([thing respondsToSelector:@selector(length)]
+        && [(NSData *)thing length] == 0)
+    || ([thing respondsToSelector:@selector(count)]
+        && [(NSArray *)thing count] == 0);
+}
+
+#define DBSafeString(string) DBEmptyObj(string) ? @"" : string
+
+#define DBWeakSelf __weak __typeof__(self) weakSelf = self;
+#define DBStrongSelfElseReturn __strong __typeof__(self) self = weakSelf; if(!self) return;
+
+#define NSLog(fmt, ...) { NSString *str = [NSString stringWithFormat:(fmt), ##__VA_ARGS__]; \
+                         printf("%s\n", [str UTF8String]); \
+                         fflush(stdout); }
+
+#define RESOLVE_CLASS_METHOD(_conditions, _selector) \
+if ( _conditions ) {\
+    Method method = class_getClassMethod([self class],_selector);\
+    Class metacls = objc_getMetaClass(NSStringFromClass([self class]).UTF8String);\
+    class_addMethod(metacls,selector,method_getImplementation(method),method_getTypeEncoding(method));\
+    return YES;\
+}\
+
+
+#endif
+
+
+#endif /* PrefixHeader_pch */
