@@ -226,7 +226,7 @@
         _readButton = [[UIButton alloc] init];
       
         _readButton.titleLabel.font = DBFontExtension.titleSmallFont;
-        _readButton.backgroundColor = DBColorExtension.redColor;
+        _readButton.backgroundColor = DBColorExtension.sunsetOrangeColor;
         _readButton.layer.cornerRadius = 10;
         _readButton.layer.masksToBounds = YES;
         [_readButton setTitle:@"阅读" forState:UIControlStateNormal];

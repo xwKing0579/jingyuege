@@ -142,6 +142,7 @@ static NSString *identifierAdCollectCell = @"DBAdBannerCollectionViewCell";
 
 - (void)updateMarqueeView{
     self.marqueeView = [[DBMarqueeLabel alloc] init];
+    self.marqueeView.alpha = 0.6;
     [self.view addSubview:self.marqueeView];
     [self.marqueeView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);

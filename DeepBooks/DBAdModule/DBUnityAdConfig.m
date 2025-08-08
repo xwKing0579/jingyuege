@@ -45,7 +45,7 @@
 //是否开启广告
 + (BOOL)openAd{
 #ifdef DEBUG
-    return YES;
+    return NO;
     NSNumber *value = [NSUserDefaults takeValueForKey:@"DBAdvertisingSwitch"];
     if (value) return [value boolValue];
 #endif

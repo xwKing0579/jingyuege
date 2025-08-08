@@ -61,7 +61,7 @@ import UIKit
     }
     
     static func shellPinkColor() -> UIColor{
-        return UIColor.cFFE5DC()
+        return UIColor.c6B8871()
     }
     
     static func blushSnowColor() -> UIColor{
