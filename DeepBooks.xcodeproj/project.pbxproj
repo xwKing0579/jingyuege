@@ -164,7 +164,6 @@
 		F85E0B232D9C39C70092F465 /* DBMyCultivateBooksTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F85E0B222D9C39C70092F465 /* DBMyCultivateBooksTableViewCell.m */; };
 		F86AD2502D6F6BE500EC4432 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86AD2462D6F6BE500EC4432 /* AppDelegate.swift */; };
 		F86AD2512D6F6BE500EC4432 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86AD24D2D6F6BE500EC4432 /* SceneDelegate.swift */; };
-		F86AD2522D6F6BE500EC4432 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86AD24E2D6F6BE500EC4432 /* ViewController.swift */; };
 		F86AD2532D6F6BE500EC4432 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F86AD2472D6F6BE500EC4432 /* Assets.xcassets */; };
 		F86AD2552D6F6BE500EC4432 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F86AD24A2D6F6BE500EC4432 /* LaunchScreen.storyboard */; };
 		F86AD2562D6F6BE500EC4432 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F86AD24C2D6F6BE500EC4432 /* Main.storyboard */; };
@@ -751,7 +750,6 @@
 		F86AD2492D6F6BE500EC4432 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F86AD24B2D6F6BE500EC4432 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F86AD24D2D6F6BE500EC4432 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F86AD24E2D6F6BE500EC4432 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F86AD2572D6F6FBB00EC4432 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		F86B7BAD2E0CD894009205F6 /* SDWebImageDownloaderOperation+DBKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SDWebImageDownloaderOperation+DBKit.h"; sourceTree = "<group>"; };
 		F86B7BAE2E0CD894009205F6 /* SDWebImageDownloaderOperation+DBKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SDWebImageDownloaderOperation+DBKit.m"; sourceTree = "<group>"; };
@@ -1787,13 +1785,16 @@
 				F86AD2462D6F6BE500EC4432 /* AppDelegate.swift */,
 				F8A5CC8D2D6FF44E0013D5FF /* DeepBooks-Bridging-Header.h */,
 				F8EECBA62DCB5EB200C07E7D /* DBDefaultSwift.swift */,
+				F8AB80372E1111C200C6B0B9 /* DBColorExtension.swift */,
+				F80419312E30CF7300C7E9D8 /* DBFontExtension.swift */,
+				F80C6F392E161892006B7271 /* DBSkinChangeManager.swift */,
+				F8A5CD192D7054B70013D5FF /* DBBaseAlamofire.swift */,
 				F86AD2472D6F6BE500EC4432 /* Assets.xcassets */,
 				F86AD2482D6F6BE500EC4432 /* Info.plist */,
 				F86AD24A2D6F6BE500EC4432 /* LaunchScreen.storyboard */,
 				F86AD24C2D6F6BE500EC4432 /* Main.storyboard */,
 				F8013C712DF66FFA0014BC04 /* InfoPlist.strings */,
 				F86AD24D2D6F6BE500EC4432 /* SceneDelegate.swift */,
-				F86AD24E2D6F6BE500EC4432 /* ViewController.swift */,
 				F86AD2572D6F6FBB00EC4432 /* PrefixHeader.pch */,
 				F8521D3F2E2109BE00A73905 /* DBVariableCopywriting.h */,
 				F8179E612DA36E0B001C56BC /* PrivacyInfo.xcprivacy */,
@@ -2051,9 +2052,6 @@
 				F882432A2D71A4EE006EC370 /* DBRouter.m */,
 				F8A5CCBA2D700A220013D5FF /* DBBaseViewController.h */,
 				F8A5CCBB2D700A220013D5FF /* DBBaseViewController.m */,
-				F8AB80372E1111C200C6B0B9 /* DBColorExtension.swift */,
-				F80419312E30CF7300C7E9D8 /* DBFontExtension.swift */,
-				F80C6F392E161892006B7271 /* DBSkinChangeManager.swift */,
 				F8A12DAE2DDF1DED00CD1D17 /* DBBaseAdViewController.h */,
 				F8A12DAF2DDF1DED00CD1D17 /* DBBaseAdViewController.m */,
 				F8841DDE2D70A3C800E771EA /* DBBaseTableViewCell.h */,
@@ -2076,7 +2074,6 @@
 			isa = PBXGroup;
 			children = (
 				F82F522F2E17D6E9006A4A69 /* model */,
-				F8A5CD192D7054B70013D5FF /* DBBaseAlamofire.swift */,
 				F8A5CD1B2D7056740013D5FF /* DBAFNetWorking.h */,
 				F8A5CD1C2D7056740013D5FF /* DBAFNetWorking.m */,
 				F882431B2D715BD2006EC370 /* DBLinkManager.h */,
@@ -3148,7 +3145,6 @@
 				F880CFF12D9037B1006BA010 /* DBServiceModel.m in Sources */,
 				F8DD126D2D9BE3C400882AC6 /* DBBooksListModel.m in Sources */,
 				F81445142E1920730054DE91 /* DBReaderContentViewModel.m in Sources */,
-				F86AD2522D6F6BE500EC4432 /* ViewController.swift in Sources */,
 				F8E51C5B2D8D59A400F69044 /* DBWebViewController.m in Sources */,
 				F871710E2D871D9100643628 /* DBSpeechManager.m in Sources */,
 				F8E51C4B2D8D058100F69044 /* DBEmptyView.m in Sources */,

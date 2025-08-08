@@ -81,15 +81,15 @@ import UIKit
     }
     
     static func crowFeatherColor() -> UIColor{
-        return UIColor.c4A4A4A()
+        return UIColor.c4B4B4B()
     }
     
     static func abyssBlackColor() -> UIColor{
-        return UIColor.c070707()
+        return UIColor.c060708()
     }
     
     static func fogSilverColor() -> UIColor{
-        return UIColor.cD9D9D9()
+        return UIColor.cD8D9D8()
     }
     
     static func duneGoldColor() -> UIColor{
@@ -252,7 +252,7 @@ import UIKit
     
     //tab未选颜色
     static func inactiveTabColor() -> UIColor{
-        return self.inkWashColor()
+        return UIColor.cD0CFD0()
     }
     
     //tab选颜色
@@ -277,7 +277,7 @@ import UIKit
     
     //珊瑚粉
     static func coralColor() -> UIColor{
-        return UIColor.cFF6F61()
+        return UIColor.cFF6F60()
     }
     
     //玫瑰金
@@ -360,7 +360,7 @@ import UIKit
     }
     
     static func sanyOneColor() -> UIColor{
-        return UIColor.c313131()
+        return UIColor.c303132()
     }
     
     static func diatomColor() -> UIColor{

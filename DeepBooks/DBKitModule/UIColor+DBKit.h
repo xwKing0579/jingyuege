@@ -18,11 +18,12 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIColor (DBKit)
 
 + (UIColor *)cCDAF7B;
++ (UIColor *)cD0CFD0;
 
 + (UIColor *)cF9703D;
-+ (UIColor *)c4A4A4A;
-+ (UIColor *)c070707;
-+ (UIColor *)cD9D9D9;
++ (UIColor *)c4B4B4B;
++ (UIColor *)c060708;
++ (UIColor *)cD8D9D8;
 + (UIColor *)cF5C164;
 + (UIColor *)cFFE09E;
 + (UIColor *)c0A0B17;
@@ -34,7 +35,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIColor *)cADADAD;
 + (UIColor *)c502516;
 + (UIColor *)c5F554E;
-
 + (UIColor *)cF7E0D0;
 + (UIColor *)cFFF5E8;
 + (UIColor *)cF7D0D0;
@@ -44,16 +44,13 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIColor *)cFA8744;
 + (UIColor *)cF65C3A;
 + (UIColor *)c171929;
-
-
 + (UIColor *)cE6E6E6;
 + (UIColor *)c3E3E3E;
 + (UIColor *)cC3C3C3;
-+ (UIColor *)c313131;
++ (UIColor *)c303132;
 + (UIColor *)cF8CA23;
 + (UIColor *)c2964F4;
 + (UIColor *)cD9F2F6;
-
 + (UIColor *)cF6F6F6;
 + (UIColor *)cFAF0E6;
 + (UIColor *)cD2E4D2;
@@ -61,14 +58,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIColor *)cC9B282;
 + (UIColor *)cE6CEAD;
 + (UIColor *)c1A1A1A;
-
 + (UIColor *)c262626;
 + (UIColor *)c302303;
 + (UIColor *)c132013;
 + (UIColor *)c330500;
 + (UIColor *)c4D4D4D;
-
-
 + (UIColor *)c000000;
 + (UIColor *)c000001;
 + (UIColor *)c191919;
@@ -92,21 +86,16 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIColor *)cF7F7F7;
 + (UIColor *)c080808;
 + (UIColor *)c898989;
-
 + (UIColor *)cFF0000;
 + (UIColor *)c808080;
-
-
-+ (UIColor *)cFF6F61; // 珊瑚粉
-+ (UIColor *)cC8A2C8; // 淡紫色
-+ (UIColor *)c0077BE; // 深海蓝
-+ (UIColor *)cFF7E00; // 琥珀橙
-+ (UIColor *)cB76E79; // 玫瑰金
-+ (UIColor *)c01796F; // 松绿色
-+ (UIColor *)cF8C3AF; // 淡桃色
-+ (UIColor *)c87CEEB; // 天蓝色
-
-
++ (UIColor *)cFF6F60; 
++ (UIColor *)cC8A2C8;
++ (UIColor *)c0077BE;
++ (UIColor *)cFF7E00;
++ (UIColor *)cB76E79;
++ (UIColor *)c01796F;
++ (UIColor *)cF8C3AF; 
++ (UIColor *)c87CEEB;
 
 
 - (UIImage *)toImage;
