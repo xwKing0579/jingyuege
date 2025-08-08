@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIColor (DBKit)
 
++ (UIColor *)cCDAF7B;
+
 + (UIColor *)cF9703D;
 + (UIColor *)c4A4A4A;
 + (UIColor *)c070707;

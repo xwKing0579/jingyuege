@@ -11,7 +11,7 @@ import UIKit
     
     //主题色
     static func sunsetOrangeColor() -> UIColor{
-        return UIColor.cF9703D()
+        return UIColor.cCDAF7B()
     }
     
     //登录注册忘记密码页面主题色

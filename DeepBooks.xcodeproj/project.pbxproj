@@ -217,9 +217,6 @@
 		F885282B2DA3FC3B00715B19 /* DBPhoneForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F885282A2DA3FC3B00715B19 /* DBPhoneForgetPasswordViewController.m */; };
 		F885282E2DA3FC4800715B19 /* DBEmailForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F885282D2DA3FC4800715B19 /* DBEmailForgetPasswordViewController.m */; };
 		F88786BD2E13863C00C41F7E /* DBBookMemberView.m in Sources */ = {isa = PBXBuildFile; fileRef = F88786BC2E13863C00C41F7E /* DBBookMemberView.m */; };
-		F88786C12E13C50E00C41F7E /* DBExchangePanView.m in Sources */ = {isa = PBXBuildFile; fileRef = F88786C02E13C50E00C41F7E /* DBExchangePanView.m */; };
-		F88786C42E13C76E00C41F7E /* DBExchangeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F88786C32E13C76E00C41F7E /* DBExchangeCollectionViewCell.m */; };
-		F88786C72E13C96300C41F7E /* DBExchangeControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F88786C62E13C96300C41F7E /* DBExchangeControl.m */; };
 		F887E56C2D76074C00FD0AD1 /* DBCollectBooksCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F887E56B2D76074C00FD0AD1 /* DBCollectBooksCollectionViewCell.m */; };
 		F88A7FAD2D89B0AF0025B138 /* DBBookSourceUpdateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F88A7FAC2D89B0AF0025B138 /* DBBookSourceUpdateModel.m */; };
 		F88ABB0E2D919F610066124C /* DBRegisterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F88ABB0D2D919F610066124C /* DBRegisterModel.m */; };
@@ -305,12 +302,6 @@
 		F8AB80382E1111C200C6B0B9 /* DBColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AB80372E1111C200C6B0B9 /* DBColorExtension.swift */; };
 		F8B194DD2E25FA7800CB9DE1 /* DBReaderPageSectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B194DC2E25FA7800CB9DE1 /* DBReaderPageSectionController.m */; };
 		F8B194E02E26006600CB9DE1 /* DBPageIGModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B194DF2E26006600CB9DE1 /* DBPageIGModel.m */; };
-		F8B3C9722E14042000D984F4 /* DBCoinPanView.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B3C9712E14042000D984F4 /* DBCoinPanView.m */; };
-		F8B3C9752E14044900D984F4 /* DBCoinCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B3C9742E14044900D984F4 /* DBCoinCollectionViewCell.m */; };
-		F8B3C9782E14064B00D984F4 /* DBCoinControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B3C9772E14064B00D984F4 /* DBCoinControl.m */; };
-		F8B3C97E2E14119300D984F4 /* DBExchangeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B3C97D2E14119300D984F4 /* DBExchangeListViewController.m */; };
-		F8B3C9812E14129100D984F4 /* DBExchangeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B3C9802E14129100D984F4 /* DBExchangeTableViewCell.m */; };
-		F8B3C9842E1414BA00D984F4 /* DBPaymentFinishView.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B3C9832E1414BA00D984F4 /* DBPaymentFinishView.m */; };
 		F8B5525B2DA2835000605B35 /* DBGenderSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B5525A2DA2835000605B35 /* DBGenderSelectView.m */; };
 		F8BF26652D8EAADB0027A930 /* DBSearchBooksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8BF26642D8EAADB0027A930 /* DBSearchBooksViewController.m */; };
 		F8BF26682D8EABA20027A930 /* DBSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8BF26672D8EABA20027A930 /* DBSearchResultViewController.m */; };
@@ -396,9 +387,6 @@
 		F8E7FBE52D7743F5003952EA /* DBReadBookView.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E7FBE42D7743F5003952EA /* DBReadBookView.m */; };
 		F8E7FBE82D774BDC003952EA /* DBBookChapterModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = F8E7FBE72D774BDC003952EA /* DBBookChapterModel.mm */; };
 		F8E7FBEB2D775D7F003952EA /* DBBookCatalogModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = F8E7FBEA2D775D7F003952EA /* DBBookCatalogModel.mm */; };
-		F8EA6E9B2DB621D5000A042F /* DBMobileSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EA6E9A2DB621D5000A042F /* DBMobileSignInViewController.m */; };
-		F8EA6E9E2DB626E7000A042F /* DBMobileRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EA6E9D2DB626E7000A042F /* DBMobileRegisterViewController.m */; };
-		F8EA6EA12DB627D3000A042F /* DBMobileForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EA6EA02DB627D3000A042F /* DBMobileForgetPasswordViewController.m */; };
 		F8EA6EA52DB628CF000A042F /* DBMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EA6EA42DB628CF000A042F /* DBMineViewController.m */; };
 		F8EA6EA82DB63463000A042F /* DBLoginoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EA6EA72DB63463000A042F /* DBLoginoutViewController.m */; };
 		F8EB529B2D9F9D550080974E /* DBContryCodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EB529A2D9F9D550080974E /* DBContryCodeTableViewCell.m */; };
@@ -862,12 +850,6 @@
 		F885282D2DA3FC4800715B19 /* DBEmailForgetPasswordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBEmailForgetPasswordViewController.m; sourceTree = "<group>"; };
 		F88786BB2E13863C00C41F7E /* DBBookMemberView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBBookMemberView.h; sourceTree = "<group>"; };
 		F88786BC2E13863C00C41F7E /* DBBookMemberView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBBookMemberView.m; sourceTree = "<group>"; };
-		F88786BF2E13C50E00C41F7E /* DBExchangePanView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBExchangePanView.h; sourceTree = "<group>"; };
-		F88786C02E13C50E00C41F7E /* DBExchangePanView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBExchangePanView.m; sourceTree = "<group>"; };
-		F88786C22E13C76E00C41F7E /* DBExchangeCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBExchangeCollectionViewCell.h; sourceTree = "<group>"; };
-		F88786C32E13C76E00C41F7E /* DBExchangeCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBExchangeCollectionViewCell.m; sourceTree = "<group>"; };
-		F88786C52E13C96300C41F7E /* DBExchangeControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBExchangeControl.h; sourceTree = "<group>"; };
-		F88786C62E13C96300C41F7E /* DBExchangeControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBExchangeControl.m; sourceTree = "<group>"; };
 		F887E56A2D76074C00FD0AD1 /* DBCollectBooksCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBCollectBooksCollectionViewCell.h; sourceTree = "<group>"; };
 		F887E56B2D76074C00FD0AD1 /* DBCollectBooksCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBCollectBooksCollectionViewCell.m; sourceTree = "<group>"; };
 		F88A7FAB2D89B0AF0025B138 /* DBBookSourceUpdateModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBBookSourceUpdateModel.h; sourceTree = "<group>"; };
@@ -1038,18 +1020,6 @@
 		F8B194DC2E25FA7800CB9DE1 /* DBReaderPageSectionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBReaderPageSectionController.m; sourceTree = "<group>"; };
 		F8B194DE2E26006600CB9DE1 /* DBPageIGModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBPageIGModel.h; sourceTree = "<group>"; };
 		F8B194DF2E26006600CB9DE1 /* DBPageIGModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBPageIGModel.m; sourceTree = "<group>"; };
-		F8B3C9702E14042000D984F4 /* DBCoinPanView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBCoinPanView.h; sourceTree = "<group>"; };
-		F8B3C9712E14042000D984F4 /* DBCoinPanView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBCoinPanView.m; sourceTree = "<group>"; };
-		F8B3C9732E14044900D984F4 /* DBCoinCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBCoinCollectionViewCell.h; sourceTree = "<group>"; };
-		F8B3C9742E14044900D984F4 /* DBCoinCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBCoinCollectionViewCell.m; sourceTree = "<group>"; };
-		F8B3C9762E14064B00D984F4 /* DBCoinControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBCoinControl.h; sourceTree = "<group>"; };
-		F8B3C9772E14064B00D984F4 /* DBCoinControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBCoinControl.m; sourceTree = "<group>"; };
-		F8B3C97C2E14119300D984F4 /* DBExchangeListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBExchangeListViewController.h; sourceTree = "<group>"; };
-		F8B3C97D2E14119300D984F4 /* DBExchangeListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBExchangeListViewController.m; sourceTree = "<group>"; };
-		F8B3C97F2E14129100D984F4 /* DBExchangeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBExchangeTableViewCell.h; sourceTree = "<group>"; };
-		F8B3C9802E14129100D984F4 /* DBExchangeTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBExchangeTableViewCell.m; sourceTree = "<group>"; };
-		F8B3C9822E1414BA00D984F4 /* DBPaymentFinishView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBPaymentFinishView.h; sourceTree = "<group>"; };
-		F8B3C9832E1414BA00D984F4 /* DBPaymentFinishView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBPaymentFinishView.m; sourceTree = "<group>"; };
 		F8B552592DA2835000605B35 /* DBGenderSelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBGenderSelectView.h; sourceTree = "<group>"; };
 		F8B5525A2DA2835000605B35 /* DBGenderSelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBGenderSelectView.m; sourceTree = "<group>"; };
 		F8BF26632D8EAADB0027A930 /* DBSearchBooksViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBSearchBooksViewController.h; sourceTree = "<group>"; };
@@ -1213,12 +1183,6 @@
 		F8E7FBE72D774BDC003952EA /* DBBookChapterModel.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = DBBookChapterModel.mm; sourceTree = "<group>"; };
 		F8E7FBE92D775D7F003952EA /* DBBookCatalogModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBBookCatalogModel.h; sourceTree = "<group>"; };
 		F8E7FBEA2D775D7F003952EA /* DBBookCatalogModel.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = DBBookCatalogModel.mm; sourceTree = "<group>"; };
-		F8EA6E992DB621D5000A042F /* DBMobileSignInViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBMobileSignInViewController.h; sourceTree = "<group>"; };
-		F8EA6E9A2DB621D5000A042F /* DBMobileSignInViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBMobileSignInViewController.m; sourceTree = "<group>"; };
-		F8EA6E9C2DB626E7000A042F /* DBMobileRegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBMobileRegisterViewController.h; sourceTree = "<group>"; };
-		F8EA6E9D2DB626E7000A042F /* DBMobileRegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBMobileRegisterViewController.m; sourceTree = "<group>"; };
-		F8EA6E9F2DB627D3000A042F /* DBMobileForgetPasswordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBMobileForgetPasswordViewController.h; sourceTree = "<group>"; };
-		F8EA6EA02DB627D3000A042F /* DBMobileForgetPasswordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBMobileForgetPasswordViewController.m; sourceTree = "<group>"; };
 		F8EA6EA32DB628CF000A042F /* DBMineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBMineViewController.h; sourceTree = "<group>"; };
 		F8EA6EA42DB628CF000A042F /* DBMineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBMineViewController.m; sourceTree = "<group>"; };
 		F8EA6EA62DB63463000A042F /* DBLoginoutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBLoginoutViewController.h; sourceTree = "<group>"; };
@@ -1386,7 +1350,6 @@
 			isa = PBXGroup;
 			children = (
 				F83F0AF32DB72F3600357350 /* bookDetail */,
-				F8EA6E982DB6219E000A042F /* login */,
 				F8EA6EA22DB628B9000A042F /* content */,
 			);
 			path = ReviewModule;
@@ -1908,16 +1871,6 @@
 			path = MyConfigModule;
 			sourceTree = "<group>";
 		};
-		F88786BE2E13C46500C41F7E /* ExchangeModule */ = {
-			isa = PBXGroup;
-			children = (
-				F8B3C97B2E14116300D984F4 /* model */,
-				F8B3C97A2E14115A00D984F4 /* vc */,
-				F8B3C9792E14115300D984F4 /* view */,
-			);
-			path = ExchangeModule;
-			sourceTree = "<group>";
-		};
 		F88EA8102D77077200628EC5 /* ReadBookModule */ = {
 			isa = PBXGroup;
 			children = (
@@ -2144,7 +2097,6 @@
 			isa = PBXGroup;
 			children = (
 				F8D1627A2E2F749D00B4A4E0 /* ConstantString */,
-				F88786BE2E13C46500C41F7E /* ExchangeModule */,
 				F8013C792DF6D42F0014BC04 /* ReviewModule */,
 				F88EA8102D77077200628EC5 /* ReadBookModule */,
 				F8BF26702D8EEC480027A930 /* BookTypesModule */,
@@ -2211,45 +2163,6 @@
 				F89C9B842DF2FCF700BFE21F /* BUDFeedStyleHelper.m */,
 			);
 			path = DBAdModule;
-			sourceTree = "<group>";
-		};
-		F8B3C9792E14115300D984F4 /* view */ = {
-			isa = PBXGroup;
-			children = (
-				F88786BF2E13C50E00C41F7E /* DBExchangePanView.h */,
-				F88786C02E13C50E00C41F7E /* DBExchangePanView.m */,
-				F8B3C9702E14042000D984F4 /* DBCoinPanView.h */,
-				F8B3C9712E14042000D984F4 /* DBCoinPanView.m */,
-				F88786C22E13C76E00C41F7E /* DBExchangeCollectionViewCell.h */,
-				F88786C32E13C76E00C41F7E /* DBExchangeCollectionViewCell.m */,
-				F8B3C9732E14044900D984F4 /* DBCoinCollectionViewCell.h */,
-				F8B3C9742E14044900D984F4 /* DBCoinCollectionViewCell.m */,
-				F88786C52E13C96300C41F7E /* DBExchangeControl.h */,
-				F88786C62E13C96300C41F7E /* DBExchangeControl.m */,
-				F8B3C9762E14064B00D984F4 /* DBCoinControl.h */,
-				F8B3C9772E14064B00D984F4 /* DBCoinControl.m */,
-				F8B3C97F2E14129100D984F4 /* DBExchangeTableViewCell.h */,
-				F8B3C9802E14129100D984F4 /* DBExchangeTableViewCell.m */,
-				F8B3C9822E1414BA00D984F4 /* DBPaymentFinishView.h */,
-				F8B3C9832E1414BA00D984F4 /* DBPaymentFinishView.m */,
-			);
-			path = view;
-			sourceTree = "<group>";
-		};
-		F8B3C97A2E14115A00D984F4 /* vc */ = {
-			isa = PBXGroup;
-			children = (
-				F8B3C97C2E14119300D984F4 /* DBExchangeListViewController.h */,
-				F8B3C97D2E14119300D984F4 /* DBExchangeListViewController.m */,
-			);
-			path = vc;
-			sourceTree = "<group>";
-		};
-		F8B3C97B2E14116300D984F4 /* model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = model;
 			sourceTree = "<group>";
 		};
 		F8BF26622D8EAA580027A930 /* SearchBooksModule */ = {
@@ -2863,19 +2776,6 @@
 			path = CWLateralSlide;
 			sourceTree = "<group>";
 		};
-		F8EA6E982DB6219E000A042F /* login */ = {
-			isa = PBXGroup;
-			children = (
-				F8EA6E992DB621D5000A042F /* DBMobileSignInViewController.h */,
-				F8EA6E9A2DB621D5000A042F /* DBMobileSignInViewController.m */,
-				F8EA6E9C2DB626E7000A042F /* DBMobileRegisterViewController.h */,
-				F8EA6E9D2DB626E7000A042F /* DBMobileRegisterViewController.m */,
-				F8EA6E9F2DB627D3000A042F /* DBMobileForgetPasswordViewController.h */,
-				F8EA6EA02DB627D3000A042F /* DBMobileForgetPasswordViewController.m */,
-			);
-			path = login;
-			sourceTree = "<group>";
-		};
 		F8EA6EA22DB628B9000A042F /* content */ = {
 			isa = PBXGroup;
 			children = (
@@ -2979,9 +2879,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-DeepBooks/Pods-DeepBooks-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-DeepBooks/Pods-DeepBooks-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2996,9 +2900,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-DeepBooks/Pods-DeepBooks-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-DeepBooks/Pods-DeepBooks-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3055,7 +2963,6 @@
 				F88F96652E23B0BF00D11278 /* DBBestsellerListViewController.m in Sources */,
 				F88A7FAD2D89B0AF0025B138 /* DBBookSourceUpdateModel.m in Sources */,
 				F87BED432DA51AE100243D7A /* DBAppStoreModel.m in Sources */,
-				F8EA6EA12DB627D3000A042F /* DBMobileForgetPasswordViewController.m in Sources */,
 				F8E7FBDE2D773E19003952EA /* CWLateralSlideConfiguration.m in Sources */,
 				F8BF26802D8EF4C20027A930 /* DBBookTypesCollectionViewCell.m in Sources */,
 				F8E7FBDF2D773E19003952EA /* CWDrawerTransition.m in Sources */,
@@ -3069,7 +2976,6 @@
 				F88ABB112D91A4830066124C /* DBCloseTextField.m in Sources */,
 				F8E7FBE12D773E19003952EA /* UIViewController+CWLateralSlide.m in Sources */,
 				F84272A42E15561200D66E9F /* DBProcessBookConfig.m in Sources */,
-				F88786C72E13C96300C41F7E /* DBExchangeControl.m in Sources */,
 				F8E51C4E2D8D41B300F69044 /* DBMyBooksManagerViewController.m in Sources */,
 				F885282B2DA3FC3B00715B19 /* DBPhoneForgetPasswordViewController.m in Sources */,
 				F89FF65E2D7B18E10020B161 /* DBBookSettingView.m in Sources */,
@@ -3088,9 +2994,7 @@
 				F885281F2DA3E72500715B19 /* DBPhoneSignInViewController.m in Sources */,
 				F8BF26762D8EECD90027A930 /* DBBookTypesListViewController.m in Sources */,
 				F8EBEC1F2D8915CB009DB821 /* DBSpeechVoiceTableViewCell.m in Sources */,
-				F8B3C9722E14042000D984F4 /* DBCoinPanView.m in Sources */,
 				F8D19C502D83BBE400AB2749 /* DBScanningView.m in Sources */,
-				F88786C12E13C50E00C41F7E /* DBExchangePanView.m in Sources */,
 				F83C1F9F2DEED29700E6FC37 /* BFString.m in Sources */,
 				F81445262E1AD72B0054DE91 /* DBPageScrollModel.m in Sources */,
 				F83C1FA02DEED29700E6FC37 /* UIView+Category.m in Sources */,
@@ -3111,7 +3015,6 @@
 				F83C1FAB2DEED29700E6FC37 /* BFRAMUsage.m in Sources */,
 				F83C1FAC2DEED29700E6FC37 /* BFNetworkMonitor.m in Sources */,
 				F83C1FAD2DEED29700E6FC37 /* BFJsonObjectModel.m in Sources */,
-				F8B3C9842E1414BA00D984F4 /* DBPaymentFinishView.m in Sources */,
 				F83C1FAE2DEED29700E6FC37 /* NSURLSessionConfiguration+FSAPM.m in Sources */,
 				F83C1FAF2DEED29700E6FC37 /* FPSLabel.m in Sources */,
 				F83C1FB02DEED29700E6FC37 /* BFLogManager.m in Sources */,
@@ -3268,12 +3171,10 @@
 				F88EF36B2D79DBDD009C5DE2 /* DBBatteryView.m in Sources */,
 				F880CFF92D903CFD006BA010 /* DBResetPasswordViewController.m in Sources */,
 				F89D6A512D94517000C72DD6 /* DBClearBooksCacheViewController.m in Sources */,
-				F8B3C9752E14044900D984F4 /* DBCoinCollectionViewCell.m in Sources */,
 				F8A5CCAE2D7001410013D5FF /* UIButton+DBKit.m in Sources */,
 				F80B2AE32DF4B964004BD779 /* DBAdBannerView.m in Sources */,
 				F8DE19732E04590100E6A195 /* DBReadCoverViewController.m in Sources */,
 				F8D162812E2F773800B4A4E0 /* DBConstantString.m in Sources */,
-				F8B3C9812E14129100D984F4 /* DBExchangeTableViewCell.m in Sources */,
 				F83C1FF52DEED60600E6FC37 /* GLDomainSwitchViewController.m in Sources */,
 				F8C49F592D730B93007B120F /* DBBooksStyle5TableViewCell.m in Sources */,
 				F887E56C2D76074C00FD0AD1 /* DBCollectBooksCollectionViewCell.m in Sources */,
@@ -3297,13 +3198,11 @@
 				F88243212D71891C006EC370 /* DBSignInViewController.m in Sources */,
 				F8E642722D753F3E0051EC37 /* DBBooksCategoryTableViewCell.m in Sources */,
 				F8780DAC2E0F0BCB00810F77 /* DBMarqueeLabel.m in Sources */,
-				F8B3C97E2E14119300D984F4 /* DBExchangeListViewController.m in Sources */,
 				F8A5CCA22D6FFDEB0013D5FF /* UIApplication+DBKit.m in Sources */,
 				F88ABB142D91AB640066124C /* DBUserModel.m in Sources */,
 				F87FBD932D9EA68600325D1B /* DBFeedbackPanView.m in Sources */,
 				F8D870AB2D9D8B6C002F7D2F /* DEBookCommentListModel.m in Sources */,
 				F8BF26862D8F009F0027A930 /* DBTypeBooksView.m in Sources */,
-				F88786C42E13C76E00C41F7E /* DBExchangeCollectionViewCell.m in Sources */,
 				F885282E2DA3FC4800715B19 /* DBEmailForgetPasswordViewController.m in Sources */,
 				F8841DD92D709CF500E771EA /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				F8A5CC932D6FF5E20013D5FF /* UIFont+DBKit.m in Sources */,
@@ -3332,7 +3231,6 @@
 				F8C49B3E2D72D476007B120F /* NSArray+DBKit.m in Sources */,
 				F88528282DA3EEF800715B19 /* DBEmailRegisterViewController.m in Sources */,
 				F8A12DB02DDF1DED00CD1D17 /* DBBaseAdViewController.m in Sources */,
-				F8EA6E9B2DB621D5000A042F /* DBMobileSignInViewController.m in Sources */,
 				F89C580C2D783772000DE93F /* NSData+DBKit.m in Sources */,
 				F84FB1BE2D9E23F900AEE370 /* DBBaseTableView.m in Sources */,
 				F807C8C82D74A77A000671FE /* DBBookSourceModel.mm in Sources */,
@@ -3416,7 +3314,6 @@
 				F83C83AA2E0053B6001CA6AF /* DBReadBookBackViewController.m in Sources */,
 				F89D6A4E2D944DAD00C72DD6 /* DBMySettingModel.m in Sources */,
 				F8E7F99A2DC1008400AA93BA /* DBAppSwitchModel.m in Sources */,
-				F8EA6E9E2DB626E7000A042F /* DBMobileRegisterViewController.m in Sources */,
 				F88F96622E23AFDD00D11278 /* DBHottestIndexViewController.m in Sources */,
 				F8A5CC902D6FF44F0013D5FF /* UIView+DBKit.m in Sources */,
 				F880CFFC2D9040F2006BA010 /* DBContryCodeViewController.m in Sources */,
@@ -3425,7 +3322,6 @@
 				F880CFDE2D8FE3D3006BA010 /* DBSearchBooksModel.m in Sources */,
 				F807C8732D743A5B000671FE /* DBRecommendBooksTableViewCell.m in Sources */,
 				F80C706A2E1687D9006B7271 /* UIView+DBSkin.m in Sources */,
-				F8B3C9782E14064B00D984F4 /* DBCoinControl.m in Sources */,
 				F8A5CD6B2D706A200013D5FF /* DBDecryptManager.m in Sources */,
 				F8FDE0052D9AC9350079CDFE /* DBBookMenuItemModel.m in Sources */,
 				F814451D2E19742F0054DE91 /* DBPageCoverViewController.m in Sources */,
