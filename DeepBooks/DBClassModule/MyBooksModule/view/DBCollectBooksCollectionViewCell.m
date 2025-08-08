@@ -143,7 +143,7 @@
     if (!_topImageView){
         _topImageView = [[UIImageView alloc] init];
         _topImageView.contentMode = UIViewContentModeScaleAspectFill;
-        _topImageView.image = [UIImage imageNamed:@"top_icon"];
+        _topImageView.image = [UIImage imageNamed:@"jjApexInsignia"];
     }
     return _topImageView;
 }

@@ -57,7 +57,7 @@
 - (void)setupScanBar {
     self.scanBar = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 8)];
     self.scanBar.userInteractionEnabled = YES;
-    self.scanBar.image = [UIImage imageNamed:@"scanBar_icon"];
+    self.scanBar.image = [UIImage imageNamed:@"jjLuminousBeam"];
     [self addSubview:self.scanBar];
 }
 

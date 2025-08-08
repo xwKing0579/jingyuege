@@ -120,7 +120,7 @@
 
 - (UIView *)customViewForEmptyDataSet:(UIScrollView *)scrollView{
     DBEmptyView *emptyView = [[DBEmptyView alloc] init];
-    emptyView.imageObj = [UIImage imageNamed:@"empty_icon"];
+    emptyView.imageObj = [UIImage imageNamed:@"jjNullCanvas"];
     emptyView.content = @"暂无书单收藏";
     [scrollView addSubview:emptyView];
     [emptyView mas_makeConstraints:^(MASConstraintMaker *make) {

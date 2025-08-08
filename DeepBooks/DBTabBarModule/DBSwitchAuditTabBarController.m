@@ -28,8 +28,8 @@
 
 - (void)setUpSubViews{
     NSArray *names = @[@"首页",@"我的"];
-    NSArray *tabImages = @[@"tab0",@"tab3"];
-    NSArray *tabSelImages = @[@"tab0_sel",@"tab3_sel"];
+    NSArray *tabImages = @[@"jjAlphaTab",@"jjDeltaTab"];
+    NSArray *tabSelImages = @[@"jjAlphaActive",@"jjDeltaActive"];
     NSArray *vcs = @[DBHomeViewController.new,DBMineViewController.new];
     for (NSInteger index = 0; index < vcs.count; index++) {
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vcs[index]];

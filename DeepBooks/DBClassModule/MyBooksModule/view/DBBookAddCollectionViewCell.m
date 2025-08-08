@@ -38,7 +38,7 @@
 - (UIImageView *)addBookImageView{
     if (!_addBookImageView){
         _addBookImageView = [[UIImageView alloc] init];
-        _addBookImageView.image = [UIImage imageNamed:@"addBook"];
+        _addBookImageView.image = [UIImage imageNamed:@"jjTomeAugment"];
         _addBookImageView.contentMode = UIViewContentModeScaleAspectFill;
     }
     return _addBookImageView;

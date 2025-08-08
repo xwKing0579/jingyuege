@@ -438,7 +438,7 @@
 - (DBEmptyView *)errorDataView{
     if (!_errorDataView){
         _errorDataView = [[DBEmptyView alloc] init];
-        _errorDataView.imageObj = [UIImage imageNamed:@"empty_icon"];
+        _errorDataView.imageObj = [UIImage imageNamed:@"jjNullCanvas"];
         _errorDataView.content = [NSString stringWithFormat:@"加载第%ld章节失败",self.model.currentChapter+1];
         _errorDataView.reloadButton.hidden = NO;
         [self.view addSubview:_errorDataView];

@@ -10,7 +10,7 @@
 @implementation DBUserSettingModel
 
 + (NSArray *)dataSourceList{
-    NSString *avater = @"avater_image";
+    NSString *avater = @"jjMirageDouble";
     if (DBCommonConfig.userDataInfo.avatar.length > 0){
         avater = [DBLinkManager combineLinkWithType:DBLinkHeaderAvatarUrl combine:DBCommonConfig.userDataInfo.avatar];
     }

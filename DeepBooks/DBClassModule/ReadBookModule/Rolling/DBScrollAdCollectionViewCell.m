@@ -36,7 +36,7 @@
 //- (UIImageView *)iconImage{
 //    if (!_iconImage){
 //        _iconImage = [[UIImageView alloc] init];
-//        _iconImage.image = [UIImage imageNamed:@"gender_man"];
+//        _iconImage.image = [UIImage imageNamed:@"jjTerraForma"];
 //        _iconImage.contentMode = UIViewContentModeScaleAspectFit;
 //    }
 //    return _iconImage;

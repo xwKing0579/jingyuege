@@ -152,7 +152,7 @@
         [_containerBoxView addTapGestureTarget:self action:@selector(clickBookSourceAction)];
         
         UIImageView *arrowImageView = [[UIImageView alloc] init];
-        arrowImageView.image = [UIImage imageNamed:@"arrowIcon"];
+        arrowImageView.image = [UIImage imageNamed:@"jjCosmicNavigator"];
         
         [_containerBoxView addSubviews:@[self.sourceLabel,self.chapterLabel,arrowImageView]];
         [self.sourceLabel mas_makeConstraints:^(MASConstraintMaker *make) {

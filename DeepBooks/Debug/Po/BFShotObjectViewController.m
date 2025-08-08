@@ -28,7 +28,7 @@
 }
 
 - (void)changeLeakObjectColor{
-    NSDictionary *colors = @{@"clear":DBColorExtension.noColor,@"white":UIColor.whiteColor,@"black":UIColor.blackColor};
+    NSDictionary *colors = @{@"jjEradicationSigil":DBColorExtension.noColor,@"white":UIColor.whiteColor,@"black":UIColor.blackColor};
     UIAlertController *alertController = [UIAlertController alertStyle:UIAlertControllerStyleActionSheet title:@"修改背景色" message:@"" cancel:@"取消" cancelBlock:^(NSString * _Nonnull cancel) {
         
     } confirms:colors.allKeys confirmBlock:^(NSUInteger index) {

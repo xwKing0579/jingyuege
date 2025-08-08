@@ -148,7 +148,7 @@
         }];
         
         UIButton *backButton = [[UIButton alloc] init];
-        [backButton setImage:[UIImage imageNamed:@"backIcon"] forState:UIControlStateNormal];
+        [backButton setImage:[UIImage imageNamed:@"jjRetreatCompass"] forState:UIControlStateNormal];
         DBWeakSelf
         [backButton addTagetHandler:^(id  _Nonnull sender) {
             DBStrongSelfElseReturn
@@ -280,7 +280,7 @@
         catalogButton.titleLabel.font = DBFontExtension.pingFangMediumSmall;
         catalogButton.enlargedEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
         [catalogButton setTitle:@"目录" forState:UIControlStateNormal];
-        [catalogButton setImage:[UIImage imageNamed:@"catalog_icon"] forState:UIControlStateNormal];
+        [catalogButton setImage:[UIImage imageNamed:@"jjCodexRegistry"] forState:UIControlStateNormal];
         [catalogButton setTitleColor:DBColorExtension.charcoalAltColor forState:UIControlStateNormal];
         [catalogButton addTarget:self action:@selector(clickMenuItem:) forControlEvents:UIControlEventTouchUpInside];
         [catalogButton setTitlePosition:TitlePositionBottom spacing:2];
@@ -298,8 +298,8 @@
         eyeshadowButton.enlargedEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
         [eyeshadowButton setTitle:@"夜间" forState:UIControlStateNormal];
         [eyeshadowButton setTitle:@"白天" forState:UIControlStateSelected];
-        [eyeshadowButton setImage:[UIImage imageNamed:@"night_icon"] forState:UIControlStateNormal];
-        [eyeshadowButton setImage:[UIImage imageNamed:@"day_icon"] forState:UIControlStateSelected];
+        [eyeshadowButton setImage:[UIImage imageNamed:@"jjUmbraBadge"] forState:UIControlStateNormal];
+        [eyeshadowButton setImage:[UIImage imageNamed:@"jjSolarisMark"] forState:UIControlStateSelected];
         eyeshadowButton.selected = DBReadBookSetting.setting.isDark;
         [eyeshadowButton setTitleColor:DBColorExtension.charcoalAltColor forState:UIControlStateNormal];
         [eyeshadowButton addTarget:self action:@selector(clickMenuItem:) forControlEvents:UIControlEventTouchUpInside];
@@ -317,7 +317,7 @@
         settingButton.titleLabel.font = DBFontExtension.pingFangMediumSmall;
         settingButton.enlargedEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
         [settingButton setTitle:@"设置" forState:UIControlStateNormal];
-        [settingButton setImage:[UIImage imageNamed:@"settingIcon"] forState:UIControlStateNormal];
+        [settingButton setImage:[UIImage imageNamed:@"jjMechanizationCog"] forState:UIControlStateNormal];
         [settingButton setTitleColor:DBColorExtension.charcoalAltColor forState:UIControlStateNormal];
         [settingButton addTarget:self action:@selector(clickMenuItem:) forControlEvents:UIControlEventTouchUpInside];
         [settingButton setTitlePosition:TitlePositionBottom spacing:2];
@@ -343,7 +343,7 @@
         _sliderView = [[UISlider alloc] init];
         _sliderView.minimumValue = 0;
         _sliderView.maximumValue = 1;
-        [_sliderView setThumbImage:[UIImage imageNamed:@"slider_bright"] forState:UIControlStateNormal];
+        [_sliderView setThumbImage:[UIImage imageNamed:@"jjIlluminationModulator"] forState:UIControlStateNormal];
         _sliderView.minimumTrackTintColor = DBColorExtension.goldColor;
         [_sliderView addTarget:self action:@selector(scrollSliderValueChanged:) forControlEvents:UIControlEventTouchUpInside|UIControlEventTouchUpOutside];
         [_sliderView addTarget:self action:@selector(scrollSliderValueChanging:) forControlEvents:UIControlEventValueChanged];

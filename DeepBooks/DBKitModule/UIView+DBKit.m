@@ -200,7 +200,7 @@ static DBBaseLabel *_textLabel;
     
     UIButton *closeButton = [[UIButton alloc] init];
     closeButton.enlargedEdgeInsets = UIEdgeInsetsMake(3, 3, 3, 3);
-    [closeButton setImage:[UIImage imageNamed:@"close_icon"] forState:UIControlStateNormal];
+    [closeButton setImage:[UIImage imageNamed:@"jjCrystallineBarrier"] forState:UIControlStateNormal];
     [closeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [maskView addSubview:closeButton];
     [closeButton mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -353,8 +353,8 @@
         CGFloat width = 14;
         _scoreView = [[DBStarRating alloc] initWithFrame:CGRectMake(0, 0, width*5+6*4, width)];
         _scoreView.spacing = 6;
-        _scoreView.checkedImage = [UIImage imageNamed:@"scoreRed_sel"];
-        _scoreView.uncheckedImage = [UIImage imageNamed:@"scoreRed_unsel"];
+        _scoreView.checkedImage = [UIImage imageNamed:@"jjScarletAster"];
+        _scoreView.uncheckedImage = [UIImage imageNamed:@"jjGarnetOutline"];
         _scoreView.minimumScore = 0.0;
         _scoreView.maximumScore = 5;
         _scoreView.type = RatingTypeUnlimited;
@@ -387,8 +387,8 @@
 - (UIButton *)favButton{
     if (!_favButton){
         _favButton = [[UIButton alloc] init];
-        [_favButton setImage:[UIImage imageNamed:@"fav_unsel_icon"] forState:UIControlStateNormal];
-        [_favButton setImage:[UIImage imageNamed:@"fav_sel_icon"] forState:UIControlStateSelected];
+        [_favButton setImage:[UIImage imageNamed:@"jjHollowChalice"] forState:UIControlStateNormal];
+        [_favButton setImage:[UIImage imageNamed:@"jjIncandescentVessel"] forState:UIControlStateSelected];
         [_favButton addTarget:self action:@selector(clickFavAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _favButton;
@@ -397,7 +397,7 @@
 - (UIButton *)commetnButton{
     if (!_commetnButton){
         _commetnButton = [[UIButton alloc] init];
-        [_commetnButton setImage:[UIImage imageNamed:@"comment_icon"] forState:UIControlStateNormal];
+        [_commetnButton setImage:[UIImage imageNamed:@"jjEchoScroll"] forState:UIControlStateNormal];
         [_commetnButton addTarget:self action:@selector(clickCommentAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _commetnButton;

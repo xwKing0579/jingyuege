@@ -106,7 +106,7 @@
         _moreButton.size = CGSizeMake(38, 18);
         _moreButton.enlargedEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
         [_moreButton setTitle:@"更多" forState:UIControlStateNormal];
-        [_moreButton setImage:[UIImage imageNamed:@"arrow_21_36"] forState:UIControlStateNormal];
+        [_moreButton setImage:[UIImage imageNamed:@"jjPrecisionTrajectory"] forState:UIControlStateNormal];
         [_moreButton setTitleColor:DBColorExtension.inkWashColor forState:UIControlStateNormal];
         [_moreButton setTitlePosition:TitlePositionLeft spacing:2];
         

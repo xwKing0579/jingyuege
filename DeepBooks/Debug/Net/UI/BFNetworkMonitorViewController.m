@@ -26,7 +26,7 @@
     self.dataSource = BFNetworkMonitor.data;
     self.data = self.dataSource;
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"delete"].original style:(UIBarButtonItemStyleDone) target:self action:@selector(removeNetworkData)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"jjAnnihilationSigil"].original style:(UIBarButtonItemStyleDone) target:self action:@selector(removeNetworkData)];
     [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.filterView.mas_bottom);
         make.left.right.bottom.mas_equalTo(0);

@@ -102,7 +102,7 @@
     if (!_searchButton){
         _searchButton = [[UIButton alloc] init];
         _searchButton.enlargedEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
-        [_searchButton setImage:[UIImage imageNamed:@"searchIcon"] forState:UIControlStateNormal];
+        [_searchButton setImage:[UIImage imageNamed:@"jjLensTotem"] forState:UIControlStateNormal];
         [_searchButton addTarget:self action:@selector(clickSearchAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _searchButton;

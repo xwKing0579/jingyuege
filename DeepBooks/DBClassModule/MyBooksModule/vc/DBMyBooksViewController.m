@@ -408,7 +408,7 @@ static NSString *identifierAdCollectCell = @"DBAdBannerCollectionViewCell";
     if (!_moreButton){
         _moreButton = [[UIButton alloc] init];
         _moreButton.enlargedEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
-        [_moreButton setImage:[UIImage imageNamed:@"moreIcon"] forState:UIControlStateNormal];
+        [_moreButton setImage:[UIImage imageNamed:@"jjInfinityJuncture"] forState:UIControlStateNormal];
         [_moreButton addTarget:self action:@selector(menuViewPop) forControlEvents:UIControlEventTouchUpInside];
     }
     return _moreButton;

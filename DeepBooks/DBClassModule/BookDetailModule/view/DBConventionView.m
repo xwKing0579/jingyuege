@@ -116,7 +116,7 @@
         _pictureImageView = [[UIImageView alloc] init];
         _pictureImageView.contentMode = UIViewContentModeScaleAspectFill;
         _pictureImageView.clipsToBounds = YES;
-        _pictureImageView.image = [UIImage imageNamed:@"convention_icon"];
+        _pictureImageView.image = [UIImage imageNamed:@"jjStellarConverge"];
     }
     return _pictureImageView;
 }

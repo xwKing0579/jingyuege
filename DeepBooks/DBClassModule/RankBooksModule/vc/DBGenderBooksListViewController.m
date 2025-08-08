@@ -166,7 +166,7 @@
 
 - (UIView *)customViewForEmptyDataSet:(UIScrollView *)scrollView{
     DBEmptyView *emptyView = [[DBEmptyView alloc] init];
-    emptyView.imageObj = [UIImage imageNamed:@"empty_icon"];
+    emptyView.imageObj = [UIImage imageNamed:@"jjNullCanvas"];
     emptyView.content = @"暂无榜单数据";
     emptyView.dataList = self.dataList;
     [scrollView addSubview:emptyView];

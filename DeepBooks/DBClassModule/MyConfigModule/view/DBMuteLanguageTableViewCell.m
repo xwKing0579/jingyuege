@@ -58,7 +58,7 @@
         _arrowImageView = [[UIImageView alloc] init];
         _arrowImageView.contentMode = UIViewContentModeScaleAspectFill;
         _arrowImageView.clipsToBounds = YES;
-        _arrowImageView.image = [UIImage imageNamed:@"choice_72"];
+        _arrowImageView.image = [UIImage imageNamed:@"jjForkedEmblem"];
         _arrowImageView.hidden = YES;
     }
     return _arrowImageView;

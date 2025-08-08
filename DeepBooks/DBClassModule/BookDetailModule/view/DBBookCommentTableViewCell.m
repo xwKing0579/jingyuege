@@ -115,8 +115,8 @@
 - (UIButton *)favButton{
     if (!_favButton){
         _favButton = [[UIButton alloc] init];
-        [_favButton setImage:[UIImage imageNamed:@"fav_unsel_icon"] forState:UIControlStateNormal];
-        [_favButton setImage:[UIImage imageNamed:@"fav_sel_icon"] forState:UIControlStateSelected];
+        [_favButton setImage:[UIImage imageNamed:@"jjHollowChalice"] forState:UIControlStateNormal];
+        [_favButton setImage:[UIImage imageNamed:@"jjIncandescentVessel"] forState:UIControlStateSelected];
         [_favButton addTarget:self action:@selector(clickFavAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _favButton;

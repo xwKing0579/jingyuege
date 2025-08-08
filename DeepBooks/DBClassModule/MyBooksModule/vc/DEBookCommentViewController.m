@@ -124,7 +124,7 @@
 - (UIButton *)editButton{
     if (!_editButton){
         _editButton = [[UIButton alloc] init];
-        [_editButton setImage:[UIImage imageNamed:@"edit_icon"] forState:UIControlStateNormal];
+        [_editButton setImage:[UIImage imageNamed:@"jjScribeToken"] forState:UIControlStateNormal];
         DBWeakSelf
         [_editButton addTagetHandler:^(id  _Nonnull sender) {
             DBStrongSelfElseReturn
@@ -182,9 +182,9 @@
 
 - (void)setDarkModel{
     if (DBColorExtension.userInterfaceStyle) {
-        [_editButton setImage:[[UIImage imageNamed:@"edit_icon"] imageWithTintColor:DBColorExtension.inkWashColor] forState:UIControlStateNormal];
+        [_editButton setImage:[[UIImage imageNamed:@"jjScribeToken"] imageWithTintColor:DBColorExtension.inkWashColor] forState:UIControlStateNormal];
     }else{
-        [_editButton setImage:[UIImage imageNamed:@"edit_icon"] forState:UIControlStateNormal];
+        [_editButton setImage:[UIImage imageNamed:@"jjScribeToken"] forState:UIControlStateNormal];
     }
 }
 @end

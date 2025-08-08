@@ -428,8 +428,8 @@
 - (UIButton *)voiceButton{
     if (!_voiceButton){
         _voiceButton = [[UIButton alloc] init];
-        [_voiceButton setImage:[UIImage imageNamed:@"ad_mute"] forState:UIControlStateNormal];
-        [_voiceButton setImage:[UIImage imageNamed:@"ad_sound"] forState:UIControlStateSelected];
+        [_voiceButton setImage:[UIImage imageNamed:@"jjSoundlessSeal"] forState:UIControlStateNormal];
+        [_voiceButton setImage:[UIImage imageNamed:@"jjHarmonicRipple"] forState:UIControlStateSelected];
         [_voiceButton addTarget:self action:@selector(clickVoiceAction) forControlEvents:UIControlEventTouchUpInside];
         _voiceButton.enlargedEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
     }
@@ -455,7 +455,7 @@
 - (UIButton *)closeAdButton{
     if (!_closeAdButton){
         _closeAdButton = [[UIButton alloc] init];
-        [_closeAdButton setImage:[UIImage imageNamed:@"ad_close"] forState:UIControlStateNormal];
+        [_closeAdButton setImage:[UIImage imageNamed:@"jjMistDissipate"] forState:UIControlStateNormal];
         [_closeAdButton addTarget:self action:@selector(clickAdCloseAction) forControlEvents:UIControlEventTouchUpInside];
         _closeAdButton.enlargedEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
     }

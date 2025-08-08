@@ -106,8 +106,8 @@
 - (UIButton *)choiceButton{
     if (!_choiceButton){
         _choiceButton = [[UIButton alloc] init];
-        [_choiceButton setImage:[UIImage imageNamed:@"unsel_icon"] forState:UIControlStateNormal];
-        [_choiceButton setImage:[UIImage imageNamed:@"sel_icon"] forState:UIControlStateSelected];
+        [_choiceButton setImage:[UIImage imageNamed:@"jjNeutralToken"] forState:UIControlStateNormal];
+        [_choiceButton setImage:[UIImage imageNamed:@"jjFatedMarker"] forState:UIControlStateSelected];
         _choiceButton.userInteractionEnabled = NO;
     }
     return _choiceButton;

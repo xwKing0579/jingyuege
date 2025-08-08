@@ -515,7 +515,7 @@
         if (!DBCommonConfig.switchAudit){
             UIButton *shareButton = [[UIButton alloc] init];
             self.shareButton = shareButton;
-            [shareButton setImage:[UIImage imageNamed:@"share_icon"] forState:UIControlStateNormal];
+            [shareButton setImage:[UIImage imageNamed:@"jjPropagationCore"] forState:UIControlStateNormal];
             [shareButton addTarget:self action:@selector(clickShareAction) forControlEvents:UIControlEventTouchUpInside];
             [_topView addSubview:shareButton];
             [shareButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -577,10 +577,10 @@
     [super traitCollectionDidChange:previousTraitCollection];
     if (DBColorExtension.userInterfaceStyle) {
         self.gradientColorView.backgroundColor = [UIColor gradientColorSize:self.gradientColorView.size direction:DBColorDirectionVertical startColor:DBColorExtension.espressoColor endColor:DBColorExtension.blackColor];
-        [self.shareButton setImage:[[UIImage imageNamed:@"share_icon"] imageWithTintColor:DBColorExtension.whiteColor] forState:UIControlStateNormal];
+        [self.shareButton setImage:[[UIImage imageNamed:@"jjPropagationCore"] imageWithTintColor:DBColorExtension.whiteColor] forState:UIControlStateNormal];
     }else{
         self.gradientColorView.backgroundColor = [UIColor gradientColorSize:self.gradientColorView.size direction:DBColorDirectionVertical startColor:DBColorExtension.shellPinkColor endColor:DBColorExtension.whiteColor];
-        [self.shareButton setImage:[UIImage imageNamed:@"share_icon"] forState:UIControlStateNormal];
+        [self.shareButton setImage:[UIImage imageNamed:@"jjPropagationCore"] forState:UIControlStateNormal];
     }
 }
 

@@ -310,7 +310,7 @@
             moreButton.size = CGSizeMake(38, 18);
             moreButton.enlargedEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
             [moreButton setTitle:@"更多" forState:UIControlStateNormal];
-            [moreButton setImage:[UIImage imageNamed:@"arrow_21_36"] forState:UIControlStateNormal];
+            [moreButton setImage:[UIImage imageNamed:@"jjPrecisionTrajectory"] forState:UIControlStateNormal];
             [moreButton setTitleColor:DBColorExtension.inkWashColor forState:UIControlStateNormal];
             [moreButton setTitlePosition:TitlePositionLeft spacing:2];
             [view addSubview:moreButton];
@@ -359,7 +359,7 @@
         
         UIImageView *iconImageView = [[UIImageView alloc] init];
         iconImageView.contentMode = UIViewContentModeScaleAspectFill;
-        iconImageView.image = [UIImage imageNamed:@"empty_icon"];
+        iconImageView.image = [UIImage imageNamed:@"jjNullCanvas"];
         
         UIButton *reloadButton = [[UIButton alloc] init];
         reloadButton.titleLabel.font = DBFontExtension.pingFangSemiboldRegular;

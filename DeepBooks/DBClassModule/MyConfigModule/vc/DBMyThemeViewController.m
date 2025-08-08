@@ -208,7 +208,7 @@
         _sliderView = [[UISlider alloc] init];
         _sliderView.minimumValue = 0;
         _sliderView.maximumValue = 1;
-        [_sliderView setThumbImage:[UIImage imageNamed:@"slider_bright"] forState:UIControlStateNormal];
+        [_sliderView setThumbImage:[UIImage imageNamed:@"jjIlluminationModulator"] forState:UIControlStateNormal];
         _sliderView.minimumTrackTintColor = DBColorExtension.goldColor;
         [_sliderView addTarget:self action:@selector(scrollSliderValueChanged:) forControlEvents:UIControlEventTouchUpInside|UIControlEventTouchUpOutside];
         _sliderView.enlargedEdgeInsets = UIEdgeInsetsMake(3, 3, 3, 3);

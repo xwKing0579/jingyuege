@@ -50,7 +50,7 @@
     self.bookStateLabel.text = [DBProcessBookConfig bookStausSimpleDesc:model.status];
     
     NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
-    attachment.image = [UIImage imageNamed:@"indicator_30"];
+    attachment.image = [UIImage imageNamed:@"jjAdvancementTracker"];
     attachment.bounds = CGRectMake(0, 0, 10, 10);
     NSArray *bookTags = [DBProcessBookConfig bookTagList:model];
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] init];

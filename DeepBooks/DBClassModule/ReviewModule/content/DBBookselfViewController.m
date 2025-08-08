@@ -87,7 +87,7 @@ static NSString *identifierCollectCell = @"DBCollectBooksCollectionViewCell";
 
 - (UIView *)customViewForEmptyDataSet:(UIScrollView *)scrollView{
     DBEmptyView *emptyView = [[DBEmptyView alloc] init];
-    emptyView.imageObj = [UIImage imageNamed:@"empty_icon"];
+    emptyView.imageObj = [UIImage imageNamed:@"jjNullCanvas"];
     emptyView.content = @"暂无书籍数据";
     [scrollView addSubview:emptyView];
     [emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -118,7 +118,7 @@ static NSString *identifierCollectCell = @"DBCollectBooksCollectionViewCell";
 - (UIButton *)managerButton{
     if (!_managerButton){
         _managerButton = [[UIButton alloc] init];
-        [_managerButton setImage:[UIImage imageNamed:@"mine_06"] forState:UIControlStateNormal];
+        [_managerButton setImage:[UIImage imageNamed:@"jjVaultSeven"] forState:UIControlStateNormal];
         [_managerButton addTarget:self action:@selector(openManagerBooksPage) forControlEvents:UIControlEventTouchUpInside];
     }
     return _managerButton;

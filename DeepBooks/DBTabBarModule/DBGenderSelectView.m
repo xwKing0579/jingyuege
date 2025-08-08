@@ -161,7 +161,7 @@
 - (UIButton *)manControl{
     if (!_manControl){
         _manControl = [[UIButton alloc] init];
-        [_manControl setBackgroundImage:[UIImage imageNamed:@"gender_man"] forState:UIControlStateNormal];
+        [_manControl setBackgroundImage:[UIImage imageNamed:@"jjTerraForma"] forState:UIControlStateNormal];
         [_manControl addTarget:self action:@selector(clickManAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _manControl;
@@ -170,7 +170,7 @@
 - (UIButton *)femanControl{
     if (!_femanControl){
         _femanControl = [[UIButton alloc] init];
-        [_femanControl setBackgroundImage:[UIImage imageNamed:@"gender_feman"] forState:UIControlStateNormal];
+        [_femanControl setBackgroundImage:[UIImage imageNamed:@"jjCelestialSilhouette"] forState:UIControlStateNormal];
         [_femanControl addTarget:self action:@selector(clickFemanAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _femanControl;

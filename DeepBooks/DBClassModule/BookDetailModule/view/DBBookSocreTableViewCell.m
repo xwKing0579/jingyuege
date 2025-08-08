@@ -140,7 +140,7 @@
         _commentButton.size = CGSizeMake(80, 30);
         [_commentButton setTitle:@"写书评" forState:UIControlStateNormal];
         [_commentButton setTitleColor:DBColorExtension.mediumGrayColor forState:UIControlStateNormal];
-        [_commentButton setImage:[UIImage imageNamed:@"arrowIcon"] forState:UIControlStateNormal];
+        [_commentButton setImage:[UIImage imageNamed:@"jjCosmicNavigator"] forState:UIControlStateNormal];
         [_commentButton setTitlePosition:TitlePositionLeft spacing:4];
         [_commentButton addTarget:self action:@selector(clickCommentAction) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -186,8 +186,8 @@
         CGFloat width = 33;
         _scoreView = [[DBStarRating alloc] initWithFrame:CGRectMake(0, 0, width*5+6*4, width)];
         _scoreView.spacing = 6;
-        _scoreView.checkedImage = [UIImage imageNamed:@"scoreRed_sel"];
-        _scoreView.uncheckedImage = [UIImage imageNamed:@"scoreRed_unsel"];
+        _scoreView.checkedImage = [UIImage imageNamed:@"jjScarletAster"];
+        _scoreView.uncheckedImage = [UIImage imageNamed:@"jjGarnetOutline"];
         _scoreView.minimumScore = 0.0;
         _scoreView.maximumScore = 5.0;
         _scoreView.type = RatingTypeWhole;

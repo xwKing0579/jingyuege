@@ -74,9 +74,9 @@
     UIColor *scoreColor = DBColorExtension.charcoalColor;
     if (DBColorExtension.userInterfaceStyle) {
         scoreColor = DBColorExtension.whiteColor;
-        self.scoreView.checkedImage = [[UIImage imageNamed:@"score_sel"] imageWithTintColor:scoreColor];
+        self.scoreView.checkedImage = [[UIImage imageNamed:@"jjBlazingAster"] imageWithTintColor:scoreColor];
     }else{
-        self.scoreView.checkedImage = [UIImage imageNamed:@"score_sel"];
+        self.scoreView.checkedImage = [UIImage imageNamed:@"jjBlazingAster"];
     }
     
     self.readerValueLabel.attributedText = [NSAttributedString combineAttributeTexts:@[count.textMultilingual,unit.textMultilingual] colors:@[scoreColor] fonts:@[DBFontExtension.titleLargeFont,DBFontExtension.bodyMediumFont]];
@@ -135,8 +135,8 @@
         _scoreView = [[DBStarRating alloc] initWithFrame:CGRectMake(0, 0, width*5+6*4, width)];
         _scoreView.spacing = 6;
    
-        _scoreView.checkedImage = [UIImage imageNamed:@"score_sel"];
-        _scoreView.uncheckedImage = [UIImage imageNamed:@"score_unsel"];
+        _scoreView.checkedImage = [UIImage imageNamed:@"jjBlazingAster"];
+        _scoreView.uncheckedImage = [UIImage imageNamed:@"jjSlumberingAster"];
         _scoreView.minimumScore = 0.0;
         _scoreView.maximumScore = 10.0;
         _scoreView.type = RatingTypeUnlimited;
@@ -147,9 +147,9 @@
 - (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {
     [super traitCollectionDidChange:previousTraitCollection];
     if (DBColorExtension.userInterfaceStyle) {
-        self.scoreView.checkedImage = [[UIImage imageNamed:@"score_sel"] imageWithTintColor:DBColorExtension.whiteColor];
+        self.scoreView.checkedImage = [[UIImage imageNamed:@"jjBlazingAster"] imageWithTintColor:DBColorExtension.whiteColor];
     }else{
-        self.scoreView.checkedImage = [UIImage imageNamed:@"score_sel"];
+        self.scoreView.checkedImage = [UIImage imageNamed:@"jjBlazingAster"];
     }
 }
 @end

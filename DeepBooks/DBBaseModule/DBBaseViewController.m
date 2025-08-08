@@ -47,9 +47,9 @@
 //    [self changeViewColorProperty:UIScreen.appWindow];
   
     if (DBColorExtension.userInterfaceStyle) {
-        [_leftButton setImage:[[UIImage imageNamed:@"backIcon"] imageWithTintColor:DBColorExtension.whiteColor] forState:UIControlStateNormal];
+        [_leftButton setImage:[[UIImage imageNamed:@"jjRetreatCompass"] imageWithTintColor:DBColorExtension.whiteColor] forState:UIControlStateNormal];
     }else{
-        [_leftButton setImage:[UIImage imageNamed:@"backIcon"] forState:UIControlStateNormal];
+        [_leftButton setImage:[UIImage imageNamed:@"jjRetreatCompass"] forState:UIControlStateNormal];
     }
 }
 
@@ -158,7 +158,7 @@
     if (!_leftButton){
         _leftButton = [[UIButton alloc] init];
         _leftButton.layer.zPosition = 1000;
-        [_leftButton setImage:[UIImage imageNamed:@"backIcon"] forState:UIControlStateNormal];
+        [_leftButton setImage:[UIImage imageNamed:@"jjRetreatCompass"] forState:UIControlStateNormal];
   
         [_leftButton addTagetHandler:^(id  _Nonnull sender) {
             [DBRouter closePage];

@@ -59,10 +59,10 @@
     [self.commentTextView becomeFirstResponder];
     if (DBColorExtension.userInterfaceStyle) {
         self.backgroundColor = DBColorExtension.jetBlackColor;
-        [self.closeButton setImage:[[UIImage imageNamed:@"close_black"] imageWithTintColor:DBColorExtension.whiteColor] forState:UIControlStateNormal];
+        [self.closeButton setImage:[[UIImage imageNamed:@"jjObsidianClasp"] imageWithTintColor:DBColorExtension.whiteColor] forState:UIControlStateNormal];
     }else{
         self.backgroundColor = DBColorExtension.whiteColor;
-        [self.closeButton setImage:[UIImage imageNamed:@"close_black"] forState:UIControlStateNormal];
+        [self.closeButton setImage:[UIImage imageNamed:@"jjObsidianClasp"] forState:UIControlStateNormal];
     }
 }
 
@@ -70,10 +70,10 @@
     [super traitCollectionDidChange:previousTraitCollection];
     if (DBColorExtension.userInterfaceStyle) {
         self.backgroundColor = DBColorExtension.jetBlackColor;
-        [self.closeButton setImage:[[UIImage imageNamed:@"close_black"] imageWithTintColor:DBColorExtension.whiteColor] forState:UIControlStateNormal];
+        [self.closeButton setImage:[[UIImage imageNamed:@"jjObsidianClasp"] imageWithTintColor:DBColorExtension.whiteColor] forState:UIControlStateNormal];
     }else{
         self.backgroundColor = DBColorExtension.whiteColor;
-        [self.closeButton setImage:[UIImage imageNamed:@"close_black"] forState:UIControlStateNormal];
+        [self.closeButton setImage:[UIImage imageNamed:@"jjObsidianClasp"] forState:UIControlStateNormal];
     }
 }
 
@@ -119,7 +119,7 @@
 - (UIButton *)closeButton{
     if (!_closeButton){
         _closeButton = [[UIButton alloc] init];
-        [_closeButton setImage:[UIImage imageNamed:@"close_black"] forState:UIControlStateNormal];
+        [_closeButton setImage:[UIImage imageNamed:@"jjObsidianClasp"] forState:UIControlStateNormal];
         DBWeakSelf
         [_closeButton addTagetHandler:^(id  _Nonnull sender) {
             DBStrongSelfElseReturn

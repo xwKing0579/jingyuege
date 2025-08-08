@@ -61,7 +61,7 @@
 - (UIImageView *)iconImageView{
     if (!_iconImageView){
         _iconImageView = [[UIImageView alloc] init];
-        _iconImageView.imageObj = @"announcement_icon";
+        _iconImageView.imageObj = @"jjProclamationHorn";
     }
     return _iconImageView;
 }

@@ -38,8 +38,8 @@
                      DBAllBooksViewController.new,
                      DBBookTypesViewController.new,
                      DBMyConfigViewController.new];
-    NSArray *tabImages = @[@"tab0",@"tab1",@"tab2",@"tab3"];
-    NSArray *tabSelImages = @[@"tab0_sel",@"tab1_sel",@"tab2_sel",@"tab3_sel"];
+    NSArray *tabImages = @[@"jjAlphaTab",@"jjBetaTab",@"jjGammaTab",@"jjDeltaTab"];
+    NSArray *tabSelImages = @[@"jjAlphaActive",@"jjBetaActive",@"jjGammaActive",@"jjDeltaActive"];
     for (NSInteger index = 0; index < tabVcs.count; index++) {
         UINavigationController *nav = [[UINavigationController  alloc] initWithRootViewController:tabVcs[index]];
         nav.tabBarItem.title = tabNames[index];

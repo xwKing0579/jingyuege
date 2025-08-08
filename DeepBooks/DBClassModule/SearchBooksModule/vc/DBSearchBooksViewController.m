@@ -317,7 +317,7 @@
         _searchTextField.returnKeyType = UIReturnKeyDone;
         
         UIImageView *pictureImageView = [[UIImageView alloc] init];
-        pictureImageView.image = [UIImage imageNamed:@"searchIcon"];
+        pictureImageView.image = [UIImage imageNamed:@"jjLensTotem"];
         [_searchTextField addSubview:pictureImageView];
         [pictureImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(0);
@@ -328,7 +328,7 @@
         
         UIView *rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
         UIButton *closeButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 7, 16, 16)];
-        [closeButton setImage:[UIImage imageNamed:@"close_icon"] forState:UIControlStateNormal];
+        [closeButton setImage:[UIImage imageNamed:@"jjCrystallineBarrier"] forState:UIControlStateNormal];
         [closeButton addTarget:self action:@selector(clickCloseAction) forControlEvents:UIControlEventTouchUpInside];
         [rightView addSubview:closeButton];
         _searchTextField.rightView = rightView;
@@ -356,7 +356,7 @@
         _changeButton = [[UIButton alloc] init];
         _changeButton.titleLabel.font = DBFontExtension.bodySmallFont;
         [_changeButton setTitle:@"换一换" forState:UIControlStateNormal];
-        [_changeButton setImage:[UIImage imageNamed:@"change_icon"] forState:UIControlStateNormal];
+        [_changeButton setImage:[UIImage imageNamed:@"jjMorphicEmblem"] forState:UIControlStateNormal];
         [_changeButton setTitleColor:DBColorExtension.charcoalColor forState:UIControlStateNormal];
         [_changeButton addTarget:self action:@selector(clickChangeAction) forControlEvents:UIControlEventTouchUpInside];
     }

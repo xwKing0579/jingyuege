@@ -27,9 +27,9 @@
     UIColor *backgroundColor = setting.backgroundColor;
     UIImage *backgroundImage = backgroundColor.toImage;
     if ([backgroundColor isEqual:DBColorExtension.sandColor]){
-        backgroundImage = [UIImage imageNamed:@"art_kraft"];
+        backgroundImage = [UIImage imageNamed:@"jjEtherealBrushwork"];
     }else if ([backgroundColor isEqual:DBColorExtension.wheatColor]){
-        backgroundImage = [UIImage imageNamed:@"art_wood"];
+        backgroundImage = [UIImage imageNamed:@"jjPetrifiedGrain"];
     }
     self.view.layer.contents = (id)backgroundImage.CGImage;
     

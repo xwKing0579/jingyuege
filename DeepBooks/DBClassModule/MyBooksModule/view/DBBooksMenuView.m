@@ -92,9 +92,9 @@
     if (!_pictureImageView){
         _pictureImageView = [[UIImageView alloc] init];
         if (DBColorExtension.userInterfaceStyle) {
-            _pictureImageView.image = [[UIImage imageNamed:@"menuIcon"].stretchable imageWithTintColor:DBColorExtension.blackColor];
+            _pictureImageView.image = [[UIImage imageNamed:@"jjPortalMatrix"].stretchable imageWithTintColor:DBColorExtension.blackColor];
         }else{
-            _pictureImageView.image = [UIImage imageNamed:@"menuIcon"].stretchable;
+            _pictureImageView.image = [UIImage imageNamed:@"jjPortalMatrix"].stretchable;
         }
       
         _pictureImageView.userInteractionEnabled = YES;

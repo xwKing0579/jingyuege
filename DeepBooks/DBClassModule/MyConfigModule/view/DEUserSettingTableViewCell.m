@@ -94,7 +94,7 @@
         _arrowImageView = [[UIImageView alloc] init];
         _arrowImageView.contentMode = UIViewContentModeScaleAspectFill;
         _arrowImageView.clipsToBounds = YES;
-        _arrowImageView.image = [UIImage imageNamed:@"arrowIcon"];
+        _arrowImageView.image = [UIImage imageNamed:@"jjCosmicNavigator"];
         _arrowImageView.hidden = YES;
     }
     return _arrowImageView;

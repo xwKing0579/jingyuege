@@ -200,8 +200,8 @@
         [_bookButton setTitle:@"小说" forState:UIControlStateNormal];
         [_bookButton setTitleColor:DBColorExtension.charcoalColor forState:UIControlStateNormal];
         [_bookButton setTitleColor:DBColorExtension.redColor forState:UIControlStateSelected];
-        [_bookButton setImage:[UIImage imageNamed:@"unsel_icon"] forState:UIControlStateNormal];
-        [_bookButton setImage:[UIImage imageNamed:@"sel_icon"] forState:UIControlStateSelected];
+        [_bookButton setImage:[UIImage imageNamed:@"jjNeutralToken"] forState:UIControlStateNormal];
+        [_bookButton setImage:[UIImage imageNamed:@"jjFatedMarker"] forState:UIControlStateSelected];
         [_bookButton addTarget:self action:@selector(clickBookTypeAction) forControlEvents:UIControlEventTouchUpInside];
         [_bookButton setTitlePosition:TitlePositionLeft spacing:8];
     }

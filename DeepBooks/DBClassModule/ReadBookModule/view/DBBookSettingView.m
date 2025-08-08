@@ -260,7 +260,7 @@
         _sliderView.minimumValue = 0;
         _sliderView.maximumValue = 1;
         _sliderView.value = UIScreen.mainScreen.brightness;
-        [_sliderView setThumbImage:[UIImage imageNamed:@"slider_bright"] forState:UIControlStateNormal];
+        [_sliderView setThumbImage:[UIImage imageNamed:@"jjIlluminationModulator"] forState:UIControlStateNormal];
         _sliderView.minimumTrackTintColor = DBColorExtension.goldColor;
         [_sliderView addTarget:self action:@selector(scrollSliderValueChanged:) forControlEvents:UIControlEventValueChanged];
         _sliderView.enlargedEdgeInsets = UIEdgeInsetsMake(3, 3, 3, 3);
@@ -275,8 +275,8 @@
         _eyeShaowButton.titleLabel.font = DBFontExtension.bodyMediumFont;
         [_eyeShaowButton setTitle:@"护眼" forState:UIControlStateNormal];
         [_eyeShaowButton setTitle:@"关闭" forState:UIControlStateSelected];
-        [_eyeShaowButton setImage:[UIImage imageNamed:@"eye_close"] forState:UIControlStateSelected];
-        [_eyeShaowButton setImage:[UIImage imageNamed:@"eye_open"] forState:UIControlStateNormal];
+        [_eyeShaowButton setImage:[UIImage imageNamed:@"jjVelvetShutter"] forState:UIControlStateSelected];
+        [_eyeShaowButton setImage:[UIImage imageNamed:@"jjOculusGateway"] forState:UIControlStateNormal];
         [_eyeShaowButton setTitleColor:DBColorExtension.charcoalAltColor forState:UIControlStateNormal];
         [_eyeShaowButton addTarget:self action:@selector(clickSettingAction:) forControlEvents:UIControlEventTouchUpInside];
         _eyeShaowButton.size = CGSizeMake(60, 30);
@@ -337,7 +337,7 @@
         NSString *title = [NSString stringWithFormat:@"%@",DBReadBookSetting.setting.fontFamily];
         [_fontNameButton setTitle:title forState:UIControlStateNormal];
         [_fontNameButton setTitleColor:DBColorExtension.charcoalAltColor forState:UIControlStateNormal];
-        [_fontNameButton setImage:[UIImage imageNamed:@"font_icon"] forState:UIControlStateNormal];
+        [_fontNameButton setImage:[UIImage imageNamed:@"jjCalligraphicSigil"] forState:UIControlStateNormal];
         [_fontNameButton addTarget:self action:@selector(clickDownloadFontAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _fontNameButton;
@@ -351,7 +351,7 @@
 //        _reduceLineButton.layer.masksToBounds = YES;
 //        _reduceLineButton.layer.borderWidth = 1;
 //        _reduceLineButton.layer.borderColor = DBColorExtension.grayColor.CGColor;
-        [_reduceLineButton setImage:[UIImage imageNamed:@"reduceLineSpacing"] forState:UIControlStateNormal];
+        [_reduceLineButton setImage:[UIImage imageNamed:@"jjTextCompactor"] forState:UIControlStateNormal];
         [_reduceLineButton addTarget:self action:@selector(clickSettingAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _reduceLineButton;
@@ -376,7 +376,7 @@
 //        _addLineButton.layer.masksToBounds = YES;
 //        _addLineButton.layer.borderWidth = 1;
 //        _addLineButton.layer.borderColor = DBColorExtension.grayColor.CGColor;
-        [_addLineButton setImage:[UIImage imageNamed:@"addLineSpacing"] forState:UIControlStateNormal];
+        [_addLineButton setImage:[UIImage imageNamed:@"jjTextExpander"] forState:UIControlStateNormal];
         [_addLineButton addTarget:self action:@selector(clickSettingAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _addLineButton;

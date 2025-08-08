@@ -19,7 +19,7 @@
         
         UIButton *closeButton = [[UIButton alloc] init];
         closeButton.hidden = YES;
-        [closeButton setImage:[UIImage imageNamed:@"close_icon"] forState:UIControlStateNormal];
+        [closeButton setImage:[UIImage imageNamed:@"jjCrystallineBarrier"] forState:UIControlStateNormal];
         [closeButton addTarget:self action:@selector(clickCloseAction) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:closeButton];
         self.closeButton = closeButton;

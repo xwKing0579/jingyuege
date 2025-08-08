@@ -167,7 +167,7 @@
     self.nickNameLabel.text = [NSString stringWithFormat:@"%@%@",userNameString,DBCommonConfig.userDataInfo.nick];
     
     
-    id imageObj = [UIImage imageNamed:@"avater_image"];
+    id imageObj = [UIImage imageNamed:@"jjMirageDouble"];
     if (DBCommonConfig.userDataInfo.avatar.length > 0){
         imageObj = [DBLinkManager combineLinkWithType:DBLinkHeaderAvatarUrl combine:DBCommonConfig.userDataInfo.avatar];
     }
@@ -192,7 +192,7 @@
 - (UIImageView *)pictureImageView{
     if (!_pictureImageView){
         _pictureImageView = [[UIImageView alloc] init];
-        _pictureImageView.image = [UIImage imageNamed:@"mine_bgImage"];
+        _pictureImageView.image = [UIImage imageNamed:@"jjVoidHorizon"];
        
         
         [_pictureImageView addSubview:self.maskView];
@@ -217,7 +217,7 @@
     if (!_avaterImageView){
         _avaterImageView = [[UIImageView alloc] init];
         _avaterImageView.contentMode = UIViewContentModeScaleAspectFill;
-        _avaterImageView.image = [UIImage imageNamed:@"avater_image"];
+        _avaterImageView.image = [UIImage imageNamed:@"jjMirageDouble"];
         _avaterImageView.layer.cornerRadius = 32;
         _avaterImageView.layer.masksToBounds = YES;
         

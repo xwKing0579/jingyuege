@@ -92,10 +92,10 @@
     };
     if (DBColorExtension.userInterfaceStyle) {
         self.backgroundColor = DBColorExtension.jetBlackColor;
-        [self.closeButton setImage:[[UIImage imageNamed:@"close_black"] imageWithTintColor:DBColorExtension.whiteColor] forState:UIControlStateNormal];
+        [self.closeButton setImage:[[UIImage imageNamed:@"jjObsidianClasp"] imageWithTintColor:DBColorExtension.whiteColor] forState:UIControlStateNormal];
     }else{
         self.backgroundColor = DBColorExtension.whiteColor;
-        [self.closeButton setImage:[UIImage imageNamed:@"close_black"] forState:UIControlStateNormal];
+        [self.closeButton setImage:[UIImage imageNamed:@"jjObsidianClasp"] forState:UIControlStateNormal];
     }
 }
 
@@ -103,10 +103,10 @@
     [super traitCollectionDidChange:previousTraitCollection];
     if (DBColorExtension.userInterfaceStyle) {
         self.backgroundColor = DBColorExtension.jetBlackColor;
-        [self.closeButton setImage:[[UIImage imageNamed:@"close_black"] imageWithTintColor:DBColorExtension.whiteColor] forState:UIControlStateNormal];
+        [self.closeButton setImage:[[UIImage imageNamed:@"jjObsidianClasp"] imageWithTintColor:DBColorExtension.whiteColor] forState:UIControlStateNormal];
     }else{
         self.backgroundColor = DBColorExtension.whiteColor;
-        [self.closeButton setImage:[UIImage imageNamed:@"close_black"] forState:UIControlStateNormal];
+        [self.closeButton setImage:[UIImage imageNamed:@"jjObsidianClasp"] forState:UIControlStateNormal];
     }
 }
 
@@ -153,7 +153,7 @@
 - (UIButton *)closeButton{
     if (!_closeButton){
         _closeButton = [[UIButton alloc] init];
-        [_closeButton setImage:[UIImage imageNamed:@"close_black"] forState:UIControlStateNormal];
+        [_closeButton setImage:[UIImage imageNamed:@"jjObsidianClasp"] forState:UIControlStateNormal];
         DBWeakSelf
         [_closeButton addTagetHandler:^(id  _Nonnull sender) {
             DBStrongSelfElseReturn
@@ -190,8 +190,8 @@
         CGFloat width = 28;
         _scoreView = [[DBStarRating alloc] initWithFrame:CGRectMake(0, 0, width*5+6*4, width)];
         _scoreView.spacing = 6;
-        _scoreView.checkedImage = [UIImage imageNamed:@"scoreRed_sel"];
-        _scoreView.uncheckedImage = [UIImage imageNamed:@"scoreRed_unsel"];
+        _scoreView.checkedImage = [UIImage imageNamed:@"jjScarletAster"];
+        _scoreView.uncheckedImage = [UIImage imageNamed:@"jjGarnetOutline"];
         _scoreView.minimumScore = 0.0;
         _scoreView.maximumScore = 5.0;
         _scoreView.type = RatingTypeWhole;

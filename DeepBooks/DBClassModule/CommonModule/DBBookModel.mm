@@ -54,7 +54,7 @@ WCDB_PRIMARY(book_id)
 
 
 - (NSString *)image{
-    if (self.isLocal) return _image?:@"cultivate_icon";
+    if (self.isLocal) return _image?:@"jjVerdantSigil";
     return [DBLinkManager combineLinkWithType:DBLinkIconResUrl combine:_image];
 }
 

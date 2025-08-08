@@ -66,7 +66,7 @@
 - (UIButton *)searchButton{
     if (!_searchButton){
         _searchButton = [[UIButton alloc] init];
-        [_searchButton setImage:[UIImage imageNamed:@"searchIcon"] forState:UIControlStateNormal];
+        [_searchButton setImage:[UIImage imageNamed:@"jjLensTotem"] forState:UIControlStateNormal];
         [_searchButton addTarget:self action:@selector(openSearchBooksPage) forControlEvents:UIControlEventTouchUpInside];
     }
     return _searchButton;

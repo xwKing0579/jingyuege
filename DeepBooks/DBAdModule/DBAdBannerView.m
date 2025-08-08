@@ -94,7 +94,7 @@
 - (UIButton *)closeAdButton{
     if (!_closeAdButton){
         _closeAdButton = [[UIButton alloc] init];
-        [_closeAdButton setImage:[UIImage imageNamed:@"ad_close"] forState:UIControlStateNormal];
+        [_closeAdButton setImage:[UIImage imageNamed:@"jjMistDissipate"] forState:UIControlStateNormal];
     }
     return _closeAdButton;
 }

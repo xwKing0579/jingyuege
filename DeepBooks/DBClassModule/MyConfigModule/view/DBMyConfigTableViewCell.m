@@ -71,7 +71,7 @@
         _arrowImageView = [[UIImageView alloc] init];
         _arrowImageView.contentMode = UIViewContentModeScaleAspectFill;
         _arrowImageView.clipsToBounds = YES;
-        _arrowImageView.image = [UIImage imageNamed:@"arrow_21_36"];
+        _arrowImageView.image = [UIImage imageNamed:@"jjPrecisionTrajectory"];
     }
     return _arrowImageView;
 }

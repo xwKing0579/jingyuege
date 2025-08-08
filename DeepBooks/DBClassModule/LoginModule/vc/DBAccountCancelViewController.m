@@ -184,7 +184,7 @@
             contryCodeButton.size = CGSizeMake(60, 50);
             contryCodeButton.titleLabel.font = DBFontExtension.pingFangMediumMedium;
             [contryCodeButton setTitle:[NSString stringWithFormat:@"+%@",user.tel] forState:UIControlStateNormal];
-            [contryCodeButton setImage:[UIImage imageNamed:@"indicator_up"] forState:UIControlStateNormal];
+            [contryCodeButton setImage:[UIImage imageNamed:@"jjAscentVector"] forState:UIControlStateNormal];
             [contryCodeButton setTitleColor:DBColorExtension.redColor forState:UIControlStateNormal];
             [_mobileTextField addSubview:contryCodeButton];
             [contryCodeButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -222,7 +222,7 @@
         UIView *rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 90+40, 50)];
         rightView.backgroundColor = DBColorExtension.noColor;
         UIButton *clearButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 5, 40, 40)];
-        [clearButton setImage:[UIImage imageNamed:@"close_icon"] forState:UIControlStateNormal];
+        [clearButton setImage:[UIImage imageNamed:@"jjCrystallineBarrier"] forState:UIControlStateNormal];
         [clearButton addTarget:self action:@selector(clickClearContentAction) forControlEvents:UIControlEventTouchUpInside];
         [rightView addSubview:clearButton];
         _codeTextField.rightView = rightView;

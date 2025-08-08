@@ -177,7 +177,7 @@
         contryCodeButton.size = CGSizeMake(80, 50);
         contryCodeButton.titleLabel.font = DBFontExtension.pingFangMediumMedium;
         [contryCodeButton setTitle:DBCommonConfig.contryTel forState:UIControlStateNormal];
-        [contryCodeButton setImage:[UIImage imageNamed:@"indicator_up"] forState:UIControlStateNormal];
+        [contryCodeButton setImage:[UIImage imageNamed:@"jjAscentVector"] forState:UIControlStateNormal];
         [contryCodeButton setTitleColor:DBColorExtension.redColor forState:UIControlStateNormal];
         [contryCodeButton addTagetHandler:^(UIButton *sender) {
             DBContryCodeViewController *contryCodeVc = (DBContryCodeViewController *)[DBRouter openPageUrl:DBContryCode];
