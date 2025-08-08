@@ -68,7 +68,7 @@
     if (model.vc){
         [DBRouter openPageUrl:model.vc params:@{@"title":DBSafeString(model.name)}];
     }else{
-        if ([model.name isEqualToString:@"我要分享"]){
+        if ([model.name isEqualToString:DBConstantString.ks_share]){
             [self.view showHudLoading];
             [DBUserModel getUserInviteCompletion:^(BOOL successfulRequest, DBUserInviteCodeModel * _Nonnull model) {
                 [self.view removeHudLoading];
@@ -79,9 +79,9 @@
                 
                 [self presentViewController:activityVC animated:YES completion:nil];
             }];
-        }else if ([model.name isEqualToString:@"绑定邀请码"]){
+        }else if ([model.name isEqualToString:DBConstantString.ks_bindInviteCode]){
             if (DBCommonConfig.userCurrentInfo.master_user_id.length > 0){
-                [self.view showAlertText:@"已绑定邀请码"];
+                [self.view showAlertText:DBConstantString.ks_inviteCodeBound];
                 return;
             }
             __block UITextField *inputTextField = nil;
@@ -89,21 +89,21 @@
             DBWeakSelf
             [LEEAlert alert].config
                 .LeeTitle(@"输入邀请码")
-                .LeeContent(@"请输入您收到的邀请码")
+                .LeeContent(DBConstantString.ks_enterInviteCode)
                 .LeeAddTextField(^(UITextField * _Nonnull textField) {
                     [textField becomeFirstResponder];
                     inputTextField = textField;
                 })
                 .LeeItemInsets(UIEdgeInsetsMake(10, 10, 10, 10))
-                .LeeCancelAction(@"取消", ^{
+                .LeeCancelAction(DBConstantString.ks_cancel, ^{
                     [DBDefaultSwift enableKeyboard];
                 })
-                .LeeDestructiveAction(@"确定", ^{
+                .LeeDestructiveAction(DBConstantString.ks_confirm, ^{
                     DBStrongSelfElseReturn
                     [DBAppSwitchModel getAppSwitchWithInvitationCode:inputTextField.text.whitespace];
                     [DBDefaultSwift enableKeyboard];
                 }).LeeShow();
-        }else if ([model.name isEqualToString:@"点击联系客服"]){
+        }else if ([model.name isEqualToString:DBConstantString.ks_contactSupport]){
             [DBCommonConfig jumpCustomerService];
         }
     }

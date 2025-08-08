@@ -78,7 +78,7 @@
     self.pictureImageView.imageObj = self.book.image;
     self.titleTextLabel.text = self.book.name;
     self.contentTextLabel.text = self.book.author;
-    NSString *chapters = [NSString stringWithFormat:@"共%ld章",self.dataList.count];
+    NSString *chapters = [NSString stringWithFormat:DBConstantString.ks_chaptersCount,self.dataList.count];
     NSArray *result = @[[DBCommonConfig bookStausDesc:self.book.status],chapters];
     self.descTextLabel.text = [result componentsJoinedByString:@" · "];
     if (self.dataList.count == 0) return;
@@ -208,8 +208,8 @@
         _orderButton = [[UIButton alloc] init];
         _orderButton.enlargedEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
         _orderButton.titleLabel.font = DBFontExtension.bodySmallFont;
-        [_orderButton setTitle:@"升序" forState:UIControlStateNormal];
-        [_orderButton setTitle:@"降序" forState:UIControlStateSelected];
+        [_orderButton setTitle:DBConstantString.ks_ascending forState:UIControlStateNormal];
+        [_orderButton setTitle:DBConstantString.ks_descending forState:UIControlStateSelected];
         [_orderButton setTitleColor:DBColorExtension.blackAltColor forState:UIControlStateNormal];
         [_orderButton addTarget:self action:@selector(clickOrderAction:) forControlEvents:UIControlEventTouchUpInside];
     }

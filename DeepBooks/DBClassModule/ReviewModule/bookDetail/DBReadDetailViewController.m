@@ -69,7 +69,7 @@
             if (DBCommonConfig.appConfig.force.shield_switch &&
                 ([result.shield_data containsObject:@"2"] || [result.shield_data containsObject:@2])){
                 [DBRouter closePage];
-                [UIScreen.appWindow showAlertText:@"该书籍已下架"];
+                [UIScreen.appWindow showAlertText:DBConstantString.ks_unavailable];
                 return;
             }
             
@@ -80,7 +80,7 @@
             
             if (result.relevant_book.count) {
                 DBBookDetailCustomModel *model = DBBookDetailCustomModel.new;
-                model.name = @"推荐书籍";
+                model.name = DBConstantString.ks_topReads;
                 model.bookList = result.relevant_book;
                 [dataList addObject:model];
             }
@@ -128,10 +128,10 @@
     BOOL successfulRequest = [bookModel insertCollectBook];
     
     if (successfulRequest){
-        [self.view showAlertText:@"已加入书架"];
+        [self.view showAlertText:DBConstantString.ks_addedToShelf];
         self.bookselfButton.selected = YES;
     }else{
-        [self.view showAlertText:@"加入书架失败"];
+        [self.view showAlertText:DBConstantString.ks_addToShelfFailed];
     }
 }
 
@@ -139,10 +139,10 @@
     DBBookDetailModel *bookModel = self.dataList.firstObject;
     BOOL successfulRequest = [bookModel removeCollectBook];
     if (successfulRequest){
-        [self.view showAlertText:@"已从书架移除"];
+        [self.view showAlertText:DBConstantString.ks_removedFromShelf];
         self.bookselfButton.selected = NO;
     }else{
-        [self.view showAlertText:@"从书架移除失败"];
+        [self.view showAlertText:DBConstantString.ks_removeFailed];
     }
 }
 
@@ -211,9 +211,9 @@
         _bookselfButton.backgroundColor = DBColorExtension.whiteColor;
         _bookselfButton.layer.cornerRadius = 10;
         _bookselfButton.layer.masksToBounds = YES;
-        [_bookselfButton setTitle:@"加入书架" forState:UIControlStateNormal];
+        [_bookselfButton setTitle:DBConstantString.ks_addToShelf forState:UIControlStateNormal];
         [_bookselfButton setTitleColor:DBColorExtension.charcoalColor forState:UIControlStateNormal];
-        [_bookselfButton setTitle:@"移除书架" forState:UIControlStateSelected];
+        [_bookselfButton setTitle:DBConstantString.ks_removeFromShelf forState:UIControlStateSelected];
         [_bookselfButton setTitleColor:DBColorExtension.charcoalColor forState:UIControlStateSelected];
         
         [_bookselfButton addTarget:self action:@selector(canCollectBookSelf) forControlEvents:UIControlEventTouchUpInside];
@@ -229,7 +229,7 @@
         _readButton.backgroundColor = DBColorExtension.sunsetOrangeColor;
         _readButton.layer.cornerRadius = 10;
         _readButton.layer.masksToBounds = YES;
-        [_readButton setTitle:@"阅读" forState:UIControlStateNormal];
+        [_readButton setTitle:DBConstantString.ks_read forState:UIControlStateNormal];
         [_readButton setTitleColor:DBColorExtension.whiteColor forState:UIControlStateNormal];
         [_readButton addTarget:self action:@selector(clickReadAction) forControlEvents:UIControlEventTouchUpInside];
     }

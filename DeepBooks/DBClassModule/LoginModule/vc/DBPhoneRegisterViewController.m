@@ -61,7 +61,7 @@
 - (void)clickCodeAction{
     NSString *mobile = self.mobileTextField.text.whitespace;
     if (!mobile.isMobile){
-        [self.view showAlertText:@"请输入正确的手机号"];
+        [self.view showAlertText:DBConstantString.ks_validPhone];
         return;
     }
     NSString *tel = [self.contryCodeButton.titleLabel.text stringByReplacingOccurrencesOfString:@"+" withString:@""];
@@ -72,18 +72,18 @@
         if (successfulRequest){
             DBRegisterModel *model = [DBRegisterModel yy_modelWithDictionary:result];
             if (model.type == 1){
-                NSString *message = [NSString stringWithFormat:@"该用户名已绑定手机号:%@，可使用“手机号忘记密码”功能来找回密码。如该手机号已遗失，可以使用新手机号来重置密码。",mobile];
-                LEEAlert.alert.config.LeeTitle(@"温馨提示").
+                NSString *message = [NSString stringWithFormat:DBConstantString.ks_accountRecoveryPhone,mobile];
+                LEEAlert.alert.config.LeeTitle(DBConstantString.ks_note).
                 LeeContent(message).
-                LeeCancelAction(@"取消", ^{
+                LeeCancelAction(DBConstantString.ks_cancel, ^{
                     
-                }).LeeAction(@"确定", ^{
+                }).LeeAction(DBConstantString.ks_confirm, ^{
                     self.type = @"7";
                     self.action_type = @"1";
                     [self clickCodeAction];
                 }).LeeShow();
             }else{
-                [self.view showAlertText:@"验证码已发送，10分钟内有效"];
+                [self.view showAlertText:DBConstantString.ks_verificationCodeSent];
                 [self mobileCodeCountDown];
             }
         }else{
@@ -104,7 +104,7 @@
             if (second == 0) {
                 self.codeButton.userInteractionEnabled = YES;
                 self.mobileTextField.userInteractionEnabled = YES;
-                [self.codeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+                [self.codeButton setTitle:DBConstantString.ks_getVerificationCode forState:UIControlStateNormal];
                 dispatch_cancel(timer);
             } else {
                 [self.codeButton setTitle:[NSString stringWithFormat:@"%02lds",second] forState:UIControlStateNormal];
@@ -121,15 +121,15 @@
     NSString *password = self.passwordTextField.text.whitespace;
     NSString *code = self.codeTextField.text.whitespace;
     if (!mobile.isMobile){
-        [self.view showAlertText:@"请输入正确的手机号"];
+        [self.view showAlertText:DBConstantString.ks_validPhone];
         return;
     }
     if (!password.isPassword){
-        [self.view showAlertText:@"请输入正确的密码"];
+        [self.view showAlertText:DBConstantString.ks_invalidPassword];
         return;
     }
     if (code.length == 0){
-        [self.view showAlertText:@"请输入验证码"];
+        [self.view showAlertText:DBConstantString.ks_enterVerificationCode];
         return;
     }
     
@@ -159,7 +159,7 @@
             [DBUserModel loginWithParameters:loginDict completion:^(BOOL success) {
                 [self.view removeHudLoading];
             }];
-            [UIScreen.appWindow showAlertText:@"注册成功"];
+            [UIScreen.appWindow showAlertText:DBConstantString.ks_registrationSuccess];
         }else{
             [self.view removeHudLoading];
             [self.view showAlertText:message];
@@ -176,9 +176,9 @@
 
 - (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange interaction:(UITextItemInteraction)interaction {
     if ([URL.absoluteString isEqualToString:@"1"]){
-        [DBRouter openPageUrl:DBServiceList params:@{@"title":@"服务条款"}];
+        [DBRouter openPageUrl:DBServiceList params:@{@"title":DBConstantString.ks_termsOfService}];
     }else{
-        [DBRouter openPageUrl:DBWebView params:@{@"title":@"隐私条款",@"url":URL.absoluteString}];
+        [DBRouter openPageUrl:DBWebView params:@{@"title":DBConstantString.ks_privacyTerms,@"url":URL.absoluteString}];
     }
     return NO;
 }
@@ -186,7 +186,7 @@
 - (DBCloseTextField *)mobileTextField{
     if (!_mobileTextField){
         _mobileTextField = [[DBCloseTextField alloc] init];
-        _mobileTextField.placeholder = @"请输入手机号";
+        _mobileTextField.placeholder = DBConstantString.ks_enterPhoneNumber;
         _mobileTextField.keyboardType = UIKeyboardTypeNumberPad;
         _mobileTextField.textColor = DBColorExtension.charcoalColor;
 
@@ -221,7 +221,7 @@
 - (UITextField *)codeTextField{
     if (!_codeTextField){
         _codeTextField = [[UITextField alloc] init];
-        _codeTextField.placeholder = @"请输入验证码";
+        _codeTextField.placeholder = DBConstantString.ks_enterVerificationCode;
         _codeTextField.keyboardType = UIKeyboardTypeNumberPad;
         _codeTextField.textColor = DBColorExtension.charcoalColor;
 
@@ -254,7 +254,7 @@
         _codeButton.layer.masksToBounds = YES;
         _codeButton.backgroundColor = DBColorExtension.accountThemeColor;
         _codeButton.titleLabel.font = DBFontExtension.bodySmallFont;
-        [_codeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+        [_codeButton setTitle:DBConstantString.ks_getVerificationCode forState:UIControlStateNormal];
         [_codeButton setTitleColor:DBColorExtension.whiteColor forState:UIControlStateNormal];
         [_codeButton addTarget:self action:@selector(clickCodeAction) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -264,7 +264,7 @@
 - (DBCloseTextField *)passwordTextField{
     if (!_passwordTextField){
         _passwordTextField = [[DBCloseTextField alloc] init];
-        _passwordTextField.placeholder = @"请输入密码";
+        _passwordTextField.placeholder = DBConstantString.ks_enterPassword;
         _passwordTextField.textColor = DBColorExtension.charcoalColor;
         _passwordTextField.secureTextEntry = YES;
         
@@ -287,7 +287,7 @@
         _registerButton.layer.masksToBounds = YES;
         _registerButton.backgroundColor = DBColorExtension.accountThemeColor;
         _registerButton.titleLabel.font = DBFontExtension.pingFangMediumLarge;
-        [_registerButton setTitle:@"注册" forState:UIControlStateNormal];
+        [_registerButton setTitle:DBConstantString.ks_signUp forState:UIControlStateNormal];
         
         [_registerButton addTarget:self action:@selector(clickRegisterAction) forControlEvents:UIControlEventTouchUpInside];
     }

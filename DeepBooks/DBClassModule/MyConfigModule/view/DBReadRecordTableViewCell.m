@@ -116,7 +116,7 @@
         [adSetting reloadSetting];
     }else{
         self.bookselfButton.userInteractionEnabled = YES;
-        [UIScreen.currentViewController.view showAlertText:@"加入书架失败"];
+        [UIScreen.currentViewController.view showAlertText:DBConstantString.ks_addToShelfFailed];
     }
 }
 
@@ -163,8 +163,8 @@
     if (!_bookselfButton){
         _bookselfButton = [[UIButton alloc] init];
         _bookselfButton.titleLabel.font = DBFontExtension.bodyMediumFont;
-        [_bookselfButton setTitle:@"加入书架" forState:UIControlStateNormal];
-        [_bookselfButton setTitle:@"已加入书架" forState:UIControlStateSelected];
+        [_bookselfButton setTitle:DBConstantString.ks_addToShelf forState:UIControlStateNormal];
+        [_bookselfButton setTitle:DBConstantString.ks_addedToShelf forState:UIControlStateSelected];
         [_bookselfButton setTitleColor:DBColorExtension.redColor forState:UIControlStateNormal];
         [_bookselfButton setTitleColor:DBColorExtension.lightSilverColor forState:UIControlStateSelected];
         [_bookselfButton addTarget:self action:@selector(clickBookselfAction) forControlEvents:UIControlEventTouchUpInside];

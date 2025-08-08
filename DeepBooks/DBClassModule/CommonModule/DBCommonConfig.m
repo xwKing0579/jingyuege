@@ -76,8 +76,8 @@
     if ((!reading && migrateData.tips_switch) ||
         (reading && migrateData.read_tips_switch && !DBCommonConfig.isNewbie && DBAppSetting.setting.launchCount > migrateConfig.use_count && DBReadBookSetting.setting.readTotalTime > migrateConfig.read_time)){
         NSString *content = migrateData.tips_content.length ? migrateData.tips_content : @"亲爱的书友,由于不可抗力,此App即将停止维护,请您下载我们新版本的App,感谢您的支持!";
-        LEEAlert.alert.config.LeeTitle(@"用户迁移公告!").LeeContent(content).
-        LeeAction(@"好的", ^{
+        LEEAlert.alert.config.LeeTitle(DBConstantString.ks_migrationNotice).LeeContent(content).
+        LeeAction(DBConstantString.ks_ok, ^{
             NSString *linkUrl = migrateData.jump_url;
             if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:linkUrl]]) {
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:linkUrl] options:@{} completionHandler:nil];
@@ -278,18 +278,18 @@ static DBAppConfigModel *_appConfig;
 }
 
 + (NSString *)bookStausDesc:(NSInteger)status{
-    return status == 1 ? @"已完结" : @"连载中";
+    return status == 1 ? DBConstantString.ks_completed : DBConstantString.ks_serializing;
 }
 
 + (NSString *)bookReadingProgress:(NSString *)chapterName{
-    return [NSString stringWithFormat:@"读到: %@",chapterName.length > 0 ? chapterName : @"未开始阅读"];
+    return [NSString stringWithFormat:DBConstantString.ks_readProgress,chapterName.length > 0 ? chapterName : DBConstantString.ks_unread];
 }
 
 + (NSString *)bookWordsDesc:(NSInteger)works{
     if (works >= 10000){
-        return [NSString stringWithFormat:@"%ld万字",works/10000];
+        return [NSString stringWithFormat:DBConstantString.ks_wordCountFormat,works/10000];
     }
-    return @"少于1万字";
+    return DBConstantString.ks_under10kWords;
 }
 
 + (NSString *)bookDesc:(DBBookModel *)model{
@@ -430,8 +430,8 @@ static DBAppConfigModel *_appConfig;
     setting.star.timeStamp = [[NSDate date] timeIntervalSince1970];
     
     NSString *message = [NSString stringWithFormat:@"做%@小说不易,您的支持是我们最大的动力,请您支持我们,给与我们五星好评吧!",DBCommonConfig.shieldFreeString];
-    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"请给个五星好评吧" message:message preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *goodAction = [UIAlertAction actionWithTitle:@"给个好评" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:DBConstantString.ks_rate5Stars message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *goodAction = [UIAlertAction actionWithTitle:DBConstantString.ks_rateUs style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         NSString *url = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/cn/app/id%@?mt=8&action=write-review",AppMarketId];
         if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:url]]) {
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url] options:@{} completionHandler:nil];
@@ -439,12 +439,12 @@ static DBAppConfigModel *_appConfig;
         setting.star.lastSelection = 1;
         [setting reloadSetting];
     }];
-    UIAlertAction *ridiculeAction = [UIAlertAction actionWithTitle:@"我要吐槽" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *ridiculeAction = [UIAlertAction actionWithTitle:DBConstantString.ks_complain style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [DBRouter openPageUrl:DBFeedback];
         setting.star.lastSelection = 2;
         [setting reloadSetting];
     }];
-    UIAlertAction *rejectAction = [UIAlertAction actionWithTitle:@"残忍的拒绝" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *rejectAction = [UIAlertAction actionWithTitle:DBConstantString.ks_reject style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         setting.star.lastSelection = 3;
         [setting reloadSetting];
     }];
@@ -474,13 +474,13 @@ static DBAppConfigModel *_appConfig;
                     NSComparisonResult compare = [model.version compare:UIApplication.appVersion options:NSNumericSearch];
                     if (compare == NSOrderedDescending) {
                         if (completion) completion(YES);
-                        NSString *title = [NSString stringWithFormat:@"有新的版本(%@)",model.version];
+                        NSString *title = [NSString stringWithFormat:DBConstantString.ks_newVersion,model.version];
                         LEEAlert.actionsheet.config.LeeTitle(title).LeeContent(model.releaseNotes).
-                        LeeAction(@"立即升级", ^{
+                        LeeAction(DBConstantString.ks_updateNow, ^{
                             if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:model.trackViewUrl]]) {
                                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:model.trackViewUrl] options:@{} completionHandler:nil];
                             }
-                        }).LeeCancelAction(@"稍后再说", ^{
+                        }).LeeCancelAction(DBConstantString.ks_later, ^{
                             
                         }).LeeShow();
                         

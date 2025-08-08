@@ -142,7 +142,7 @@
         _titleTextLabel.font = DBFontExtension.titleBigFont;
         _titleTextLabel.textColor = DBColorExtension.charcoalColor;
         _titleTextLabel.textAlignment = NSTextAlignmentCenter;
-        _titleTextLabel.text = @"您喜欢看哪类书？";
+        _titleTextLabel.text = DBConstantString.ks_preferredGenres;
     }
     return _titleTextLabel;
 }
@@ -153,7 +153,7 @@
         _contentTextLabel.font = DBFontExtension.bodyMediumFont;
         _contentTextLabel.textColor = DBColorExtension.grayColor;
         _contentTextLabel.textAlignment = NSTextAlignmentCenter;
-        _contentTextLabel.text = @"“设置”可更改阅读偏好";
+        _contentTextLabel.text = DBConstantString.ks_readingPreferenceHint;
     }
     return _contentTextLabel;
 }
@@ -180,7 +180,7 @@
     if (!_skipButton){
         _skipButton = [[UIButton alloc] init];
         _skipButton.titleLabel.font = DBFontExtension.pingFangMediumXLarge;
-        [_skipButton setTitle:@"下次再说" forState:UIControlStateNormal];
+        [_skipButton setTitle:DBConstantString.ks_nextTime forState:UIControlStateNormal];
         [_skipButton setTitleColor:DBColorExtension.blackAltColor forState:UIControlStateNormal];
         [_skipButton addTarget:self action:@selector(clickSkipAction) forControlEvents:UIControlEventTouchUpInside];
     }

@@ -34,7 +34,7 @@
 
 - (NSString *)timeFormat{
     NSString *time = self;
-    NSArray *timeArray = @[@"小时",@"分钟",@"刚刚",@"昨天",@"."];
+    NSArray *timeArray = @[DBConstantString.ks_hours,DBConstantString.ks_minutes,DBConstantString.ks_justNow,DBConstantString.ks_yesterday,@"."];
     for (NSString *timeString in timeArray) {
         if ([time containsString:timeString]) return time;
     }
@@ -53,15 +53,15 @@
     NSDateComponents *components = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute fromDate:date toDate:now options:0];
 
     if (timeInterval < 60) {
-        result = @"刚刚";
+        result = DBConstantString.ks_justNow;
     } else if (timeInterval < 3600) {
         NSInteger minutes = (NSInteger)(timeInterval / 60);
-        result = [NSString stringWithFormat:@"%ld分钟前", (long)minutes];
+        result = [NSString stringWithFormat:DBConstantString.ks_minutesAgo, (long)minutes];
     } else if (timeInterval < 86400) {
         NSInteger hours = (NSInteger)(timeInterval / 3600);
-        result = [NSString stringWithFormat:@"%ld小时前", (long)hours];
+        result = [NSString stringWithFormat:DBConstantString.ks_hoursAgo, (long)hours];
     } else if ([calendar isDateInYesterday:date]) {
-        [dateFormatter setDateFormat:@"昨天 HH:mm"];
+        [dateFormatter setDateFormat:DBConstantString.ks_yesterdayTimeFormat];
         result = [dateFormatter stringFromDate:date];
     } else if (components.year == 0) {
         [dateFormatter setDateFormat:@"MM.dd"];
@@ -177,7 +177,7 @@
     NSDictionary *numberMap = @{
         @"零": @"0", @"一": @"1", @"二": @"2", @"三": @"3", @"四": @"4",
         @"五": @"5", @"六": @"6", @"七": @"7", @"八": @"8", @"九": @"9",
-        @"十": @"10", @"百": @"100", @"千": @"1000", @"万": @"10000"
+        @"十": @"10", @"百": @"100", @"千": @"1000", DBConstantString.ks_tenThousand: @"10000"
     };
     
     NSString *result = chineseNum;

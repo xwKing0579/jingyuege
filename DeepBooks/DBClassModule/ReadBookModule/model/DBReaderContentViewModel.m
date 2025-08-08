@@ -122,12 +122,12 @@
 - (void)chapterDownloadReminderInLimit:(NSInteger)limit adReward:(BOOL)adReward{
     DBWeakSelf
     DBAdPosModel *posAd = [DBUnityAdConfig adPosWithSpaceType:DBAdSpaceCacheBooksContent];
-    NSString *content = [NSString stringWithFormat:@"点击按钮，即可免费缓存后面%ld章节内容！",limit<=0?posAd.extra.free_count*posAd.extra.limit:limit];
+    NSString *content = [NSString stringWithFormat:DBConstantString.ks_cachePrompt,limit<=0?posAd.extra.free_count*posAd.extra.limit:limit];
     LEEAlert.alert.config.LeeTitle(@"缓存模式").
     LeeContent(content).
-    LeeCancelAction(@"取消", ^{
+    LeeCancelAction(DBConstantString.ks_cancel, ^{
         
-    }).LeeAction(@"开始缓存", ^{
+    }).LeeAction(DBConstantString.ks_startCache, ^{
         DBStrongSelfElseReturn
         
         DBBookModel *book = self.readerVc.book;
@@ -159,25 +159,25 @@
 - (void)downloadWithStartChapterIndex:(NSInteger)startChapter currentChapterIndex:(NSInteger)currentChapterIndex chapterForm:(NSString *)chapterForm chapterList:(NSArray *)chapterList downloadCount:(NSInteger)downloadCount limit:(NSInteger)limit adReward:(BOOL)adReward{
     if (downloadCount >= limit) {
         self.readerPanelView.cacheText = nil;
-        [self.readerVc.view showAlertText:@"缓存完成"];
+        [self.readerVc.view showAlertText:DBConstantString.ks_cached];
         return;
     }
     
     if (currentChapterIndex > chapterList.count-1) {
         if (startChapter == 0){
             self.readerPanelView.cacheText = nil;
-            [self.readerVc.view showAlertText:@"缓存完成"];
+            [self.readerVc.view showAlertText:DBConstantString.ks_cached];
             return;
         }else{
             currentChapterIndex = 0;
         }
     }else if (currentChapterIndex == startChapter-1){
         self.readerPanelView.cacheText = nil;
-        [self.readerVc.view showAlertText:@"缓存完成"];
+        [self.readerVc.view showAlertText:DBConstantString.ks_cached];
         return;
     }
     
-    self.readerPanelView.cacheText = [NSString stringWithFormat:@"正在缓存中 (%ld/%ld) ...",downloadCount,limit];
+    self.readerPanelView.cacheText = [NSString stringWithFormat:DBConstantString.ks_cachingProgress,downloadCount,limit];
     DBBookCatalogModel *catalog = chapterList[currentChapterIndex];
     self.readerPanelView.downloadButton.userInteractionEnabled = NO;
     [self getChapterContentWithChapterForm:chapterForm chapterId:catalog.path chapterIndex:currentChapterIndex completion:^(BOOL successfulRequest, NSInteger chapterIndex, NSString * _Nullable message) {
@@ -205,7 +205,7 @@
 - (void)exterLinkClickAction{
     NSString *sourceUrl = @"";
     NSString *sourceSite = @"";
-    NSString *address = @"转码地址";
+    NSString *address = DBConstantString.ks_sourceUrl;
     
     DBBookModel *book = self.readerVc.book;
     NSArray *sourceList = [DBBookSourceModel getBookSources:book.sourceForm];
@@ -216,8 +216,8 @@
     }
     
     if ([sourceSite isEqualToString:@"聚合校对"]) {
-        address = @"搜索转码地址";
-        sourceSite = @"聚合搜索";
+        address = DBConstantString.ks_searchSource;
+        sourceSite = DBConstantString.ks_searchAll;
         sourceUrl = [NSString stringWithFormat:@"https://m.baidu.com/s?word=%@",book.name];
     }
     
@@ -226,13 +226,13 @@
     
     NSString *content = [NSString stringWithFormat:@"转码来源:\n%@\n\n此转码内容来源于%@，如有内容侵权请联系转码原站，谢谢您的支持",sourceSite,sourceSite];
     if (sourceUrl.length > 0){
-        content = [NSString stringWithFormat:@"%@:\n%@\n\n此转码内容来源于%@，如有内容侵权请联系转码原站，谢谢您的支持",address,sourceUrl,sourceSite];
+        content = [NSString stringWithFormat:DBConstantString.ks_sourceFormat,address,sourceUrl,sourceSite];
     }
     DBWeakSelf
     LEEAlert.alert.config.LeeContent(content).
-    LeeCancelAction(@"取消", ^{
+    LeeCancelAction(DBConstantString.ks_cancel, ^{
         
-    }).LeeAction(@"去看看", ^{
+    }).LeeAction(DBConstantString.ks_view, ^{
         DBStrongSelfElseReturn
         [UIApplication.sharedApplication openURL:[NSURL URLWithString:sourceUrl.characterSet] options:@{} completionHandler:nil];
     }).LeeShow();
@@ -302,11 +302,11 @@
 
 - (void)changeReaderAutomaticClickAction{
     DBWeakSelf
-    LEEAlert.alert.config.LeeTitle(@"温馨提示").
-    LeeContent(@"开启自动阅读会使您的屏幕保持常亮，退出自动阅读会还原为您的系统设置。").
+    LEEAlert.alert.config.LeeTitle(DBConstantString.ks_note).
+    LeeContent(DBConstantString.ks_autoReadNotice).
     LeeAddAction(^(LEEAction * _Nonnull action) {
         action.type = LEEActionTypeDefault;
-        action.title = @"知道啦";
+        action.title = DBConstantString.ks_gotitLa;
         action.titleColor = DBColorExtension.grayColor;
         action.font = DBFontExtension.bodySixTenFont;
         action.clickBlock = ^{

@@ -101,7 +101,7 @@ static NSString *identifierCollectCell = @"DBBookTypesCollectionViewCell";
 - (UIView *)customViewForEmptyDataSet:(UIScrollView *)scrollView{
     DBEmptyView *emptyView = [[DBEmptyView alloc] init];
     emptyView.imageObj = [UIImage imageNamed:@"jjNullCanvas"];
-    emptyView.content = @"暂无分类数据";
+    emptyView.content = DBConstantString.ks_noCategories;
     emptyView.dataList = self.dataList;
     [scrollView addSubview:emptyView];
     [emptyView mas_makeConstraints:^(MASConstraintMaker *make) {

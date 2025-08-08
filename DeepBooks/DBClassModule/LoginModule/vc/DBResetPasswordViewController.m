@@ -62,23 +62,23 @@
     NSString *newPassword1 = self.newPasswordTextField.text.whitespace;
     NSString *newPassword2 = self.confirmPasswordTextField.text.whitespace;
     if (!password.length){
-        [self.view showAlertText:@"请输入原密码"];
+        [self.view showAlertText:DBConstantString.ks_enterCurrentPassword];
         return;
     }
     if (!newPassword1.length){
-        [self.view showAlertText:@"请输入新密码"];
+        [self.view showAlertText:DBConstantString.ks_enterNewPassword];
         return;
     }
     if (!newPassword1.isPassword){
-        [self.view showAlertText:@"请输入正确的新密码"];
+        [self.view showAlertText:DBConstantString.ks_validNewPassword];
         return;
     }
     if ([password isEqualToString:newPassword1]){
-        [self.view showAlertText:@"旧密码和新密码不能相同"];
+        [self.view showAlertText:DBConstantString.ks_newPasswordDifferent];
         return;
     }
     if (![newPassword1 isEqualToString:newPassword2]){
-        [self.view showAlertText:@"输入的两次新密码不一致"];
+        [self.view showAlertText:DBConstantString.ks_passwordNewMismatch];
         return;
     }
     
@@ -87,7 +87,7 @@
     [DBAFNetWorking postServiceRequestType:DBLinkUserPasswordModify combine:nil parameInterface:parameInterface serviceData:^(BOOL successfulRequest, id  _Nullable result, NSString * _Nullable message) {
         [self.view removeHudLoading];
         if (successfulRequest){
-            [UIScreen.appWindow showAlertText:@"修改密码成功"];
+            [UIScreen.appWindow showAlertText:DBConstantString.ks_passwordChanged];
             [DBRouter closePage];            
         }else{
             [self.view showAlertText:message];
@@ -101,7 +101,7 @@
         _titlePageLabel.font = DBFontExtension.bodySixTenFont;
         _titlePageLabel.textColor = DBColorExtension.charcoalColor;
         _titlePageLabel.textAlignment = NSTextAlignmentCenter;
-        _titlePageLabel.text = @"修改密码";
+        _titlePageLabel.text = DBConstantString.ks_changePassword;
     }
     return _titlePageLabel;
 }
@@ -110,7 +110,7 @@
 - (DBCloseTextField *)passwordTextField{
     if (!_passwordTextField){
         _passwordTextField = [[DBCloseTextField alloc] init];
-        _passwordTextField.placeholder = @"输入原密码";
+        _passwordTextField.placeholder = DBConstantString.ks_currentPassword;
         _passwordTextField.textColor = DBColorExtension.charcoalColor;
         _passwordTextField.secureTextEntry = YES;
         
@@ -131,7 +131,7 @@
 - (DBCloseTextField *)newPasswordTextField{
     if (!_newPasswordTextField){
         _newPasswordTextField = [[DBCloseTextField alloc] init];
-        _newPasswordTextField.placeholder = @"请输入新密码";
+        _newPasswordTextField.placeholder = DBConstantString.ks_enterNewPassword;
         _newPasswordTextField.textColor = DBColorExtension.charcoalColor;
         _newPasswordTextField.secureTextEntry = YES;
 
@@ -152,7 +152,7 @@
 - (DBCloseTextField *)confirmPasswordTextField{
     if (!_confirmPasswordTextField){
         _confirmPasswordTextField = [[DBCloseTextField alloc] init];
-        _confirmPasswordTextField.placeholder = @"请输入新密码";
+        _confirmPasswordTextField.placeholder = DBConstantString.ks_enterNewPassword;
         _confirmPasswordTextField.textColor = DBColorExtension.charcoalColor;
         _confirmPasswordTextField.secureTextEntry = YES;
 
@@ -177,7 +177,7 @@
         _confirmButton.layer.masksToBounds = YES;
         _confirmButton.backgroundColor = DBColorExtension.accountThemeColor;
         _confirmButton.titleLabel.font = DBFontExtension.pingFangMediumLarge;
-        [_confirmButton setTitle:@"确定" forState:UIControlStateNormal];
+        [_confirmButton setTitle:DBConstantString.ks_confirm forState:UIControlStateNormal];
         [_confirmButton setTitleColor:DBColorExtension.whiteColor forState:UIControlStateNormal];
         [_confirmButton addTarget:self action:@selector(clickConfirmAction) forControlEvents:UIControlEventTouchUpInside];
     }

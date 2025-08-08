@@ -138,7 +138,7 @@
         DBBaseLabel *favLabel = [[DBBaseLabel alloc] init];
         favLabel.font = DBFontExtension.bodyMediumFont;
         favLabel.textColor = DBColorExtension.grayColor;
-        favLabel.text = [NSString stringWithFormat:@"%ld人点赞",model.fav_arr.count];
+        favLabel.text = [NSString stringWithFormat:DBConstantString.ks_likesCount,model.fav_arr.count];
         [self.favView addSubview:favLabel];
         [favLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(lastView.mas_right).offset(10);
@@ -171,16 +171,16 @@
             [textList addObject:DBSafeString(replyModel.nick)];
             [colorList addObject:DBColorExtension.skyBlueColor];
             if (replyModel.floor_host) {
-                [textList addObject:@" 楼主"];
+                [textList addObject:DBConstantString.ks_originalPoster];
                 [colorList addObject:DBColorExtension.redColor];
             }
             if (replyModel.reply_to_comment.nick.length > 0){
-                [textList addObject:@" 回复"];
+                [textList addObject:DBConstantString.ks_replySuffix];
                 [colorList addObject:color];
                 [textList addObject:[NSString stringWithFormat:@" %@",replyModel.reply_to_comment.nick]];
                 [colorList addObject:DBColorExtension.skyBlueColor];
                 if (replyModel.reply_to_comment.floor_host){
-                    [textList addObject:@" 楼主"];
+                    [textList addObject:DBConstantString.ks_originalPoster];
                     [colorList addObject:DBColorExtension.redColor];
                 }
             }
@@ -206,7 +206,7 @@
             DBBaseLabel *replyMoreLabel = [[DBBaseLabel alloc] init];
             replyMoreLabel.font = DBFontExtension.bodySmallFont;
             replyMoreLabel.textColor = DBColorExtension.grayColor;
-            replyMoreLabel.text = [NSString stringWithFormat:@"查看全部%ld条回复",model.reply_count];
+            replyMoreLabel.text = [NSString stringWithFormat:DBConstantString.ks_viewAllReplies,model.reply_count];
             [self.replyView addSubview:replyMoreLabel];
             [replyMoreLabel mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.mas_equalTo(10);
@@ -238,13 +238,13 @@
         [DBCommonConfig toLogin];
         return;
     }
-    LEEAlert.alert.config.LeeTitle(@"拉黑").
-    LeeContent(@"确定要拉黑该用户吗？").
-    LeeCancelAction(@"取消", ^{
+    LEEAlert.alert.config.LeeTitle(DBConstantString.ks_block).
+    LeeContent(DBConstantString.ks_confirmBlockUser).
+    LeeCancelAction(DBConstantString.ks_cancel, ^{
         
-    }).LeeAction(@"是的", ^{
+    }).LeeAction(DBConstantString.ks_yes, ^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [UIScreen.appWindow showAlertText:@"拉黑成功，已不能再接收对方消息！"];
+            [UIScreen.appWindow showAlertText:DBConstantString.ks_blockSuccess];
         });
     }).LeeShow();
 }
@@ -256,29 +256,29 @@
     }
     DBWeakSelf
     LEEAlert.actionsheet.config.
-    LeeAction(@"色情低俗", ^{
+    LeeAction(DBConstantString.ks_pornographic, ^{
         DBStrongSelfElseReturn
         [self showReportText];
-    }).LeeAction(@"政治敏感", ^{
+    }).LeeAction(DBConstantString.ks_sensitiveContent, ^{
         DBStrongSelfElseReturn
         [self showReportText];
-    }).LeeAction(@"广告", ^{
+    }).LeeAction(DBConstantString.ks_ad, ^{
         DBStrongSelfElseReturn
         [self showReportText];
-    }).LeeAction(@"令人恶心", ^{
+    }).LeeAction(DBConstantString.ks_disgusting, ^{
         DBStrongSelfElseReturn
         [self showReportText];
-    }).LeeAction(@"违纪违法", ^{
+    }).LeeAction(DBConstantString.ks_violation, ^{
         DBStrongSelfElseReturn
         [self showReportText];
-    }).LeeCancelAction(@"取消", ^{
+    }).LeeCancelAction(DBConstantString.ks_cancel, ^{
         
     }).LeeShow();
 }
 
 - (void)showReportText{
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [UIScreen.appWindow showAlertText:@"我们会在24小时内处理，确认违规后对内容进行相应处理！"];
+        [UIScreen.appWindow showAlertText:DBConstantString.ks_violationProcessTime];
     });
 }
 
@@ -366,7 +366,7 @@
     if (!_blockButton){
         _blockButton = [[UIButton alloc] init];
         _blockButton.titleLabel.font = DBFontExtension.bodyMediumFont;
-        [_blockButton setTitle:@"拉黑" forState:UIControlStateNormal];
+        [_blockButton setTitle:DBConstantString.ks_block forState:UIControlStateNormal];
         [_blockButton setTitleColor:DBColorExtension.oceanBlueColor forState:UIControlStateNormal];
         [_blockButton addTarget:self action:@selector(clickBlockAction) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -377,7 +377,7 @@
     if (!_reportButton){
         _reportButton = [[UIButton alloc] init];
         _reportButton.titleLabel.font = DBFontExtension.bodyMediumFont;
-        [_reportButton setTitle:@"举报" forState:UIControlStateNormal];
+        [_reportButton setTitle:DBConstantString.ks_report forState:UIControlStateNormal];
         [_reportButton setTitleColor:DBColorExtension.oceanBlueColor forState:UIControlStateNormal];
         [_reportButton addTarget:self action:@selector(clickReportAction) forControlEvents:UIControlEventTouchUpInside];
     }

@@ -29,7 +29,7 @@ static NSString *identifierCollectCell = @"DBCollectBooksCollectionViewCell";
 }
 
 - (void)setUpSubViews{
-    self.title = @"书架收藏";
+    self.title = DBConstantString.ks_bookmarks;
     [self.view addSubviews:@[self.navLabel,self.myBookCollectionView,self.managerButton]];
     [self.navLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
@@ -88,7 +88,7 @@ static NSString *identifierCollectCell = @"DBCollectBooksCollectionViewCell";
 - (UIView *)customViewForEmptyDataSet:(UIScrollView *)scrollView{
     DBEmptyView *emptyView = [[DBEmptyView alloc] init];
     emptyView.imageObj = [UIImage imageNamed:@"jjNullCanvas"];
-    emptyView.content = @"暂无书籍数据";
+    emptyView.content = DBConstantString.ks_noBookData;
     [scrollView addSubview:emptyView];
     [emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);

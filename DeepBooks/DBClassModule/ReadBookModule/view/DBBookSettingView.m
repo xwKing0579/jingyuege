@@ -138,7 +138,7 @@
     scrollView.contentSize = CGSizeMake((width+space)*(colors.count-1)+width+32, height);
     
     NSMutableArray *views = [NSMutableArray array];
-    NSArray *titles = @[@"左右",@"拟真",@"上下",@"自动"];
+    NSArray *titles = @[DBConstantString.ks_flip,DBConstantString.ks_realistic,DBConstantString.ks_scrollMode,DBConstantString.ks_auto];
     NSInteger turnStyle = DBReadBookSetting.setting.turnStyle;
 
     for (NSInteger index = 0; index < titles.count; index++) {
@@ -273,8 +273,8 @@
         _eyeShaowButton = [[UIButton alloc] init];
         _eyeShaowButton.tag = 10;
         _eyeShaowButton.titleLabel.font = DBFontExtension.bodyMediumFont;
-        [_eyeShaowButton setTitle:@"护眼" forState:UIControlStateNormal];
-        [_eyeShaowButton setTitle:@"关闭" forState:UIControlStateSelected];
+        [_eyeShaowButton setTitle:DBConstantString.ks_eyeProtection forState:UIControlStateNormal];
+        [_eyeShaowButton setTitle:DBConstantString.ks_standard forState:UIControlStateSelected];
         [_eyeShaowButton setImage:[UIImage imageNamed:@"jjVelvetShutter"] forState:UIControlStateSelected];
         [_eyeShaowButton setImage:[UIImage imageNamed:@"jjOculusGateway"] forState:UIControlStateNormal];
         [_eyeShaowButton setTitleColor:DBColorExtension.charcoalAltColor forState:UIControlStateNormal];

@@ -21,7 +21,7 @@
 }
 
 - (void)setUpSubViews{
-    self.title = @"修改昵称";
+    self.title = DBConstantString.ks_changeNickname;
     [self.view addSubviews:@[self.navLabel,self.changeTextField,self.confirmButton]];
     [self.navLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
@@ -43,15 +43,15 @@
 - (void)clickConfirmAction{
     NSString *nickName = self.changeTextField.text.whitespace;
     if (nickName.length == 0){
-        [self.view showAlertText:@"请填写昵称"];
+        [self.view showAlertText:DBConstantString.ks_enterNickname];
         return;
     }
     if ([nickName isEqualToString:DBCommonConfig.userDataInfo.nick]){
-        [self.view showAlertText:@"不能跟以前的昵称一致"];
+        [self.view showAlertText:DBConstantString.ks_uniqueNicknameRequired];
         return;
     }
     if (nickName.length > 20){
-        [self.view showAlertText:@"昵称太长，应该少于20个字符"];
+        [self.view showAlertText:DBConstantString.ks_nicknameTooLong];
         return;
     }
 
@@ -85,7 +85,7 @@
         _changeTextField.backgroundColor = DBColorExtension.paleGrayColor;
         _changeTextField.font = DBFontExtension.bodySixTenFont;
         _changeTextField.textColor = DBColorExtension.charcoalColor;
-        _changeTextField.placeholder = @"输入新的昵称";
+        _changeTextField.placeholder = DBConstantString.ks_newNickname;
         _changeTextField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 0)];
         _changeTextField.leftViewMode = UITextFieldViewModeAlways;
         _changeTextField.rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 0)];
@@ -99,7 +99,7 @@
         _confirmButton = [[UIButton alloc] init];
         _confirmButton.titleLabel.font = DBFontExtension.titleSmallFont;
         _confirmButton.enlargedEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
-        [_confirmButton setTitle:@"保存" forState:UIControlStateNormal];
+        [_confirmButton setTitle:DBConstantString.ks_save forState:UIControlStateNormal];
         [_confirmButton setTitleColor:DBColorExtension.charcoalColor forState:UIControlStateNormal];
         [_confirmButton addTarget:self action:@selector(clickConfirmAction) forControlEvents:UIControlEventTouchUpInside];
     }

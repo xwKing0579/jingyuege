@@ -24,7 +24,7 @@
 }
 
 - (void)setUpSubViews{
-    self.title = @"设置";
+    self.title = DBConstantString.ks_settings;
     self.listRollingView.rowHeight = 42;
     [self.view addSubviews:@[self.navLabel,self.listRollingView]];
     [self.navLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -46,7 +46,7 @@
     [UIApplication calculateDiskCacheSize:^(NSString * _Nonnull sizeString) {
         DBMySettingListModel *listData = self.dataList[1];
         for (DBMySettingModel *model in listData.data) {
-            if ([model.name isEqualToString:@"清理网络缓存"]){
+            if ([model.name isEqualToString:DBConstantString.ks_clearNetworkCache]){
                 model.content = sizeString;
                 [self.listRollingView reloadData];
                 break;
@@ -84,25 +84,25 @@
     }else if (indexPath.section == 1){
         if (model.target == 1){
             DBWeakSelf
-            LEEAlert.actionsheet.config.LeeTitle(@"请选择排序规则").
-            LeeAction(@"最近阅读", ^{
+            LEEAlert.actionsheet.config.LeeTitle(DBConstantString.ks_sortBy).
+            LeeAction(DBConstantString.ks_recentReads, ^{
                 DBStrongSelfElseReturn
                 DBReadBookSetting *setting = DBReadBookSetting.setting;
                 setting.orderType = 0;
                 [setting reloadSetting];
-            }).LeeAction(@"更新时间", ^{
+            }).LeeAction(DBConstantString.ks_updatedTime, ^{
                 DBStrongSelfElseReturn
                 DBReadBookSetting *setting = DBReadBookSetting.setting;
                 setting.orderType = 1;
                 [setting reloadSetting];
-            }).LeeCancelAction(@"取消", ^{
+            }).LeeCancelAction(DBConstantString.ks_cancel, ^{
                 
             }).LeeShow();
         }else if (model.target == 2){
-            [self.view showAlertText:@"已同步至最新"];
+            [self.view showAlertText:DBConstantString.ks_synced];
         }else if (model.target == 3){
             if ([model.content isEqualToString:@"0B"]){
-                [self.view showAlertText:@"暂无网络缓存需要清理"];
+                [self.view showAlertText:DBConstantString.ks_noCacheToClear];
                 return;
             }
             [self.view showHudLoading];
@@ -113,13 +113,13 @@
             
                 DBMySettingListModel *listData = self.dataList[1];
                 for (DBMySettingModel *model in listData.data) {
-                    if ([model.name isEqualToString:@"清理网络缓存"]){
+                    if ([model.name isEqualToString:DBConstantString.ks_clearNetworkCache]){
                         model.content = @"0B";
                         [self.listRollingView reloadData];
                         break;
                     }
                 }
-                [self.view showAlertText:@"网络缓存已清理"];
+                [self.view showAlertText:DBConstantString.ks_netCacheCleared];
             }];
         }else if (model.target == 4){
             [DBRouter openPageUrl:DBClearBooksCache];
@@ -129,7 +129,7 @@
             [DBRouter openPageUrl:model.vc];
         }else{
             LEEAlert.alert.config.LeeTitle(@"退出登录，\n书架及阅读记录将会清空哦！").
-            LeeAction(@"确定", ^{
+            LeeAction(DBConstantString.ks_confirm, ^{
                 
                 [DBRouter closePageRoot];
                 [DBCommonConfig updateUserInfo:DBUserModel.new];
@@ -140,7 +140,7 @@
                     UITabBarController *tabbar = (UITabBarController *)UIScreen.appWindow.rootViewController;
                     tabbar.selectedIndex = 0;
                 });
-            }).LeeCancelAction(@"取消", ^{
+            }).LeeCancelAction(DBConstantString.ks_cancel, ^{
                 
             }).LeeShow();
         }

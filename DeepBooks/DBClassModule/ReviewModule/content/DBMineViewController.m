@@ -67,29 +67,29 @@
     if (model.vc){
         [DBRouter openPageUrl:model.vc params:@{@"title":DBSafeString(model.name)}];
     }else{
-        if ([model.name isEqualToString:@"五星好评"]){
+        if ([model.name isEqualToString:DBConstantString.ks_fiveStar]){
             [SKStoreReviewController requestReview];
-        }else if ([model.name isEqualToString:@"绑定邀请码"]){
+        }else if ([model.name isEqualToString:DBConstantString.ks_bindInviteCode]){
             __block UITextField *inputTextField = nil;
             [DBDefaultSwift disableKeyboard];
             DBWeakSelf
             [LEEAlert alert].config
             .LeeTitle(@"输入邀请码")
-            .LeeContent(@"请输入您收到的邀请码")
+            .LeeContent(DBConstantString.ks_enterInviteCode)
             .LeeAddTextField(^(UITextField * _Nonnull textField) {
                     [textField becomeFirstResponder];
                     inputTextField = textField;
             })
             .LeeItemInsets(UIEdgeInsetsMake(10, 10, 10, 10))
-            .LeeCancelAction(@"取消", ^{
+            .LeeCancelAction(DBConstantString.ks_cancel, ^{
                 [DBDefaultSwift enableKeyboard];
             })
-            .LeeDestructiveAction(@"确定", ^{
+            .LeeDestructiveAction(DBConstantString.ks_confirm, ^{
                 DBStrongSelfElseReturn
                 [DBAppSwitchModel getAppSwitchWithInvitationCode:inputTextField.text.whitespace];
                 [DBDefaultSwift enableKeyboard];
             }).LeeShow();
-        }else if ([model.name isEqualToString:@"点击联系客服"]){
+        }else if ([model.name isEqualToString:DBConstantString.ks_contactSupport]){
             [DBCommonConfig jumpCustomerService];
         }
         

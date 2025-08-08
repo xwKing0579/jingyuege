@@ -59,7 +59,7 @@
 - (void)clickCodeAction{
     NSString *email = self.emailTextField.text.whitespace;
     if (!email.isEmail){
-        [UIScreen.currentViewController.view showAlertText:@"请输入正确的邮箱"];
+        [UIScreen.currentViewController.view showAlertText:DBConstantString.ks_validEmail];
         return;
     }
    
@@ -68,7 +68,7 @@
     [DBAFNetWorking postServiceRequestType:DBLinkUserPhoneVeriCodeSend combine:nil parameInterface:parameInterface serviceData:^(BOOL successfulRequest, NSDictionary *result, NSString * _Nullable message) {
         [UIScreen.currentViewController.view removeHudLoading];
         if (successfulRequest){
-            [UIScreen.currentViewController.view showAlertText:@"验证码已发送，10分钟内有效"];
+            [UIScreen.currentViewController.view showAlertText:DBConstantString.ks_verificationCodeSent];
             [self emailCodeCountDown];
         }else{
             [UIScreen.currentViewController.view showAlertText:message];
@@ -88,7 +88,7 @@
             if (second == 0) {
                 self.codeButton.userInteractionEnabled = YES;
                 self.emailTextField.userInteractionEnabled = YES;
-                [self.codeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+                [self.codeButton setTitle:DBConstantString.ks_getVerificationCode forState:UIControlStateNormal];
                 dispatch_cancel(timer);
             } else {
                 [self.codeButton setTitle:[NSString stringWithFormat:@"%02lds",second] forState:UIControlStateNormal];
@@ -105,15 +105,15 @@
     NSString *password = self.passwordTextField.text.whitespace;
     NSString *code = self.codeTextField.text.whitespace;
     if (!email.isEmail){
-        [UIScreen.currentViewController.view showAlertText:@"请输入正确的邮箱"];
+        [UIScreen.currentViewController.view showAlertText:DBConstantString.ks_validEmail];
         return;
     }
     if (!password.isPassword){
-        [UIScreen.currentViewController.view showAlertText:@"请输入正确的密码"];
+        [UIScreen.currentViewController.view showAlertText:DBConstantString.ks_invalidPassword];
         return;
     }
     if (code.length == 0){
-        [UIScreen.currentViewController.view showAlertText:@"请输入验证码"];
+        [UIScreen.currentViewController.view showAlertText:DBConstantString.ks_enterVerificationCode];
         return;
     }
     
@@ -143,7 +143,7 @@
             [DBUserModel loginWithParameters:loginDict completion:^(BOOL success) {
                 [UIScreen.currentViewController.view removeHudLoading];
             }];
-            [UIScreen.appWindow showAlertText:@"注册成功"];
+            [UIScreen.appWindow showAlertText:DBConstantString.ks_registrationSuccess];
         }else{
             [UIScreen.currentViewController.view removeHudLoading];
             [UIScreen.currentViewController.view showAlertText:message];
@@ -160,9 +160,9 @@
 
 - (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange interaction:(UITextItemInteraction)interaction {
     if ([URL.absoluteString isEqualToString:@"1"]){
-        [DBRouter openPageUrl:DBServiceList params:@{@"title":@"服务条款"}];
+        [DBRouter openPageUrl:DBServiceList params:@{@"title":DBConstantString.ks_termsOfService}];
     }else{
-        [DBRouter openPageUrl:DBWebView params:@{@"title":@"隐私条款",@"url":URL.absoluteString}];
+        [DBRouter openPageUrl:DBWebView params:@{@"title":DBConstantString.ks_privacyTerms,@"url":URL.absoluteString}];
     }
     return NO;
 }
@@ -170,7 +170,7 @@
 - (DBCloseTextField *)emailTextField{
     if (!_emailTextField){
         _emailTextField = [[DBCloseTextField alloc] init];
-        _emailTextField.placeholder = @"请输入邮箱";
+        _emailTextField.placeholder = DBConstantString.ks_enterEmail;
         _emailTextField.textColor = DBColorExtension.charcoalColor;
 
         _emailTextField.layer.cornerRadius = 6;
@@ -188,7 +188,7 @@
 - (UITextField *)codeTextField{
     if (!_codeTextField){
         _codeTextField = [[UITextField alloc] init];
-        _codeTextField.placeholder = @"请输入验证码";
+        _codeTextField.placeholder = DBConstantString.ks_enterVerificationCode;
         _codeTextField.keyboardType = UIKeyboardTypeNumberPad;
         _codeTextField.textColor = DBColorExtension.charcoalColor;
 
@@ -221,7 +221,7 @@
         _codeButton.layer.masksToBounds = YES;
         _codeButton.backgroundColor = DBColorExtension.accountThemeColor;
         _codeButton.titleLabel.font = DBFontExtension.bodySmallFont;
-        [_codeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+        [_codeButton setTitle:DBConstantString.ks_getVerificationCode forState:UIControlStateNormal];
         [_codeButton setTitleColor:DBColorExtension.whiteColor forState:UIControlStateNormal];
         [_codeButton addTarget:self action:@selector(clickCodeAction) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -231,7 +231,7 @@
 - (DBCloseTextField *)passwordTextField{
     if (!_passwordTextField){
         _passwordTextField = [[DBCloseTextField alloc] init];
-        _passwordTextField.placeholder = @"请输入密码";
+        _passwordTextField.placeholder = DBConstantString.ks_enterPassword;
         _passwordTextField.textColor = DBColorExtension.charcoalColor;
         _passwordTextField.secureTextEntry = YES;
         
@@ -254,7 +254,7 @@
         _registerButton.layer.masksToBounds = YES;
         _registerButton.backgroundColor = DBColorExtension.accountThemeColor;
         _registerButton.titleLabel.font = DBFontExtension.pingFangMediumLarge;
-        [_registerButton setTitle:@"注册" forState:UIControlStateNormal];
+        [_registerButton setTitle:DBConstantString.ks_signUp forState:UIControlStateNormal];
         
         [_registerButton addTarget:self action:@selector(clickRegisterAction) forControlEvents:UIControlEventTouchUpInside];
     }

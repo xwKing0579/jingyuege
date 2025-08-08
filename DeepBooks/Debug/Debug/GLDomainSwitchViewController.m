@@ -215,7 +215,7 @@ NSString *BundleCacheKey = @"BundleCacheKey";
         [NSUserDefaults saveValue:self.recordDomain.allObjects forKey:domainCacheKey];
         [self.view showAlertText:@"修改域名成功，请退出登录并重启"];
     }else{
-        [self.view showAlertText:@"请输入内容"];
+        [self.view showAlertText:DBConstantString.ks_enterText];
     }
 }
 
@@ -228,7 +228,7 @@ NSString *BundleCacheKey = @"BundleCacheKey";
         [NSUserDefaults saveValue:bundleStr forKey:@"changeBundleName"];
         [self.view showAlertText:@"修改包名成功，请退出登录并重启"];
     }else{
-        [self.view showAlertText:@"请输入内容"];
+        [self.view showAlertText:DBConstantString.ks_enterText];
     }
 }
 

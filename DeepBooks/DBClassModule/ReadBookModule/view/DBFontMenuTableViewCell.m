@@ -42,16 +42,16 @@
     self.titleTextLabel.font = [UIFont fontWithName:model.fontName size:24];
     
     if (model.isUsing){
-        self.contentTextLabel.text = @"使用中";
+        self.contentTextLabel.text = DBConstantString.ks_active;
         self.contentTextLabel.textColor = DBColorExtension.pineGreenColor;
     }else if (model.isSystem){
-        self.contentTextLabel.text = @"系统字体";
+        self.contentTextLabel.text = DBConstantString.ks_systemFont;
         self.contentTextLabel.textColor = DBColorExtension.charcoalColor;
     }else if (model.isDowload){
-        self.contentTextLabel.text = @"已下载";
+        self.contentTextLabel.text = DBConstantString.ks_downloaded;
         self.contentTextLabel.textColor = DBColorExtension.charcoalColor;
     }else{
-        self.contentTextLabel.text = @"未下载";
+        self.contentTextLabel.text = DBConstantString.ks_notDownloaded;
         self.contentTextLabel.textColor = DBColorExtension.mediumGrayColor;
     }
 }

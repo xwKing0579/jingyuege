@@ -81,10 +81,10 @@
         NetworkStatus status = [reach currentReachabilityStatus];
         if (status != ReachableViaWiFi){
             DBWeakSelf
-            LEEAlert.alert.config.LeeTitle(@"当前是蜂窝数据环境，是否继续下载").
-            LeeCancelAction(@"取消", ^{
+            LEEAlert.alert.config.LeeTitle(DBConstantString.ks_cellularDownloadWarning).
+            LeeCancelAction(DBConstantString.ks_cancel, ^{
                 
-            }).LeeAction(@"继续", ^{
+            }).LeeAction(DBConstantString.ks_continue, ^{
                 DBStrongSelfElseReturn
                 [self dowloadFontName:model];
             }).LeeShow();
@@ -138,7 +138,7 @@
 - (DBBaseLabel *)titlePageLabel{
     if (!_titlePageLabel){
         _titlePageLabel = [[DBBaseLabel alloc] init];
-        _titlePageLabel.text = @"字体";
+        _titlePageLabel.text = DBConstantString.ks_font;
         _titlePageLabel.font = DBFontExtension.pingFangMediumXLarge;
         _titlePageLabel.textColor = DBColorExtension.blackAltColor;
         _titlePageLabel.textAlignment = NSTextAlignmentCenter;

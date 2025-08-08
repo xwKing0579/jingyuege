@@ -55,9 +55,9 @@
     if (DBCommonConfig.switchAudit){
         NSArray *chapters = [DBBookCatalogModel getBookCatalogs:model.catalogForm];
         if (model.updateTime == 0) {
-            self.descTextLabel.text = @"未阅读";
+            self.descTextLabel.text = DBConstantString.ks_unreadStatus;
         }else{
-            self.descTextLabel.text = [NSString stringWithFormat:@"已读：%.0lf%%",((CGFloat)model.chapter_index+1)/chapters.count*100.0];
+            self.descTextLabel.text = [NSString stringWithFormat:DBConstantString.ks_readPercentage,((CGFloat)model.chapter_index+1)/chapters.count*100.0];
         }
     }else{
         self.descTextLabel.text = [DBCommonConfig bookReadingProgress:model.readChapterName];

@@ -74,7 +74,7 @@
         _titlePageLabel.font = DBFontExtension.bodySixTenFont;
         _titlePageLabel.textColor = DBColorExtension.charcoalColor;
         _titlePageLabel.textAlignment = NSTextAlignmentCenter;
-        _titlePageLabel.text = @"注册";
+        _titlePageLabel.text = DBConstantString.ks_signUp;
     }
     return _titlePageLabel;
 }
@@ -89,7 +89,7 @@
         _categoryView.titleFont = DBFontExtension.bodyMediumFont;
         _categoryView.titleSelectedFont = DBFontExtension.pingFangMediumMedium;
         _categoryView.listContainer = self.categoryContainerView;
-        _categoryView.titles = @[@"手机号".textMultilingual,@"邮箱".textMultilingual];
+        _categoryView.titles = @[DBConstantString.ks_phone.textMultilingual,DBConstantString.ks_email.textMultilingual];
         
         JXCategoryIndicatorBackgroundView *backgroundColorView = [[JXCategoryIndicatorBackgroundView alloc] init];
         backgroundColorView.layer.cornerRadius = 20;
@@ -136,7 +136,7 @@
     if (DBColorExtension.userInterfaceStyle) {
         colors = @[DBColorExtension.coolGrayColor,DBColorExtension.redColor];
     }
-    self.privacyTextView.attributedText = [NSAttributedString combineAttributeTexts:@[@"注册即表示同意".textMultilingual,@"《用户服务协议》".textMultilingual,@"《隐私协议》".textMultilingual] colors:colors fonts:@[DBFontExtension.bodyMediumFont] attrs:@[@{},@{NSLinkAttributeName:UserServiceAgreementURL},@{NSLinkAttributeName:PrivacyAgreementURL}]];
+    self.privacyTextView.attributedText = [NSAttributedString combineAttributeTexts:@[DBConstantString.ks_registrationAgreement.textMultilingual,DBConstantString.ks_userAgreement.textMultilingual,DBConstantString.ks_privacyPolicy.textMultilingual] colors:colors fonts:@[DBFontExtension.bodyMediumFont] attrs:@[@{},@{NSLinkAttributeName:UserServiceAgreementURL},@{NSLinkAttributeName:PrivacyAgreementURL}]];
 }
 
 @end

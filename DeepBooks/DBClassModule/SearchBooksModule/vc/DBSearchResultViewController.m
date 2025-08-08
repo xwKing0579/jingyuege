@@ -105,7 +105,7 @@
         _titleTextLabel = [[DBBaseLabel alloc] init];
         _titleTextLabel.font = DBFontExtension.pingFangMediumXLarge;
         _titleTextLabel.textColor = DBColorExtension.charcoalColor;
-        _titleTextLabel.text = @"搜索结果";
+        _titleTextLabel.text = DBConstantString.ks_searchResults;
     }
     return _titleTextLabel;
 }
@@ -126,7 +126,7 @@
     seekBookButton.backgroundColor = DBColorExtension.cloudGrayColor;
     seekBookButton.layer.cornerRadius = 20;
     seekBookButton.layer.masksToBounds = YES;
-    [seekBookButton setTitle:@"没搜到?告诉我们你想找的书吧" forState:UIControlStateNormal];
+    [seekBookButton setTitle:DBConstantString.ks_bookNotFound forState:UIControlStateNormal];
     [seekBookButton setTitleColor:DBColorExtension.gunmetalColor forState:UIControlStateNormal];
     [emptyView addSubview:seekBookButton];
     [seekBookButton mas_makeConstraints:^(MASConstraintMaker *make) {

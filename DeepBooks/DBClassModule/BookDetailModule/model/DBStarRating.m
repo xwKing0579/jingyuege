@@ -152,7 +152,7 @@
     
     if (frame.size.width) {
         
-        NSAssert(STARCOUNT * SPACING < SELFWIDTH, @"间距过长 已超出视图大小");
+        NSAssert(STARCOUNT * SPACING < SELFWIDTH, DBConstantString.ks_spacingTooLong);
         
         CGFloat size = (frame.size.width - (STARCOUNT + 1) * SPACING) / STARCOUNT ? : 0;
         
@@ -225,9 +225,9 @@
 
 - (void)setCurrentScore:(CGFloat)currentScore{
     
-    NSAssert(self.minimumScore <= currentScore, @"当前分数小于最小分数");
+    NSAssert(self.minimumScore <= currentScore, DBConstantString.ks_belowMinScore);
     
-    NSAssert(self.maximumScore >= currentScore, @"当前分数大于最大分数");
+    NSAssert(self.maximumScore >= currentScore, DBConstantString.ks_aboveMaxScore);
     
     if (currentScore < self.minimumScore) currentScore = self.minimumScore;
     
@@ -240,16 +240,16 @@
     
     _minimumScore = minimumScore;
     
-    NSAssert(minimumScore >= 0, @"最小分数不能小于0");
+    NSAssert(minimumScore >= 0, DBConstantString.ks_minScoreError);
 }
 
 - (void)setMaximumScore:(CGFloat)maximumScore{
     
     _maximumScore = maximumScore;
     
-    NSAssert(maximumScore > 0, @"最大分数不能小于0");
+    NSAssert(maximumScore > 0, DBConstantString.ks_maxScoreError);
     
-    NSAssert(maximumScore > self.minimumScore, @"最大分数不能小于最小分数");
+    NSAssert(maximumScore > self.minimumScore, DBConstantString.ks_minMaxScoreError);
 }
 
 - (void)setCurrentScoreChangeBlock:(void (^)(CGFloat))currentScoreChangeBlock{

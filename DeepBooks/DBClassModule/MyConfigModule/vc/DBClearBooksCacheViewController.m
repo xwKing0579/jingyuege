@@ -22,7 +22,7 @@
 }
 
 - (void)setUpSubViews{
-    self.navLabel.text = @"书籍缓存管理";
+    self.navLabel.text = DBConstantString.ks_bookCache;
     [self.view addSubviews:@[self.navLabel,self.listRollingView,self.clearButton]];
     [self.navLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
@@ -65,14 +65,14 @@
 
 - (void)clickClearAction{
     DBWeakSelf
-    LEEAlert.alert.config.LeeTitle(@"确定清除缓存").LeeContent(@"清除缓存操作会清除该书籍已经缓存的所有章节数据,是否清除?").
-    LeeAction(@"移除", ^{
+    LEEAlert.alert.config.LeeTitle(DBConstantString.ks_confirmCacheClear).LeeContent(DBConstantString.ks_clearAllChaptersWarning).
+    LeeAction(DBConstantString.ks_remove, ^{
         DBStrongSelfElseReturn
         [DBBookChapterModel removeAllBooksChapterMemory];
         
         self.dataList = @[];
         [self.listRollingView reloadData];
-    }).LeeCancelAction(@"取消", ^{
+    }).LeeCancelAction(DBConstantString.ks_cancel, ^{
         
     }).LeeShow();
 }
@@ -87,7 +87,7 @@
     if (!_clearButton){
         _clearButton = [[UIButton alloc] init];
         _clearButton.titleLabel.font = DBFontExtension.bodyMediumFont;
-        [_clearButton setTitle:@"清除" forState:UIControlStateNormal];
+        [_clearButton setTitle:DBConstantString.ks_clear forState:UIControlStateNormal];
         [_clearButton setTitleColor:DBColorExtension.charcoalColor forState:UIControlStateNormal];
         [_clearButton addTarget:self action:@selector(clickClearAction) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -97,7 +97,7 @@
 - (UIView *)customViewForEmptyDataSet:(UIScrollView *)scrollView{
     DBEmptyView *emptyView = [[DBEmptyView alloc] init];
     emptyView.imageObj = [UIImage imageNamed:@"jjNullCanvas"];
-    emptyView.content = @"暂无书籍缓存";
+    emptyView.content = DBConstantString.ks_noCachedBooks;
     [scrollView addSubview:emptyView];
     [emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);

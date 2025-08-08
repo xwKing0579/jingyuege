@@ -105,7 +105,7 @@
     self.titleTextLabel.text = model.name;
     self.contentTextLabel.text = model.author;
     self.topImageView.hidden = !model.is_top;
-//    self.scoreLabel.text = [NSString stringWithFormat:@"%@分",model.score];
+//    self.scoreLabel.text = [NSString stringWithFormat:DBConstantString.ks_pointsSuffix,model.score];
 }
 
 - (UIImageView *)pictureImageView{

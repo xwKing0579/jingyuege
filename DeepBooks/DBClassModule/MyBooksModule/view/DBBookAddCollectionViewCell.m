@@ -50,7 +50,7 @@
         _contentTextLabel.font = DBFontExtension.bodySmallFont;
         _contentTextLabel.textColor = DBColorExtension.sunsetOrangeColor;
         _contentTextLabel.textAlignment = NSTextAlignmentCenter;
-        _contentTextLabel.text = @"去书城逛逛";
+        _contentTextLabel.text = DBConstantString.ks_goToBookstore;
         _contentTextLabel.layer.cornerRadius = 15;
         _contentTextLabel.layer.masksToBounds = YES;
         _contentTextLabel.backgroundColor = DBColorExtension.blushMistColor;

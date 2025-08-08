@@ -91,9 +91,9 @@
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo: (void *) contextInfo{
     dispatch_async(dispatch_get_main_queue(), ^{
         if (error){
-            [UIScreen.appWindow showAlertText:@"保存二维码图片到相册失败"];
+            [UIScreen.appWindow showAlertText:DBConstantString.ks_qrCodeSaveFailed];
         }else{
-            [UIScreen.appWindow showAlertText:@"已成功保存二维码到相册！"];
+            [UIScreen.appWindow showAlertText:DBConstantString.ks_qrCodeSaved];
         }
     });
 }
@@ -106,7 +106,7 @@
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = DBCommonConfig.downLinkString;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self showAlertText:@"复制成功，快分享给好友吧!"];
+        [self showAlertText:DBConstantString.ks_copiedToShare];
     });
 }
 
@@ -140,7 +140,7 @@
 - (DBBaseLabel *)titlePageLabel{
     if (!_titlePageLabel){
         _titlePageLabel = [[DBBaseLabel alloc] init];
-        _titlePageLabel.text = @"请选择分享方式";
+        _titlePageLabel.text = DBConstantString.ks_shareVia;
         _titlePageLabel.font = DBFontExtension.pingFangMediumLarge;
         _titlePageLabel.textColor = DBColorExtension.charcoalColor;
         _titlePageLabel.textAlignment = NSTextAlignmentCenter;
@@ -152,7 +152,7 @@
     if (!_qrCodeButton){
         _qrCodeButton = [[UIButton alloc] init];
         _qrCodeButton.titleLabel.font = DBFontExtension.bodyMediumFont;
-        [_qrCodeButton setTitle:@"1.二维码快速安装" forState:UIControlStateNormal];
+        [_qrCodeButton setTitle:DBConstantString.ks_qrInstallStep forState:UIControlStateNormal];
         [_qrCodeButton setTitleColor:DBColorExtension.charcoalColor forState:UIControlStateNormal];
         [_qrCodeButton addTarget:self action:@selector(clickQRCodeAction) forControlEvents:UIControlEventTouchUpInside];
         
@@ -217,7 +217,7 @@
 - (DBBaseLabel *)titleTextLabel{
     if (!_titleTextLabel){
         _titleTextLabel = [[DBBaseLabel alloc] init];
-        _titleTextLabel.text = @"二维码快速安装";
+        _titleTextLabel.text = DBConstantString.ks_qrInstall;
         _titleTextLabel.font = DBFontExtension.pingFangMediumLarge;
         _titleTextLabel.textColor = DBColorExtension.charcoalColor;
         _titleTextLabel.textAlignment = NSTextAlignmentCenter;
@@ -228,7 +228,7 @@
 - (UIView *)saveLabel{
     if (!_saveLabel){
         _saveLabel = [[DBBaseLabel alloc] init];
-        _saveLabel.text = @"(已保存到相册)";
+        _saveLabel.text = DBConstantString.ks_savedToAlbum;
         _saveLabel.font = DBFontExtension.bodyMediumFont;
         _saveLabel.textColor = DBColorExtension.redColor;
         _saveLabel.textAlignment = NSTextAlignmentCenter;
@@ -249,7 +249,7 @@
     if (!_contentTextLabel){
         _contentTextLabel = [[DBBaseLabel alloc] init];
         
-        _contentTextLabel.text = [NSString stringWithFormat:@"%@小说%@",DBCommonConfig.shieldFreeString,UIApplication.appName];
+        _contentTextLabel.text = [NSString stringWithFormat:DBConstantString.ks_bookTitleFormat,DBCommonConfig.shieldFreeString,UIApplication.appName];
         _contentTextLabel.font = DBFontExtension.bodyMediumFont;
         _contentTextLabel.textColor = DBColorExtension.charcoalColor;
         _contentTextLabel.textAlignment = NSTextAlignmentCenter;
@@ -260,7 +260,7 @@
 - (UIView *)descTextLabel{
     if (!_descTextLabel){
         _descTextLabel = [[DBBaseLabel alloc] init];
-        _descTextLabel.text = @"使用“微信”、“QQ”、或者其他具有扫描功能的第三方软件扫描以上二维码进行软件下载";
+        _descTextLabel.text = DBConstantString.ks_qrCodeScanHint;
         _descTextLabel.font = DBFontExtension.bodyMediumFont;
         _descTextLabel.textColor = DBColorExtension.charcoalColor;
         _descTextLabel.textAlignment = NSTextAlignmentCenter;

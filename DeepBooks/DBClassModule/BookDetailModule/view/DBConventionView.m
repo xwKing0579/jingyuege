@@ -75,7 +75,7 @@
     DBAppConfigModel *appConfig = DBCommonConfig.appConfig;
     NSString *path = [NSString stringWithFormat:@"notice/v3/comment.html?pname=%@&wx=%@&qq=%@",UIApplication.appName,DBSafeString(appConfig.wechat),DBSafeString(appConfig.qq)];
     NSString *url = [DBLinkManager combineLinkWithType:DBLinkIconResUrl combine:path];
-    self.contentTextView.attributedText = [NSAttributedString combineAttributeTexts:@[@"提倡文明用语，禁止低俗恶意，好评论可获得官方推荐，违反规则将可能执行删除、禁言及封号处罚。查看完整",@"《社区公约》".textMultilingual] colors:@[color,DBColorExtension.redColor] fonts:@[DBFontExtension.bodyMediumFont] attrs:@[@{},@{NSLinkAttributeName:url}]];
+    self.contentTextView.attributedText = [NSAttributedString combineAttributeTexts:@[DBConstantString.ks_communityGuidelines,DBConstantString.ks_communityRules.textMultilingual] colors:@[color,DBColorExtension.redColor] fonts:@[DBFontExtension.bodyMediumFont] attrs:@[@{},@{NSLinkAttributeName:url}]];
 }
 
 + (void)conventionViewCompletion:(void (^ __nullable)(BOOL finished))completion{
@@ -97,7 +97,7 @@
 }
 
 - (BOOL)contentTextView:(UITextView *)contentTextView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange interaction:(UITextItemInteraction)interaction {
-    [DBRouter openPageUrl:DBWebView params:@{@"title":@"社区公约",@"url":URL.absoluteString}];
+    [DBRouter openPageUrl:DBWebView params:@{@"title":DBConstantString.ks_guidelines,@"url":URL.absoluteString}];
     return NO;
 }
 
@@ -127,7 +127,7 @@
         _titleTextLabel.font = DBFontExtension.bodySixTenFont;
         _titleTextLabel.textColor = DBColorExtension.pinkColor;
         _titleTextLabel.textAlignment = NSTextAlignmentCenter;
-        _titleTextLabel.text = @"请遵守评论规范哦";
+        _titleTextLabel.text = DBConstantString.ks_commentGuidelines;
     }
     return _titleTextLabel;
 }
@@ -155,7 +155,7 @@
         _nextButton.backgroundColor = DBColorExtension.redColor;
         _nextButton.contentEdgeInsets = UIEdgeInsetsMake(6, 16, 6, 16);
         _nextButton.titleLabel.font = DBFontExtension.bodySixTenFont;
-        [_nextButton setTitle:@"知道了" forState:UIControlStateNormal];
+        [_nextButton setTitle:DBConstantString.ks_gotIt forState:UIControlStateNormal];
         [_nextButton setTitleColor:DBColorExtension.whiteColor forState:UIControlStateNormal];
         [_nextButton addTarget:self action:@selector(clickNextAction) forControlEvents:UIControlEventTouchUpInside];
     }

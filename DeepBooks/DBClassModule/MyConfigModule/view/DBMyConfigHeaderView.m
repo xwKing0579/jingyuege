@@ -82,7 +82,7 @@
     }];
 
     
-    NSArray *titles = @[@"阅读时长(分钟)",@"书架收藏",@"阅读历史"];
+    NSArray *titles = @[DBConstantString.ks_readingMinutes,DBConstantString.ks_bookmarks,DBConstantString.ks_history];
     NSMutableArray *titleArray = [NSMutableArray array];
     NSMutableArray *contentArray = [NSMutableArray array];
     NSMutableArray *controlArray = [NSMutableArray array];
@@ -163,7 +163,7 @@
     self.nickNameLabel.hidden = isHidden;
     self.loginButton.hidden = !isHidden;
     self.titleTextLabel.text = DBCommonConfig.userDataInfo.account;
-    NSString *userNameString = @"用户名：".textMultilingual;
+    NSString *userNameString = DBConstantString.ks_userName.textMultilingual;
     self.nickNameLabel.text = [NSString stringWithFormat:@"%@%@",userNameString,DBCommonConfig.userDataInfo.nick];
     
     

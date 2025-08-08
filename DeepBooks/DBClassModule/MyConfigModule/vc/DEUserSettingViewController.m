@@ -23,7 +23,7 @@
 }
 
 - (void)setUpSubViews{
-    self.title = @"用户中心";
+    self.title = DBConstantString.ks_profile;
     [self.view addSubviews:@[self.navLabel,self.listRollingView]];
     [self.navLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
@@ -53,7 +53,7 @@
             
             [NSUserDefaults saveValue:imageData forKey:DBUserAvaterKey];
             
-            [self.view showAlertText:@"上传头像成功!"];
+            [self.view showAlertText:DBConstantString.ks_avatarUploadSuccess];
         }else{
             [self.view showAlertText:result[@"msg"]];
         }

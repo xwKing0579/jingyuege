@@ -214,13 +214,13 @@
 - (void)clickDeleteAction{
     DBAppSetting *setting = DBAppSetting.setting;
     if (setting.searchList.count == 0){
-        [self.view showAlertText:@"暂无热搜历史"];
+        [self.view showAlertText:DBConstantString.ks_noSearchHistory];
         return;
     }
     setting.searchList = @[];
     [setting reloadSetting];
     [self setUpSearchTagViews];
-    [self.view showAlertText:@"热搜历史已清楚"];
+    [self.view showAlertText:DBConstantString.ks_searchHistoryCleared];
 }
 
 - (void)setUpSearchResult:(NSString *)text{
@@ -270,7 +270,7 @@
     if (text.length){
         [self setUpSearchResult:text];
     }else{
-        [self.view showAlertText:@"请输入搜索内容"];
+        [self.view showAlertText:DBConstantString.ks_enterSearchText];
     }
  
     return YES;
@@ -288,7 +288,7 @@
         _hotLabel = [[DBBaseLabel alloc] init];
         _hotLabel.font = DBFontExtension.bodySixTenFont;
         _hotLabel.textColor = DBColorExtension.charcoalColor;
-        _hotLabel.text = @"最新热搜";
+        _hotLabel.text = DBConstantString.ks_trendingSearches;
     }
     return _hotLabel;
 }
@@ -298,7 +298,7 @@
         _historyLabel = [[DBBaseLabel alloc] init];
         _historyLabel.font = DBFontExtension.bodySixTenFont;
         _historyLabel.textColor = DBColorExtension.charcoalColor;
-        _historyLabel.text = @"热搜历史";
+        _historyLabel.text = DBConstantString.ks_searchHistory;
     }
     return _historyLabel;
 }
@@ -310,7 +310,7 @@
         _searchTextField.layer.masksToBounds = YES;
         _searchTextField.backgroundColor = DBColorExtension.paleGrayColor;
         _searchTextField.font = DBFontExtension.bodyMediumFont;
-        _searchTextField.placeholder = @"输入您喜欢的小说、作者";
+        _searchTextField.placeholder = DBConstantString.ks_searchBooksHint;
      
         _searchTextField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 30, 0)];
         _searchTextField.leftViewMode = UITextFieldViewModeAlways;
@@ -344,7 +344,7 @@
     if (!_cancelButton){
         _cancelButton = [[UIButton alloc] init];
         _cancelButton.titleLabel.font = DBFontExtension.pingFangSemiboldLarge;
-        [_cancelButton setTitle:@"取消" forState:UIControlStateNormal];
+        [_cancelButton setTitle:DBConstantString.ks_cancel forState:UIControlStateNormal];
         [_cancelButton setTitleColor:DBColorExtension.charcoalColor forState:UIControlStateNormal];
         [_cancelButton addTarget:self action:@selector(clickCancelAction) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -368,7 +368,7 @@
         _deleteButton = [[UIButton alloc] init];
         _deleteButton.enlargedEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
         _deleteButton.titleLabel.font = DBFontExtension.bodySmallFont;
-        [_deleteButton setTitle:@"清空" forState:UIControlStateNormal];
+        [_deleteButton setTitle:DBConstantString.ks_empty forState:UIControlStateNormal];
         [_deleteButton setTitleColor:DBColorExtension.charcoalColor forState:UIControlStateNormal];
         [_deleteButton addTarget:self action:@selector(clickDeleteAction) forControlEvents:UIControlEventTouchUpInside];
     }

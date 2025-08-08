@@ -136,7 +136,7 @@
             make.height.mas_equalTo(32);
         }];
         
-        NSArray *times = @[@"1分钟",@"15分钟",@"30分钟",@"60分钟"];
+        NSArray *times = @[DBConstantString.ks_oneMinute,DBConstantString.ks_fifteenMinutes,DBConstantString.ks_thirtyMinutes,DBConstantString.ks_sixtyMinutes];
         NSMutableArray *timeArray = [NSMutableArray array];
         for (NSString *time in times) {
             UIButton *button = [[UIButton alloc] init];
@@ -178,7 +178,7 @@
         _speedLabel = [[DBBaseLabel alloc] init];
         _speedLabel.font = DBFontExtension.bodyMediumFont;
         _speedLabel.textColor = DBColorExtension.charcoalAltColor;
-        _speedLabel.text = @"语速";
+        _speedLabel.text = DBConstantString.ks_speed;
     }
     return _speedLabel;
 }
@@ -188,7 +188,7 @@
         _voiceLabel = [[DBBaseLabel alloc] init];
         _voiceLabel.font = DBFontExtension.bodyMediumFont;
         _voiceLabel.textColor = DBColorExtension.charcoalAltColor;
-        _voiceLabel.text = @"发声";
+        _voiceLabel.text = DBConstantString.ks_voice;
     }
     return _voiceLabel;
 }
@@ -198,7 +198,7 @@
         _fixedLabel = [[DBBaseLabel alloc] init];
         _fixedLabel.font = DBFontExtension.bodyMediumFont;
         _fixedLabel.textColor = DBColorExtension.charcoalAltColor;
-        _fixedLabel.text = @"定时";
+        _fixedLabel.text = DBConstantString.ks_timer;
     }
     return _fixedLabel;
 }
@@ -226,7 +226,7 @@
         _exitButton.layer.masksToBounds = YES;
         _exitButton.layer.borderWidth = 1;
         _exitButton.layer.borderColor = DBColorExtension.charcoalAltColor.CGColor;
-        [_exitButton setTitle:@"退出阅读" forState:UIControlStateNormal];
+        [_exitButton setTitle:DBConstantString.ks_exitReading forState:UIControlStateNormal];
         [_exitButton setTitleColor:DBColorExtension.charcoalAltColor forState:UIControlStateNormal];
         [_exitButton addTarget:self action:@selector(clickExitAction) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -241,8 +241,8 @@
         _pauseButton.layer.masksToBounds = YES;
         _pauseButton.layer.borderWidth = 1;
         _pauseButton.layer.borderColor = DBColorExtension.charcoalAltColor.CGColor;
-        [_pauseButton setTitle:@"暂停阅读" forState:UIControlStateNormal];
-        [_pauseButton setTitle:@"开启阅读" forState:UIControlStateSelected];
+        [_pauseButton setTitle:DBConstantString.ks_pauseReading forState:UIControlStateNormal];
+        [_pauseButton setTitle:DBConstantString.ks_startReading forState:UIControlStateSelected];
         [_pauseButton setTitleColor:DBColorExtension.charcoalAltColor forState:UIControlStateNormal];
         [_pauseButton addTarget:self action:@selector(clickPauseAction) forControlEvents:UIControlEventTouchUpInside];
     }

@@ -103,7 +103,7 @@
         }
         
         [self.commentView addSubview:self.countLabel];
-        self.countLabel.text = [NSString stringWithFormat:@"查看全部书评(%ld)",self.total];
+        self.countLabel.text = [NSString stringWithFormat:DBConstantString.ks_viewAllReviews,self.total];
         [self.countLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(0);
             make.top.mas_equalTo(lastView.mas_bottom).offset(10);
@@ -128,7 +128,7 @@
         _titleTextLabel = [[DBBaseLabel alloc] init];
         _titleTextLabel.font = DBFontExtension.pingFangMediumXLarge;
         _titleTextLabel.textColor = DBColorExtension.charcoalColor;
-        _titleTextLabel.text = @"书评";
+        _titleTextLabel.text = DBConstantString.ks_reviews;
     }
     return _titleTextLabel;
 }
@@ -138,7 +138,7 @@
         _commentButton = [[UIButton alloc] init];
         _commentButton.titleLabel.font = DBFontExtension.bodyMediumFont;
         _commentButton.size = CGSizeMake(80, 30);
-        [_commentButton setTitle:@"写书评" forState:UIControlStateNormal];
+        [_commentButton setTitle:DBConstantString.ks_writeComment forState:UIControlStateNormal];
         [_commentButton setTitleColor:DBColorExtension.mediumGrayColor forState:UIControlStateNormal];
         [_commentButton setImage:[UIImage imageNamed:@"jjCosmicNavigator"] forState:UIControlStateNormal];
         [_commentButton setTitlePosition:TitlePositionLeft spacing:4];
@@ -157,7 +157,7 @@
         DBBaseLabel *titleLabel = [[DBBaseLabel alloc] init];
         titleLabel.font = DBFontExtension.bodySixTenFont;
         titleLabel.textColor = DBColorExtension.mediumGrayColor;
-        titleLabel.text = @"轻点评分";
+        titleLabel.text = DBConstantString.ks_quickRate;
         [_bottomView addSubview:titleLabel];
         [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(16);

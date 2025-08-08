@@ -941,7 +941,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)ks_nextTime;
 + (NSString *)ks_chapterChangeError;
 + (NSString *)ks_privacyPrivacy;
-
++ (NSString *)ks_passwordMismatch;
 @end
 
 NS_ASSUME_NONNULL_END

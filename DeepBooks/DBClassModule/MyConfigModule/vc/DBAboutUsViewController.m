@@ -56,7 +56,7 @@
     }];
    
     self.titlePageLabel.text = UIApplication.appName.length>0?UIApplication.appName:UIApplication.bundleName;
-    self.versionLabel.text = [NSString stringWithFormat:@"版本 %@ (Build %@)",UIApplication.appVersion,UIApplication.appBuild];
+    self.versionLabel.text = [NSString stringWithFormat:DBConstantString.ks_versionInfo,UIApplication.appVersion,UIApplication.appBuild];
     self.dateLabel.text = [NSString stringWithFormat:@"%@ ©%ld",self.titlePageLabel.text,NSDate.new.year];
 }
 
@@ -109,7 +109,7 @@
 - (UITextView *)privacyTextView{
     if (!_privacyTextView){
         _privacyTextView = [[UITextView alloc] init];
-        _privacyTextView.attributedText = [NSAttributedString combineAttributeTexts:@[@"《用户服务协议》".textMultilingual,@"《隐私条款》".textMultilingual] colors:@[DBColorExtension.redColor] fonts:@[DBFontExtension.bodyMediumFont] attrs:@[@{NSLinkAttributeName:UserServiceAgreementURL},@{NSLinkAttributeName:PrivacyAgreementURL}]];
+        _privacyTextView.attributedText = [NSAttributedString combineAttributeTexts:@[DBConstantString.ks_userAgreement.textMultilingual,DBConstantString.ks_privacyPrivacy.textMultilingual] colors:@[DBColorExtension.redColor] fonts:@[DBFontExtension.bodyMediumFont] attrs:@[@{NSLinkAttributeName:UserServiceAgreementURL},@{NSLinkAttributeName:PrivacyAgreementURL}]];
 
         _privacyTextView.linkTextAttributes = @{NSForegroundColorAttributeName:DBColorExtension.redColor};
         _privacyTextView.editable = NO;

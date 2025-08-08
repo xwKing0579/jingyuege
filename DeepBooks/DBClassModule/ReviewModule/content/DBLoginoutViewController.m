@@ -21,7 +21,7 @@
 }
 
 - (void)setUpSubViews{
-    self.title = @"设置";
+    self.title = DBConstantString.ks_settings;
     self.listRollingView.rowHeight = 42;
     [self.view addSubviews:@[self.navLabel,self.listRollingView]];
     [self.navLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -49,7 +49,7 @@
     DBMySettingModel *model = self.dataList[indexPath.row];
     if (indexPath.row == 2){
         LEEAlert.alert.config.LeeTitle(@"退出登录，\n书架及阅读记录将会清空哦！").
-        LeeAction(@"确定", ^{
+        LeeAction(DBConstantString.ks_confirm, ^{
             
             [DBRouter closePageRoot];
             [DBCommonConfig updateUserInfo:DBUserModel.new];
@@ -60,7 +60,7 @@
                 UITabBarController *tabbar = (UITabBarController *)UIScreen.appWindow.rootViewController;
                 tabbar.selectedIndex = 0;
             });
-        }).LeeCancelAction(@"取消", ^{
+        }).LeeCancelAction(DBConstantString.ks_cancel, ^{
             
         }).LeeShow();
     }else{

@@ -55,7 +55,7 @@
     NSString *content = chapterModel.body;
     
     self.title = title;
-    self.content = content.length > 0 ? content : @"获取本章失败".textMultilingual;
+    self.content = content.length > 0 ? content : DBConstantString.ks_chapterLoadFailed.textMultilingual;
     self.chapterId = chapterId;
     
     DBReadBookSetting *setting = DBReadBookSetting.setting;
@@ -80,7 +80,7 @@
 
 - (void)clearOldModelCacheData{
     self.title = @"";
-    self.content = @"获取本章失败".textMultilingual;
+    self.content = DBConstantString.ks_chapterLoadFailed.textMultilingual;
     self.chapterId = @"";
     self.attributeString = nil;
     self.contentList = @[];

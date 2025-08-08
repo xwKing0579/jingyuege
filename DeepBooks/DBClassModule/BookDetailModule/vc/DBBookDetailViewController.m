@@ -92,9 +92,9 @@
     [self slotAdShow];
     
     DBBookModel *book = [DBBookModel getReadingBookWithId:self.bookId];
-    NSString *readString = [NSString stringWithFormat:@"%@阅读",DBCommonConfig.shieldFreeString];
+    NSString *readString = [NSString stringWithFormat:DBConstantString.ks_readsFormat,DBCommonConfig.shieldFreeString];
     if (book.site_path){
-        readString = [NSString stringWithFormat:@"续看%ld章",book.chapter_index+1];
+        readString = [NSString stringWithFormat:DBConstantString.ks_nextChapters,book.chapter_index+1];
     }
     [self.readButton setTitle:readString.textMultilingual forState:UIControlStateNormal];
 }
@@ -118,7 +118,7 @@
     
     DBBookModel *book = [DBBookModel getReadingBookWithId:self.bookId];
     if (book){
-        [self.readButton setTitle:[NSString stringWithFormat:@"续看%ld章",book.chapter_index+1] forState:UIControlStateNormal];
+        [self.readButton setTitle:[NSString stringWithFormat:DBConstantString.ks_nextChapters,book.chapter_index+1] forState:UIControlStateNormal];
     }
 }
 
@@ -264,7 +264,7 @@
             if (DBCommonConfig.appConfig.force.shield_switch &&
                 ([result.shield_data containsObject:@"2"] || [result.shield_data containsObject:@2])){
                 [DBRouter closePage];
-                [UIScreen.appWindow showAlertText:@"该书籍已下架"];
+                [UIScreen.appWindow showAlertText:DBConstantString.ks_unavailable];
                 dispatch_group_leave(group);
                 return;
             }
@@ -286,13 +286,13 @@
             
             if (result.author_book.count) {
                 DBBookDetailCustomModel *model = DBBookDetailCustomModel.new;
-                model.name = @"作者其他书籍";
+                model.name = DBConstantString.ks_moreByAuthor;
                 model.bookList = result.author_book;
                 [dataList addObject:model];
             }
             if (result.relevant_book.count) {
                 DBBookDetailCustomModel *model = DBBookDetailCustomModel.new;
-                model.name = @"您可能感兴趣的书";
+                model.name = DBConstantString.ks_recommendations;
                 model.bookList = result.relevant_book;
                 [dataList addObject:model];
             }
@@ -390,13 +390,13 @@
     BOOL successfulRequest = [bookModel insertCollectBook];
     
     if (successfulRequest){
-        [self.view showAlertText:@"已加入书架"];
+        [self.view showAlertText:DBConstantString.ks_addedToShelf];
         self.bookselfButton.selected = YES;
         DBAdReadSetting *adSetting = DBAdReadSetting.setting;
         adSetting.addBookshelfCount += 1;
         [adSetting reloadSetting];
     }else{
-        [self.view showAlertText:@"加入书架失败"];
+        [self.view showAlertText:DBConstantString.ks_addToShelfFailed];
     }
 }
 
@@ -404,10 +404,10 @@
     DBBookDetailModel *bookModel = self.dataList.firstObject;
     BOOL successfulRequest = [bookModel removeCollectBook];
     if (successfulRequest){
-        [self.view showAlertText:@"已从书架移除"];
+        [self.view showAlertText:DBConstantString.ks_removedFromShelf];
         self.bookselfButton.selected = NO;
     }else{
-        [self.view showAlertText:@"从书架移除失败"];
+        [self.view showAlertText:DBConstantString.ks_removeFailed];
     }
 }
 
@@ -548,9 +548,9 @@
         _bookselfButton.backgroundColor = DBColorExtension.whiteColor;
         _bookselfButton.layer.cornerRadius = 10;
         _bookselfButton.layer.masksToBounds = YES;
-        [_bookselfButton setTitle:@"加入书架" forState:UIControlStateNormal];
+        [_bookselfButton setTitle:DBConstantString.ks_addToShelf forState:UIControlStateNormal];
         [_bookselfButton setTitleColor:DBColorExtension.charcoalColor forState:UIControlStateNormal];
-        [_bookselfButton setTitle:@"移除书架" forState:UIControlStateSelected];
+        [_bookselfButton setTitle:DBConstantString.ks_removeFromShelf forState:UIControlStateSelected];
         [_bookselfButton setTitleColor:DBColorExtension.charcoalColor forState:UIControlStateSelected];
         
         [_bookselfButton addTarget:self action:@selector(clickCollectAction) forControlEvents:UIControlEventTouchUpInside];
@@ -561,7 +561,7 @@
 - (UIButton *)readButton{
     if (!_readButton){
         _readButton = [[UIButton alloc] init];
-        NSString *readString = [NSString stringWithFormat:@"%@阅读",DBCommonConfig.shieldFreeString];
+        NSString *readString = [NSString stringWithFormat:DBConstantString.ks_readsFormat,DBCommonConfig.shieldFreeString];
         _readButton.titleLabel.font = DBFontExtension.titleSmallFont;
         _readButton.backgroundColor = DBColorExtension.sunsetOrangeColor;
         _readButton.layer.cornerRadius = 10;

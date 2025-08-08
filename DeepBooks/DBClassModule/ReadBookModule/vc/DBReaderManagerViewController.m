@@ -120,7 +120,7 @@
         if ([self.readerVc isKindOfClass:DBPageRollingViewController.class]) {
             self.readerContentViewModel.batteryDateView.pageStr = @"";
         }else{
-            self.readerContentViewModel.batteryDateView.pageStr = [NSString stringWithFormat:@"第%ld/%ld页",MIN(self.model.currentPage+1, self.model.contentList.count),self.model.contentList.count];
+            self.readerContentViewModel.batteryDateView.pageStr = [NSString stringWithFormat:DBConstantString.ks_pageNumber,MIN(self.model.currentPage+1, self.model.contentList.count),self.model.contentList.count];
         }
         self.book.page_index = self.model.currentPage;
     }
@@ -162,7 +162,7 @@
     }
     
     NSString *content = self.model.attributeString.string;
-    if (content.length == 0 || [content isEqualToString:@"获取本章失败"]) [self.view showHudLoading];
+    if (content.length == 0 || [content isEqualToString:DBConstantString.ks_chapterLoadFailed]) [self.view showHudLoading];
     [DBAFNetWorking getServiceRequestType:DBLinkBookCatalog combine:self.book.site_path parameInterface:nil modelClass:DBBookCatalogModel.class serviceData:^(BOOL successfulRequest, NSArray <DBBookCatalogModel *>*result, NSString * _Nullable message) {
         [self.view removeHudLoading];
         
@@ -179,7 +179,7 @@
             self.model.chapterCacheList = tempChapterList;
             [DBBookCatalogModel deleteCatalogsForm:self.book.catalogForm];
             [DBBookCatalogModel updateCatalogs:tempChapterList catalogForm:self.book.catalogForm];
-            if (self.model.content.length == 0 || [self.model.content isEqualToString:@"获取本章失败".textMultilingual]){
+            if (self.model.content.length == 0 || [self.model.content isEqualToString:DBConstantString.ks_chapterLoadFailed.textMultilingual]){
                 [self getBookContentDataSource];
             }
         }else{
@@ -369,7 +369,7 @@
     if ([self.readerVc isKindOfClass:DBPageRollingViewController.class]) {
         self.readerContentViewModel.batteryDateView.pageStr = @"";
     }else{
-        self.readerContentViewModel.batteryDateView.pageStr = [NSString stringWithFormat:@"第%ld/%ld页",MIN(self.model.currentPage+1, self.model.contentList.count),self.model.contentList.count];
+        self.readerContentViewModel.batteryDateView.pageStr = [NSString stringWithFormat:DBConstantString.ks_pageNumber,MIN(self.model.currentPage+1, self.model.contentList.count),self.model.contentList.count];
     }
     
     ((DBPageLinearViewController *)self.readerVc).model = self.model;

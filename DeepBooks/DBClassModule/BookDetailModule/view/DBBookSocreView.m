@@ -65,10 +65,10 @@
     self.scoreView.currentScore = scoreValue;
     
     NSString *count = [NSString stringWithFormat:@"%ld",model.view_count];
-    NSString *unit = @" 人";
+    NSString *unit = DBConstantString.ks_peopleSuffix;
     if (model.view_count >= 10000){
         count = [NSString stringWithFormat:@"%.1lf",(CGFloat)model.view_count/10000.0];
-        unit = @" 万人";
+        unit = DBConstantString.ks_tenThousandSuffix;
     }
     
     UIColor *scoreColor = DBColorExtension.charcoalColor;
@@ -97,7 +97,7 @@
         _scoreLabel = [[DBBaseLabel alloc] init];
         _scoreLabel.font = DBFontExtension.bodyMediumFont;
         _scoreLabel.textColor = DBColorExtension.mediumGrayColor;
-        _scoreLabel.text = @"评分";
+        _scoreLabel.text = DBConstantString.ks_rating;
     }
     return _scoreLabel;
 }
@@ -116,7 +116,7 @@
         _readerLabel = [[DBBaseLabel alloc] init];
         _readerLabel.font = DBFontExtension.bodyMediumFont;
         _readerLabel.textColor = DBColorExtension.mediumGrayColor;
-        _readerLabel.text = @"正在阅读";
+        _readerLabel.text = DBConstantString.ks_currentlyReading;
     }
     return _readerLabel;
 }

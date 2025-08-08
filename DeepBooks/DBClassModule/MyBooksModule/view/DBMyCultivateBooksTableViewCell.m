@@ -88,7 +88,7 @@
     _model = model;
     self.pictureImageView.imageObj = model.image;
     self.titleTextLabel.text = model.name;
-    self.contentTextLabel.text = @"养肥中...";
+    self.contentTextLabel.text = DBConstantString.ks_saving;
 }
 
 - (UIImageView *)pictureImageView{
@@ -137,7 +137,7 @@
         _backButton.layer.borderColor = DBColorExtension.skyBlueColor.CGColor;
         _backButton.layer.borderWidth = 1;
         _backButton.titleLabel.font = DBFontExtension.bodyMediumFont;
-        [_backButton setTitle:@"移回" forState:UIControlStateNormal];
+        [_backButton setTitle:DBConstantString.ks_back forState:UIControlStateNormal];
         [_backButton setTitleColor:DBColorExtension.skyBlueColor forState:UIControlStateNormal];
         [_backButton addTarget:self action:@selector(clickBackAction) forControlEvents:UIControlEventTouchUpInside];
     }

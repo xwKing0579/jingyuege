@@ -61,7 +61,7 @@
         DBStrongSelfElseReturn
         [self.igCollectionView.mj_header endRefreshing];
         if (self.model.currentChapter == 0){
-            [self.view showAlertText:@"已经是第一页"];
+            [self.view showAlertText:DBConstantString.ks_firstPageReached];
         }
     }];
     

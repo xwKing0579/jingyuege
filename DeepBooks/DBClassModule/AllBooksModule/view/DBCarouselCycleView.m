@@ -29,7 +29,7 @@
     [self addSubviews:@[self.carouselCycleView,self.customPageControl]];
     
     NSArray *imageList = @[@"jjInfernoLibris",@"jjPinnacleAnthology",@"jjSummitArchive"];
-    NSArray *titleList = @[@"追书最热榜",@"畅销小说",@"全部榜单"];
+    NSArray *titleList = @[DBConstantString.ks_topBooks,DBConstantString.ks_bestsellers,DBConstantString.ks_allRankings];
     NSArray *starColors = @[DBColorExtension.peachCreamColor,DBColorExtension.blossomPinkColor,DBColorExtension.freshBlueColor];
     NSArray *endColors = @[DBColorExtension.ivoryWhiteColor,DBColorExtension.candyPinkColor,DBColorExtension.mistyBlueColor];
     CGFloat top = 182.0;

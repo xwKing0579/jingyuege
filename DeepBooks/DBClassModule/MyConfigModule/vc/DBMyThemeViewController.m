@@ -111,7 +111,7 @@
         _darkLabel = [[DBBaseLabel alloc] init];
         _darkLabel.font = DBFontExtension.pingFangMediumLarge;
         _darkLabel.textColor = DBColorExtension.charcoalColor;
-        _darkLabel.text = @"夜间模式";
+        _darkLabel.text = DBConstantString.ks_nightMode;
     }
     return _darkLabel;
 }
@@ -131,7 +131,7 @@
         _eyeshadowLabel = [[DBBaseLabel alloc] init];
         _eyeshadowLabel.font = DBFontExtension.pingFangMediumLarge;
         _eyeshadowLabel.textColor = DBColorExtension.charcoalColor;
-        _eyeshadowLabel.text = @"护眼模式";
+        _eyeshadowLabel.text = DBConstantString.ks_eyeCareMode;
     }
     return _eyeshadowLabel;
 }
@@ -155,7 +155,7 @@
         DBBaseLabel *filtrateLabel = [[DBBaseLabel alloc] init];
         filtrateLabel.font = DBFontExtension.bodyMediumFont;
         filtrateLabel.textColor = DBColorExtension.charcoalColor;
-        filtrateLabel.text = @"过滤有害光比例";
+        filtrateLabel.text = DBConstantString.ks_blueLightFilter;
         [_shadowView addSubview:filtrateLabel];
         [filtrateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(16);
@@ -221,7 +221,7 @@
         _sliderLabel = [[DBBaseLabel alloc] init];
         _sliderLabel.font = DBFontExtension.bodyMediumFont;
         _sliderLabel.textColor = DBColorExtension.charcoalColor;
-        _sliderLabel.text = @"根据个人需求调节过滤比例";
+        _sliderLabel.text = DBConstantString.ks_adjustFilter;
     }
     return _sliderLabel;
 }
@@ -233,7 +233,7 @@
         _defaultButton.layer.cornerRadius = 18;
         _defaultButton.layer.masksToBounds = YES;
         _defaultButton.backgroundColor = DBColorExtension.redColor;
-        [_defaultButton setTitle:@"恢复默认" forState:UIControlStateNormal];
+        [_defaultButton setTitle:DBConstantString.ks_reset forState:UIControlStateNormal];
         [_defaultButton setTitleColor:DBColorExtension.whiteColor forState:UIControlStateNormal];
         [_defaultButton addTarget:self action:@selector(clickDefaultAction) forControlEvents:UIControlEventTouchUpInside];
     }

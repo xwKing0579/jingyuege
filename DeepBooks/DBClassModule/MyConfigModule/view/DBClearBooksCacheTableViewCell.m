@@ -47,13 +47,13 @@
 
 - (void)clickClearAction{
     DBWeakSelf
-    NSString *message = [NSString stringWithFormat:@"确定要清除《%@》缓存数据吗？",self.model.name];
-    LEEAlert.actionsheet.config.LeeTitle(@"清除缓存").LeeContent(message).
-    LeeAction(@"确定清除缓存", ^{
+    NSString *message = [NSString stringWithFormat:DBConstantString.ks_clearBookCacheConfirm,self.model.name];
+    LEEAlert.actionsheet.config.LeeTitle(DBConstantString.ks_clearCache).LeeContent(message).
+    LeeAction(DBConstantString.ks_confirmCacheClear, ^{
         DBStrongSelfElseReturn
         [DBBookChapterModel removeBookChapter:self.model.chapterForm];
         [UIScreen.currentViewController dynamicAllusionTomethod:@"reloadData"];
-    }).LeeCancelAction(@"取消", ^{
+    }).LeeCancelAction(DBConstantString.ks_cancel, ^{
         
     }).LeeShow();
 }
@@ -113,7 +113,7 @@
         _clearButton.layer.masksToBounds = YES;
         _clearButton.contentEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
         _clearButton.titleLabel.font = DBFontExtension.bodyMediumFont;
-        [_clearButton setTitle:@"清除缓存" forState:UIControlStateNormal];
+        [_clearButton setTitle:DBConstantString.ks_clearCache forState:UIControlStateNormal];
         [_clearButton setTitleColor:DBColorExtension.redColor forState:UIControlStateNormal];
         [_clearButton addTarget:self action:@selector(clickClearAction) forControlEvents:UIControlEventTouchUpInside];
     }

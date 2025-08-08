@@ -81,7 +81,7 @@
             DBBooksDataModel *item = model.data[index];
             itemView.titleTextLabel.text = item.name;
             itemView.authorLabel.text = item.author;
-            itemView.scoreLabel.text = [NSString stringWithFormat:@"%@分",item.score];
+            itemView.scoreLabel.text = [NSString stringWithFormat:DBConstantString.ks_pointsSuffix,item.score];
             itemView.pictureImageView.imageObj = item.image;
         }else{
             itemView.hidden = YES;
@@ -105,7 +105,7 @@
         _moreButton.titleLabel.font = DBFontExtension.bodySmallFont;
         _moreButton.size = CGSizeMake(38, 18);
         _moreButton.enlargedEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
-        [_moreButton setTitle:@"更多" forState:UIControlStateNormal];
+        [_moreButton setTitle:DBConstantString.ks_more forState:UIControlStateNormal];
         [_moreButton setImage:[UIImage imageNamed:@"jjPrecisionTrajectory"] forState:UIControlStateNormal];
         [_moreButton setTitleColor:DBColorExtension.inkWashColor forState:UIControlStateNormal];
         [_moreButton setTitlePosition:TitlePositionLeft spacing:2];

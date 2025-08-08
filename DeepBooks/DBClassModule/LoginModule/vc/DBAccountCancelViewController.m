@@ -59,7 +59,7 @@
     NSString *mobile = DBCommonConfig.userDataInfo.account;
     NSString *code = self.codeTextField.text.whitespace;
     if (code.length == 0){
-        [self.view showAlertText:@"请输入验证码"];
+        [self.view showAlertText:DBConstantString.ks_enterVerificationCode];
         return;
     }
     
@@ -72,7 +72,7 @@
     [DBAFNetWorking postServiceRequestType:DBLinkUserPhoneCancel combine:nil parameInterface:parameInterface serviceData:^(BOOL successfulRequest, id  _Nullable result, NSString * _Nullable message) {
         [self.view removeHudLoading];
         if (successfulRequest){
-            [UIScreen.appWindow showAlertText:@"账号注销成功"];
+            [UIScreen.appWindow showAlertText:DBConstantString.ks_accountDeleted];
             
             [DBRouter closePageRoot];
             [DBCommonConfig updateUserInfo:DBUserModel.new];
@@ -100,7 +100,7 @@
     [DBAFNetWorking postServiceRequestType:DBLinkUserPhoneCancelVeriCodeSend combine:nil parameInterface:parameInterface serviceData:^(BOOL successfulRequest, NSDictionary *result, NSString * _Nullable message) {
         [self.view removeHudLoading];
         if (successfulRequest){
-            [self.view showAlertText:@"验证码已发送，10分钟内有效"];
+            [self.view showAlertText:DBConstantString.ks_verificationCodeSent];
             [self mobileCodeCountDown];
         }else{
             [self.view showAlertText:message];
@@ -120,7 +120,7 @@
             if (second == 0) {
                 self.codeButton.userInteractionEnabled = YES;
                 self.mobileTextField.userInteractionEnabled = YES;
-                [self.codeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+                [self.codeButton setTitle:DBConstantString.ks_getVerificationCode forState:UIControlStateNormal];
                 dispatch_cancel(timer);
             } else {
                 [self.codeButton setTitle:[NSString stringWithFormat:@"%02lds",second] forState:UIControlStateNormal];
@@ -141,7 +141,7 @@
         _titlePageLabel.font = DBFontExtension.bodySixTenFont;
         _titlePageLabel.textColor = DBColorExtension.charcoalColor;
         _titlePageLabel.textAlignment = NSTextAlignmentCenter;
-        _titlePageLabel.text = @"账号注销";
+        _titlePageLabel.text = DBConstantString.ks_deleteAccount;
     }
     return _titlePageLabel;
 }
@@ -169,12 +169,12 @@
 
         if ([phone containsString:@"@"]){
           
-            mobileLabel.text = @"邮箱";
+            mobileLabel.text = DBConstantString.ks_email;
             
             _mobileTextField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 60, 0)];
             _mobileTextField.leftViewMode = UITextFieldViewModeAlways;
         }else{
-            mobileLabel.text = @"手机号";
+            mobileLabel.text = DBConstantString.ks_phone;
             
             _mobileTextField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 120, 0)];
             _mobileTextField.leftViewMode = UITextFieldViewModeAlways;
@@ -211,7 +211,7 @@
 - (UITextField *)codeTextField{
     if (!_codeTextField){
         _codeTextField = [[UITextField alloc] init];
-        _codeTextField.placeholder = @"请输入验证码";
+        _codeTextField.placeholder = DBConstantString.ks_enterVerificationCode;
         _codeTextField.keyboardType = UIKeyboardTypeNumberPad;
         _codeTextField.textColor = DBColorExtension.charcoalColor;
         _codeTextField.secureTextEntry = YES;
@@ -229,7 +229,7 @@
         _codeTextField.rightViewMode = UITextFieldViewModeWhileEditing;
         
         DBBaseLabel *codeLabel = [[DBBaseLabel alloc] init];
-        codeLabel.text = @"验证码";
+        codeLabel.text = DBConstantString.ks_verificationCode;
         codeLabel.textColor = DBColorExtension.charcoalColor;
         codeLabel.font = DBFontExtension.bodyMediumFont;
         codeLabel.textAlignment = NSTextAlignmentCenter;
@@ -275,7 +275,7 @@
         _codeButton.layer.masksToBounds = YES;
         _codeButton.backgroundColor = DBColorExtension.accountThemeColor;
         _codeButton.titleLabel.font = DBFontExtension.bodySmallFont;
-        [_codeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+        [_codeButton setTitle:DBConstantString.ks_getVerificationCode forState:UIControlStateNormal];
         [_codeButton setTitleColor:DBColorExtension.whiteColor forState:UIControlStateNormal];
         [_codeButton addTarget:self action:@selector(clickCodeAction) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -289,7 +289,7 @@
         _submitButton.layer.masksToBounds = YES;
         _submitButton.backgroundColor = DBColorExtension.accountThemeColor;
         _submitButton.titleLabel.font = DBFontExtension.pingFangMediumLarge;
-        [_submitButton setTitle:@"注销" forState:UIControlStateNormal];
+        [_submitButton setTitle:DBConstantString.ks_accountCancel forState:UIControlStateNormal];
         
         [_submitButton addTarget:self action:@selector(clickSubmitAction) forControlEvents:UIControlEventTouchUpInside];
     }

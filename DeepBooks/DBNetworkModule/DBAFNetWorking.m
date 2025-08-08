@@ -139,7 +139,7 @@
         Reachability *reachability = [Reachability reachabilityForInternetConnection];
         NetworkStatus status = [reachability currentReachabilityStatus];
         if (status == NotReachable){
-            result(NO, nil, @"网络请求失败，请检查您的网络设置");
+            result(NO, nil, DBConstantString.ks_networkError);
         }else{
             result(NO, nil, nil);
         }

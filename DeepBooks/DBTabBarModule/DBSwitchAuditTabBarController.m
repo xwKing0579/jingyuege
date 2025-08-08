@@ -27,7 +27,7 @@
 }
 
 - (void)setUpSubViews{
-    NSArray *names = @[@"首页",@"我的"];
+    NSArray *names = @[DBConstantString.ks_home,DBConstantString.ks_me];
     NSArray *tabImages = @[@"jjAlphaTab",@"jjDeltaTab"];
     NSArray *tabSelImages = @[@"jjAlphaActive",@"jjDeltaActive"];
     NSArray *vcs = @[DBHomeViewController.new,DBMineViewController.new];

@@ -58,9 +58,9 @@
     self.titleTextLabel.text = model.title;
     self.contentTextLabel.text = model.remark;
     if (DBCommonConfig.switchAudit){
-        self.descTextLabel.text = [NSString stringWithFormat:@"共%@本书",model.book_count];
+        self.descTextLabel.text = [NSString stringWithFormat:DBConstantString.ks_bookCountFormat,model.book_count];
     }else{
-        self.descTextLabel.text = [NSString stringWithFormat:@"共%@本书 / %@人收藏",model.book_count,model.fav_count];
+        self.descTextLabel.text = [NSString stringWithFormat:DBConstantString.ks_booksAndFavorites,model.book_count,model.fav_count];
     }
    
     

@@ -80,7 +80,7 @@
     CGFloat speed = setting.scrollSpeed*10000.0;
     if (speed < 1) return;
     speed -= 1;
-    self.speedLabel.text = [NSString stringWithFormat:@"翻页速度：%.0lf",speed];
+    self.speedLabel.text = [NSString stringWithFormat:DBConstantString.ks_flipSpeed,speed];
     setting.scrollSpeed = speed/10000.0;
     [setting reloadSetting];
 }
@@ -90,7 +90,7 @@
     CGFloat speed = setting.scrollSpeed*10000;
     if (speed > 35) return;
     speed += 1;
-    self.speedLabel.text = [NSString stringWithFormat:@"翻页速度：%.0lf",speed];
+    self.speedLabel.text = [NSString stringWithFormat:DBConstantString.ks_flipSpeed,speed];
     setting.scrollSpeed = speed/10000.0;
     [setting reloadSetting];
 }
@@ -116,7 +116,7 @@
         _slowButton.layer.masksToBounds = YES;
         _slowButton.layer.borderWidth = 1;
         _slowButton.layer.borderColor = DBColorExtension.charcoalAltColor.CGColor;
-        [_slowButton setTitle:@"- 减速" forState:UIControlStateNormal];
+        [_slowButton setTitle:DBConstantString.ks_slower forState:UIControlStateNormal];
         [_slowButton setTitleColor:DBColorExtension.charcoalAltColor forState:UIControlStateNormal];
         [_slowButton addTarget:self action:@selector(slowSpeedAction) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -129,7 +129,7 @@
         _speedLabel.font = DBFontExtension.pingFangMediumSmall;
         _speedLabel.textColor = DBColorExtension.charcoalAltColor;
         _speedLabel.textAlignment = NSTextAlignmentCenter;
-        _speedLabel.text = [NSString stringWithFormat:@"翻页速度：%.0lf",DBReadBookSetting.setting.scrollSpeed*10000];
+        _speedLabel.text = [NSString stringWithFormat:DBConstantString.ks_flipSpeed,DBReadBookSetting.setting.scrollSpeed*10000];
     }
     return _speedLabel;
 }
@@ -142,7 +142,7 @@
         _speedUpButton.layer.masksToBounds = YES;
         _speedUpButton.layer.borderWidth = 1;
         _speedUpButton.layer.borderColor = DBColorExtension.charcoalAltColor.CGColor;
-        [_speedUpButton setTitle:@"+ 加速" forState:UIControlStateNormal];
+        [_speedUpButton setTitle:DBConstantString.ks_faster forState:UIControlStateNormal];
         [_speedUpButton setTitleColor:DBColorExtension.charcoalAltColor forState:UIControlStateNormal];
         [_speedUpButton addTarget:self action:@selector(speedUpAction) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -154,7 +154,7 @@
         _exitAutoButton = [[UIButton alloc] init];
         _exitAutoButton.titleLabel.font = DBFontExtension.bodyMediumFont;
         _exitAutoButton.enlargedEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
-        [_exitAutoButton setTitle:@"退出自动翻页" forState:UIControlStateNormal];
+        [_exitAutoButton setTitle:DBConstantString.ks_exitAutoTurn forState:UIControlStateNormal];
         [_exitAutoButton setTitleColor:DBColorExtension.charcoalAltColor forState:UIControlStateNormal];
         [_exitAutoButton addTarget:self action:@selector(exitAutoReadingAction) forControlEvents:UIControlEventTouchUpInside];
     }

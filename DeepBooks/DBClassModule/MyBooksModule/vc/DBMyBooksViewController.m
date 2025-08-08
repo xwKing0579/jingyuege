@@ -104,9 +104,9 @@ static NSString *identifierAdCollectCell = @"DBAdBannerCollectionViewCell";
     if (cultivatelist.count) {
         DBBookModel *model = [[DBBookModel alloc] init];
         model.isLocal = YES;
-        model.name = @"养肥中";
+        model.name = DBConstantString.ks_savingStatus;
         model.site_path = DBMyCultivateBooks;
-        model.author = [NSString stringWithFormat:@"%ld本书正在养肥",cultivatelist.count];
+        model.author = [NSString stringWithFormat:DBConstantString.ks_savedBooksCount,cultivatelist.count];
         [dataList insertObject:model atIndex:0];
     }
     self.modeList = dataList;
@@ -115,7 +115,7 @@ static NSString *identifierAdCollectCell = @"DBAdBannerCollectionViewCell";
 }
 
 - (void)setUpSubViews{
-    self.title = @"书架";
+    self.title = DBConstantString.ks_shelf;
     UIView *gradientColorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UIScreen.screenWidth, UIScreen.navbarHeight+64)];
     self.gradientColorView = gradientColorView;
     [self.view addSubviews:@[gradientColorView,self.navLabel,self.myBookCollectionView,self.moreButton]];
@@ -310,20 +310,20 @@ static NSString *identifierAdCollectCell = @"DBAdBannerCollectionViewCell";
             [self dataListReorder];
         }else if (action == 1){
             DBWeakSelf
-            LEEAlert.actionsheet.config.LeeTitle(@"请选择排序规则").
-            LeeAction(@"最近阅读", ^{
+            LEEAlert.actionsheet.config.LeeTitle(DBConstantString.ks_sortBy).
+            LeeAction(DBConstantString.ks_recentReads, ^{
                 DBStrongSelfElseReturn
                 DBReadBookSetting *setting = DBReadBookSetting.setting;
                 setting.orderType = 0;
                 [setting reloadSetting];
                 [self reloadCollectBooksList];
-            }).LeeAction(@"更新时间", ^{
+            }).LeeAction(DBConstantString.ks_updatedTime, ^{
                 DBStrongSelfElseReturn
                 DBReadBookSetting *setting = DBReadBookSetting.setting;
                 setting.orderType = 1;
                 [setting reloadSetting];
                 [self reloadCollectBooksList];
-            }).LeeCancelAction(@"取消", ^{
+            }).LeeCancelAction(DBConstantString.ks_cancel, ^{
                 
             }).LeeShow();
         }else if (action == 2){

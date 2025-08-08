@@ -31,13 +31,13 @@
     
     NSArray *titles = @[];
 //    if (DBCommonConfig.switchAudit){
-//        titles = @[@"书架排序",@"阅读记录",@"书籍管理"];
+//        titles = @[DBConstantString.ks_shelfSorting,DBConstantString.ks_readHistory,DBConstantString.ks_management];
 //    }else{
 //        BOOL isExpand = [NSUserDefaults boolValueForKey:DBBooksExpandValue];
-//        titles = @[isExpand?@"封面模式":@"列表模式",@"书架排序",@"阅读记录",@"书籍管理"];
+//        titles = @[isExpand?DBConstantString.ks_coverMode:DBConstantString.ks_listMode,DBConstantString.ks_shelfSorting,DBConstantString.ks_readHistory,DBConstantString.ks_management];
 //    }
     BOOL isExpand = [NSUserDefaults boolValueForKey:DBBooksExpandValue];
-    titles = @[isExpand?@"封面模式":@"列表模式",@"书架排序",@"阅读记录",@"书籍管理"];
+    titles = @[isExpand?DBConstantString.ks_coverMode:DBConstantString.ks_listMode,DBConstantString.ks_shelfSorting,DBConstantString.ks_readHistory,DBConstantString.ks_management];
     
     for (NSInteger index = 0;index < titles.count; index++) {
         NSString *name = titles[index];
@@ -64,15 +64,15 @@
 }
 
 - (void)clickMenuAction:(UIButton *)sender{
-    if ([sender.titleLabel.text isEqualToString:@"封面模式"]){
+    if ([sender.titleLabel.text isEqualToString:DBConstantString.ks_coverMode]){
         [NSUserDefaults saveValue:@0 forKey:DBBooksExpandValue];
         if (self.menuBlock) self.menuBlock(0);
-    }else if ([sender.titleLabel.text isEqualToString:@"列表模式"]){
+    }else if ([sender.titleLabel.text isEqualToString:DBConstantString.ks_listMode]){
         [NSUserDefaults saveValue:@1 forKey:DBBooksExpandValue];
         if (self.menuBlock) self.menuBlock(0);
-    }else if ([sender.titleLabel.text isEqualToString:@"书架排序"]){
+    }else if ([sender.titleLabel.text isEqualToString:DBConstantString.ks_shelfSorting]){
         if (self.menuBlock) self.menuBlock(1);
-    }else if ([sender.titleLabel.text isEqualToString:@"阅读记录"]){
+    }else if ([sender.titleLabel.text isEqualToString:DBConstantString.ks_readHistory]){
         if (self.menuBlock) self.menuBlock(2);
     }else{
         if (self.menuBlock) self.menuBlock(3);

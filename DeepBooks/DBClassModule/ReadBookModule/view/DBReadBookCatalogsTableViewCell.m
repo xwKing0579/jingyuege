@@ -70,7 +70,7 @@
         _contentTextLabel.font = DBFontExtension.bodyMediumFont;
         _contentTextLabel.textColor = DBColorExtension.ashWhiteColor;
         _contentTextLabel.textAlignment = NSTextAlignmentRight;
-        _contentTextLabel.text = @"已缓存";
+        _contentTextLabel.text = DBConstantString.ks_cachedStatus;
     }
     return _contentTextLabel;
 }

@@ -22,7 +22,7 @@
 }
 
 - (void)setUpSubViews{
-    self.title = @"阅读历史";
+    self.title = DBConstantString.ks_history;
     [self.view addSubviews:@[self.navLabel,self.listRollingView,self.clearButton]];
     [self.navLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
@@ -55,14 +55,14 @@
 
 - (void)clickClearAction{
     if (self.dataList.count == 0){
-        [self.view showAlertText:@"目前没有需要清除的阅读记录"];
+        [self.view showAlertText:DBConstantString.ks_noReadingHistory];
         return;
     }
     
     DBWeakSelf
-    LEEAlert.alert.config.LeeTitle(@"用户需知").
-    LeeContent(@"清空阅读记录会清除您之前所有的阅读记录,而且清除之后不能恢复,是否确定清空?").
-    LeeAction(@"确定", ^{
+    LEEAlert.alert.config.LeeTitle(DBConstantString.ks_notice).
+    LeeContent(DBConstantString.ks_clearHistoryWarning).
+    LeeAction(DBConstantString.ks_confirm, ^{
         DBStrongSelfElseReturn
         if (DBCommonConfig.isLogin){
             [DBAFNetWorking getServiceRequestType:DBLinkBookReadingCleanUp combine:nil parameInterface:@{@"form":@"1"} serviceData:^(BOOL successfulRequest, id  _Nullable result, NSString * _Nullable message) {
@@ -75,7 +75,7 @@
         }else{
             [self clearRecordList];
         }
-    }).LeeCancelAction(@"再想想", ^{
+    }).LeeCancelAction(DBConstantString.ks_think, ^{
         
     }).LeeShow();
 }
@@ -102,7 +102,7 @@
     if (!_clearButton){
         _clearButton = [[UIButton alloc] init];
         _clearButton.titleLabel.font = DBFontExtension.pingFangMediumLarge;
-        [_clearButton setTitle:@"清除" forState:UIControlStateNormal];
+        [_clearButton setTitle:DBConstantString.ks_clear forState:UIControlStateNormal];
         [_clearButton setTitleColor:DBColorExtension.mediumGrayColor forState:UIControlStateNormal];
         [_clearButton addTarget:self action:@selector(clickClearAction) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -112,7 +112,7 @@
 - (UIView *)customViewForEmptyDataSet:(UIScrollView *)scrollView{
     DBEmptyView *emptyView = [[DBEmptyView alloc] init];
     emptyView.imageObj = [UIImage imageNamed:@"jjNullCanvas"];
-    emptyView.content = @"暂无阅读记录";
+    emptyView.content = DBConstantString.ks_noReadHistory;
     [scrollView addSubview:emptyView];
     [emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);

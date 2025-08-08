@@ -66,19 +66,19 @@
     NSString *passwordAgain = self.passwordAgainTextField.text.whitespace;
     NSString *code = self.codeTextField.text.whitespace;
     if (!email.isEmail){
-        [UIScreen.currentViewController.view showAlertText:@"请输入正确的邮箱"];
+        [UIScreen.currentViewController.view showAlertText:DBConstantString.ks_validEmail];
         return;
     }
     if (!password.isPassword){
-        [UIScreen.currentViewController.view showAlertText:@"请输入正确的密码"];
+        [UIScreen.currentViewController.view showAlertText:DBConstantString.ks_invalidPassword];
         return;
     }
     if (![password isEqualToString:passwordAgain]){
-        [UIScreen.currentViewController.view showAlertText:@"输入的两次密码不一致"];
+        [UIScreen.currentViewController.view showAlertText:DBConstantString.ks_passwordMismatch];
         return;
     }
     if (code.length == 0){
-        [UIScreen.currentViewController.view showAlertText:@"请输入验证码"];
+        [UIScreen.currentViewController.view showAlertText:DBConstantString.ks_enterVerificationCode];
         return;
     }
     
@@ -88,7 +88,7 @@
     [DBAFNetWorking postServiceRequestType:DBLinkUserPasswordForget combine:nil parameInterface:parameInterface serviceData:^(BOOL successfulRequest, id  _Nullable result, NSString * _Nullable message) {
         [UIScreen.currentViewController.view removeHudLoading];
         if (successfulRequest){
-            [UIScreen.appWindow showAlertText:@"找回密码成功"];
+            [UIScreen.appWindow showAlertText:DBConstantString.ks_passwordRecovered];
             [DBRouter closePage];
         }else{
             [UIScreen.currentViewController.view showAlertText:message];
@@ -100,7 +100,7 @@
     [self.view endEditing:YES];
     NSString *email = self.emailTextField.text.whitespace;
     if (!email.isEmail){
-        [UIScreen.currentViewController.view showAlertText:@"请输入正确的邮箱"];
+        [UIScreen.currentViewController.view showAlertText:DBConstantString.ks_validEmail];
         return;
     }
     NSString *tel = @"86";
@@ -111,18 +111,18 @@
         if (successfulRequest){
             DBRegisterModel *model = [DBRegisterModel yy_modelWithDictionary:result];
             if (model.type == 1){
-                NSString *message = [NSString stringWithFormat:@"该用户名已绑定邮箱:%@，可使用“邮箱忘记密码”功能来找回密码。如该邮箱已遗失，可以使用新邮箱来重置密码。",email];
-                LEEAlert.alert.config.LeeTitle(@"温馨提示").
+                NSString *message = [NSString stringWithFormat:DBConstantString.ks_accountRecoveryEmail,email];
+                LEEAlert.alert.config.LeeTitle(DBConstantString.ks_note).
                 LeeContent(message).
-                LeeCancelAction(@"取消", ^{
+                LeeCancelAction(DBConstantString.ks_cancel, ^{
                     
-                }).LeeAction(@"确定", ^{
+                }).LeeAction(DBConstantString.ks_confirm, ^{
                     self.type = @"7";
                     self.action_type = @"1";
                     [self clickCodeAction];
                 }).LeeShow();
             }else{
-                [UIScreen.currentViewController.view showAlertText:@"验证码已发送，10分钟内有效"];
+                [UIScreen.currentViewController.view showAlertText:DBConstantString.ks_verificationCodeSent];
                 [self emailCodeCountDown];
             }
         }else{
@@ -143,7 +143,7 @@
             if (second == 0) {
                 self.codeButton.userInteractionEnabled = YES;
                 self.emailTextField.userInteractionEnabled = YES;
-                [self.codeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+                [self.codeButton setTitle:DBConstantString.ks_getVerificationCode forState:UIControlStateNormal];
                 dispatch_cancel(timer);
             } else {
                 [self.codeButton setTitle:[NSString stringWithFormat:@"%02lds",second] forState:UIControlStateNormal];
@@ -157,7 +157,7 @@
 - (DBCloseTextField *)emailTextField{
     if (!_emailTextField){
         _emailTextField = [[DBCloseTextField alloc] init];
-        _emailTextField.placeholder = @"请输入邮箱";
+        _emailTextField.placeholder = DBConstantString.ks_enterEmail;
         _emailTextField.textColor = DBColorExtension.charcoalColor;
 
         _emailTextField.layer.cornerRadius = 6;
@@ -175,7 +175,7 @@
 - (UITextField *)codeTextField{
     if (!_codeTextField){
         _codeTextField = [[UITextField alloc] init];
-        _codeTextField.placeholder = @"请输入验证码";
+        _codeTextField.placeholder = DBConstantString.ks_enterVerificationCode;
         _codeTextField.keyboardType = UIKeyboardTypeNumberPad;
         _codeTextField.textColor = DBColorExtension.charcoalColor;
 
@@ -208,7 +208,7 @@
         _codeButton.layer.masksToBounds = YES;
         _codeButton.backgroundColor = DBColorExtension.accountThemeColor;
         _codeButton.titleLabel.font = DBFontExtension.bodySmallFont;
-        [_codeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+        [_codeButton setTitle:DBConstantString.ks_getVerificationCode forState:UIControlStateNormal];
         [_codeButton setTitleColor:DBColorExtension.whiteColor forState:UIControlStateNormal];
         [_codeButton addTarget:self action:@selector(clickCodeAction) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -218,7 +218,7 @@
 - (DBCloseTextField *)passwordTextField{
     if (!_passwordTextField){
         _passwordTextField = [[DBCloseTextField alloc] init];
-        _passwordTextField.placeholder = @"请输入密码";
+        _passwordTextField.placeholder = DBConstantString.ks_enterPassword;
         _passwordTextField.textColor = DBColorExtension.charcoalColor;
         _passwordTextField.secureTextEntry = YES;
         
@@ -237,7 +237,7 @@
 - (DBCloseTextField *)passwordAgainTextField{
     if (!_passwordAgainTextField){
         _passwordAgainTextField = [[DBCloseTextField alloc] init];
-        _passwordAgainTextField.placeholder = @"请再次输入密码";
+        _passwordAgainTextField.placeholder = DBConstantString.ks_reenterPassword;
         _passwordAgainTextField.textColor = DBColorExtension.charcoalColor;
         _passwordAgainTextField.secureTextEntry = YES;
         
@@ -260,7 +260,7 @@
         _confimButton.layer.masksToBounds = YES;
         _confimButton.backgroundColor = DBColorExtension.accountThemeColor;
         _confimButton.titleLabel.font = DBFontExtension.pingFangMediumLarge;
-        [_confimButton setTitle:@"修改密码" forState:UIControlStateNormal];
+        [_confimButton setTitle:DBConstantString.ks_changePassword forState:UIControlStateNormal];
         
         [_confimButton addTarget:self action:@selector(clickConfirmAction) forControlEvents:UIControlEventTouchUpInside];
     }

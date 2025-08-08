@@ -91,7 +91,7 @@
     }
    
     NSString *audioText = self.currentAudioText.string;
-    if (audioText.length == 0 || [audioText isEqualToString:@"获取本章失败".textMultilingual]) {
+    if (audioText.length == 0 || [audioText isEqualToString:DBConstantString.ks_chapterLoadFailed.textMultilingual]) {
         [self finishAudiobookAction];
         return;
     }
@@ -123,7 +123,7 @@
         NSTimeInterval end = [NSDate.now timeIntervalSince1970];
         if (end - start > self.audioTime) {
            
-            [UIScreen.currentViewController.view showAlertText:@"今日自动阅读时间已结束"];
+            [UIScreen.currentViewController.view showAlertText:DBConstantString.ks_autoReadEnded];
             [self finishAudiobookAction];
             return;
         }

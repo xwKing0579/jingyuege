@@ -159,9 +159,9 @@
 - (void)clickBlockAction{
     DBWeakSelf
     LEEAlert.alert.config.LeeTitle(@"是否彻底删除已选中的书籍？").
-    LeeCancelAction(@"取消", ^{
+    LeeCancelAction(DBConstantString.ks_cancel, ^{
         
-    }).LeeAction(@"确定", ^{
+    }).LeeAction(DBConstantString.ks_confirm, ^{
         DBStrongSelfElseReturn  
         [self clickReportAction];
     }).LeeShow();
@@ -174,29 +174,29 @@
     }
     DBWeakSelf
     LEEAlert.actionsheet.config.
-    LeeAction(@"色情低俗", ^{
+    LeeAction(DBConstantString.ks_pornographic, ^{
         DBStrongSelfElseReturn
         [self showReportText];
-    }).LeeAction(@"政治敏感", ^{
+    }).LeeAction(DBConstantString.ks_sensitiveContent, ^{
         DBStrongSelfElseReturn
         [self showReportText];
-    }).LeeAction(@"广告", ^{
+    }).LeeAction(DBConstantString.ks_ad, ^{
         DBStrongSelfElseReturn
         [self showReportText];
-    }).LeeAction(@"令人恶心", ^{
+    }).LeeAction(DBConstantString.ks_disgusting, ^{
         DBStrongSelfElseReturn
         [self showReportText];
-    }).LeeAction(@"违纪违法", ^{
+    }).LeeAction(DBConstantString.ks_violation, ^{
         DBStrongSelfElseReturn
         [self showReportText];
-    }).LeeCancelAction(@"取消", ^{
+    }).LeeCancelAction(DBConstantString.ks_cancel, ^{
         
     }).LeeShow();
 }
 
 - (void)showReportText{
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [UIScreen.appWindow showAlertText:@"我们会在24小时内处理，确认违规后对内容进行相应处理！"];
+        [UIScreen.appWindow showAlertText:DBConstantString.ks_violationProcessTime];
     });
 }
 
@@ -226,7 +226,7 @@
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self getDataSource];
             });
-            [UIScreen.appWindow showAlertText:@"回复成功"];
+            [UIScreen.appWindow showAlertText:DBConstantString.ks_replySuccess];
         }else{
             [UIScreen.appWindow showAlertText:message];
         }
@@ -257,7 +257,7 @@
     if (text.length){
         [self sendMessage:text];
     }else{
-        [self.view showAlertText:@"请输入内容"];
+        [self.view showAlertText:DBConstantString.ks_enterText];
     }
 }
 
@@ -304,7 +304,7 @@
     if (!_blockButton){
         _blockButton = [[UIButton alloc] init];
         _blockButton.titleLabel.font = DBFontExtension.bodyMediumFont;
-        [_blockButton setTitle:@"拉黑" forState:UIControlStateNormal];
+        [_blockButton setTitle:DBConstantString.ks_block forState:UIControlStateNormal];
         [_blockButton setTitleColor:DBColorExtension.oceanBlueColor forState:UIControlStateNormal];
         [_blockButton addTarget:self action:@selector(clickBlockAction) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -315,7 +315,7 @@
     if (!_reportButton){
         _reportButton = [[UIButton alloc] init];
         _reportButton.titleLabel.font = DBFontExtension.bodyMediumFont;
-        [_reportButton setTitle:@"举报" forState:UIControlStateNormal];
+        [_reportButton setTitle:DBConstantString.ks_report forState:UIControlStateNormal];
         [_reportButton setTitleColor:DBColorExtension.oceanBlueColor forState:UIControlStateNormal];
         [_reportButton addTarget:self action:@selector(clickReportAction) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -415,7 +415,7 @@
             DBBaseLabel *favLabel = [[DBBaseLabel alloc] init];
             favLabel.font = DBFontExtension.bodyMediumFont;
             favLabel.textColor = DBColorExtension.grayColor;
-            favLabel.text = [NSString stringWithFormat:@"%ld人点赞",model.fav_arr.count];
+            favLabel.text = [NSString stringWithFormat:DBConstantString.ks_likesCount,model.fav_arr.count];
             [self.favView addSubview:favLabel];
             [favLabel mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.mas_equalTo(lastView.mas_right).offset(10);
@@ -434,7 +434,7 @@
         }];
         
         DBBaseLabel *label = [[DBBaseLabel alloc] init];
-        label.text = [NSString stringWithFormat:@"共%ld条",model.reply_count];
+        label.text = [NSString stringWithFormat:DBConstantString.ks_totalCount,model.reply_count];
         label.textColor = DBColorExtension.silverColor;
         label.font = DBFontExtension.bodySmallFont;
         [_headerView addSubview:label];
@@ -458,7 +458,7 @@
         _searchTextField.layer.masksToBounds = YES;
         _searchTextField.backgroundColor = DBColorExtension.whiteColor;
         _searchTextField.font = DBFontExtension.bodyMediumFont;
-        _searchTextField.placeholder = @"我要评论";
+        _searchTextField.placeholder = DBConstantString.ks_writeReview;
         _searchTextField.textColor = DBColorExtension.charcoalColor;
      
         _searchTextField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 0)];
@@ -476,7 +476,7 @@
     if (!_sendButton){
         _sendButton = [[UIButton alloc] init];
         _sendButton.titleLabel.font = DBFontExtension.bodyMediumFont;
-        [_sendButton setTitle:@"发送" forState:UIControlStateNormal];
+        [_sendButton setTitle:DBConstantString.ks_send forState:UIControlStateNormal];
         [_sendButton setTitleColor:DBColorExtension.charcoalColor forState:UIControlStateNormal];
         [_sendButton addTarget:self action:@selector(clickSendAction) forControlEvents:UIControlEventTouchUpInside];
     }

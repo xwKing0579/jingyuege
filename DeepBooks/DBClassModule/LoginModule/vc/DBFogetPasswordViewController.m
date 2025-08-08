@@ -62,7 +62,7 @@
         _titlePageLabel.font = DBFontExtension.bodySixTenFont;
         _titlePageLabel.textColor = DBColorExtension.charcoalColor;
         _titlePageLabel.textAlignment = NSTextAlignmentCenter;
-        _titlePageLabel.text = @"修改密码";
+        _titlePageLabel.text = DBConstantString.ks_changePassword;
     }
     return _titlePageLabel;
 }
@@ -77,7 +77,7 @@
         _categoryView.titleFont = DBFontExtension.bodyMediumFont;
         _categoryView.titleSelectedFont = DBFontExtension.pingFangMediumMedium;
         _categoryView.listContainer = self.categoryContainerView;
-        _categoryView.titles = @[@"手机号".textMultilingual,@"邮箱".textMultilingual];
+        _categoryView.titles = @[DBConstantString.ks_phone.textMultilingual,DBConstantString.ks_email.textMultilingual];
         
         JXCategoryIndicatorBackgroundView *backgroundColorView = [[JXCategoryIndicatorBackgroundView alloc] init];
         backgroundColorView.layer.cornerRadius = 20;

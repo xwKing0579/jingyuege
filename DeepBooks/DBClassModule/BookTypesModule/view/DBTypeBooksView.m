@@ -32,7 +32,7 @@
     self.stype = @"-1";
     self.end = @"-1";
     self.score = @"1";
-    NSArray *titles = @[@"全部",@"全部",@"热门"];
+    NSArray *titles = @[DBConstantString.ks_all,DBConstantString.ks_all,DBConstantString.ks_popular];
     [self addSubviews:@[self.titleTextLabel]];
     [self.titleTextLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(16);
@@ -77,7 +77,7 @@
         }else if (index > 0){
             NSMutableArray *list = index == 2 ? self.bottomMenuList : self.centerMenuList;
             [list addObject:btn];
-            NSArray *titles = index == 2 ? @[@"评分"] : @[@"完结",@"连载"];
+            NSArray *titles = index == 2 ? @[DBConstantString.ks_rating] : @[DBConstantString.ks_ended,DBConstantString.ks_ongoing];
             UIView *leftView = btn;
             for (NSString *title in titles) {
                 UIButton *button = [[UIButton alloc] init];

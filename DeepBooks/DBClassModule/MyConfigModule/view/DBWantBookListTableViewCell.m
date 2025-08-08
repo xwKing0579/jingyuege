@@ -39,17 +39,17 @@
 
 - (void)setModel:(DBWantBookModel *)model{
     _model = model;
-    self.contentTextLabel.text = @"求书信息";
-    self.titleTextLabel.text = [NSString stringWithFormat:@"书名：%@",model.name];
-    self.authorLabel.text = [NSString stringWithFormat:@"作者：%@",model.author];
+    self.contentTextLabel.text = DBConstantString.ks_requestInfo;
+    self.titleTextLabel.text = [NSString stringWithFormat:DBConstantString.ks_titleFormat,model.name];
+    self.authorLabel.text = [NSString stringWithFormat:DBConstantString.ks_byAuthorFormat,model.author];
     if (model.book_id.intValue > 0){
-        self.stateLabel.text = @"处理状态：求书成功（点击查看）";
+        self.stateLabel.text = DBConstantString.ks_requestFulfilledStatus;
         self.stateLabel.textColor = DBColorExtension.redColor;
     }else if (model.msg.length > 0){
-        self.stateLabel.text = [NSString stringWithFormat:@"处理状态：%@",model.msg];
+        self.stateLabel.text = [NSString stringWithFormat:DBConstantString.ks_statusFormat,model.msg];
         self.stateLabel.textColor = DBColorExtension.redColor;
     }else{
-        self.stateLabel.text = @"处理状态：还在处理中...";
+        self.stateLabel.text = DBConstantString.ks_processingStatus;
         self.stateLabel.textColor = DBColorExtension.mediumGrayColor;
     }
     self.timeLabel.text = model.created_at.timeFormat;

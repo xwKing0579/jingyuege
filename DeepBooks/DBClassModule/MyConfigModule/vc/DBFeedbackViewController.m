@@ -57,7 +57,7 @@
         _categoryView.titleFont = DBFontExtension.bodySixTenFont;
         _categoryView.titleSelectedFont = DBFontExtension.pingFangSemiboldXLarge;
         _categoryView.listContainer = self.categoryContainerView;
-        _categoryView.titles = @[@"我要反馈".textMultilingual,@"反馈历史".textMultilingual];
+        _categoryView.titles = @[DBConstantString.ks_giveFeedback.textMultilingual,DBConstantString.ks_feedbackHistory.textMultilingual];
         
         JXCategoryIndicatorLineView *partingLineView = [[JXCategoryIndicatorLineView alloc] init];
         partingLineView.indicatorColor = DBColorExtension.azureColor;

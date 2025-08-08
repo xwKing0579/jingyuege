@@ -22,7 +22,7 @@
 }
 
 - (void)setUpSubViews{
-    self.title = @"选择国家和地区代码";
+    self.title = DBConstantString.ks_countryCode;
     [self.view addSubviews:@[self.navLabel,self.listRollingView]];
     [self.navLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);

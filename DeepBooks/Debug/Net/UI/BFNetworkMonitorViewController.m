@@ -102,7 +102,7 @@
     NSMutableArray *titles = [NSMutableArray arrayWithArray:set.allObjects];
     [titles insertObject:sender.tag ? @"全部资源路径" : @"全部域名" atIndex:0];
     if (titles.count) {
-        UIAlertController *alert = [UIAlertController alertStyle:UIAlertControllerStyleActionSheet title:sender.titleLabel.text message:nil cancel:@"取消" cancelBlock:^(NSString * _Nonnull cancel) {
+        UIAlertController *alert = [UIAlertController alertStyle:UIAlertControllerStyleActionSheet title:sender.titleLabel.text message:nil cancel:DBConstantString.ks_cancel cancelBlock:^(NSString * _Nonnull cancel) {
             
         } confirms:titles confirmBlock:^(NSUInteger index) {
             NSString *titleString = titles[index];

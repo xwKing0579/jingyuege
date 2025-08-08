@@ -72,19 +72,19 @@
         DBStrongSelfElseReturn
         switch ((int)score) {
             case 1:
-                self.descTextLabel.text = @"太差了";
+                self.descTextLabel.text = DBConstantString.ks_terrible;
                 break;
             case 2:
-                self.descTextLabel.text = @"不太好";
+                self.descTextLabel.text = DBConstantString.ks_poor;
                 break;
             case 3:
-                self.descTextLabel.text = @"一般般";
+                self.descTextLabel.text = DBConstantString.ks_average;
                 break;
             case 4:
-                self.descTextLabel.text = @"还不错";
+                self.descTextLabel.text = DBConstantString.ks_fair;
                 break;
             case 5:
-                self.descTextLabel.text = @"超精彩";
+                self.descTextLabel.text = DBConstantString.ks_awesome;
                 break;
             default:
                 break;
@@ -114,7 +114,7 @@
     [self endEditing:YES];
     CGFloat score = self.scoreView.currentScore;
     if (score == 0){
-        [self showAlertText:@"请选择评分再发表"];
+        [self showAlertText:DBConstantString.ks_rateFirst];
         return;
     }
     
@@ -145,7 +145,7 @@
         _titleTextLabel.font = DBFontExtension.titleSmallFont;
         _titleTextLabel.textColor = DBColorExtension.charcoalColor;
         _titleTextLabel.textAlignment = NSTextAlignmentCenter;
-        _titleTextLabel.text = @"点评本书";
+        _titleTextLabel.text = DBConstantString.ks_rateThisBook;
     }
     return _titleTextLabel;
 }
@@ -170,7 +170,7 @@
     if (!_publishButton){
         _publishButton = [[UIButton alloc] init];
         _publishButton.titleLabel.font = DBFontExtension.pingFangMediumLarge;
-        [_publishButton setTitle:@"发表" forState:UIControlStateNormal];
+        [_publishButton setTitle:DBConstantString.ks_post forState:UIControlStateNormal];
         [_publishButton setTitleColor:DBColorExtension.redColor forState:UIControlStateNormal];
         [_publishButton addTarget:self action:@selector(clickPublishAction) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -206,7 +206,7 @@
         _descTextLabel.font = DBFontExtension.bodySmallFont;
         _descTextLabel.textColor = DBColorExtension.redColor;
         _descTextLabel.textAlignment = NSTextAlignmentCenter;
-        _descTextLabel.text = @"轻点评分";
+        _descTextLabel.text = DBConstantString.ks_quickRate;
     }
     return _descTextLabel;
 }
@@ -218,7 +218,7 @@
         _commentTextView.backgroundColor = DBColorExtension.paleGrayColor;
         _commentTextView.textContainerInset = UIEdgeInsetsMake(6, 6, 6, 6);
         _commentTextView.font = DBFontExtension.bodySixTenFont;
-        _commentTextView.placeholder = @"优质书评将会优先展示";
+        _commentTextView.placeholder = DBConstantString.ks_qualityReviews;
     }
     return _commentTextView;
 }

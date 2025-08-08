@@ -92,30 +92,30 @@
     NSString *hero = self.heroTextField.text.whitespace;
     NSString *net = self.netTextField.text.whitespace;
     if (name.length == 0){
-        [self.view showAlertText:@"请输入小说名"];
+        [self.view showAlertText:DBConstantString.ks_enterBookTitle];
         return;
     }
     if (author.length == 0){
-        [self.view showAlertText:@"请输入作者名"];
+        [self.view showAlertText:DBConstantString.ks_enterAuthorName];
         return;
     }
     if (hero.length == 0){
-        [self.view showAlertText:@"请输入主角名"];
+        [self.view showAlertText:DBConstantString.ks_enterProtagonist];
         return;
     }
     if (net.length == 0){
-        [self.view showAlertText:@"请输入原网站网址"];
+        [self.view showAlertText:DBConstantString.ks_enterOriginalUrl];
         return;
     }
     
     for (DBBookModel *book in DBBookModel.getAllCollectBooks) {
         if ([book.name isEqualToString:name]){
-            [self.view showAlertText:@"书架上已经有这本书啦"];
+            [self.view showAlertText:DBConstantString.ks_alreadyInShelf];
             return;
         }
     }
     
-    NSString *remark = [NSString stringWithFormat:@"原网址:%@ 主角名:%@",net,hero];
+    NSString *remark = [NSString stringWithFormat:DBConstantString.ks_urlProtagonistFormat,net,hero];
     NSDictionary *parameInterface = @{@"author":author,@"name":name,@"remark":remark,@"form":@"1"};
    
     
@@ -186,7 +186,7 @@
         _titlePageLabel = [[DBBaseLabel alloc] init];
         _titlePageLabel.font = DBFontExtension.bodyMediumFont;
         _titlePageLabel.textColor = DBColorExtension.charcoalColor;
-        _titlePageLabel.text = @"请选择求书的类型";
+        _titlePageLabel.text = DBConstantString.ks_selectRequestType;
     }
     return _titlePageLabel;
 }
@@ -197,7 +197,7 @@
         _bookButton.titleLabel.font = DBFontExtension.pingFangMediumXLarge;
         _bookButton.size = CGSizeMake(80, 30);
         _bookButton.selected = YES;
-        [_bookButton setTitle:@"小说" forState:UIControlStateNormal];
+        [_bookButton setTitle:DBConstantString.ks_book forState:UIControlStateNormal];
         [_bookButton setTitleColor:DBColorExtension.charcoalColor forState:UIControlStateNormal];
         [_bookButton setTitleColor:DBColorExtension.redColor forState:UIControlStateSelected];
         [_bookButton setImage:[UIImage imageNamed:@"jjNeutralToken"] forState:UIControlStateNormal];
@@ -213,7 +213,7 @@
         _contentTextLabel = [[DBBaseLabel alloc] init];
         _contentTextLabel.font = DBFontExtension.bodyMediumFont;
         _contentTextLabel.textColor = DBColorExtension.charcoalColor;
-        _contentTextLabel.text = @"请输入以下必要信息";
+        _contentTextLabel.text = DBConstantString.ks_enterRequiredInfo;
     }
     return _contentTextLabel;
 }
@@ -226,7 +226,7 @@
         _nameTextField.backgroundColor = DBColorExtension.paleGrayColor;
         _nameTextField.font = DBFontExtension.bodySixTenFont;
         _nameTextField.textColor = DBColorExtension.charcoalColor;
-        _nameTextField.placeholder = @"需要求书的小说名(必填)";
+        _nameTextField.placeholder = DBConstantString.ks_requiredBookField;
         _nameTextField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 0)];
         _nameTextField.leftViewMode = UITextFieldViewModeAlways;
         _nameTextField.rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 0)];
@@ -243,7 +243,7 @@
         _authorTextField.backgroundColor = DBColorExtension.paleGrayColor;
         _authorTextField.font = DBFontExtension.bodySixTenFont;
         _authorTextField.textColor = DBColorExtension.charcoalColor;
-        _authorTextField.placeholder = @"需要求书的作者名(必填)";
+        _authorTextField.placeholder = DBConstantString.ks_requiredAuthorField;
         _authorTextField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 0)];
         _authorTextField.leftViewMode = UITextFieldViewModeAlways;
         _authorTextField.rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 0)];
@@ -260,7 +260,7 @@
         _heroTextField.backgroundColor = DBColorExtension.paleGrayColor;
         _heroTextField.font = DBFontExtension.bodySixTenFont;
         _heroTextField.textColor = DBColorExtension.charcoalColor;
-        _heroTextField.placeholder = @"需要求书的主角名(必填)";
+        _heroTextField.placeholder = DBConstantString.ks_requiredProtagonist;
         _heroTextField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 0)];
         _heroTextField.leftViewMode = UITextFieldViewModeAlways;
         _heroTextField.rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 0)];
@@ -274,7 +274,7 @@
         _descTextLabel = [[DBBaseLabel alloc] init];
         _descTextLabel.font = DBFontExtension.bodyMediumFont;
         _descTextLabel.textColor = DBColorExtension.charcoalColor;
-        _descTextLabel.text = @"您是在那个网站知道这本书的";
+        _descTextLabel.text = DBConstantString.ks_bookDiscoverySource;
     }
     return _descTextLabel;
 }
@@ -287,7 +287,7 @@
         _netTextField.backgroundColor = DBColorExtension.paleGrayColor;
         _netTextField.font = DBFontExtension.bodySixTenFont;
         _netTextField.textColor = DBColorExtension.charcoalColor;
-        _netTextField.placeholder = @"请输入求书的网站网址(必填)";
+        _netTextField.placeholder = DBConstantString.ks_requiredSourceUrl;
         _netTextField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 0)];
         _netTextField.leftViewMode = UITextFieldViewModeAlways;
         _netTextField.rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 0)];
@@ -303,7 +303,7 @@
         _submitButton.backgroundColor = DBColorExtension.redColor;
         _submitButton.layer.cornerRadius = 24;
         _submitButton.layer.masksToBounds = YES;
-        [_submitButton setTitle:@"提交" forState:UIControlStateNormal];
+        [_submitButton setTitle:DBConstantString.ks_submit forState:UIControlStateNormal];
         [_submitButton setTitleColor:DBColorExtension.whiteColor forState:UIControlStateNormal];
         [_submitButton addTarget:self action:@selector(clickSubmitAction) forControlEvents:UIControlEventTouchUpInside];
     }

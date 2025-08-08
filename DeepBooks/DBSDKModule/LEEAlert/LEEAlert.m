@@ -415,7 +415,7 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
             
         } else {
             
-            NSAssert(YES, @"请在添加的某一项后面设置间距");
+            NSAssert(YES, DBConstantString.ks_setSpacingHint);
         }
         
         return self;
@@ -2752,7 +2752,7 @@ CGPathRef _Nullable LEECGPathCreateWithRoundedRect(CGRect bounds, CornerRadii co
         
         if (!action.font) action.font = [UIFont systemFontOfSize:18.0f];
         
-        if (!action.title) action.title = @"按钮";
+        if (!action.title) action.title = DBConstantString.ks_button;
         
         if (!action.titleColor) {
             if (@available(iOS 13.0, *)) {
@@ -3612,7 +3612,7 @@ CGPathRef _Nullable LEECGPathCreateWithRoundedRect(CGRect bounds, CornerRadii co
         
         if (!action.font) action.font = [UIFont systemFontOfSize:18.0f];
         
-        if (!action.title) action.title = @"按钮";
+        if (!action.title) action.title = DBConstantString.ks_button;
         
         if (!action.titleColor) {
             if (@available(iOS 13.0, *)) {

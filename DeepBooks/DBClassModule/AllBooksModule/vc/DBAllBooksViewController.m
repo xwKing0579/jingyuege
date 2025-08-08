@@ -29,7 +29,7 @@
 }
 
 - (void)changeLocalLanguage{
-    self.categoryView.titles = @[@"推荐".textMultilingual,@"男生".textMultilingual,@"女生".textMultilingual];
+    self.categoryView.titles = @[DBConstantString.ks_hot.textMultilingual,DBConstantString.ks_male.textMultilingual,DBConstantString.ks_female.textMultilingual];
     [self.categoryView reloadData];
 }
 
@@ -117,7 +117,7 @@
         _categoryView.titleFont = DBFontExtension.pingFangSemiboldLarge;
         _categoryView.titleSelectedFont = DBFontExtension.pingFangMediumXLarge;
         _categoryView.listContainer = self.categoryContainerView;
-        _categoryView.titles = @[@"推荐".textMultilingual,@"男生".textMultilingual,@"女生".textMultilingual];
+        _categoryView.titles = @[DBConstantString.ks_hot.textMultilingual,DBConstantString.ks_male.textMultilingual,DBConstantString.ks_female.textMultilingual];
         _categoryView.backgroundColor = DBColorExtension.noColor;
         
         JXCategoryIndicatorLineView *partingLineView = [[JXCategoryIndicatorLineView alloc] init];

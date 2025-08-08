@@ -63,11 +63,11 @@
     NSString *mobile = self.mobileTextField.text.whitespace;
     NSString *password = self.passwordTextField.text.whitespace;
     if (!mobile.isMobile){
-        [self.view showAlertText:@"请输入正确的手机号"];
+        [self.view showAlertText:DBConstantString.ks_validPhone];
         return;
     }
     if (!password.isPassword){
-        [self.view showAlertText:@"请输入正确的密码"];
+        [self.view showAlertText:DBConstantString.ks_invalidPassword];
         return;
     }
     
@@ -90,7 +90,7 @@
 - (DBCloseTextField *)mobileTextField{
     if (!_mobileTextField){
         _mobileTextField = [[DBCloseTextField alloc] init];
-        _mobileTextField.placeholder = @"请输入手机号";
+        _mobileTextField.placeholder = DBConstantString.ks_enterPhoneNumber;
         _mobileTextField.keyboardType = UIKeyboardTypeNumberPad;
         _mobileTextField.textColor = DBColorExtension.charcoalColor;
 
@@ -125,7 +125,7 @@
 - (DBCloseTextField *)passwordTextField{
     if (!_passwordTextField){
         _passwordTextField = [[DBCloseTextField alloc] init];
-        _passwordTextField.placeholder = @"请输入密码";
+        _passwordTextField.placeholder = DBConstantString.ks_enterPassword;
         _passwordTextField.textColor = DBColorExtension.charcoalColor;
         _passwordTextField.secureTextEntry = YES;
 
@@ -148,7 +148,7 @@
         _loginButton.layer.masksToBounds = YES;
         _loginButton.backgroundColor = DBColorExtension.accountThemeColor;
         _loginButton.titleLabel.font = DBFontExtension.pingFangMediumLarge;
-        [_loginButton setTitle:@"登录" forState:UIControlStateNormal];
+        [_loginButton setTitle:DBConstantString.ks_login forState:UIControlStateNormal];
         
         [_loginButton addTarget:self action:@selector(clickLoginAction) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -160,7 +160,7 @@
         _registerButton = [[UIButton alloc] init];
         _registerButton.titleLabel.font = DBFontExtension.bodyMediumFont;
         _registerButton.enlargedEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
-        [_registerButton setTitle:@"注册" forState:UIControlStateNormal];
+        [_registerButton setTitle:DBConstantString.ks_signUp forState:UIControlStateNormal];
         [_registerButton setTitleColor:DBColorExtension.charcoalColor forState:UIControlStateNormal];
         [_registerButton addTarget:self action:@selector(clickRegisterAction) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -172,7 +172,7 @@
         _resetPasswordButton = [[UIButton alloc] init];
         _resetPasswordButton.titleLabel.font = DBFontExtension.bodyMediumFont;
         _resetPasswordButton.enlargedEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
-        [_resetPasswordButton setTitle:@"找回密码" forState:UIControlStateNormal];
+        [_resetPasswordButton setTitle:DBConstantString.ks_recoverPassword forState:UIControlStateNormal];
         [_resetPasswordButton setTitleColor:DBColorExtension.charcoalColor forState:UIControlStateNormal];
         [_resetPasswordButton addTarget:self action:@selector(clickResetPasswordAction) forControlEvents:UIControlEventTouchUpInside];
     }

@@ -44,16 +44,16 @@
         textColor = DBColorExtension.platinumColor;
     }
     
-    self.titleTextLabel.attributedText = [NSAttributedString combineAttributeTexts:@[@"反馈内容：".textMultilingual,DBSafeString(self.model.content).textMultilingual] colors:@[textColor] fonts:@[DBFontExtension.bodyMediumFont,DBFontExtension.bodySixTenFont]];
-    self.dateLabel.attributedText = [NSAttributedString combineAttributeTexts:@[@"反馈时间：",DBSafeString(self.model.created_at)] colors:@[textColor,DBColorExtension.grayColor] fonts:@[DBFontExtension.bodyMediumFont,DBFontExtension.bodySixTenFont]];
+    self.titleTextLabel.attributedText = [NSAttributedString combineAttributeTexts:@[DBConstantString.ks_feedbackContent.textMultilingual,DBSafeString(self.model.content).textMultilingual] colors:@[textColor] fonts:@[DBFontExtension.bodyMediumFont,DBFontExtension.bodySixTenFont]];
+    self.dateLabel.attributedText = [NSAttributedString combineAttributeTexts:@[DBConstantString.ks_feedbackTime,DBSafeString(self.model.created_at)] colors:@[textColor,DBColorExtension.grayColor] fonts:@[DBFontExtension.bodyMediumFont,DBFontExtension.bodySixTenFont]];
     
-    NSString *state = @"待回复";
+    NSString *state = DBConstantString.ks_pending;
     UIColor *color = DBColorExtension.redColor;
     if (self.model.status == 2){
-        state = @"已回复";
+        state = DBConstantString.ks_repliedStatus;
         color = DBColorExtension.skyBlueColor;
     }
-    self.contentTextLabel.attributedText = [NSAttributedString combineAttributeTexts:@[@"反馈状态：".textMultilingual,state.textMultilingual] colors:@[textColor,color] fonts:@[DBFontExtension.bodyMediumFont,DBFontExtension.bodySixTenFont]];
+    self.contentTextLabel.attributedText = [NSAttributedString combineAttributeTexts:@[DBConstantString.ks_feedbackStatus.textMultilingual,state.textMultilingual] colors:@[textColor,color] fonts:@[DBFontExtension.bodyMediumFont,DBFontExtension.bodySixTenFont]];
 }
 
 - (DBBaseLabel *)titleTextLabel{

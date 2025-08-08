@@ -45,12 +45,12 @@
     DBBookSourceModel *model = self.model;
     NSString *source = @"";
     if ([model.site_id isEqualToString:@"ai"]){
-        source = @"聚合搜索".textMultilingual;
+        source = DBConstantString.ks_searchAll.textMultilingual;
     }else if (model.site_name.length){
         source = model.site_name;
     }
     source = [NSString stringWithFormat:@"%@ ",source];
-    NSString *choose = [NSString stringWithFormat:@"%@(%@的人选择)",model.updated_at.timeFormat,model.choose];
+    NSString *choose = [NSString stringWithFormat:DBConstantString.ks_choicePercentage,model.updated_at.timeFormat,model.choose];
     UIColor *textColor = DBColorExtension.blackAltColor;
     if (DBColorExtension.userInterfaceStyle){
         textColor = DBColorExtension.whiteAltColor;

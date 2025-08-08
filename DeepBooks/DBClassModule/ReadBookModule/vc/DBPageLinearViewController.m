@@ -43,7 +43,7 @@
     CGPoint touchPoint = [gesture locationInView:self.view];
     if (touchPoint.x < UIScreen.screenWidth/3){
         if (self.model.currentChapter == 0 && self.model.currentPage == 0) {
-            [self.view showAlertText:@"已经是第一页"];
+            [self.view showAlertText:DBConstantString.ks_firstPageReached];
             return;
         }
         

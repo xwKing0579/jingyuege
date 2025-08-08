@@ -33,7 +33,7 @@
 
 - (void)setUpSubViews{
     UIScreen.appWindow.overrideUserInterfaceStyle = UIUserInterfaceStyleUnspecified;
-    NSArray *tabNames = @[@"书架",@"书城",@"分类",@"我的"];
+    NSArray *tabNames = @[DBConstantString.ks_shelf,DBConstantString.ks_bookstore,DBConstantString.ks_categories,DBConstantString.ks_me];
     NSArray *tabVcs = @[DBMyBooksViewController.new,
                      DBAllBooksViewController.new,
                      DBBookTypesViewController.new,
@@ -126,16 +126,16 @@
         if (successfulRequest){
             if (result.url.length && result.content.length){
                 if (result.isTrue){
-                    LEEAlert.actionsheet.config.LeeTitle(@"提示").LeeContent(result.content).
-                    LeeAction(@"前往", ^{
+                    LEEAlert.actionsheet.config.LeeTitle(DBConstantString.ks_tip).LeeContent(result.content).
+                    LeeAction(DBConstantString.ks_go, ^{
                         [UIApplication.sharedApplication openURL:[NSURL URLWithString:result.url] options:@{} completionHandler:nil];
                     }).LeeShow();
                 }else{
                 
-                    LEEAlert.actionsheet.config.LeeTitle(@"提示").LeeContent(result.content).
-                    LeeAction(@"前往", ^{
+                    LEEAlert.actionsheet.config.LeeTitle(DBConstantString.ks_tip).LeeContent(result.content).
+                    LeeAction(DBConstantString.ks_go, ^{
                         [UIApplication.sharedApplication openURL:[NSURL URLWithString:result.url] options:@{} completionHandler:nil];
-                    }).LeeCancelAction(@"取消", ^{
+                    }).LeeCancelAction(DBConstantString.ks_cancel, ^{
                         
                     }).LeeShow();
                 }

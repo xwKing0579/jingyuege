@@ -81,7 +81,7 @@
     [self endEditing:YES];
     NSString *text = self.commentTextView.text;
     if (text.length == 0){
-        [UIScreen.appWindow showAlertText:@"请输入内容"];
+        [UIScreen.appWindow showAlertText:DBConstantString.ks_enterText];
         return;
     }
     [UIScreen.appWindow showHudLoading];
@@ -92,7 +92,7 @@
             [self dismissAnimated:YES completion:^{
                 
             }];
-            [UIScreen.appWindow showAlertText:@"回复成功"];
+            [UIScreen.appWindow showAlertText:DBConstantString.ks_replySuccess];
             [UIScreen.currentViewController dynamicAllusionTomethod:@"getDataSource"];
         }else{
             [UIScreen.appWindow showAlertText:message];
@@ -102,7 +102,7 @@
 
 - (void)setModel:(DBBookCommentModel *)model{
     _model = model;
-    self.descTextLabel.attributedText = [NSAttributedString combineAttributeTexts:@[@"回复".textMultilingual,DBSafeString(model.nick),@"的评论".textMultilingual] colors:@[DBColorExtension.coolGrayColor,DBColorExtension.redColor,DBColorExtension.coolGrayColor] fonts:@[DBFontExtension.bodyMediumFont]];
+    self.descTextLabel.attributedText = [NSAttributedString combineAttributeTexts:@[DBConstantString.ks_reply.textMultilingual,DBSafeString(model.nick),DBConstantString.ks_userComment.textMultilingual] colors:@[DBColorExtension.coolGrayColor,DBColorExtension.redColor,DBColorExtension.coolGrayColor] fonts:@[DBFontExtension.bodyMediumFont]];
 }
 
 - (DBBaseLabel *)titleTextLabel{
@@ -111,7 +111,7 @@
         _titleTextLabel.font = DBFontExtension.titleSmallFont;
         _titleTextLabel.textColor = DBColorExtension.charcoalColor;
         _titleTextLabel.textAlignment = NSTextAlignmentCenter;
-        _titleTextLabel.text = @"回复评论";
+        _titleTextLabel.text = DBConstantString.ks_replyComment;
     }
     return _titleTextLabel;
 }
@@ -136,7 +136,7 @@
     if (!_publishButton){
         _publishButton = [[UIButton alloc] init];
         _publishButton.titleLabel.font = DBFontExtension.pingFangMediumLarge;
-        [_publishButton setTitle:@"回复" forState:UIControlStateNormal];
+        [_publishButton setTitle:DBConstantString.ks_reply forState:UIControlStateNormal];
         [_publishButton setTitleColor:DBColorExtension.redColor forState:UIControlStateNormal];
         [_publishButton addTarget:self action:@selector(clickPublishAction) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -161,7 +161,7 @@
         _commentTextView.backgroundColor = DBColorExtension.paleGrayColor;
         _commentTextView.textContainerInset = UIEdgeInsetsMake(6, 6, 6, 6);
         _commentTextView.font = DBFontExtension.bodySixTenFont;
-        _commentTextView.placeholder = @"请输入您的评论";
+        _commentTextView.placeholder = DBConstantString.ks_enterComment;
     }
     return _commentTextView;
 }

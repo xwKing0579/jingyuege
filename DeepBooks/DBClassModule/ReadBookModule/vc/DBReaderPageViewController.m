@@ -43,7 +43,7 @@
     self.currentChapterIndex = model.currentChapter;
     self.readBookView.attributeString = model.contentList[model.currentPage];
     
-    if (model.content && [model.content isEqualToString:@"获取本章失败"]){
+    if (model.content && [model.content isEqualToString:DBConstantString.ks_chapterLoadFailed]){
         self.reloadButton.hidden = NO;
     }else{
         _reloadButton.hidden = YES;

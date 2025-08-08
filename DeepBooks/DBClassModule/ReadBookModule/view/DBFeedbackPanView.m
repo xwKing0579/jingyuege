@@ -40,7 +40,7 @@
     CGFloat space = 16;
     CGFloat width = (UIScreen.screenWidth-76)*0.5;
     CGFloat height = 35;
-    NSArray *titles = @[@"章节内容错误",@"章节内容为空",@"章节列表错误",@"其他错误"];
+    NSArray *titles = @[DBConstantString.ks_chapterError,DBConstantString.ks_emptyChapter,DBConstantString.ks_chapterListError,DBConstantString.ks_otherError];
     NSMutableArray *viewList = [NSMutableArray array];
     for (NSString *title in titles) {
         UIButton *button = [[UIButton alloc] init];
@@ -123,7 +123,7 @@
         if (button.selected) content = button.titleLabel.text;
     }
     if (content.length == 0){
-        [UIScreen.appWindow showAlertText:@"请选择类型后再提交"];
+        [UIScreen.appWindow showAlertText:DBConstantString.ks_selectTypeFirst];
         return;
     }
     
@@ -132,7 +132,7 @@
     [DBAFNetWorking postServiceRequestType:DBLinkChapterContentSubmit combine:nil parameInterface:parameInterface serviceData:^(BOOL successfulRequest, id  _Nullable result, NSString * _Nullable message) {
         [UIScreen.appWindow removeHudLoading];
         if (successfulRequest){
-            [UIScreen.appWindow showAlertText:@"提交成功"];
+            [UIScreen.appWindow showAlertText:DBConstantString.ks_submitted];
             [self dismissAnimated:YES completion:^{
                 
             }];
@@ -169,7 +169,7 @@
 - (DBBaseLabel *)titlePageLabel{
     if (!_titlePageLabel){
         _titlePageLabel = [[DBBaseLabel alloc] init];
-        _titlePageLabel.text = @"选择类型";
+        _titlePageLabel.text = DBConstantString.ks_selectType;
         _titlePageLabel.font = DBFontExtension.pingFangMediumXLarge;
         _titlePageLabel.textColor = DBColorExtension.blackColor;
         _titlePageLabel.textAlignment = NSTextAlignmentCenter;
@@ -181,7 +181,7 @@
     if (!_cancelButton){
         _cancelButton = [[UIButton alloc] init];
         _cancelButton.titleLabel.font = DBFontExtension.bodySixTenFont;
-        [_cancelButton setTitle:@"取消" forState:UIControlStateNormal];
+        [_cancelButton setTitle:DBConstantString.ks_cancel forState:UIControlStateNormal];
         [_cancelButton setTitleColor:DBColorExtension.silverColor forState:UIControlStateNormal];
         DBWeakSelf
         [_cancelButton addTagetHandler:^(id  _Nonnull sender) {
@@ -198,7 +198,7 @@
     if (!_confirmButton){
         _confirmButton = [[UIButton alloc] init];
         _confirmButton.titleLabel.font = DBFontExtension.bodySixTenFont;
-        [_confirmButton setTitle:@"提交" forState:UIControlStateNormal];
+        [_confirmButton setTitle:DBConstantString.ks_submit forState:UIControlStateNormal];
         [_confirmButton setTitleColor:DBColorExtension.charcoalColor forState:UIControlStateNormal];
         [_confirmButton addTarget:self action:@selector(clickConfirmAction) forControlEvents:UIControlEventTouchUpInside];
     }

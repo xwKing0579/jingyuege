@@ -28,9 +28,9 @@
         make.top.mas_equalTo(UIScreen.navbarHeight+100);
     }];
     
-    NSArray *titles = @[@"刷新重试",@"查看其他书源",@"查看书架",@"查看书城"];
+    NSArray *titles = @[DBConstantString.ks_retry,DBConstantString.ks_viewOtherSources,DBConstantString.ks_viewMyShelf,DBConstantString.ks_viewBookstore];
     if (DBCommonConfig.switchAudit){
-        titles = @[@"刷新重试",@"查看其他书源",@"查看书架"];
+        titles = @[DBConstantString.ks_retry,DBConstantString.ks_viewOtherSources,DBConstantString.ks_viewMyShelf];
     }
     __block UIView *lastView = self.titlePageLabel;
     [titles enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -86,7 +86,7 @@
             if (timeInterval < result.updated_at){
                 [NSNotificationCenter.defaultCenter postNotificationName:DBBookSourceUpdate object:nil];
             }else{
-                [UIScreen.currentViewController.view showAlertText:@"暂无章节更新"];
+                [UIScreen.currentViewController.view showAlertText:DBConstantString.ks_noUpdates];
             }
         }
     }];
@@ -97,7 +97,7 @@
         _titlePageLabel = [[DBBaseLabel alloc] init];
         _titlePageLabel.font = DBFontExtension.bodySixTenFont;
         _titlePageLabel.textColor = DBColorExtension.charcoalColor;
-        _titlePageLabel.text = @"已经是最后一章，试试其他书源";
+        _titlePageLabel.text = DBConstantString.ks_lastChapterPrompt;
     }
     return _titlePageLabel;
 }

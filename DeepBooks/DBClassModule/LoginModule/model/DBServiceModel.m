@@ -11,8 +11,8 @@
 
 + (NSArray *)dataSourceList{
     NSArray *dataList= @[
-    @{@"name":@"软件许可及用户服务协议/隐私声明",@"url":DBService,@"params":@{@"type":@1,@"title":@"软件许可及用户服务协议"}},
-    @{@"name":@"免责声明",@"url":DBService,@"params":@{@"type":@2,@"title":@"免责声明"}},
+    @{@"name":DBConstantString.ks_termsAndPrivacy,@"url":DBService,@"params":@{@"type":@1,@"title":DBConstantString.ks_terms}},
+    @{@"name":DBConstantString.ks_disclaimer,@"url":DBService,@"params":@{@"type":@2,@"title":DBConstantString.ks_disclaimer}},
     ];
     return [NSArray yy_modelArrayWithClass:self.class json:dataList];
 }

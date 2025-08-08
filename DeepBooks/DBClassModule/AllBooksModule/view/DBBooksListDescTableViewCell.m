@@ -48,7 +48,7 @@
         _titleTextLabel = [[DBBaseLabel alloc] init];
         _titleTextLabel.font = DBFontExtension.bodySmallFont;
         _titleTextLabel.textColor = DBColorExtension.charcoalColor;
-        _titleTextLabel.text = @"书单简介：";
+        _titleTextLabel.text = DBConstantString.ks_booklistDescription;
     }
     return _titleTextLabel;
 }

@@ -21,7 +21,7 @@
 }
 
 - (void)setUpSubViews{
-    self.title = @"养肥区";
+    self.title = DBConstantString.ks_savedBooks;
     [self.view addSubviews:@[self.navLabel,self.listRollingView]];
     [self.navLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);

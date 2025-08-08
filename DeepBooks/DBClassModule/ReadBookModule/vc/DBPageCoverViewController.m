@@ -41,7 +41,7 @@
 #pragma mark - DBReadCoverViewControllerDelegate
 - (UIViewController *)coverController:(DBReadCoverViewController *)coverController getAboveControllerWithCurrentController:(UIViewController *)currentController{
     if (self.model.currentChapter == 0 && self.model.currentPage == 0) {
-        [self.view showAlertText:@"已经是第一页"];
+        [self.view showAlertText:DBConstantString.ks_firstPageReached];
         return nil;
     }
 

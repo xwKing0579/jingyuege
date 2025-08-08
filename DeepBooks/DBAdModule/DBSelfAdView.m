@@ -336,7 +336,7 @@
     
     
     if (time > 0){
-        NSString *secondTime = [NSString stringWithFormat:@"%ld秒跳过".textMultilingual,time];
+        NSString *secondTime = [NSString stringWithFormat:DBConstantString.ks_skipInSeconds.textMultilingual,time];
         [self.skipAdButton setTitle:secondTime forState:UIControlStateNormal];
         self.countdownTime = time;
     }
@@ -351,14 +351,14 @@
 - (void)secondsTimeChange{
     if (self.countdownTime > 1){
         self.countdownTime--;
-        NSString *secondTime = [NSString stringWithFormat:@"%ld秒跳过".textMultilingual,self.countdownTime];
+        NSString *secondTime = [NSString stringWithFormat:DBConstantString.ks_skipInSeconds.textMultilingual,self.countdownTime];
         [self.skipAdButton setTitle:secondTime forState:UIControlStateNormal];
     }else{
         if (self.adType == DBSelfAdReward){
             self.skipAdButton.hidden = YES;
             self.closeAdButton.hidden = NO;
         }else{
-            [self.skipAdButton setTitle:@"跳过" forState:UIControlStateNormal];
+            [self.skipAdButton setTitle:DBConstantString.ks_skip forState:UIControlStateNormal];
         }
     }
 }
@@ -499,7 +499,7 @@
         _skipAdButton.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
         _skipAdButton.layer.cornerRadius = 14;
         _skipAdButton.layer.masksToBounds = YES;
-        [_skipAdButton setTitle:@"跳过" forState:UIControlStateNormal];
+        [_skipAdButton setTitle:DBConstantString.ks_skip forState:UIControlStateNormal];
         [_skipAdButton setTitleColor:DBColorExtension.whiteColor forState:UIControlStateNormal];
         [_skipAdButton addTarget:self action:@selector(clickAdCloseAction) forControlEvents:UIControlEventTouchUpInside];
         _skipAdButton.enlargedEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
@@ -513,7 +513,7 @@
         _adSignLabel.font = DBFontExtension.microFont;
         _adSignLabel.textColor = DBColorExtension.whiteColor;
         _adSignLabel.backgroundColor = [UIColor colorWithWhite:0 alpha:0.1];
-        _adSignLabel.text = @"广告";
+        _adSignLabel.text = DBConstantString.ks_ad;
         _adSignLabel.textAlignment = NSTextAlignmentCenter;
         _adSignLabel.layer.cornerRadius = 5;
         _adSignLabel.layer.masksToBounds = YES;

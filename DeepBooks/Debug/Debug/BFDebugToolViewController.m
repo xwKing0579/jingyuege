@@ -36,7 +36,7 @@ static NSString *identifier = @"BFDebugToolViewCell";
 
 ///路由测试
 + (void)routerEntry{
-   __block UIAlertController *alertController = [UIAlertController alertTitle:@"路由测试" message:nil cancel:@"取消" cancelBlock:^(NSString * _Nonnull cancel) {
+   __block UIAlertController *alertController = [UIAlertController alertTitle:@"路由测试" message:nil cancel:DBConstantString.ks_cancel cancelBlock:^(NSString * _Nonnull cancel) {
        alertController = nil;
     } confirm:@"跳转" confirmBlock:^(NSUInteger index) {
         UITextField *textField = alertController.textFields.firstObject;

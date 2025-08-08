@@ -24,7 +24,7 @@
 }
 
 - (void)setUpSubViews{
-    self.navLabel.text = @"书籍管理";
+    self.navLabel.text = DBConstantString.ks_management;
     [self.view addSubviews:@[self.navLabel,self.listRollingView,self.bottomView]];
     [self.navLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
@@ -71,15 +71,15 @@
     for (DBMyBooksManagerModel *model in self.dataList) {
         if (model.isSelect) count++;
     }
-    self.contentTextLabel.text = [NSString stringWithFormat:@"已选中%ld本",count];
+    self.contentTextLabel.text = [NSString stringWithFormat:DBConstantString.ks_selectedCount,count];
 }
 
 - (void)clickDeleteAction{
     DBWeakSelf
     LEEAlert.alert.config.LeeTitle(@"是否彻底删除已选中的书籍？").
-    LeeCancelAction(@"取消", ^{
+    LeeCancelAction(DBConstantString.ks_cancel, ^{
         
-    }).LeeAction(@"确定", ^{
+    }).LeeAction(DBConstantString.ks_confirm, ^{
         DBStrongSelfElseReturn
         [self confirmDeleteAction];
     }).LeeShow();
@@ -107,18 +107,18 @@
             [self deleteMyBooks:bookIds];
         }
     }else{
-        [self.view showAlertText:@"请选择书籍"];
+        [self.view showAlertText:DBConstantString.ks_selectBook];
     }
 }
 
 - (void)deleteMyBooks:(NSArray *)bookIds{
     if ([DBBookModel removeCollectBooksInIds:bookIds]){
-        [self.view showAlertText:@"删除书籍成功"];
+        [self.view showAlertText:DBConstantString.ks_deletedSuccess];
         self.dataList = self.myBooksList;
         [self.listRollingView reloadData];
-        self.contentTextLabel.text = @"已选中0本";
+        self.contentTextLabel.text = DBConstantString.ks_noneSelected;
     }else{
-        [self.view showAlertText:@"删除书籍失败"];
+        [self.view showAlertText:DBConstantString.ks_deleteFailed];
     }
 }
 
@@ -137,13 +137,13 @@
     for (DBMyBooksManagerModel *model in self.dataList) {
         if (model.isSelect) count++;
     }
-    self.contentTextLabel.text = [NSString stringWithFormat:@"已选中%ld本",count];
+    self.contentTextLabel.text = [NSString stringWithFormat:DBConstantString.ks_selectedCount,count];
 }
 
 - (UIView *)customViewForEmptyDataSet:(UIScrollView *)scrollView{
     DBEmptyView *emptyView = [[DBEmptyView alloc] init];
     emptyView.imageObj = [UIImage imageNamed:@"jjNullCanvas"];
-    emptyView.content = @"暂无书籍";
+    emptyView.content = DBConstantString.ks_noBooks;
     [scrollView addSubview:emptyView];
     [emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);
@@ -181,8 +181,8 @@
         _allSelectButton = [[UIButton alloc] init];
         _allSelectButton.titleLabel.font = DBFontExtension.pingFangMediumXLarge;
         _allSelectButton.enlargedEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
-        [_allSelectButton setTitle:@"全选" forState:UIControlStateNormal];
-        [_allSelectButton setTitle:@"取消全选" forState:UIControlStateSelected];
+        [_allSelectButton setTitle:DBConstantString.ks_selectAll forState:UIControlStateNormal];
+        [_allSelectButton setTitle:DBConstantString.ks_deselect forState:UIControlStateSelected];
         [_allSelectButton setTitleColor:DBColorExtension.redColor forState:UIControlStateNormal];
         [_allSelectButton addTarget:self action:@selector(clickAllSelectAction) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -195,7 +195,7 @@
         _contentTextLabel.font = DBFontExtension.bodySixTenFont;
         _contentTextLabel.textColor = DBColorExtension.charcoalColor;
         _contentTextLabel.textAlignment = NSTextAlignmentCenter;
-        _contentTextLabel.text = @"已选中0本";
+        _contentTextLabel.text = DBConstantString.ks_noneSelected;
     }
     return _contentTextLabel;
 }
@@ -205,7 +205,7 @@
         _deleteButton = [[UIButton alloc] init];
         _deleteButton.titleLabel.font = DBFontExtension.pingFangMediumXLarge;
         _deleteButton.enlargedEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
-        [_deleteButton setTitle:@"删除" forState:UIControlStateNormal];
+        [_deleteButton setTitle:DBConstantString.ks_delete forState:UIControlStateNormal];
         [_deleteButton setTitleColor:DBColorExtension.redColor forState:UIControlStateNormal];
         [_deleteButton addTarget:self action:@selector(clickDeleteAction) forControlEvents:UIControlEventTouchUpInside];
     }

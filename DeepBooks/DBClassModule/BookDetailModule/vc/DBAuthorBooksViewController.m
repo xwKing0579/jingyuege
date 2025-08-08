@@ -23,7 +23,7 @@
 }
 
 - (void)setUpSubViews{
-    self.title = @"作者书单";
+    self.title = DBConstantString.ks_authorLists;
     [self.view addSubviews:@[self.navLabel,self.listRollingView]];
     [self.navLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
@@ -65,7 +65,7 @@
 - (UIView *)customViewForEmptyDataSet:(UIScrollView *)scrollView{
     DBEmptyView *emptyView = [[DBEmptyView alloc] init];
     emptyView.imageObj = [UIImage imageNamed:@"jjNullCanvas"];
-    emptyView.content = @"暂无书单数据";
+    emptyView.content = DBConstantString.ks_noBooklists;
     emptyView.dataList = self.dataList;
     [scrollView addSubview:emptyView];
     [emptyView mas_makeConstraints:^(MASConstraintMaker *make) {

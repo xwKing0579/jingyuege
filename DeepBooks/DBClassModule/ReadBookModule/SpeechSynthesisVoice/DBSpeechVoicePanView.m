@@ -89,7 +89,7 @@
 - (DBBaseLabel *)titlePageLabel{
     if (!_titlePageLabel){
         _titlePageLabel = [[DBBaseLabel alloc] init];
-        _titlePageLabel.text = @"选择阅读声音";
+        _titlePageLabel.text = DBConstantString.ks_narrationVoice;
         _titlePageLabel.font = DBFontExtension.pingFangMediumXLarge;
         _titlePageLabel.textColor = DBColorExtension.blackAltColor;
         _titlePageLabel.textAlignment = NSTextAlignmentCenter;

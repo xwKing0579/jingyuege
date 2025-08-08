@@ -74,7 +74,7 @@
     if (!_saveButton){
         _saveButton = [[UIButton alloc] init];
         _saveButton.titleLabel.font = DBFontExtension.pingFangMediumLarge;
-        [_saveButton setTitle:@"保存" forState:UIControlStateNormal];
+        [_saveButton setTitle:DBConstantString.ks_save forState:UIControlStateNormal];
         [_saveButton setTitleColor:DBColorExtension.paleGrayColor forState:UIControlStateNormal];
         [_saveButton setTitleColor:DBColorExtension.redColor forState:UIControlStateSelected];
         [_saveButton addTarget:self action:@selector(clickSaveAction) forControlEvents:UIControlEventTouchUpInside];

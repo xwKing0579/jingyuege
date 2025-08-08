@@ -309,7 +309,7 @@
             moreButton.titleLabel.font = DBFontExtension.bodySmallFont;
             moreButton.size = CGSizeMake(38, 18);
             moreButton.enlargedEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
-            [moreButton setTitle:@"更多" forState:UIControlStateNormal];
+            [moreButton setTitle:DBConstantString.ks_more forState:UIControlStateNormal];
             [moreButton setImage:[UIImage imageNamed:@"jjPrecisionTrajectory"] forState:UIControlStateNormal];
             [moreButton setTitleColor:DBColorExtension.inkWashColor forState:UIControlStateNormal];
             [moreButton setTitlePosition:TitlePositionLeft spacing:2];
@@ -368,7 +368,7 @@
         reloadButton.layer.borderWidth = 1;
         reloadButton.contentEdgeInsets = UIEdgeInsetsMake(8, 15, 8, 15);
         reloadButton.layer.borderColor = DBColorExtension.sunsetOrangeColor.CGColor;
-        [reloadButton setTitle:@"重新加载" forState:UIControlStateNormal];
+        [reloadButton setTitle:DBConstantString.ks_reload forState:UIControlStateNormal];
         [reloadButton setTitleColor:DBColorExtension.sunsetOrangeColor forState:UIControlStateNormal];
         [_customEmptyView addSubviews:@[iconImageView,reloadButton]];
         [iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {

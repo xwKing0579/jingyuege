@@ -20,18 +20,18 @@
 }
 
 + (NSString *)bookStausDesc:(NSInteger)status{
-    return status == 1 ? @"已完结" : @"连载中";
+    return status == 1 ? DBConstantString.ks_completed : DBConstantString.ks_serializing;
 }
 
 + (NSString *)bookStausSimpleDesc:(NSInteger)status{
-    return status == 1 ? @"完结" : @"连载";
+    return status == 1 ? DBConstantString.ks_ended : DBConstantString.ks_ongoing;
 }
 
 + (NSString *)bookWordNumberDesc:(NSInteger)works{
     if (works >= 10000){
-        return [NSString stringWithFormat:@"%ld万字",works/10000];
+        return [NSString stringWithFormat:DBConstantString.ks_wordCountFormat,works/10000];
     }
-    return @"少于1万字";
+    return DBConstantString.ks_under10kWords;
 }
 
 @end

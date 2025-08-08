@@ -104,7 +104,7 @@
         _reloadButton.layer.borderWidth = 1;
         _reloadButton.contentEdgeInsets = UIEdgeInsetsMake(8, 15, 8, 15);
         _reloadButton.layer.borderColor = DBColorExtension.sunsetOrangeColor.CGColor;
-        [_reloadButton setTitle:@"重新加载" forState:UIControlStateNormal];
+        [_reloadButton setTitle:DBConstantString.ks_reload forState:UIControlStateNormal];
         [_reloadButton setTitleColor:DBColorExtension.sunsetOrangeColor forState:UIControlStateNormal];
         [_reloadButton addTarget:self action:@selector(clickReloadAction) forControlEvents:UIControlEventTouchUpInside];
     }

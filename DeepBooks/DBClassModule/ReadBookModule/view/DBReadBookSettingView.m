@@ -162,7 +162,7 @@
         }];
 
         if (DBCommonConfig.switchAudit) {
-            NSArray *titles = @[@"目录"];
+            NSArray *titles = @[DBConstantString.ks_contents];
             CGFloat width = 80;
             for (NSInteger index = titles.count-1; index < titles.count; index--) {
                 UIButton *button = [[UIButton alloc] init];
@@ -181,7 +181,7 @@
                 }];
             }
         }else{
-            NSArray *titles = @[@"反馈",@"下载",@"评论"];
+            NSArray *titles = @[DBConstantString.ks_feedback,DBConstantString.ks_download,DBConstantString.ks_comment];
             CGFloat width = 50;
             for (NSInteger index = titles.count-1; index < titles.count; index--) {
                 UIButton *button = [[UIButton alloc] init];
@@ -208,7 +208,7 @@
             linkButton.tag = titles.count+10;
             linkButton.titleLabel.font = DBFontExtension.bodyMediumFont;
             linkButton.backgroundColor = [UIColor colorWithWhite:0 alpha:0.1];
-            [linkButton setTitle:@"第三方数据，点击访问" forState:UIControlStateNormal];
+            [linkButton setTitle:DBConstantString.ks_thirdPartyData forState:UIControlStateNormal];
             [linkButton setTitleColor:DBColorExtension.charcoalAltColor forState:UIControlStateNormal];
             [_topView addSubview:linkButton];
             [linkButton addTarget:self action:@selector(clickMenuItem:) forControlEvents:UIControlEventTouchUpInside];
@@ -227,7 +227,7 @@
         _centerView = [[UIView alloc] init];
         _centerView.backgroundColor = DBColorExtension.noColor;
         
-        NSArray *titles = @[@"听书",@"书源"];
+        NSArray *titles = @[DBConstantString.ks_audiobook,DBConstantString.ks_source];
         for (NSInteger index = 0; index < titles.count; index++) {
             UIButton *button = [[UIButton alloc] init];
             button.tag = index+20;
@@ -279,7 +279,7 @@
         catalogButton.tag = 30;
         catalogButton.titleLabel.font = DBFontExtension.pingFangMediumSmall;
         catalogButton.enlargedEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
-        [catalogButton setTitle:@"目录" forState:UIControlStateNormal];
+        [catalogButton setTitle:DBConstantString.ks_contents forState:UIControlStateNormal];
         [catalogButton setImage:[UIImage imageNamed:@"jjCodexRegistry"] forState:UIControlStateNormal];
         [catalogButton setTitleColor:DBColorExtension.charcoalAltColor forState:UIControlStateNormal];
         [catalogButton addTarget:self action:@selector(clickMenuItem:) forControlEvents:UIControlEventTouchUpInside];
@@ -296,8 +296,8 @@
         eyeshadowButton.tag = 31;
         eyeshadowButton.titleLabel.font = DBFontExtension.pingFangMediumSmall;
         eyeshadowButton.enlargedEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
-        [eyeshadowButton setTitle:@"夜间" forState:UIControlStateNormal];
-        [eyeshadowButton setTitle:@"白天" forState:UIControlStateSelected];
+        [eyeshadowButton setTitle:DBConstantString.ks_night forState:UIControlStateNormal];
+        [eyeshadowButton setTitle:DBConstantString.ks_dayMode forState:UIControlStateSelected];
         [eyeshadowButton setImage:[UIImage imageNamed:@"jjUmbraBadge"] forState:UIControlStateNormal];
         [eyeshadowButton setImage:[UIImage imageNamed:@"jjSolarisMark"] forState:UIControlStateSelected];
         eyeshadowButton.selected = DBReadBookSetting.setting.isDark;
@@ -316,7 +316,7 @@
         settingButton.tag = 32;
         settingButton.titleLabel.font = DBFontExtension.pingFangMediumSmall;
         settingButton.enlargedEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
-        [settingButton setTitle:@"设置" forState:UIControlStateNormal];
+        [settingButton setTitle:DBConstantString.ks_settings forState:UIControlStateNormal];
         [settingButton setImage:[UIImage imageNamed:@"jjMechanizationCog"] forState:UIControlStateNormal];
         [settingButton setTitleColor:DBColorExtension.charcoalAltColor forState:UIControlStateNormal];
         [settingButton addTarget:self action:@selector(clickMenuItem:) forControlEvents:UIControlEventTouchUpInside];

@@ -48,7 +48,7 @@
 
 - (void)setDateValidity:(NSString *)dateValidity{
     _dateValidity = dateValidity;
-    NSString *validity = @"有效期至".textMultilingual;
+    NSString *validity = DBConstantString.ks_expiryDate.textMultilingual;
     self.dateValidityLabel.text = [NSString stringWithFormat:@"%@ %@",validity,dateValidity];
 }
 

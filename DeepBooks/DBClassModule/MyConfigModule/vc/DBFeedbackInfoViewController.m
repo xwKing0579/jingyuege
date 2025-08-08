@@ -73,11 +73,11 @@
     NSString *content = self.feedbackTextView.text.whitespace;
     NSString *contact = self.contactTextField.text.whitespace;
     if (content.length == 0){
-        [self.view showAlertText:@"请输入必要内容"];
+        [self.view showAlertText:DBConstantString.ks_requiredField];
         return;
     }
     if (contact.length == 0){
-        [self.view showAlertText:@"请输入联系方式"];
+        [self.view showAlertText:DBConstantString.ks_enterContactInfo];
         return;
     }
     
@@ -106,7 +106,7 @@
             }
             textView.text = tobeString;
             [self changeLimit:self.maxLen];
-            [self.view showAlertText:@"已超出最大字数"];
+            [self.view showAlertText:DBConstantString.ks_overLimit];
         }
     }
 }
@@ -138,7 +138,7 @@
 - (DBBaseLabel *)feedbackLabel{
     if (!_feedbackLabel){
         _feedbackLabel = [[DBBaseLabel alloc] init];
-        _feedbackLabel.attributedText = [NSAttributedString combineAttributeTexts:@[@"我要反馈".textMultilingual,@"（必填）".textMultilingual] colors:@[DBColorExtension.charcoalColor,DBColorExtension.redColor] fonts:@[DBFontExtension.pingFangMediumXLarge,DBFontExtension.bodyMediumFont]];
+        _feedbackLabel.attributedText = [NSAttributedString combineAttributeTexts:@[DBConstantString.ks_giveFeedback.textMultilingual,DBConstantString.ks_required.textMultilingual] colors:@[DBColorExtension.charcoalColor,DBColorExtension.redColor] fonts:@[DBFontExtension.pingFangMediumXLarge,DBFontExtension.bodyMediumFont]];
     }
     return _feedbackLabel;
 }
@@ -153,7 +153,7 @@
         _feedbackTextView.textColor = DBColorExtension.charcoalColor;
         _feedbackTextView.layer.cornerRadius = 4;
         _feedbackTextView.layer.masksToBounds = YES;
-        _feedbackTextView.placeholder = @"为更好解决您遇到的问题，请尽量将问题描述详细".textMultilingual;
+        _feedbackTextView.placeholder = DBConstantString.ks_describeIssuePrompt.textMultilingual;
         _feedbackTextView.delegate = self;
     }
     return _feedbackTextView;
@@ -174,7 +174,7 @@
         _contentTextLabel = [[DBBaseLabel alloc] init];
         _contentTextLabel.font = DBFontExtension.pingFangMediumXLarge;
         _contentTextLabel.textColor = DBColorExtension.charcoalColor;
-        _contentTextLabel.attributedText = [NSAttributedString combineAttributeTexts:@[@"联系方式".textMultilingual,@"（必填）".textMultilingual] colors:@[DBColorExtension.charcoalColor,DBColorExtension.grayColor] fonts:@[DBFontExtension.pingFangMediumXLarge,DBFontExtension.bodyMediumFont]];
+        _contentTextLabel.attributedText = [NSAttributedString combineAttributeTexts:@[DBConstantString.ks_contact.textMultilingual,DBConstantString.ks_required.textMultilingual] colors:@[DBColorExtension.charcoalColor,DBColorExtension.grayColor] fonts:@[DBFontExtension.pingFangMediumXLarge,DBFontExtension.bodyMediumFont]];
     }
     return _contentTextLabel;
 }
@@ -188,9 +188,9 @@
         _contactTextField.font = DBFontExtension.bodySixTenFont;
         _contactTextField.textColor = DBColorExtension.charcoalColor;
         if (DBCommonConfig.switchAudit){
-            _contactTextField.placeholder = @"请输入手机号";
+            _contactTextField.placeholder = DBConstantString.ks_enterPhoneNumber;
         }else{
-            _contactTextField.placeholder = @"请输入手机号/QQ号";
+            _contactTextField.placeholder = DBConstantString.ks_enterPhoneOrQQ;
         }
         _contactTextField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 0)];
         _contactTextField.leftViewMode = UITextFieldViewModeAlways;
@@ -207,7 +207,7 @@
         _submitButton.backgroundColor = DBColorExtension.redColor;
         _submitButton.layer.cornerRadius = 24;
         _submitButton.layer.masksToBounds = YES;
-        [_submitButton setTitle:@"提交" forState:UIControlStateNormal];
+        [_submitButton setTitle:DBConstantString.ks_submit forState:UIControlStateNormal];
         [_submitButton setTitleColor:DBColorExtension.whiteColor forState:UIControlStateNormal];
         [_submitButton addTarget:self action:@selector(clickSubmitAction) forControlEvents:UIControlEventTouchUpInside];
     }

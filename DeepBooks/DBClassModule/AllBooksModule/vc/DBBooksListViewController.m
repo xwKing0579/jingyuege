@@ -26,7 +26,7 @@
 }
 
 - (void)setUpSubViews{
-    self.title = @"书单简介";
+    self.title = DBConstantString.ks_listDescription;
     [self.view addSubviews:@[self.navLabel,self.listRollingView,self.collectButton]];
     [self.navLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
@@ -99,7 +99,7 @@
             [self.view removeHudLoading];
             if (successfulRequest){
                 self.collectButton.selected = NO;
-                [self.view showAlertText:@"已经为您取消收藏"];
+                [self.view showAlertText:DBConstantString.ks_unfavorited];
             }else{
                 [self.view showAlertText:message];
             }
@@ -110,7 +110,7 @@
             [self.view removeHudLoading];
             if (successfulRequest){
                 self.collectButton.selected = YES;
-                [self.view showAlertText:@"收藏成功"];
+                [self.view showAlertText:DBConstantString.ks_favoriteSuccess];
             }else{
                 [self.view showAlertText:message];
             }
@@ -142,8 +142,8 @@
         _collectButton = [[UIButton alloc] init];
         _collectButton.hidden = YES;
         _collectButton.titleLabel.font = DBFontExtension.pingFangMediumLarge;
-        [_collectButton setTitle:@"收藏" forState:UIControlStateNormal];
-        [_collectButton setTitle:@"取消收藏" forState:UIControlStateSelected];
+        [_collectButton setTitle:DBConstantString.ks_favorite forState:UIControlStateNormal];
+        [_collectButton setTitle:DBConstantString.ks_unfavorite forState:UIControlStateSelected];
         [_collectButton setTitleColor:DBColorExtension.charcoalColor forState:UIControlStateNormal];
         [_collectButton addTarget:self action:@selector(clickCollectAction) forControlEvents:UIControlEventTouchUpInside];
     }

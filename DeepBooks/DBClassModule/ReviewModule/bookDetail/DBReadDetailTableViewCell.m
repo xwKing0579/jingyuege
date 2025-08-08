@@ -75,7 +75,7 @@
 
 - (void)setExtendRemarkLabel:(NSString *)content{
     if (DBEmptyObj(content)){
-        self.contentTextLabel.text = @"该书暂无简介，敬请期待！！！";
+        self.contentTextLabel.text = DBConstantString.ks_noSynopsis;
         return;
     }
     
@@ -84,7 +84,7 @@
  
     NSMutableAttributedString *contentAttri = [NSAttributedString combineAttributeTexts:@[content] colors:@[self.contentTextLabel.textColor] fonts:@[self.contentTextLabel.font]];
 
-    NSString *moreString = isExpand?@"收起":@"展开";
+    NSString *moreString = isExpand?DBConstantString.ks_less:DBConstantString.ks_unfold;
     NSString *spaceString = isExpand?@"  ":@"...  ";
     NSMutableAttributedString *attri = [NSAttributedString combineAttributeTexts:@[spaceString,moreString.textMultilingual] colors:@[DBColorExtension.mediumGrayColor,DBColorExtension.azureColor] fonts:@[DBFontExtension.bodyMediumFont,DBFontExtension.pingFangMediumRegular]];
     

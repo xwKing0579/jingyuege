@@ -149,7 +149,7 @@
         _commentLabel = [[DBBaseLabel alloc] init];
         _commentLabel.font = DBFontExtension.bodySixTenFont;
         _commentLabel.textColor = DBColorExtension.charcoalColor;
-        _commentLabel.text = @"评论";
+        _commentLabel.text = DBConstantString.ks_comment;
     }
     return _commentLabel;
 }
@@ -163,7 +163,7 @@
         _categoryView.titleFont = DBFontExtension.bodyMediumFont;
         _categoryView.titleSelectedFont = DBFontExtension.bodyMediumFont;
         _categoryView.listContainer = self.categoryContainerView;
-        _categoryView.titles = @[@"最新".textMultilingual,@"最热".textMultilingual];
+        _categoryView.titles = @[DBConstantString.ks_newest.textMultilingual,DBConstantString.ks_trending.textMultilingual];
     }
     return _categoryView;
 }

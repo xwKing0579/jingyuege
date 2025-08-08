@@ -80,7 +80,7 @@
             }else{
                 itemView.titleTextLabel.textColor = DBColorExtension.charcoalColor;
             }
-            itemView.scoreLabel.text = [NSString stringWithFormat:@"%@分",item.score];
+            itemView.scoreLabel.text = [NSString stringWithFormat:DBConstantString.ks_pointsSuffix,item.score];
             itemView.pictureImageView.imageObj = item.image;
         }else{
             itemView.hidden = YES;

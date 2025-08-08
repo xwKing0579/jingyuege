@@ -137,11 +137,11 @@
         [DBCommonConfig getPushAuthorizationCompletion:^(BOOL open) {
             if (!open){
                 DBWeakSelf
-                LEEAlert.alert.config.LeeTitle(@"温馨提示").
-                LeeContent(@"您尚未开启推送通知，请开启后再重新打开小说更新提醒。").
-                LeeCancelAction(@"取消", ^{
+                LEEAlert.alert.config.LeeTitle(DBConstantString.ks_note).
+                LeeContent(DBConstantString.ks_enableNotifications).
+                LeeCancelAction(DBConstantString.ks_cancel, ^{
                     
-                }).LeeAction(@"去打开", ^{
+                }).LeeAction(DBConstantString.ks_open, ^{
                     DBStrongSelfElseReturn
                     [DBCommonConfig openAppSetting];
                 }).LeeShow();
@@ -214,10 +214,10 @@
         case 5:
         {
             DBWeakSelf
-            LEEAlert.alert.config.LeeTitle(@"是否选择彻底删除此书？").
-            LeeCancelAction(@"取消", ^{
+            LEEAlert.alert.config.LeeTitle(DBConstantString.ks_confirmDeleteBook).
+            LeeCancelAction(DBConstantString.ks_cancel, ^{
                 
-            }).LeeAction(@"确定", ^{
+            }).LeeAction(DBConstantString.ks_confirm, ^{
                 DBStrongSelfElseReturn
                 [self dismiss];
                 if (DBCommonConfig.isLogin){
@@ -244,7 +244,7 @@
         case 6:
         {
             if ([DBBookChapterModel removeBookChapter:self.model.chapterForm]){
-                [UIScreen.currentViewController.view showAlertText:@"缓存已清除"];
+                [UIScreen.currentViewController.view showAlertText:DBConstantString.ks_cacheCleared];
             }
             [self dismiss];
         }
@@ -282,7 +282,7 @@
     self.pictureImageView.imageObj = model.image;
     self.titleTextLabel.text = model.name;
     self.contentTextLabel.text = model.author;
-    self.updateLabel.text = [NSString stringWithFormat:@"最新：%@",model.last_chapter_name];
+    self.updateLabel.text = [NSString stringWithFormat:DBConstantString.ks_latestUpdate,model.last_chapter_name];
     
     self.menuView1.isSwitch = model.is_top;
     [DBCommonConfig getPushAuthorizationCompletion:^(BOOL open) {
@@ -351,7 +351,7 @@
         _detailButton.layer.borderColor = DBColorExtension.mediumGrayColor.CGColor;
         _detailButton.layer.borderWidth = 1;
         _detailButton.titleLabel.font = DBFontExtension.bodySixTenFont;
-        [_detailButton setTitle:@"详情" forState:UIControlStateNormal];
+        [_detailButton setTitle:DBConstantString.ks_details forState:UIControlStateNormal];
         [_detailButton setTitleColor:DBColorExtension.mediumGrayColor forState:UIControlStateNormal];
         [_detailButton addTarget:self action:@selector(clickDetailAction) forControlEvents:UIControlEventTouchUpInside];
     }
