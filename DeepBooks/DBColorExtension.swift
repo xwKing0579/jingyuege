@@ -338,7 +338,7 @@ import UIKit
     }
     
     static func ashWhiteColor() -> UIColor{
-        return UIColor.cADADAD()
+        return UIColor.c425111()
     }
     
     

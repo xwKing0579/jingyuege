@@ -39,16 +39,11 @@
 }
 
 - (void)setDarkModel{
-//    DBWeakSelf
-//    [self.view traverseAllSubviewsWithBlock:^(UIView * _Nonnull subview) {
-//        DBStrongSelfElseReturn
-//        [self changeViewColorProperty:subview];
-//    }];
-//    [self changeViewColorProperty:UIScreen.appWindow];
-  
     if (DBColorExtension.userInterfaceStyle) {
+        self.navLabel.textColor = DBColorExtension.whiteAltColor;
         [_leftButton setImage:[[UIImage imageNamed:@"jjRetreatCompass"] imageWithTintColor:DBColorExtension.whiteColor] forState:UIControlStateNormal];
     }else{
+        self.navLabel.textColor = DBColorExtension.blackAltColor;
         [_leftButton setImage:[UIImage imageNamed:@"jjRetreatCompass"] forState:UIControlStateNormal];
     }
 }

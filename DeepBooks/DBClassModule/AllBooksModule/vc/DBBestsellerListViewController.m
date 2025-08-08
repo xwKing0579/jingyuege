@@ -93,9 +93,12 @@
 - (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {
     [super traitCollectionDidChange:previousTraitCollection];
     if (DBColorExtension.userInterfaceStyle) {
+        self.categoryView.titleSelectedColor = DBColorExtension.whiteAltColor;
         self.gradientColorView.backgroundColor = [UIColor gradientColorSize:self.gradientColorView.size direction:DBColorDirectionVertical startColor:DBColorExtension.espressoColor endColor:DBColorExtension.blackColor];
     }else{
+        self.categoryView.titleSelectedColor = DBColorExtension.blackAltColor;
         self.gradientColorView.backgroundColor = [UIColor gradientColorSize:self.gradientColorView.size direction:DBColorDirectionVertical startColor:DBColorExtension.shellPinkColor endColor:DBColorExtension.whiteColor];
     }
+    [self.categoryView reloadData];
 }
 @end
