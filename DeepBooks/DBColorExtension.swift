@@ -247,7 +247,7 @@ import UIKit
  
     //滑杆颜色
     static func goldColor() -> UIColor{
-        return UIColor.cF8CA23()
+        return UIColor.c425B4D()
     }
     
     //tab未选颜色

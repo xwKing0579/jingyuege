@@ -51,8 +51,8 @@
     }
     
     [self.pictureImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-23);
-        make.top.mas_equalTo(UIScreen.navbarHeight-8);
+        make.right.mas_equalTo(-20);
+        make.top.mas_equalTo(UIScreen.navbarHeight-2);
         make.width.mas_equalTo(100);
         make.height.mas_equalTo(titles.count*40+20);
     }];

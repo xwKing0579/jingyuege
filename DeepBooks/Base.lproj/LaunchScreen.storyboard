@@ -25,7 +25,7 @@
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="5YK-1o-DGZ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="by4-Pz-MXA"/>
                             <constraint firstItem="5YK-1o-DGZ" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-150" id="sKV-lb-1td"/>
@@ -38,6 +38,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="appLogo" width="341.33334350585938" height="341.33334350585938"/>
+        <image name="appLogo" width="100" height="100"/>
     </resources>
 </document>
