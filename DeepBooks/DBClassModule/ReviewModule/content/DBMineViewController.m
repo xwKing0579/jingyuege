@@ -11,6 +11,7 @@
 #import <StoreKit/StoreKit.h>
 #import "DBUserSettingModel.h"
 #import "DBAppSwitchModel.h"
+#import "DBImagePicker.h"
 
 @interface DBMineViewController ()
 @property (nonatomic, strong) UIView *headerView;

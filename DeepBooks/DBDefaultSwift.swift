@@ -7,9 +7,7 @@
 
 import Foundation
 import Alamofire
-import DKImagePickerController
 import IQKeyboardManagerSwift
-
 import CryptoKit
 
 class DBVideoDownload: NSObject{
@@ -57,28 +55,6 @@ class DBVideoDownload: NSObject{
     }
 }
 
-class DBImagePicker: NSObject {
-    
-    @objc static func showYPImagePicker(ratio: Double = 1,completion: @escaping (_ image: UIImage) -> Void) {
-        let picker = DKImagePickerController()
-        
-        picker.maxSelectableCount = 1
-        picker.allowMultipleTypes = false
-        picker.assetType = .allPhotos
-        picker.didSelectAssets = { (assets: [DKAsset]) in
-            guard let asset = assets.first else { return }
-            asset.fetchOriginalImage(completeBlock: { (image, info) in
-                if let image = image {
-                    completion(image)
-                }
-            })
-        }
-               
-        picker.modalPresentationStyle = .fullScreen
-        UIScreen.currentViewController().present(picker, animated: true)
-
-    }
-}
 
 
 

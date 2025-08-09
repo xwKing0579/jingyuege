@@ -8,7 +8,7 @@
 #import "DEUserSettingViewController.h"
 #import "DBUserSettingModel.h"
 #import "DEUserSettingTableViewCell.h"
-
+#import "DBImagePicker.h"
 
 @interface DEUserSettingViewController ()
 

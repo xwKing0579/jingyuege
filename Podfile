@@ -30,7 +30,7 @@ target 'DeepBooks' do
   pod 'SAMKeychain'
   pod 'ZFPlayer/AVPlayer'
   
-  pod "DKImagePickerController"
+  
   
   pod 'SVProgressHUD'
   
@@ -43,12 +43,14 @@ target 'DeepBooks' do
   
   pod 'iCarousel'
   pod 'IGListKit'
+  
+  pod 'TZImagePickerController'
 end
 
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
-      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '14.1'
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '15'
     end
   end
 end
