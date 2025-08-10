@@ -44,6 +44,7 @@ target 'DeepBooks' do
   pod 'IGListKit'
   
   pod 'TZImagePickerController'
+  pod "SafeKit"
 end
 
 post_install do |installer|

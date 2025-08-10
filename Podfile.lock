@@ -71,6 +71,15 @@ PODS:
     - MediatomiOS/MSaas
   - MJRefresh (3.7.9)
   - Reachability (3.7.6)
+  - SafeKit (1.4.1):
+    - SafeKit/Foundation (= 1.4.1)
+    - SafeKit/MRC (= 1.4.1)
+    - SafeKit/SafeCore (= 1.4.1)
+  - SafeKit/Foundation (1.4.1):
+    - SafeKit/SafeCore
+  - SafeKit/MRC (1.4.1):
+    - SafeKit/SafeCore
+  - SafeKit/SafeCore (1.4.1)
   - SAMKeychain (1.5.3)
   - SDWebImage (5.21.1):
     - SDWebImage/Core (= 5.21.1)
@@ -119,6 +128,7 @@ DEPENDENCIES:
   - MediatomiOS/SFAdKsAdapter
   - MJRefresh
   - Reachability
+  - SafeKit
   - SAMKeychain
   - SDWebImage
   - SVProgressHUD
@@ -157,6 +167,7 @@ SPEC REPOS:
     - MediatomiOS
     - MJRefresh
     - Reachability
+    - SafeKit
     - SAMKeychain
     - SDWebImage
     - SVProgressHUD
@@ -195,6 +206,7 @@ SPEC CHECKSUMS:
   MediatomiOS: bc41b067802c8a6fcc0a79128e6b5fb6aa258800
   MJRefresh: ff9e531227924c84ce459338414550a05d2aea78
   Reachability: fd0ecd23705e2599e4cceeb943222ae02296cbc6
+  SafeKit: 7d20e4b2680498cda979913bedee5f993f60de96
   SAMKeychain: 483e1c9f32984d50ca961e26818a534283b4cd5c
   SDWebImage: f29024626962457f3470184232766516dee8dfea
   SVProgressHUD: 4837c74bdfe2e51e8821c397825996a8d7de6e22
@@ -210,6 +222,6 @@ SPEC CHECKSUMS:
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
   ZFPlayer: 5cf39e8d9f0c2394a014b0db4767b5b5a6bffe13
 
-PODFILE CHECKSUM: 1bba216be91750199ff1c66b70a73a3fab95dacc
+PODFILE CHECKSUM: 0b21b19f3536996b03c1de3ae91a91cd0ca3bb8c
 
 COCOAPODS: 1.16.2
