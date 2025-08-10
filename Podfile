@@ -23,10 +23,10 @@ target 'DeepBooks' do
 
   pod 'IQKeyboardManagerSwift'
   pod 'MediatomiOS','2.8.4.3.2'
-  pod 'MediatomiOS/SFAdCsjAdapter'
-  pod 'MediatomiOS/SFAdGdtAdapter'
-  pod 'MediatomiOS/SFAdKsAdapter'
-  pod 'MediatomiOS/SFAdBaiduAdapter'
+#  pod 'MediatomiOS/SFAdCsjAdapter'
+#  pod 'MediatomiOS/SFAdGdtAdapter'
+#  pod 'MediatomiOS/SFAdKsAdapter'
+#  pod 'MediatomiOS/SFAdBaiduAdapter'
   
   pod 'SAMKeychain'
   pod 'ZFPlayer/AVPlayer'
@@ -44,7 +44,7 @@ target 'DeepBooks' do
   pod 'IGListKit'
   
   pod 'TZImagePickerController'
-  pod "SafeKit"
+  pod 'SafeKit'
 end
 
 post_install do |installer|
