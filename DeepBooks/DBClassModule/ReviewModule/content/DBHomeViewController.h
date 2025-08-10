@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DBHomeViewController : DBBookTypesViewController
+@interface DBHomeViewController : DBBaseViewController
 
 @end
 
