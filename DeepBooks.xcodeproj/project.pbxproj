@@ -238,6 +238,7 @@
 		F890B5942D92EF63006ED4C9 /* DBUserSettingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F890B5932D92EF63006ED4C9 /* DBUserSettingModel.m */; };
 		F890B5972D92F246006ED4C9 /* DEUserSettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F890B5962D92F246006ED4C9 /* DEUserSettingTableViewCell.m */; };
 		F8915A7E2D83D0E000819539 /* DBScaningSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F8915A7D2D83D0E000819539 /* DBScaningSettingView.m */; };
+		F89412D72E48590B009DC313 /* YYKVStorage+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = F89412D62E48590B009DC313 /* YYKVStorage+Safe.m */; };
 		F8981DB22E1D4DC200A8EA2A /* DBReaderChapterView.m in Sources */ = {isa = PBXBuildFile; fileRef = F8981DB12E1D4DC200A8EA2A /* DBReaderChapterView.m */; };
 		F8981DB82E1E12E600A8EA2A /* DBAutoScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8981DB72E1E12E600A8EA2A /* DBAutoScanViewController.m */; };
 		F8985DC82D8C4F7F00FB9D44 /* DBMyThemeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8985DC72D8C4F7F00FB9D44 /* DBMyThemeViewController.m */; };
@@ -893,6 +894,8 @@
 		F890B5962D92F246006ED4C9 /* DEUserSettingTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DEUserSettingTableViewCell.m; sourceTree = "<group>"; };
 		F8915A7C2D83D0E000819539 /* DBScaningSettingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBScaningSettingView.h; sourceTree = "<group>"; };
 		F8915A7D2D83D0E000819539 /* DBScaningSettingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBScaningSettingView.m; sourceTree = "<group>"; };
+		F89412D52E48590B009DC313 /* YYKVStorage+Safe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YYKVStorage+Safe.h"; sourceTree = "<group>"; };
+		F89412D62E48590B009DC313 /* YYKVStorage+Safe.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "YYKVStorage+Safe.m"; sourceTree = "<group>"; };
 		F8981DB02E1D4DC200A8EA2A /* DBReaderChapterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBReaderChapterView.h; sourceTree = "<group>"; };
 		F8981DB12E1D4DC200A8EA2A /* DBReaderChapterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBReaderChapterView.m; sourceTree = "<group>"; };
 		F8981DB62E1E12E600A8EA2A /* DBAutoScanViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBAutoScanViewController.h; sourceTree = "<group>"; };
@@ -1777,6 +1780,8 @@
 			children = (
 				F8274BCE2E20B9C100050917 /* DeepBooksRelease.entitlements */,
 				F8AE44822DBE87A0001C79D1 /* DeepBooks.entitlements */,
+				F89412D52E48590B009DC313 /* YYKVStorage+Safe.h */,
+				F89412D62E48590B009DC313 /* YYKVStorage+Safe.m */,
 				F8AB736D2DDB2BA600210C4F /* DBAdModule */,
 				F8E7FBD12D773DF6003952EA /* DBSDKModule */,
 				F8E642762D75A0B00051EC37 /* DBSqliteModule */,
@@ -2967,6 +2972,7 @@
 				F87BED432DA51AE100243D7A /* DBAppStoreModel.m in Sources */,
 				F8E7FBDE2D773E19003952EA /* CWLateralSlideConfiguration.m in Sources */,
 				F8BF26802D8EF4C20027A930 /* DBBookTypesCollectionViewCell.m in Sources */,
+				F89412D72E48590B009DC313 /* YYKVStorage+Safe.m in Sources */,
 				F8E7FBDF2D773E19003952EA /* CWDrawerTransition.m in Sources */,
 				F88F96682E23B0CA00D11278 /* DBBestsellerIndexViewController.m in Sources */,
 				F8BF266F2D8EB3BF0027A930 /* DBSearchTagModel.m in Sources */,

@@ -299,7 +299,7 @@
 + (DBAdServerDataModel *)adConfigModel{
     NSString *result = [NSUserDefaults takeValueForKey:DBAdServerDataValue];
     if (result) {
-        return [DBAdServerDataModel yy_modelWithJSON:result];
+        return [DBAdServerDataModel modelWithJSON:result];
     }
     return nil;
 }

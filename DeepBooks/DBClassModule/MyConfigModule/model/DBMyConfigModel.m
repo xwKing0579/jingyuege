@@ -51,7 +51,7 @@
     }
     
    
-    return [NSArray yy_modelArrayWithClass:self.class json:dataModelList];
+    return [NSArray modelArrayWithClass:self.class json:dataModelList];
 }
 
 + (NSArray *)myConfigContent{

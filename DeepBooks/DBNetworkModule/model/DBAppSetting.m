@@ -12,7 +12,7 @@ NSString *const kDBAppSetting = @"kDBAppSetting";
 + (DBAppSetting *)setting{
     NSString *result = [NSUserDefaults takeValueForKey:kDBAppSetting];
     if (result) {
-        DBAppSetting *model = [DBAppSetting yy_modelWithJSON:result];
+        DBAppSetting *model = [DBAppSetting modelWithJSON:result];
         return model;
     }
     
@@ -27,7 +27,7 @@ NSString *const kDBAppSetting = @"kDBAppSetting";
 }
 
 - (void)reloadSetting{
-    [NSUserDefaults saveValue:self.yy_modelToJSONString forKey:kDBAppSetting];
+    [NSUserDefaults saveValue:self.modelToJSONString forKey:kDBAppSetting];
 }
 
 + (void)updateLaunchTime{

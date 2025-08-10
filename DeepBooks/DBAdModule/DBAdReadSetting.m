@@ -27,7 +27,7 @@ NSString *const kDBAdReadSetting = @"kDBAdReadSetting";
     NSString *result = [NSUserDefaults takeValueForKey:kDBAdReadSetting];
     if (result) {
         NSString *today = NSDate.now.dateToTimeString;
-        DBAdReadSetting *model = [DBAdReadSetting yy_modelWithJSON:result];
+        DBAdReadSetting *model = [DBAdReadSetting modelWithJSON:result];
         if ([model.todayString isEqualToString:today]){
             return model;
         }
@@ -36,7 +36,7 @@ NSString *const kDBAdReadSetting = @"kDBAdReadSetting";
 }
 
 - (void)reloadSetting{
-    [NSUserDefaults saveValue:self.yy_modelToJSONString forKey:kDBAdReadSetting];
+    [NSUserDefaults saveValue:self.modelToJSONString forKey:kDBAdReadSetting];
 }
 
 @end

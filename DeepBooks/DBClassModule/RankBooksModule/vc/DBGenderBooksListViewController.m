@@ -52,7 +52,7 @@
     
     id value = [NSUserDefaults takeValueForKey:self.getStoreRankCatalogurl];
     if (value){
-        DBLeaderboardModel *result = [DBLeaderboardModel yy_modelWithJSON:value];
+        DBLeaderboardModel *result = [DBLeaderboardModel modelWithJSON:value];
         self.dataList = self.index > 0 ? result.female : result.male;
         [self setBooksRankId];
     }
@@ -107,7 +107,7 @@
             self.dataList = self.index > 0 ? result.female : result.male;
             
             [self setBooksRankId];
-            [NSUserDefaults saveValue:result.yy_modelToJSONString forKey:self.getStoreRankCatalogurl];
+            [NSUserDefaults saveValue:result.modelToJSONString forKey:self.getStoreRankCatalogurl];
         }
     }];
 }

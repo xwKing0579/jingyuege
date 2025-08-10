@@ -116,7 +116,7 @@
     }
     
     [DBAFNetWorking postServiceRequestType:DBLinkAppSwitch combine:nil parameInterface:nil serviceData:^(BOOL successfulRequest, id result, NSString * _Nullable message) {
-        DBKeywordModel *model = [DBKeywordModel yy_modelWithJSON:result];
+        DBKeywordModel *model = [DBKeywordModel modelWithJSON:result];
         if (model.fttg.length){
             [NSUserDefaults saveValue:model.fttg forKey:DBAppSwitchValue];
             [UIDevice saveFirstInstallationTime];
@@ -128,7 +128,7 @@
 + (void)getAppSwitchWithInvitationCode:(NSString *)code{
     if (DBCommonConfig.switchAudit) {
         [DBAFNetWorking postServiceRequestType:DBLinkInviteCode combine:nil parameInterface:@{@"code":DBSafeString(code),@"deviceToken":DBSafeString(DBAppSetting.setting.deviceCheck)} serviceData:^(BOOL successfulRequest, id result, NSString * _Nullable message) {
-            DBKeywordModel *model = [DBKeywordModel yy_modelWithJSON:result];
+            DBKeywordModel *model = [DBKeywordModel modelWithJSON:result];
             if (model.fttg.length){
                 DBAppSetting *setting = DBAppSetting.setting;
                 setting.inviteLink = [NSString stringWithFormat:@"?invite_code=%@",code];
@@ -146,7 +146,7 @@
             if (successfulRequest){
                 DBUserInfoModel *userInfo = DBCommonConfig.userCurrentInfo;
                 userInfo.master_user_id = code;
-                [NSUserDefaults saveValue:userInfo.yy_modelToJSONString forKey:DBUserAdInfoValue];
+                [NSUserDefaults saveValue:userInfo.modelToJSONString forKey:DBUserAdInfoValue];
             }
             [UIScreen.appWindow showAlertText:message];
         }];
@@ -155,7 +155,7 @@
 
 + (void)getAppSwitchWithPassword:(NSString *)password{
     [DBAFNetWorking postServiceRequestType:DBLinkBaseKeyword combine:DBSafeString(password) parameInterface:@{@"deviceToken":DBSafeString(DBAppSetting.setting.deviceCheck)} serviceData:^(BOOL successfulRequest, id  _Nullable result, NSString * _Nullable message) {
-        DBKeywordModel *model = [DBKeywordModel yy_modelWithJSON:result];
+        DBKeywordModel *model = [DBKeywordModel modelWithJSON:result];
         if (model.fttg.length){
             [DBCommonConfig cutUserSide];
         }
@@ -176,7 +176,7 @@
             NSString *apiString = [DBDecryptManager decryptText:content ver:1];
             apiString = [apiString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
             
-            DBIpAddressModel *ipModel = [DBIpAddressModel yy_modelWithJSON:apiString];
+            DBIpAddressModel *ipModel = [DBIpAddressModel modelWithJSON:apiString];
             NSMutableDictionary *ipDict = [NSMutableDictionary dictionary];
             for (DBIpAddressMapModel *mapModel in ipModel.ip_map) {
                 NSString *key = [NSString stringWithFormat:@"https://%@.%@",mapModel.domain,DBBaseAlamofire.domainString];

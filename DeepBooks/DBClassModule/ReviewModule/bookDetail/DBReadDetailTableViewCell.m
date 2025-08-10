@@ -6,7 +6,7 @@
 //
 
 #import "DBReadDetailTableViewCell.h"
-#import <YYText.h>
+
 
 @interface DBReadDetailTableViewCell ()
 @property (nonatomic, strong) UIImageView *coverImageView;
@@ -89,7 +89,7 @@
     NSMutableAttributedString *attri = [NSAttributedString combineAttributeTexts:@[spaceString,moreString.textMultilingual] colors:@[DBColorExtension.mediumGrayColor,DBColorExtension.azureColor] fonts:@[DBFontExtension.bodyMediumFont,DBFontExtension.pingFangMediumRegular]];
     
     YYTextHighlight *hi = [YYTextHighlight new];
-    [attri yy_setTextHighlight:hi range:[attri.string rangeOfString:moreString]];
+    [attri setTextHighlight:hi range:[attri.string rangeOfString:moreString]];
  
     if (!isExpand) {
         self.contentTextLabel.attributedText = contentAttri;
@@ -98,7 +98,7 @@
         seeMore.attributedText = attri;
         [seeMore sizeToFit];
         
-        NSAttributedString *truncationToken = [NSAttributedString yy_attachmentStringWithContent:seeMore contentMode:UIViewContentModeCenter attachmentSize:seeMore.frame.size alignToFont:attri.yy_font alignment:YYTextVerticalAlignmentBottom];
+        NSAttributedString *truncationToken = [NSAttributedString attachmentStringWithContent:seeMore contentMode:UIViewContentModeCenter attachmentSize:seeMore.frame.size alignToFont:attri.font alignment:YYTextVerticalAlignmentBottom];
         self.contentTextLabel.truncationToken = truncationToken;
     }else{
         [contentAttri appendAttributedString:attri];

@@ -24,7 +24,7 @@
     NSMutableArray *splashAds = [NSMutableArray array];
     DBAdPosModel *posAd = [DBUnityAdConfig adPosWithSpaceType:spaceType];
     
-    NSString *extra = posAd.extra.yy_modelToJSONString;
+    NSString *extra = posAd.extra.modelToJSONString;
     for (DBAdsModel *adModel in posAd.ads) {
         if (adModel.id.length == 0) continue;
         adModel.position = posAd.position;

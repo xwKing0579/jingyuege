@@ -71,7 +71,7 @@
     
     id value = [NSUserDefaults takeValueForKey:self.url];
     if (value){
-        self.model = [DBAllBooksModel yy_modelWithJSON:value];
+        self.model = [DBAllBooksModel modelWithJSON:value];
         self.dataList = self.model.data;
         self.cycleScrollView.imageModelGroup = self.model.banner;
         [self.listRollingView reloadData];
@@ -196,7 +196,7 @@
             self.cycleScrollView.imageModelGroup = result.banner;
             self.model = result;
             self.dataList = self.model.data;
-            [NSUserDefaults saveValue:result.yy_modelToJSONString forKey:self.url];
+            [NSUserDefaults saveValue:result.modelToJSONString forKey:self.url];
         }else{
             [self.view showAlertText:message];
         }

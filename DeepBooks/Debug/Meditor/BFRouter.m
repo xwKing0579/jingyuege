@@ -63,7 +63,7 @@ static NSString *_lastJumpUrl = nil;
         if (obj.value) [propertys setObject:obj.value forKey:obj.name];
     }];
     
-    __kindof UIViewController *vc = [class yy_modelWithDictionary:propertys];
+    __kindof UIViewController *vc = [class modelWithDictionary:propertys];
     __kindof UIViewController *currentVC = UIViewController.currentViewController;
     if (!currentVC) return nil;
     

@@ -92,7 +92,7 @@
     }
     if (bookIds.count){
         if (DBCommonConfig.isLogin && !DBCommonConfig.switchAudit){
-            NSString *book_id = [bookIds.yy_modelToJSONString stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+            NSString *book_id = [bookIds.modelToJSONString stringByReplacingOccurrencesOfString:@"\"" withString:@""];
             NSDictionary *parameInterface = @{@"book_id":book_id,@"form":@"1"};
             [self.view showHudLoading];
             [DBAFNetWorking postServiceRequestType:DBLinkBookShelfMultiBookDelete combine:nil parameInterface:parameInterface serviceData:^(BOOL successfulRequest, id  _Nullable result, NSString * _Nullable message) {

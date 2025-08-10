@@ -9,7 +9,7 @@
 #import "BFAppInfoManager.h"
 #import "BFRAMUsage.h"
 #import "NSString+Category.h"
-#import <YYModel/YYModel.h>
+
 @implementation BFAppInfoModel
 
 + (NSDictionary *)modelContainerPropertyGenericClass {
@@ -40,7 +40,7 @@
               @{@"name":@"内存总量",@"content":[NSString sizeString:[BFRAMUsage getSystemRAMTotal]]},
           ]}
     ];
-    return [NSArray yy_modelArrayWithClass:[self class] json:data];
+    return [NSArray modelArrayWithClass:[self class] json:data];
 }
 
 @end

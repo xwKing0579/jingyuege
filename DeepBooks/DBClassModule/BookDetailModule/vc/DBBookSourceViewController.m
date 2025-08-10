@@ -55,7 +55,7 @@
     [DBAFNetWorking getServiceRequestType:DBLinkBookSummary combine:self.book.book_id parameInterface:nil modelClass:DBBookSourceModel.class serviceData:^(BOOL successfulRequest, NSArray <DBBookSourceModel *> *result, NSString * _Nullable message) {
         [self.listRollingView removeHudLoading];
         if (successfulRequest){
-            if ([cacheList.yy_modelToJSONString isEqualToString:result.yy_modelToJSONString]) return;
+            if ([cacheList.modelToJSONString isEqualToString:result.modelToJSONString]) return;
             self.dataList = result;
     
             [DBBookSourceModel updateBookSources:result sourceForm:self.book.sourceForm];

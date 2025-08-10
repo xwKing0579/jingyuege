@@ -40,7 +40,7 @@ static NSString *_lastOpenLink = nil;
         if (obj.value) [temp setValue:obj.value forKey:obj.name];
     }];
     
-    UIViewController *targetVc = [NSClassFromString(path) yy_modelWithDictionary:temp];
+    UIViewController *targetVc = [NSClassFromString(path) modelWithDictionary:temp];
     if (!targetVc) return nil;
 
     BOOL animation = ![[params valueForKey:kDBRouterPathNoAnimation] boolValue];

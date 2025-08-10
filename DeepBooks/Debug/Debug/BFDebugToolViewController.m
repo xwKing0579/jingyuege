@@ -179,7 +179,7 @@ static NSString *identifier = @"BFDebugToolViewCell";
         @{@"title":@"视图数据",@"image":@"pointView",@"url":BFString.vc_fast_point},
     ];
     
-    return [NSArray yy_modelArrayWithClass:[self class] json:data];
+    return [NSArray modelArrayWithClass:[self class] json:data];
 }
 
 @end

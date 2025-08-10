@@ -11,7 +11,7 @@
 #import "BFString+Debug.h"
 #import "UIViewController+Category.h"
 #import "NSObject+Mediator.h"
-#import <YYModel/YYModel.h>
+
 NS_ASSUME_NONNULL_BEGIN
 
 FOUNDATION_EXTERN NSString *const kBFRouterPathURLName;

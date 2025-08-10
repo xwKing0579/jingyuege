@@ -85,7 +85,7 @@
     if (success && data){
         id jsonData = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:NULL];
         if ([jsonData isKindOfClass:[NSDictionary class]] && [(NSDictionary *)jsonData valueForKey:@"code"]) {
-            DBNetResultModel *model = [DBNetResultModel yy_modelWithDictionary:jsonData];
+            DBNetResultModel *model = [DBNetResultModel modelWithDictionary:jsonData];
             NSString *msg = model.msg;
             if (model.code != 1) {
                 result(NO, jsonData, msg);
@@ -98,7 +98,7 @@
             }
             jsonData = model.data;
             if ([jsonData isKindOfClass:[NSDictionary class]] && [jsonData valueForKey:@"ver"]){
-                DBDataResultModel *dataModel = [DBDataResultModel yy_modelWithDictionary:model.data];
+                DBDataResultModel *dataModel = [DBDataResultModel modelWithDictionary:model.data];
                 NSString *dataString = [DBDecryptManager decryptText:dataModel.content ver:dataModel.ver];
                 NSData *dataData = [dataString dataUsingEncoding:NSUTF8StringEncoding];
                 if (dataData) jsonData = [NSJSONSerialization JSONObjectWithData:dataData options:kNilOptions error:NULL];
@@ -106,7 +106,7 @@
                 if ([jsonData isKindOfClass:[NSDictionary class]] && [jsonData valueForKey:@"lists"]){
                     id lists = jsonData[@"lists"];
                     if ([lists isKindOfClass:NSDictionary.class] && [lists valueForKey:@"ver"]){
-                        DBDataResultModel *moreModel = [DBDataResultModel yy_modelWithDictionary:lists];
+                        DBDataResultModel *moreModel = [DBDataResultModel modelWithDictionary:lists];
                         NSString *moreDataString = [DBDecryptManager decryptText:moreModel.content ver:moreModel.ver];
                         NSData *moreData = [moreDataString dataUsingEncoding:NSUTF8StringEncoding];
                         if (moreData) jsonData = [NSJSONSerialization JSONObjectWithData:moreData options:kNilOptions error:NULL];
@@ -117,19 +117,19 @@
             
             if (modelClass){
                 if ([jsonData isKindOfClass:[NSDictionary class]]){
-                    result(YES, [modelClass yy_modelWithDictionary:jsonData], msg);
+                    result(YES, [modelClass modelWithDictionary:jsonData], msg);
                     return;
                 }else if ([jsonData isKindOfClass:[NSArray class]]){
-                    result(YES, [NSArray yy_modelArrayWithClass:modelClass json:jsonData], msg);
+                    result(YES, [NSArray modelArrayWithClass:modelClass json:jsonData], msg);
                     return;
                 }
             }
         }else if (modelClass){
             if ([jsonData isKindOfClass:[NSDictionary class]]){
-                result(YES, [modelClass yy_modelWithDictionary:jsonData], @"");
+                result(YES, [modelClass modelWithDictionary:jsonData], @"");
                 return;
             }else if ([jsonData isKindOfClass:[NSArray class]]){
-                result(YES, [NSArray yy_modelArrayWithClass:modelClass json:jsonData], @"");
+                result(YES, [NSArray modelArrayWithClass:modelClass json:jsonData], @"");
                 return;
             }
         }

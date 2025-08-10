@@ -32,7 +32,7 @@ static NSString *identifierCollectCell = @"DBBookTypesCollectionViewCell";
     
     id value = [NSUserDefaults takeValueForKey:self.getClassifyCatalogUrl];
     if (value){
-        DBBookTypesModel *result = [DBBookTypesModel yy_modelWithJSON:value];
+        DBBookTypesModel *result = [DBBookTypesModel modelWithJSON:value];
         switch (self.index) {
             case 0:
                 self.dataList = result.male;
@@ -72,7 +72,7 @@ static NSString *identifierCollectCell = @"DBBookTypesCollectionViewCell";
                 default:
                     break;
             }
-            [NSUserDefaults saveValue:result.yy_modelToJSONString forKey:self.getClassifyCatalogUrl];
+            [NSUserDefaults saveValue:result.modelToJSONString forKey:self.getClassifyCatalogUrl];
         }else{
             [self.view showAlertText:message];
         }

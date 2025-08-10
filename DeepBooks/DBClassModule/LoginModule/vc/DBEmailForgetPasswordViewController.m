@@ -109,7 +109,7 @@
     [DBAFNetWorking postServiceRequestType:DBLinkUserPhoneVeriCodeSend combine:nil parameInterface:parameInterface serviceData:^(BOOL successfulRequest, NSDictionary *result, NSString * _Nullable message) {
         [UIScreen.currentViewController.view removeHudLoading];
         if (successfulRequest){
-            DBRegisterModel *model = [DBRegisterModel yy_modelWithDictionary:result];
+            DBRegisterModel *model = [DBRegisterModel modelWithDictionary:result];
             if (model.type == 1){
                 NSString *message = [NSString stringWithFormat:DBConstantString.ks_accountRecoveryEmail,email];
                 LEEAlert.alert.config.LeeTitle(DBConstantString.ks_note).

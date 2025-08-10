@@ -20,7 +20,7 @@
     NSArray *dataList = @[@{@"title":DBConstantString.ks_avatar,@"avater":imageData?:avater,@"isArrow":@1},
                           @{@"title":DBConstantString.ks_username,@"content":DBSafeString(DBCommonConfig.userDataInfo.phone),@"isArrow":@0},
                           @{@"title":DBConstantString.ks_nickname,@"content":DBSafeString(DBCommonConfig.userDataInfo.nick),@"isArrow":@1}];
-    return [NSArray yy_modelArrayWithClass:self.class json:dataList];
+    return [NSArray modelArrayWithClass:self.class json:dataList];
 }
 
 @end

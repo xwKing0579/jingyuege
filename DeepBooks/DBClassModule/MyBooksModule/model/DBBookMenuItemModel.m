@@ -27,7 +27,7 @@
                               @{@"icon":@"jjEradicationSigil",@"name":DBConstantString.ks_clearCache,@"mid":@6},
         ];
     }
-    return [NSArray yy_modelArrayWithClass:self.class json:dateList];
+    return [NSArray modelArrayWithClass:self.class json:dateList];
 }
 
 @end

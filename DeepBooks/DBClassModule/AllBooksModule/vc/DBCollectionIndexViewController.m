@@ -84,7 +84,7 @@
         [self.listRollingView.mj_header endRefreshing];
         [self.listRollingView.mj_footer endRefreshing];
         if (successfulRequest){
-            NSArray *lists = [NSArray yy_modelArrayWithClass:DBBooksDataModel.class json:result[@"lists"]];
+            NSArray *lists = [NSArray modelArrayWithClass:DBBooksDataModel.class json:result[@"lists"]];
             NSMutableArray *dataList = [NSMutableArray arrayWithArray:self.currentPage==1?@[]:self.dataList];
             [dataList addObjectsFromArray:lists];
             self.dataList = dataList;

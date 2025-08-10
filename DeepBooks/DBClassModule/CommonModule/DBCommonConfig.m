@@ -41,7 +41,7 @@
     NSNumber *indexValue = [NSUserDefaults takeValueForKey:DBChoiceCodeValue];
     if (indexValue){
         NSString *value = [NSUserDefaults takeValueForKey:DBContryCodeValue];
-        NSArray *dataList = [NSArray yy_modelArrayWithClass:DBContryCodeModel.class json:value];
+        NSArray *dataList = [NSArray modelArrayWithClass:DBContryCodeModel.class json:value];
         if (dataList.count > indexValue.intValue){
             return dataList[indexValue.intValue];
         }
@@ -175,7 +175,7 @@
     for (NSURLQueryItem *queryItem in components.queryItems) {
         [queryParams setObject:queryItem.value forKey:queryItem.name];
     }
-    DBUserInviteCodeModel *inviteModel = [DBUserInviteCodeModel yy_modelWithJSON:queryParams];
+    DBUserInviteCodeModel *inviteModel = [DBUserInviteCodeModel modelWithJSON:queryParams];
     NSDictionary *parameInterface = @{@"code":DBSafeString(inviteModel.invite_code),@"inviter":DBSafeString(inviteModel.invite_id),@"deviceToken":DBSafeString(DBAppSetting.setting.deviceCheck)};
     [DBAFNetWorking postServiceRequestType:DBLinkInviteCode combine:nil parameInterface:parameInterface serviceData:^(BOOL successfulRequest, id result, NSString * _Nullable message) {
         if (successfulRequest){
@@ -185,10 +185,10 @@
             
             DBUserInfoModel *userInfo = DBCommonConfig.userCurrentInfo;
             userInfo.master_user_id = link;
-            [NSUserDefaults saveValue:userInfo.yy_modelToJSONString forKey:DBUserAdInfoValue];
+            [NSUserDefaults saveValue:userInfo.modelToJSONString forKey:DBUserAdInfoValue];
         }
         
-        DBKeywordModel *model = [DBKeywordModel yy_modelWithJSON:result];
+        DBKeywordModel *model = [DBKeywordModel modelWithJSON:result];
         if (model.fttg.length){
             DBAppSetting *setting = DBAppSetting.setting;
             setting.inviteLink = link;
@@ -205,7 +205,7 @@ static DBUserModel *_userDataInfo;
     if (!_userDataInfo){
         id value = [NSUserDefaults takeValueForKey:DBUserInfoValue];
         if (value){
-            _userDataInfo = [DBUserModel yy_modelWithJSON:value];
+            _userDataInfo = [DBUserModel modelWithJSON:value];
             return _userDataInfo;
         }
         return DBUserModel.new;
@@ -215,12 +215,12 @@ static DBUserModel *_userDataInfo;
 
 + (void)updateUserInfo:(DBUserModel *)user{
     _userDataInfo = user;
-    [NSUserDefaults saveValue:user.yy_modelToJSONString forKey:DBUserInfoValue];
+    [NSUserDefaults saveValue:user.modelToJSONString forKey:DBUserInfoValue];
 }
 
 + (DBUserInfoModel *)userCurrentInfo{
     id value = [NSUserDefaults takeValueForKey:DBUserAdInfoValue];
-    if (value) return [DBUserInfoModel yy_modelWithJSON:value];
+    if (value) return [DBUserInfoModel modelWithJSON:value];
     return DBUserInfoModel.new;
 }
 
@@ -229,7 +229,7 @@ static DBAppConfigModel *_appConfig;
     if (!_appConfig){
         id value = [NSUserDefaults takeValueForKey:DBAppConfigValue];
         if (value){
-            _appConfig = [DBAppConfigModel yy_modelWithJSON:value];
+            _appConfig = [DBAppConfigModel modelWithJSON:value];
             return _appConfig;
         }
         return DBAppConfigModel.new;
@@ -239,7 +239,7 @@ static DBAppConfigModel *_appConfig;
 
 + (void)updateAppConfig:(DBAppConfigModel *)appConfig{
     _appConfig = appConfig;
-    [NSUserDefaults saveValue:appConfig.yy_modelToJSONString forKey:DBAppConfigValue];
+    [NSUserDefaults saveValue:appConfig.modelToJSONString forKey:DBAppConfigValue];
 }
 
 + (NSString *)userId{
@@ -470,7 +470,7 @@ static DBAppConfigModel *_appConfig;
                 if (resultCount == 1) {
                     NSArray *results = respDict[@"results"];
                     NSDictionary *appStoreInfo = [results firstObject];
-                    DBAppStoreModel *model = [DBAppStoreModel yy_modelWithJSON:appStoreInfo];
+                    DBAppStoreModel *model = [DBAppStoreModel modelWithJSON:appStoreInfo];
                     NSComparisonResult compare = [model.version compare:UIApplication.appVersion options:NSNumericSearch];
                     if (compare == NSOrderedDescending) {
                         if (completion) completion(YES);

@@ -29,7 +29,7 @@
     if ([selfAd.type isEqualToString:@"grid"]) {
         NSMutableArray *temp = [NSMutableArray array];
         for (NSArray *grid in selfAd.grid) {
-            NSArray <DBSelfAdModel *>*adList = [NSArray yy_modelArrayWithClass:DBSelfAdModel.class json:grid];
+            NSArray <DBSelfAdModel *>*adList = [NSArray modelArrayWithClass:DBSelfAdModel.class json:grid];
             [temp addObject:adList];
         }
         

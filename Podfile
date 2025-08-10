@@ -13,12 +13,13 @@ target 'DeepBooks' do
   pod 'Reachability'
   pod 'JXCategoryView'
   pod 'SDWebImage'
-  pod 'YYModel'
+#  pod 'YYModel'
   pod 'MJRefresh'
   pod 'Masonry'
 
   pod 'Alamofire'
-  pod 'YYText'
+#  pod 'YYText'
+  pod 'YYKit'
 
   pod 'IQKeyboardManagerSwift'
   pod 'MediatomiOS','2.8.4.3.2'
@@ -29,8 +30,6 @@ target 'DeepBooks' do
   
   pod 'SAMKeychain'
   pod 'ZFPlayer/AVPlayer'
-  
-  
   
   pod 'SVProgressHUD'
   

@@ -70,7 +70,7 @@
     [DBAFNetWorking postServiceRequestType:DBLinkUserPhoneVeriCodeSend combine:nil parameInterface:parameInterface serviceData:^(BOOL successfulRequest, NSDictionary *result, NSString * _Nullable message) {
         [self.view removeHudLoading];
         if (successfulRequest){
-            DBRegisterModel *model = [DBRegisterModel yy_modelWithDictionary:result];
+            DBRegisterModel *model = [DBRegisterModel modelWithDictionary:result];
             if (model.type == 1){
                 NSString *message = [NSString stringWithFormat:DBConstantString.ks_accountRecoveryPhone,mobile];
                 LEEAlert.alert.config.LeeTitle(DBConstantString.ks_note).
@@ -139,7 +139,7 @@
     }
     NSMutableArray *comicsID = @[];
     
-    NSString *ids = @[@{@"form":@"1",@"book_id":booksID},@{@"form":@"3",@"book_id":comicsID}].yy_modelToJSONString;
+    NSString *ids = @[@{@"form":@"1",@"book_id":booksID},@{@"form":@"3",@"book_id":comicsID}].modelToJSONString;
     NSString *tel = [self.contryCodeButton.titleLabel.text stringByReplacingOccurrencesOfString:@"+" withString:@""];
     NSDictionary *dict = @{@"login":mobile,@"password":password,@"phone_code":code,@"tel":tel,@"sex":DBAppSetting.setting.sex?:@"0",@"ids":ids};
    

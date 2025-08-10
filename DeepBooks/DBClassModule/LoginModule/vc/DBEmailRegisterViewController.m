@@ -123,7 +123,7 @@
     }
     NSMutableArray *comicsID = @[];
     
-    NSString *ids = @[@{@"form":@"1",@"book_id":booksID},@{@"form":@"3",@"book_id":comicsID}].yy_modelToJSONString;
+    NSString *ids = @[@{@"form":@"1",@"book_id":booksID},@{@"form":@"3",@"book_id":comicsID}].modelToJSONString;
     NSDictionary *dict = @{@"email":email,@"password":password,@"phone_code":code,@"sex":DBAppSetting.setting.sex?:@"0",@"ids":ids};
    
     NSMutableDictionary *parameInterface = [NSMutableDictionary dictionaryWithDictionary:dict];

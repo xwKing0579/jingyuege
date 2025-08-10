@@ -62,7 +62,7 @@
     NSDictionary *parameInterface = @{@"time_token":DBSafeString(user.data.ad_token?:user.token)};
     [DBAFNetWorking getServiceRequestType:DBLinkUserInfoCenter combine:nil parameInterface:parameInterface modelClass:DBUserInfoModel.class serviceData:^(BOOL successfulRequest, DBUserInfoModel *result, NSString * _Nullable message) {
         if (successfulRequest){
-            [NSUserDefaults saveValue:result.yy_modelToJSONString forKey:DBUserAdInfoValue];
+            [NSUserDefaults saveValue:result.modelToJSONString forKey:DBUserAdInfoValue];
         }
         if (completion) completion(successfulRequest);
     }];

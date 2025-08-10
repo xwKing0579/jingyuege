@@ -49,7 +49,7 @@
     [dataList addObject:data1];
     [dataList addObject:data2];
     if (DBCommonConfig.isLogin) [dataList addObject:data3];
-    return [NSArray yy_modelArrayWithClass:self.class json:dataList];
+    return [NSArray modelArrayWithClass:self.class json:dataList];
 }
 
 + (NSArray *)dataSourceList2{
@@ -57,7 +57,7 @@
                             @{@"name":DBConstantString.ks_deleteAccount,@"isArrow":@1,@"vc":DBAccountCancel},
                             @{@"name":DBConstantString.ks_logout,@"isArrow":@1}
     ];
-    return [NSArray yy_modelArrayWithClass:DBMySettingModel.class json:data];
+    return [NSArray modelArrayWithClass:DBMySettingModel.class json:data];
 }
 
 + (NSDictionary<NSString *,id> *)modelContainerPropertyGenericClass{

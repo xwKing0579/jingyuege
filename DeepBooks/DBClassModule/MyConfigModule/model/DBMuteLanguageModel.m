@@ -14,7 +14,7 @@
     NSArray *data = @[@{@"language":@"简体中文",@"abbrev":@"zh-Hans"},
                       @{@"language":@"繁体中文",@"abbrev":@"zh-Hant"},
                       @{@"language":@"English",@"abbrev":@"en"}];
-    return [NSArray yy_modelArrayWithClass:self.class json:data];
+    return [NSArray modelArrayWithClass:self.class json:data];
 }
 
 + (void)saveLanguageAbbrev:(NSString *)abbrev{

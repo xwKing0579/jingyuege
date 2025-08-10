@@ -97,8 +97,9 @@ PODS:
   - WCDB (2.1.13):
     - WCDBOptimizedSQLCipher (= 1.4.7)
   - WCDBOptimizedSQLCipher (1.4.7)
-  - YYModel (1.0.4)
-  - YYText (1.0.7)
+  - YYKit (1.0.9):
+    - YYKit/no-arc (= 1.0.9)
+  - YYKit/no-arc (1.0.9)
   - ZFPlayer/AVPlayer (4.1.4):
     - ZFPlayer/Core
   - ZFPlayer/Core (4.1.4)
@@ -129,8 +130,7 @@ DEPENDENCIES:
   - UMPush
   - UYuMao
   - WCDB
-  - YYModel
-  - YYText
+  - YYKit
   - ZFPlayer/AVPlayer
 
 SPEC REPOS:
@@ -169,8 +169,7 @@ SPEC REPOS:
     - UYuMao
     - WCDB
     - WCDBOptimizedSQLCipher
-    - YYModel
-    - YYText
+    - YYKit
     - ZFPlayer
 
 SPEC CHECKSUMS:
@@ -208,10 +207,9 @@ SPEC CHECKSUMS:
   UYuMao: 92bfc024e97899943546703813b2686af72597d3
   WCDB: b68c0f3ee979b4cd0d1b4bc920214e1369ddc834
   WCDBOptimizedSQLCipher: 9bceac087eff9625b151838d3a30364f53f71ad9
-  YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
-  YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
+  YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
   ZFPlayer: 5cf39e8d9f0c2394a014b0db4767b5b5a6bffe13
 
-PODFILE CHECKSUM: 1c2977e67e63ca94da82a7f7c59379218d1bda89
+PODFILE CHECKSUM: 1bba216be91750199ff1c66b70a73a3fab95dacc
 
 COCOAPODS: 1.16.2

@@ -70,12 +70,12 @@ NSString *const kReaderFontDataList = @"kReaderFontDataList";
                 model.isSystem = NO;
                 model.url = fontModel.url;
                 model.image = fontModel.img;
-                [fontList addObject:model.yy_modelToJSONObject];
+                [fontList addObject:model.modelToJSONObject];
             }
         }
         dataList = fontList;
     }
-    return [NSArray yy_modelArrayWithClass:self.class json:dataList];
+    return [NSArray modelArrayWithClass:self.class json:dataList];
 }
 
 + (void)resetFontName{
@@ -84,7 +84,7 @@ NSString *const kReaderFontDataList = @"kReaderFontDataList";
 
 + (void)saveFontDataList:(NSArray *)dateList{
     if (dateList.count <= 2) return;
-    [NSUserDefaults saveValue:dateList.yy_modelToJSONString forKey:kReaderFontDataList];
+    [NSUserDefaults saveValue:dateList.modelToJSONString forKey:kReaderFontDataList];
 }
 
 - (void)downloadFontWithName:(DBFontModel *)fontModel completion:(_Nullable DBFontDownloadCompletionBlock)completion;{

@@ -39,7 +39,7 @@
 
 - (void)getDataSource{
     NSString *value = [NSUserDefaults takeValueForKey:DBContryCodeValue];
-    NSArray *dataList = [NSArray yy_modelArrayWithClass:DBContryCodeModel.class json:value];
+    NSArray *dataList = [NSArray modelArrayWithClass:DBContryCodeModel.class json:value];
     if (dataList.count){
         self.dataList = dataList;
         [self.listRollingView reloadData];
@@ -51,7 +51,7 @@
             self.dataList = result;
             [self.listRollingView reloadData];
             
-            [NSUserDefaults saveValue:result.yy_modelToJSONString forKey:DBContryCodeValue];
+            [NSUserDefaults saveValue:result.modelToJSONString forKey:DBContryCodeValue];
         }else{
             [self.view showAlertText:message];
         }

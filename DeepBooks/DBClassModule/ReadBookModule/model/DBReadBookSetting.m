@@ -49,14 +49,14 @@ NSString *const kDBReaderBookSetting = @"kDBReaderBookSetting";
 + (DBReadBookSetting *)setting{
     NSString *result = [NSUserDefaults takeValueForKey:kDBReaderBookSetting];
     if (result) {
-        DBReadBookSetting *model = [DBReadBookSetting yy_modelWithJSON:result];
+        DBReadBookSetting *model = [DBReadBookSetting modelWithJSON:result];
         return model;
     }
     return DBReadBookSetting.new;
 }
 
 - (void)reloadSetting{
-    [NSUserDefaults saveValue:self.yy_modelToJSONString forKey:kDBReaderBookSetting];
+    [NSUserDefaults saveValue:self.modelToJSONString forKey:kDBReaderBookSetting];
 }
 
 + (NSArray <UIColor *>*)settingBackgroundColors{

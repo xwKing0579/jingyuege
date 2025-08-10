@@ -19,7 +19,7 @@ static const DBConstantString *_constantModel;
     NSString *filePath = [[NSBundle mainBundle] pathForResource:resource ofType:@"json"];
     NSString *jsonString = [[NSString alloc] initWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
     jsonString = [GTMBase64 decodeBase64String:jsonString];
-    DBConstantString *model = [DBConstantString yy_modelWithJSON:jsonString];
+    DBConstantString *model = [DBConstantString modelWithJSON:jsonString];
     if (!model){
         NSLog(@"异常!!!!!!异常!!!!!!!! %@",jsonString);
     }

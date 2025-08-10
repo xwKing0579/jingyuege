@@ -30,7 +30,7 @@
 }
 
 - (void)reloadAdConfig{
-    [NSUserDefaults saveValue:self.yy_modelToJSONString forKey:DBAdServerDataValue];
+    [NSUserDefaults saveValue:self.modelToJSONString forKey:DBAdServerDataValue];
 }
 
 + (NSDictionary<NSString *,id> *)modelContainerPropertyGenericClass{
