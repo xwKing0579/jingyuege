@@ -89,7 +89,7 @@
 - (UIImageView *)headerView{
     if (!_headerView){
         _headerView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, UIScreen.screenWidth, UIScreen.navbarSafeHeight+100)];
-        
+        _headerView.userInteractionEnabled = YES;
         
         [_headerView addSubviews:@[self.avaterImageView]];
         [self.avaterImageView mas_makeConstraints:^(MASConstraintMaker *make) {

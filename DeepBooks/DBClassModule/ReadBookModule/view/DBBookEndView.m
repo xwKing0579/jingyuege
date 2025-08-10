@@ -30,7 +30,7 @@
     
     NSArray *titles = @[DBConstantString.ks_retry,DBConstantString.ks_viewOtherSources,DBConstantString.ks_viewMyShelf,DBConstantString.ks_viewBookstore];
     if (DBCommonConfig.switchAudit){
-        titles = @[DBConstantString.ks_retry,DBConstantString.ks_viewOtherSources,DBConstantString.ks_viewMyShelf];
+        titles = @[DBConstantString.ks_retry,DBConstantString.ks_viewOtherSources];
     }
     __block UIView *lastView = self.titlePageLabel;
     [titles enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {

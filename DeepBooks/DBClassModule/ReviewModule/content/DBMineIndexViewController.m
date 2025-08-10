@@ -11,6 +11,7 @@
 static NSString *identifierCollectCell = @"DBMineIndexCollectionViewCell";
 @interface DBMineIndexViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *myBookCollectionView;
+@property (nonatomic, strong) UIView *customEmptyView;
 @end
 
 @implementation DBMineIndexViewController
@@ -19,15 +20,15 @@ static NSString *identifierCollectCell = @"DBMineIndexCollectionViewCell";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = UIColor.clearColor;
+    self.navgationView.backgroundColor = UIColor.clearColor;
     [self.view addSubview:self.myBookCollectionView];
     [self.myBookCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);
     }];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    self.navgationView.backgroundColor = UIColor.clearColor;
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
     NSMutableArray *dataList = [NSMutableArray arrayWithArray:self.index==0?DBBookModel.getAllCollectBooks:DBBookModel.getAllReadingBooks];
     self.dataList = dataList;
     [self.myBookCollectionView reloadData];
@@ -90,4 +91,43 @@ static NSString *identifierCollectCell = @"DBMineIndexCollectionViewCell";
     return self.view;
 }
 
+
+- (UIView *)customEmptyView{
+    if (!_customEmptyView){
+        _customEmptyView = [[UIView alloc] initWithFrame:self.view.bounds];
+        _customEmptyView.layer.zPosition = 66;
+        [self.listRollingView addSubviews:@[_customEmptyView]];
+        
+        UIImageView *iconImageView = [[UIImageView alloc] init];
+        iconImageView.contentMode = UIViewContentModeScaleAspectFill;
+        iconImageView.image = [UIImage imageNamed:@"jjNullCanvas"];
+        
+        UIButton *reloadButton = [[UIButton alloc] init];
+        reloadButton.titleLabel.font = DBFontExtension.pingFangSemiboldRegular;
+        reloadButton.layer.cornerRadius = 18;
+        reloadButton.layer.masksToBounds = YES;
+        reloadButton.layer.borderWidth = 1;
+        reloadButton.contentEdgeInsets = UIEdgeInsetsMake(8, 15, 8, 15);
+        reloadButton.layer.borderColor = DBColorExtension.sunsetOrangeColor.CGColor;
+        [reloadButton setTitle:@"去书城逛逛".textMultilingual forState:UIControlStateNormal];
+        [reloadButton setTitleColor:DBColorExtension.sunsetOrangeColor forState:UIControlStateNormal];
+        [_customEmptyView addSubviews:@[iconImageView,reloadButton]];
+        [iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(0);
+            make.top.mas_equalTo(100);
+        }];
+        [reloadButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(0);
+            make.top.mas_equalTo(iconImageView.mas_bottom).offset(20);
+        }];
+        
+        DBWeakSelf
+        [reloadButton addTagetHandler:^(id  _Nonnull sender) {
+            DBStrongSelfElseReturn
+            self.currentPage = 2;
+            [self getDataSource];
+        } controlEvents:UIControlEventTouchUpInside];
+    }
+    return _customEmptyView;
+}
 @end
