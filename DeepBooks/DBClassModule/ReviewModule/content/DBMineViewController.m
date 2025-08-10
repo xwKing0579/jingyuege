@@ -12,10 +12,14 @@
 #import "DBUserSettingModel.h"
 #import "DBAppSwitchModel.h"
 #import "DBImagePicker.h"
-
-@interface DBMineViewController ()
-@property (nonatomic, strong) UIView *headerView;
+#import "DBMineIndexViewController.h"
+@interface DBMineViewController ()<JXCategoryViewDelegate,JXCategoryListContainerViewDelegate>
+@property (nonatomic, strong) UIImageView *headerView;
 @property (nonatomic, strong) UIImageView *avaterImageView;
+@property (nonatomic, strong) NSMutableArray *contentArray;
+
+@property (nonatomic, strong) JXCategoryTitleView *categoryView;
+@property (nonatomic, strong) JXCategoryListContainerView *categoryContainerView;
 @end
 
 @implementation DBMineViewController
@@ -27,13 +31,19 @@
 }
 
 - (void)setUpSubViews{
-    [self.view addSubviews:@[self.headerView,self.listRollingView]];
-    [self.listRollingView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.mas_equalTo(0);
-        make.top.mas_equalTo(self.headerView.mas_bottom).offset(20);
+    self.navgationView.backgroundColor = UIColor.clearColor;
+    self.view.layer.contents = CFBridgingRelease([UIImage imageNamed:@"jjVoidHorizon"].CGImage);
+    [self.view addSubviews:@[self.headerView,self.categoryView,self.categoryContainerView]];
+
+    [self.categoryView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.mas_equalTo(0);
+        make.top.mas_equalTo(self.headerView.height);
+        make.height.mas_equalTo(50);
     }];
-    self.dataList = DBMyConfigModel.dataSourceList;
-    [self.listRollingView reloadData];
+    [self.categoryContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.top.mas_equalTo(self.categoryView.mas_bottom);
+    }];
     
     id imageObj = [UIImage imageNamed:@"avaterImage"];
     if (DBCommonConfig.userDataInfo.avatar.length > 0){
@@ -51,75 +61,91 @@
     DBWeakSelf
     [DBImagePicker showYPImagePickerWithRatio:1 completion:^(UIImage * _Nonnull image) {
         DBStrongSelfElseReturn
-        NSData *imageData = [image compressImageMaxSize:100*1024 scale:0.8];
+        NSData *imageData = [image compressImageMaxSize:200*1024 scale:0.8];
         [NSUserDefaults saveValue:imageData forKey:DBUserAvaterKey];
         self.avaterImageView.imageObj = image;
     }];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    DBMyConfigTableViewCell *cell = [DBMyConfigTableViewCell initWithTableView:tableView];
-    cell.model = self.dataList[indexPath.row];
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    DBMyConfigModel *model = self.dataList[indexPath.row];
-    if (model.vc){
-        [DBRouter openPageUrl:model.vc params:@{@"title":DBSafeString(model.name)}];
-    }else{
-        if ([model.name isEqualToString:DBConstantString.ks_fiveStar]){
-            [SKStoreReviewController requestReview];
-        }else if ([model.name isEqualToString:DBConstantString.ks_bindInviteCode]){
-            __block UITextField *inputTextField = nil;
-            [DBDefaultSwift disableKeyboard];
-            DBWeakSelf
-            [LEEAlert alert].config
-            .LeeTitle(@"输入邀请码")
-            .LeeContent(DBConstantString.ks_enterInviteCode)
-            .LeeAddTextField(^(UITextField * _Nonnull textField) {
-                    [textField becomeFirstResponder];
-                    inputTextField = textField;
-            })
-            .LeeItemInsets(UIEdgeInsetsMake(10, 10, 10, 10))
-            .LeeCancelAction(DBConstantString.ks_cancel, ^{
-                [DBDefaultSwift enableKeyboard];
-            })
-            .LeeDestructiveAction(DBConstantString.ks_confirm, ^{
-                DBStrongSelfElseReturn
-                [DBAppSwitchModel getAppSwitchWithInvitationCode:inputTextField.text.whitespace];
-                [DBDefaultSwift enableKeyboard];
-            }).LeeShow();
-        }else if ([model.name isEqualToString:DBConstantString.ks_contactSupport]){
-            [DBCommonConfig jumpCustomerService];
-        }
-        
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    NSArray *contents = DBMyConfigModel.myConfigContent;
+    for (UILabel *label in self.contentArray) {
+        NSInteger index = [self.contentArray indexOfObject:label];
+        label.text = index ? contents.lastObject : contents.firstObject;
     }
-    
 }
 
-- (UIView *)headerView{
+- (NSInteger)numberOfListsInlistContainerView:(JXCategoryListContainerView *)listContainerView {
+    return self.categoryView.titles.count;
+}
+
+- (id<JXCategoryListContentViewDelegate>)listContainerView:(JXCategoryListContainerView *)listContainerView initListForIndex:(NSInteger)index {
+    DBMineIndexViewController *indexVc = DBMineIndexViewController.new;
+    indexVc.index = index;
+    return indexVc;
+}
+
+- (UIImageView *)headerView{
     if (!_headerView){
-        _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UIScreen.screenWidth, UIScreen.navbarSafeHeight+120)];
-        _headerView.backgroundColor = DBColorExtension.iceBlueColor;
+        _headerView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, UIScreen.screenWidth, UIScreen.navbarSafeHeight+100)];
+        
         
         [_headerView addSubviews:@[self.avaterImageView]];
         [self.avaterImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.mas_equalTo(0);
-            make.bottom.mas_equalTo(-30);
-            make.width.height.mas_equalTo(68);
+            make.left.mas_equalTo(30);
+            make.bottom.mas_equalTo(-20);
+            make.width.height.mas_equalTo(60);
         }];
    
+        
+        NSArray *titles = @[DBConstantString.ks_readingMinutes,DBConstantString.ks_history];
+        NSArray *contents = DBMyConfigModel.myConfigContent;
+        NSMutableArray *titleArray = [NSMutableArray array];
+        NSMutableArray *contentArray = [NSMutableArray array];
+        self.contentArray = contentArray;
+        for (NSString *title in titles) {
+            DBBaseLabel *titleLabel = [[DBBaseLabel alloc] init];
+            titleLabel.font = DBFontExtension.bodyMediumFont;
+            titleLabel.textColor = DBColorExtension.whiteColor;
+            titleLabel.text = title;
+            titleLabel.textAlignment = NSTextAlignmentCenter;
+            [titleArray addObject:titleLabel];
+         
+            DBBaseLabel *contentTextLabel = [[DBBaseLabel alloc] init];
+            contentTextLabel.font = DBFontExtension.pingFangSemiboldXXLarge;
+            contentTextLabel.textColor = DBColorExtension.whiteColor;
+            contentTextLabel.textAlignment = NSTextAlignmentCenter;
+            [contentArray addObject:contentTextLabel];
+            NSInteger index = [titles indexOfObject:title];
+            contentTextLabel.text = index ? contents.lastObject : contents.firstObject;
+        }
+        [_headerView addSubviews:titleArray];
+        [_headerView addSubviews:contentArray];
+
+        
+        CGFloat space = 6;
+        [titleArray mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:space leadSpacing:110 tailSpacing:30];
+        [contentArray mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:space leadSpacing:110 tailSpacing:30];
+
+        [titleArray mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.mas_equalTo(self.avaterImageView).offset(-5);
+        }];
+        [contentArray mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(self.avaterImageView).offset(5);
+        }];
+
     }
     return _headerView;
 }
+
 
 - (UIImageView *)avaterImageView{
     if (!_avaterImageView){
         _avaterImageView = [[UIImageView alloc] init];
         _avaterImageView.contentMode = UIViewContentModeScaleAspectFill;
         _avaterImageView.image = [UIImage imageNamed:@"appLogo"];
-        _avaterImageView.layer.cornerRadius = 34;
+        _avaterImageView.layer.cornerRadius = 4;
         _avaterImageView.layer.masksToBounds = YES;
         _avaterImageView.imageObj = DBCommonConfig.userCurrentInfo.user_avatar;
         _avaterImageView.userInteractionEnabled = YES;
@@ -127,5 +153,38 @@
     }
     return _avaterImageView;
 }
+
+
+- (JXCategoryTitleView *)categoryView{
+    if (!_categoryView){
+        _categoryView = [[JXCategoryTitleView alloc] initWithFrame:CGRectZero];
+        _categoryView.delegate = self;
+        _categoryView.titleColor = DBColorExtension.whiteColor;
+        _categoryView.titleSelectedColor = DBColorExtension.sunsetOrangeColor;
+        _categoryView.titleFont = DBFontExtension.pingFangSemiboldRegular;
+        _categoryView.titleSelectedFont = DBFontExtension.pingFangMediumMedium;
+        _categoryView.listContainer = self.categoryContainerView;
+        _categoryView.titles = @[DBConstantString.ks_bookmarks,DBConstantString.ks_history];
+        _categoryView.backgroundColor = DBColorExtension.noColor;
+        
+        JXCategoryIndicatorLineView *partingLineView = [[JXCategoryIndicatorLineView alloc] init];
+        partingLineView.indicatorColor = DBColorExtension.sunsetOrangeColor;
+        partingLineView.indicatorWidth = 34;
+        partingLineView.indicatorHeight = 4;
+        partingLineView.indicatorCornerRadius = 2;
+        partingLineView.verticalMargin = 4;
+        _categoryView.indicators = @[partingLineView];
+    }
+    return _categoryView;
+}
+
+- (JXCategoryListContainerView *)categoryContainerView{
+    if (!_categoryContainerView){
+        _categoryContainerView = [[JXCategoryListContainerView alloc] initWithType:JXCategoryListContainerType_ScrollView delegate:self];
+        _categoryContainerView.backgroundColor = DBColorExtension.noColor;
+    }
+    return _categoryContainerView;
+}
+
 
 @end

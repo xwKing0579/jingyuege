@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) DBBaseTableView *listRollingView;
 @property (nonatomic, strong) NSArray *dataList;
 @property (nonatomic, assign) NSInteger currentPage;
-
+@property (nonatomic, strong) UIView *navgationView;
 @property (nonatomic, strong) UIButton *leftButton;
 @property (nonatomic, strong, nullable) UIView *adContainerView;
 

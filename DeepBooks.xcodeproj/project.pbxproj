@@ -238,6 +238,8 @@
 		F890B5942D92EF63006ED4C9 /* DBUserSettingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F890B5932D92EF63006ED4C9 /* DBUserSettingModel.m */; };
 		F890B5972D92F246006ED4C9 /* DEUserSettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F890B5962D92F246006ED4C9 /* DEUserSettingTableViewCell.m */; };
 		F8915A7E2D83D0E000819539 /* DBScaningSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F8915A7D2D83D0E000819539 /* DBScaningSettingView.m */; };
+		F89412DD2E486CA2009DC313 /* DBMineIndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F89412DC2E486CA2009DC313 /* DBMineIndexViewController.m */; };
+		F89412E02E4872F9009DC313 /* DBMineIndexCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F89412DF2E4872F9009DC313 /* DBMineIndexCollectionViewCell.m */; };
 		F8981DB22E1D4DC200A8EA2A /* DBReaderChapterView.m in Sources */ = {isa = PBXBuildFile; fileRef = F8981DB12E1D4DC200A8EA2A /* DBReaderChapterView.m */; };
 		F8981DB82E1E12E600A8EA2A /* DBAutoScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8981DB72E1E12E600A8EA2A /* DBAutoScanViewController.m */; };
 		F8985DC82D8C4F7F00FB9D44 /* DBMyThemeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8985DC72D8C4F7F00FB9D44 /* DBMyThemeViewController.m */; };
@@ -892,6 +894,10 @@
 		F890B5962D92F246006ED4C9 /* DEUserSettingTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DEUserSettingTableViewCell.m; sourceTree = "<group>"; };
 		F8915A7C2D83D0E000819539 /* DBScaningSettingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBScaningSettingView.h; sourceTree = "<group>"; };
 		F8915A7D2D83D0E000819539 /* DBScaningSettingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBScaningSettingView.m; sourceTree = "<group>"; };
+		F89412DB2E486CA2009DC313 /* DBMineIndexViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBMineIndexViewController.h; sourceTree = "<group>"; };
+		F89412DC2E486CA2009DC313 /* DBMineIndexViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBMineIndexViewController.m; sourceTree = "<group>"; };
+		F89412DE2E4872F9009DC313 /* DBMineIndexCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBMineIndexCollectionViewCell.h; sourceTree = "<group>"; };
+		F89412DF2E4872F9009DC313 /* DBMineIndexCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBMineIndexCollectionViewCell.m; sourceTree = "<group>"; };
 		F8981DB02E1D4DC200A8EA2A /* DBReaderChapterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBReaderChapterView.h; sourceTree = "<group>"; };
 		F8981DB12E1D4DC200A8EA2A /* DBReaderChapterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBReaderChapterView.m; sourceTree = "<group>"; };
 		F8981DB62E1E12E600A8EA2A /* DBAutoScanViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBAutoScanViewController.h; sourceTree = "<group>"; };
@@ -2782,6 +2788,10 @@
 				F8E7F9962DC0FF5400AA93BA /* DBKeywordModel.m */,
 				F8EA6EA32DB628CF000A042F /* DBMineViewController.h */,
 				F8EA6EA42DB628CF000A042F /* DBMineViewController.m */,
+				F89412DB2E486CA2009DC313 /* DBMineIndexViewController.h */,
+				F89412DC2E486CA2009DC313 /* DBMineIndexViewController.m */,
+				F89412DE2E4872F9009DC313 /* DBMineIndexCollectionViewCell.h */,
+				F89412DF2E4872F9009DC313 /* DBMineIndexCollectionViewCell.m */,
 				F8F2EDEF2DBBDD4C00A5872C /* DBHomeViewController.h */,
 				F8F2EDF02DBBDD4C00A5872C /* DBHomeViewController.m */,
 				F8FB66BC2DF807EC00447956 /* DBBookselfViewController.h */,
@@ -2876,9 +2886,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-DeepBooks/Pods-DeepBooks-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-DeepBooks/Pods-DeepBooks-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2893,9 +2907,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-DeepBooks/Pods-DeepBooks-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-DeepBooks/Pods-DeepBooks-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3011,6 +3029,7 @@
 				F83C1FB22DEED29700E6FC37 /* BFFileModel.m in Sources */,
 				F83C1FB32DEED29700E6FC37 /* BFJsonObjectTableViewCell.m in Sources */,
 				F83C1FB42DEED29700E6FC37 /* MLeaksMessenger.m in Sources */,
+				F89412E02E4872F9009DC313 /* DBMineIndexCollectionViewCell.m in Sources */,
 				F83C1FB52DEED29700E6FC37 /* UIViewController+MemoryLeak.m in Sources */,
 				F8D4AF232E40517E001E0ADA /* DBCollectionListViewController.m in Sources */,
 				F8B194E02E26006600CB9DE1 /* DBPageIGModel.m in Sources */,
@@ -3113,6 +3132,7 @@
 				F882431D2D715BD2006EC370 /* DBLinkManager.m in Sources */,
 				F8427D9E2DDCDC760057EF12 /* DBSelfAdView.m in Sources */,
 				F89C58112D784594000DE93F /* DBReadBookSetting.m in Sources */,
+				F89412DD2E486CA2009DC313 /* DBMineIndexViewController.m in Sources */,
 				F8A5CD6F2D706CFC0013D5FF /* GTMBase64.m in Sources */,
 				F8A12DAA2DDDEDD900CD1D17 /* DBAdBannerCollectionViewCell.m in Sources */,
 				F88243382D71C05C006EC370 /* DBAllBooksModel.m in Sources */,

@@ -9,7 +9,7 @@
 
 
 @interface DBBaseViewController ()
-@property (nonatomic, strong) UIView *navgationView;
+
 @property (nonatomic, assign) BOOL isLayOut;
 @end
 
