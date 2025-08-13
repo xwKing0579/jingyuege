@@ -49,6 +49,7 @@
 - (void)setUpSubViews:(DBSelfAdModel *)selfAd adType:(DBSelfAdType)adType{
     self.selfAd = selfAd;
     self.adType = adType;
+    self.clipsToBounds = YES;
     
     if (selfAd.image) {
         [self.adImageView sd_setImageWithURL:[NSURL URLWithString:selfAd.image]];

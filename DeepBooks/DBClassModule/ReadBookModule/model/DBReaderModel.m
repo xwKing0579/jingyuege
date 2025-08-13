@@ -35,6 +35,7 @@
 
 - (void)onlySetChapterIndex:(NSInteger)chapterIndex{
     _currentChapter = chapterIndex;
+    [self updateReaderModelData];
 }
 
 - (void)updateReaderModelData{
@@ -55,7 +56,7 @@
     NSString *content = chapterModel.body;
     
     self.title = title;
-    self.content = content.length > 0 ? content : DBConstantString.ks_chapterLoadFailed.textMultilingual;
+    self.content = content.length > 0 ? content : @"获取本章失败".textMultilingual;
     self.chapterId = chapterId;
     
     DBReadBookSetting *setting = DBReadBookSetting.setting;
@@ -80,7 +81,7 @@
 
 - (void)clearOldModelCacheData{
     self.title = @"";
-    self.content = DBConstantString.ks_chapterLoadFailed.textMultilingual;
+    self.content = @"获取本章失败".textMultilingual;
     self.chapterId = @"";
     self.attributeString = nil;
     self.contentList = @[];
@@ -107,20 +108,31 @@
 }
 
 - (DBReaderModel *)getNextPageChapterNosetModelWithDiff:(NSInteger)diff{
-    DBReaderModel *model = self;
-    
+    DBReaderModel *model = DBReaderModel.new;
+    model.chapterForm = self.chapterForm;
+    model.chapterCacheList = self.chapterCacheList;
+    model.contentList = self.contentList;
+    model.currentChapter = self.currentChapter;
+    model.currentPage = self.currentPage;
+    model.readPageNum = self.readPageNum;
+    model.content = self.content;
+    model.slotEndAd = self.slotEndAd;
+    model.gridEndAd = self.gridEndAd;
+    model.slotAdDiff = self.slotAdDiff;
+    model.gridAdDiff = self.gridAdDiff;
+
     NSInteger pageIndex = model.currentPage;
     NSInteger nextPageIndex = pageIndex + diff;
  
     if (nextPageIndex < 0){
-        [model onlySetChapterIndex:model.currentChapter-1];
-        [model onlySetPageIndex:model.contentList.count-1];
+        model.currentChapter -= 1;
+        model.currentPage = model.contentList.count-1;
     }else if (nextPageIndex > model.contentList.count-1){
         if (model.currentChapter+1 >= model.chapterCacheList.count) return model;
-        [model onlySetChapterIndex:model.currentChapter+1];
-        [model onlySetPageIndex:0];
+        model.currentChapter += 1;
+        model.currentPage = 0;
     } else{
-        [model onlySetPageIndex:nextPageIndex];
+        model.currentPage = nextPageIndex;
     }
     model.readPageNum += diff;
     return model;

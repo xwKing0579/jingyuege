@@ -17,6 +17,7 @@
 @property (nonatomic, strong) DBReadBookBackViewController *mirrorVc;
 
 @property (nonatomic, strong) DBReaderAdViewController *readerAdVc;
+@property (nonatomic, assign) BOOL after;
 @end
 
 @implementation DBPageLinearViewController
@@ -43,7 +44,7 @@
     CGPoint touchPoint = [gesture locationInView:self.view];
     if (touchPoint.x < UIScreen.screenWidth/3){
         if (self.model.currentChapter == 0 && self.model.currentPage == 0) {
-            [self.view showAlertText:DBConstantString.ks_firstPageReached];
+            [self.view showAlertText:@"已经是第一页"];
             return;
         }
         
@@ -126,49 +127,68 @@
 }
 
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed {
-    DBReaderPageViewController *readerPageVc = self.pageBoyViewController.viewControllers.firstObject;
-    if ([readerPageVc isKindOfClass:DBReaderPageViewController.class]){
-        self.model.currentPage = readerPageVc.currentPageIndex;
-        self.model.currentChapter = readerPageVc.currentChapterIndex;
+    DBReaderPageViewController *pageVc = (DBReaderPageViewController *)self.getCurrentViewController;
+    if (completed){
+        if ([pageVc isKindOfClass:DBReaderPageViewController.class]) {
+            self.model.contentList = pageVc.model.contentList;
+            self.model.content = pageVc.model.content;
+            self.model.readPageNum = pageVc.model.readPageNum;
+            self.model.currentPage = pageVc.model.currentPage;
+            self.model.currentChapter = pageVc.model.currentChapter;
+        }
     }
+    self.model.isAdPage = [pageVc isKindOfClass:DBReaderAdViewController.class];
+    self.model.isEnd = [pageVc isKindOfClass:DBReaderEndViewController.class];
 }
 
 - (DBReaderPageViewController *)getReaderPageController:(BOOL)after isTap:(BOOL)isTap{
     DBReaderPageViewController *nextVc = [[DBReaderPageViewController alloc] init];
+    DBReaderPageViewController *pageVc = (DBReaderPageViewController *)self.getCurrentViewController;
     if (after){
-        if (self.model.isAdPage && !self.readerAdVc.after){
-            nextVc.model = self.model;
-        }else{
-            nextVc.model = isTap ? [self.model getNextPageChapterModelWithDiff:1] : [self.model getNextPageChapterNosetModelWithDiff:1];
-        }
-    }else{
-        if (self.model.isEnd) {
-            nextVc.model = self.model;
-        }else if (self.model.isAdPage){
-            if (self.readerAdVc.after){
+        if ([pageVc isKindOfClass:DBReaderAdViewController.class]){
+            DBReaderAdViewController *adVc = (DBReaderAdViewController *)pageVc;
+            if (!adVc.after) {
+                self.model.isAdPage = NO;
                 nextVc.model = self.model;
-            }else{
-                nextVc.model = isTap ? [self.model getNextPageChapterModelWithDiff:-1] : [self.model getNextPageChapterNosetModelWithDiff:-1];
+                return nextVc;
             }
-        }else{
-            nextVc.model = isTap ? [self.model getNextPageChapterModelWithDiff:-1] : [self.model getNextPageChapterNosetModelWithDiff:-1];
         }
-        if (self.model.isEnd) self.model.isEnd = NO;
+        nextVc.model = isTap ? [self.model getNextPageChapterModelWithDiff:1] : [pageVc.model getNextPageChapterNosetModelWithDiff:1];
+    }else{
+        if ([pageVc isKindOfClass:DBReaderAdViewController.class]){
+            DBReaderAdViewController *adVc = (DBReaderAdViewController *)pageVc;
+            if (adVc.after) {
+                self.model.isAdPage = NO;
+                nextVc.model = self.model;
+                return nextVc;
+            }
+        }else if ([pageVc isKindOfClass:DBReaderEndViewController.class]){
+            self.model.isEnd = NO;
+            nextVc.model = self.model;
+            return nextVc;
+        }
+        nextVc.model = isTap ? [self.model getNextPageChapterModelWithDiff:-1] : [pageVc.model getNextPageChapterNosetModelWithDiff:-1];
     }
-    if (self.model.isAdPage) self.model.isAdPage = NO;
     return nextVc;
 }
 
 - (DBReaderAdViewController *)getReaderAdViewController:(BOOL)after{
-    if (self.model.isAdPage)  return nil;
+    UIViewController *currentVc = self.getCurrentViewController;
+    if ([currentVc isKindOfClass:DBReaderAdViewController.class]) return nil;
     
-    DBReaderAdType adType = [DBReaderAdViewModel getReaderAdTypeWithModel:self.model after:after];
+    DBReaderPageViewController *pageVc = (DBReaderPageViewController *)currentVc;
+    DBReaderAdType adType = [DBReaderAdViewModel getReaderAdTypeWithModel:pageVc.model after:after];
     if (adType == DBReaderNoAd) return nil;
     
     self.readerAdVc.readerAdType = adType;
+    self.readerAdVc.model = pageVc.model;
     self.readerAdVc.after = after;
     self.model.isAdPage = YES;
     return self.readerAdVc;
+}
+
+- (UIViewController *)getCurrentViewController{
+    return self.pageBoyViewController.viewControllers.firstObject;
 }
 
 - (UIPageViewController *)pageBoyViewController{

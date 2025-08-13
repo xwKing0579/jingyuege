@@ -180,7 +180,11 @@ typedef NS_OPTIONS(NSUInteger, DBPanDirection) {
                 [(UIViewController *)removeView.nextResponder removeFromParentViewController];
             }
         }
-        if (isAbove) self.currentController = self.childViewControllers.lastObject;
+        if (isAbove) {
+            self.currentController = self.childViewControllers.lastObject;
+        }else{
+            self.currentController = self.childViewControllers.firstObject;
+        }
     }
 
     if ([self.delegate respondsToSelector:@selector(coverController:currentController:finish:)]) {

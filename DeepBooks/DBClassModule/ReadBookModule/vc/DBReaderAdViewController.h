@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DBReaderAdViewController : UIViewController
 @property (nonatomic, assign) DBReaderAdType readerAdType;
 @property (nonatomic, assign) BOOL after;
+@property (nonatomic, strong) DBReaderModel *model;
 @end
 
 NS_ASSUME_NONNULL_END
