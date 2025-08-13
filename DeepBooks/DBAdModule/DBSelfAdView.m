@@ -316,7 +316,10 @@
             }else{
                 self.avPlayer.currentPlayerManager.muted = NO;
             }
-
+            if (adType == DBSelfAdExpress || adType == DBSelfAdGrid){
+                self.avPlayer.currentPlayerManager.muted = YES;
+            }
+            
             [self addSubview:self.voiceButton];
             if (adType == DBSelfAdLaunch) {
                 [self.voiceButton mas_makeConstraints:^(MASConstraintMaker *make) {
