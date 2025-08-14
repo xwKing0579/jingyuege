@@ -14,7 +14,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) void (^didRemovedBlock)(UIView *adContainerView, DBSelfAdType adType);
 @property (nonatomic, copy) void (^didClickBlock)(UIView *adContainerView, DBSelfAdType adType);
+@property (nonatomic, copy) void (^didFinishRewardBlock)(UIView *adContainerView, DBSelfAdType adType);
+
 - (instancetype)initWithSelfAdModel:(DBSelfAdModel *)selfAd adType:(DBSelfAdType)adType;
+
+@property (nonatomic, assign) BOOL reward;
 
 @end
 

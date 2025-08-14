@@ -9,6 +9,14 @@ import UIKit
 
 @objcMembers class DBColorExtension: NSObject {
     
+    static func vipGoldenColor() -> UIColor{
+        return UIColor.cFFE19F()
+    }
+    
+    static func pinkLightColor() -> UIColor{
+        return UIColor.cFE8362()
+    }
+    
     //主题色
     static func sunsetOrangeColor() -> UIColor{
         return UIColor.cCDAF7B()

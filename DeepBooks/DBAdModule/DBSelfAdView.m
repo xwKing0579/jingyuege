@@ -33,6 +33,7 @@
 @property (nonatomic, assign) DBSelfAdType adType;
 
 @property (nonatomic, assign) NSInteger countdownTime;
+@property (nonatomic, assign) NSInteger showAdTime;
 @end
 
 
@@ -274,7 +275,7 @@
             
             
             if (adType == DBSelfAdReward){
-                time = 5;
+                time = selfAd.close_sec > 0 ? selfAd.close_sec : 5;
                 self.closeAdButton.hidden = YES;
                 self.skipAdButton.userInteractionEnabled = NO;
             }else{
@@ -317,10 +318,11 @@
             }else{
                 self.avPlayer.currentPlayerManager.muted = NO;
             }
+            
             if (adType == DBSelfAdExpress || adType == DBSelfAdGrid){
                 self.avPlayer.currentPlayerManager.muted = YES;
             }
-            
+
             [self addSubview:self.voiceButton];
             if (adType == DBSelfAdLaunch) {
                 [self.voiceButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -340,7 +342,7 @@
     
     
     if (time > 0){
-        NSString *secondTime = [NSString stringWithFormat:DBConstantString.ks_skipInSeconds.textMultilingual,time];
+        NSString *secondTime = [NSString stringWithFormat:@"%ld秒跳过".textMultilingual,time];
         [self.skipAdButton setTitle:secondTime forState:UIControlStateNormal];
         self.countdownTime = time;
     }
@@ -353,16 +355,23 @@
 }
 
 - (void)secondsTimeChange{
+    if (self.adType == DBSelfAdReward) {
+        self.showAdTime++;
+        if (self.showAdTime == self.selfAd.reward_sec){
+            if (self.didFinishRewardBlock) self.didFinishRewardBlock(self, self.adType);
+        }
+    }
+    
     if (self.countdownTime > 1){
         self.countdownTime--;
-        NSString *secondTime = [NSString stringWithFormat:DBConstantString.ks_skipInSeconds.textMultilingual,self.countdownTime];
+        NSString *secondTime = [NSString stringWithFormat:@"%ld秒跳过".textMultilingual,self.countdownTime];
         [self.skipAdButton setTitle:secondTime forState:UIControlStateNormal];
     }else{
         if (self.adType == DBSelfAdReward){
             self.skipAdButton.hidden = YES;
             self.closeAdButton.hidden = NO;
         }else{
-            [self.skipAdButton setTitle:DBConstantString.ks_skip forState:UIControlStateNormal];
+            [self.skipAdButton setTitle:@"跳过" forState:UIControlStateNormal];
         }
     }
 }
@@ -432,8 +441,8 @@
 - (UIButton *)voiceButton{
     if (!_voiceButton){
         _voiceButton = [[UIButton alloc] init];
-        [_voiceButton setImage:[UIImage imageNamed:@"jjSoundlessSeal"] forState:UIControlStateNormal];
-        [_voiceButton setImage:[UIImage imageNamed:@"jjHarmonicRipple"] forState:UIControlStateSelected];
+        [_voiceButton setImage:[UIImage imageNamed:@"ad_mute"] forState:UIControlStateNormal];
+        [_voiceButton setImage:[UIImage imageNamed:@"ad_sound"] forState:UIControlStateSelected];
         [_voiceButton addTarget:self action:@selector(clickVoiceAction) forControlEvents:UIControlEventTouchUpInside];
         _voiceButton.enlargedEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
     }
@@ -459,7 +468,7 @@
 - (UIButton *)closeAdButton{
     if (!_closeAdButton){
         _closeAdButton = [[UIButton alloc] init];
-        [_closeAdButton setImage:[UIImage imageNamed:@"jjMistDissipate"] forState:UIControlStateNormal];
+        [_closeAdButton setImage:[UIImage imageNamed:@"ad_close"] forState:UIControlStateNormal];
         [_closeAdButton addTarget:self action:@selector(clickAdCloseAction) forControlEvents:UIControlEventTouchUpInside];
         _closeAdButton.enlargedEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
     }
@@ -503,7 +512,7 @@
         _skipAdButton.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
         _skipAdButton.layer.cornerRadius = 14;
         _skipAdButton.layer.masksToBounds = YES;
-        [_skipAdButton setTitle:DBConstantString.ks_skip forState:UIControlStateNormal];
+        [_skipAdButton setTitle:@"跳过" forState:UIControlStateNormal];
         [_skipAdButton setTitleColor:DBColorExtension.whiteColor forState:UIControlStateNormal];
         [_skipAdButton addTarget:self action:@selector(clickAdCloseAction) forControlEvents:UIControlEventTouchUpInside];
         _skipAdButton.enlargedEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
@@ -517,7 +526,7 @@
         _adSignLabel.font = DBFontExtension.microFont;
         _adSignLabel.textColor = DBColorExtension.whiteColor;
         _adSignLabel.backgroundColor = [UIColor colorWithWhite:0 alpha:0.1];
-        _adSignLabel.text = DBConstantString.ks_ad;
+        _adSignLabel.text = @"广告";
         _adSignLabel.textAlignment = NSTextAlignmentCenter;
         _adSignLabel.layer.cornerRadius = 5;
         _adSignLabel.layer.masksToBounds = YES;

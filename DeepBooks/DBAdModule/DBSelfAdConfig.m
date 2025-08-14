@@ -119,6 +119,12 @@
             [self.delegate selfAdDidClick:self];
         }
     };
+    selfAdView.didFinishRewardBlock = ^(UIView * _Nonnull adContainerView, DBSelfAdType adType) {
+        DBStrongSelfElseReturn
+        if ([self.delegate respondsToSelector:@selector(selfAdViewDidFinishReward:spaceType:)]){
+            [self.delegate selfAdViewDidFinishReward:self spaceType:self.spaceType];
+        }
+    };
     [view addSubview:selfAdView];
 }
 

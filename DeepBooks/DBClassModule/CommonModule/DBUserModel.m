@@ -44,6 +44,9 @@
             if (DBAppSetting.setting.inviteLink.length){
                 [DBCommonConfig bindInvitationLink:DBAppSetting.setting.inviteLink completion:nil];
             }
+            
+            [self getUserVipInfoCompletion:nil];
+            
             [DBRouter closePageRoot];
             [NSNotificationCenter.defaultCenter postNotificationName:DBUserLoginSuccess object:nil];
         }else{
@@ -73,6 +76,16 @@
         if (completion) completion(successfulRequest, result);
     }];
 }
+
++ (void)getUserVipInfoCompletion:(void (^ __nullable)(BOOL successfulRequest, DBUserVipModel *model))completion{
+    [DBAFNetWorking postServiceRequestType:DBLinkUserVipInfo combine:nil parameInterface:nil modelClass:DBUserVipModel.class serviceData:^(BOOL successfulRequest, DBUserVipModel *result, NSString * _Nullable message) {
+        if (successfulRequest){
+            [NSUserDefaults saveValue:result.modelToJSONString forKey:DBUserVipInfoValue];
+        }
+        if (completion) completion(successfulRequest, result);
+    }];
+}
+
 @end
 
 
@@ -89,4 +102,7 @@
 @end
 
 @implementation DBUserInviteCodeModel
+@end
+
+@implementation DBUserVipModel
 @end

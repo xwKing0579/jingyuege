@@ -12,7 +12,7 @@
 @property (nonatomic, assign) BOOL isShowingAd; //加载广告并显示
 @property (nonatomic, assign) NSInteger errorCount;
 
-@property (nonatomic, copy) void (^ _Nullable completion)(NSObject *adObject);
+@property (nonatomic, copy) void (^ _Nullable completion)(NSObject *adObject, BOOL reward);
 @end
 
 @implementation DBRewardAdConfig
@@ -24,7 +24,6 @@
     NSMutableArray *splashAds = [NSMutableArray array];
     DBAdPosModel *posAd = [DBUnityAdConfig adPosWithSpaceType:spaceType];
     
-    NSString *extra = posAd.extra.modelToJSONString;
     for (DBAdsModel *adModel in posAd.ads) {
         if (adModel.id.length == 0) continue;
         adModel.position = posAd.position;
@@ -52,12 +51,12 @@
 }
 
 
-- (void)getRewardAdsAndSpaceType:(DBAdSpaceType)spaceType reload:(BOOL)reload completion:(void (^ _Nullable)(NSObject *adObject))completion{
+- (void)getRewardAdsAndSpaceType:(DBAdSpaceType)spaceType reload:(BOOL)reload completion:(void (^ _Nullable)(NSObject *adObject, BOOL reward))completion{
     if (completion) {
         self.completion = completion;
         DBAdPosModel *posAd = [DBUnityAdConfig adPosWithSpaceType:spaceType];
         if (posAd.ads.count == 0){
-            completion(nil);
+            completion(nil, NO);
             return;
         }
     }
@@ -67,7 +66,7 @@
     if (adObjects.count){
         if (completion){
             self.isShowingAd = NO;
-            completion(adObjects.firstObject);
+            completion(adObjects.firstObject, NO);
         }
         
         [adObjects removeObjectAtIndex:0];
@@ -85,7 +84,7 @@
 - (void)timeoutCompletionBack{
     if (self.isShowingAd){
         self.isShowingAd = NO;
-        if (self.completion) self.completion(nil);
+        if (self.completion) self.completion(nil, NO);
     }
 }
 
@@ -95,7 +94,7 @@
     NSNumber *key = @(splashAd.spaceType);
     if (self.isShowingAd && self.completion){
         self.isShowingAd = NO;
-        self.completion(splashAd);
+        self.completion(splashAd, NO);
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(timeoutCompletionBack) object:nil];
     }else{
         NSArray *adArray = [self.adViewsDict objectForKey:key];
@@ -112,7 +111,7 @@
         if (self.errorCount == adLoaders.count){
             [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(timeoutCompletionBack) object:nil];
             self.isShowingAd = NO;
-            if (self.completion) self.completion(nil);
+            if (self.completion) self.completion(nil, NO);
         }
     }
 }
@@ -125,12 +124,16 @@
     [DBUnityAdConfig.manager trackDataAdDict:splashAd.adTrackModel actionType:NO];
 }
 
+- (void)selfAdViewDidFinishReward:(DBSelfAdConfig *)adObject spaceType:(DBAdSpaceType)spaceType{
+    if (self.completion) self.completion(adObject, YES);
+}
+
 #pragma mark - SFRewardVideoDelegate
 - (void)mangoAdLoadSuccess:(DBMangoAdConfig *)splashAd rewardAd:(SFRewardVideoManager *)rewardAd{
     NSNumber *key = @(splashAd.spaceType);
     if (self.isShowingAd && self.completion){
         self.isShowingAd = NO;
-        self.completion(rewardAd);
+        self.completion(rewardAd, NO);
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(timeoutCompletionBack) object:nil];
     }else{
         NSArray *adArray = [self.adViewsDict objectForKey:key];
@@ -152,6 +155,9 @@
     [self removeAdObject:rewardAd withKey:@(splashAd.spaceType)];
 }
 
+- (void)mangoAdObjectDidReward:(DBMangoAdConfig *)splashAd rewardAd:(SFRewardVideoManager *)rewardAd extra:(NSDictionary *)extra{
+    if (self.completion) self.completion(rewardAd, YES);
+}
 
 #pragma public
 - (void)removeAdObject:(NSObject *)adContainerView withKey:(id)key{
@@ -161,7 +167,9 @@
         [adObjects removeObject:adContainerView];
         [self.adViewsDict setObject:adObjects forKey:key];
     }
-    if (self.completion) self.completion(nil);
+    if (self.completion) self.completion(nil, NO);
 }
+
+
 
 @end

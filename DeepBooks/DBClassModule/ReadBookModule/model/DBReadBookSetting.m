@@ -8,6 +8,7 @@
 #import "DBReadBookSetting.h"
 #import <CoreText/CoreText.h>
 #import "DBFontModel.h"
+#import "DBReaderAdViewModel.h"
 NSString *const kDBReaderBookSetting = @"kDBReaderBookSetting";
 
 @interface DBReadBookSetting ()
@@ -108,7 +109,7 @@ NSString *const kDBReaderBookSetting = @"kDBReaderBookSetting";
 + (CGSize)calculateCanvaseSize {
     DBReadBookSetting *setting = DBReadBookSetting.setting;
     DBAdPosModel *posAd = [DBUnityAdConfig adPosWithSpaceType:DBAdSpaceReaderBottom];
-    if (DBUnityAdConfig.openAd && posAd.ads.count){
+    if (DBUnityAdConfig.openAd && posAd.ads.count && !DBReaderAdViewModel.freeVipReadingTime){
         return CGSizeMake(setting.canvasSize.width, setting.canvasSize.height-setting.canvasAdSize.height-20);
     }
     return setting.canvasSize;

@@ -132,7 +132,7 @@
         if (adSetting.seekingBookCount <= 0) {
             self.submitButton.backgroundColor = DBColorExtension.grayColor;
             self.submitButton.userInteractionEnabled = NO;
-            [DBUnityAdConfig.manager openRewardAdSpaceType:DBAdSpaceRequestBooks completion:^(BOOL removed) {
+            [DBUnityAdConfig.manager openRewardAdSpaceType:DBAdSpaceRequestBooks completion:^(BOOL removed,BOOL reward) {
                 DBStrongSelfElseReturn
                 self.submitButton.backgroundColor = DBColorExtension.redColor;
                 self.submitButton.userInteractionEnabled = YES;

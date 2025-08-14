@@ -20,6 +20,12 @@ typedef NS_ENUM(NSInteger,DBLinkType) {
     DBUserClickReport,  //埋点上报
     DBLinkSearchReport, //B面搜索上报
     DBLinkSearchClickReport, //点击搜索列表数据上报
+    DBLinkUserVipInfo, //查看vip信息
+    DBLinkUserActivities, //查询活动列表
+    DBLinkCheckActivity, //查询活动资格
+    DBLinkActivityReward, //活动兑换
+    DBLinkFreeVipConsume, //消耗时长
+    
     
     DBLinkStateConfig, //域名状态
     DBLinkBaseConfig, // 配置信息

@@ -19,7 +19,7 @@
 
 #import "DBReaderContentViewModel.h"
 #import "DBReaderAdViewModel.h"
-
+#import "DBFreeVipConsumeModel.h"
 @interface DBReaderManagerViewController ()<UIGestureRecognizerDelegate>
 @property (nonatomic, strong) UIViewController *readerVc;
 @property (nonatomic, strong) DBEmptyView *errorDataView;
@@ -30,6 +30,9 @@
 
 @property (nonatomic, strong) NSDate *begainTime;
 @property (nonatomic, strong) NSMutableSet *loadingSet;
+
+@property (nonatomic, assign) NSInteger freeCount;
+@property (nonatomic, assign) NSInteger freeSeconds;
 @end
 
 @implementation DBReaderManagerViewController
@@ -49,6 +52,7 @@
     
     [self setUpSubViews];
     [self getDataSource];
+    [self freeVipConfig];
     [self addObserver];
     
 }
@@ -120,7 +124,7 @@
         if ([self.readerVc isKindOfClass:DBPageRollingViewController.class]) {
             self.readerContentViewModel.batteryDateView.pageStr = @"";
         }else{
-            self.readerContentViewModel.batteryDateView.pageStr = [NSString stringWithFormat:DBConstantString.ks_pageNumber,MIN(self.model.currentPage+1, self.model.contentList.count),self.model.contentList.count];
+            self.readerContentViewModel.batteryDateView.pageStr = [NSString stringWithFormat:@"第%ld/%ld页",MIN(self.model.currentPage+1, self.model.contentList.count),self.model.contentList.count];
         }
         self.book.page_index = self.model.currentPage;
     }
@@ -137,7 +141,34 @@
         [self.readerAdViewModel loadReaderBottomBannerAdInDiffTime:diffTime];
         [self.readerAdViewModel loadReaderSlotAdInDiffTime:diffTime];
     }
+    
+    if (self.freeSeconds > 0){
+        self.freeSeconds--;
+        if (self.freeSeconds%60 == 0 || self.freeSeconds < 0){
+            DBWeakSelf
+            [DBAFNetWorking postServiceRequestType:DBLinkFreeVipConsume combine:nil parameInterface:@{@"seconds":@"60"} modelClass:DBFreeVipConsumeModel.class serviceData:^(BOOL successfulRequest, DBFreeVipConsumeModel *result, NSString * _Nullable message) {
+                DBStrongSelfElseReturn
+                if (successfulRequest){
+                    if (result.remaining_seconds > 0) {
+                        self.freeSeconds = result.remaining_seconds;
+                    }else{
+                        self.freeSeconds = 0;
+                        id obj = [NSUserDefaults takeValueForKey:DBUserVipInfoValue];
+                        DBUserVipModel *vipModel = [DBUserVipModel modelWithJSON:obj];
+                        if (vipModel) {
+                            vipModel.free_vip_seconds = 0;
+                            [NSUserDefaults saveValue:vipModel.modelToJSONString forKey:DBUserVipInfoValue];
+                        }
+                        [self switchReaderTransitionStyleSwitch:YES];
+                        [self freeVipConfig];
+                    }
+                }
+            }];
+        }
+    }
 }
+
+
 
 - (void)getDataSource{
     NSArray <DBBookCatalogModel *>*chapterList = [DBBookCatalogModel getBookCatalogs:self.book.catalogForm];
@@ -162,7 +193,7 @@
     }
     
     NSString *content = self.model.attributeString.string;
-    if (content.length == 0 || [content isEqualToString:DBConstantString.ks_chapterLoadFailed]) [self.view showHudLoading];
+    if (content.length == 0 || [content isEqualToString:@"获取本章失败"]) [self.view showHudLoading];
     [DBAFNetWorking getServiceRequestType:DBLinkBookCatalog combine:self.book.site_path parameInterface:nil modelClass:DBBookCatalogModel.class serviceData:^(BOOL successfulRequest, NSArray <DBBookCatalogModel *>*result, NSString * _Nullable message) {
         [self.view removeHudLoading];
         
@@ -179,7 +210,7 @@
             self.model.chapterCacheList = tempChapterList;
             [DBBookCatalogModel deleteCatalogsForm:self.book.catalogForm];
             [DBBookCatalogModel updateCatalogs:tempChapterList catalogForm:self.book.catalogForm];
-            if (self.model.content.length == 0 || [self.model.content isEqualToString:DBConstantString.ks_chapterLoadFailed.textMultilingual]){
+            if (self.model.content.length == 0 || [self.model.content isEqualToString:@"获取本章失败".textMultilingual]){
                 [self getBookContentDataSource];
             }
         }else{
@@ -252,6 +283,33 @@
             }];
         }
     }
+}
+
+- (void)freeVipConfig{
+    DBWeakSelf
+    [DBReaderAdViewModel checkFreeAdActivityCompletion:^(DBUserVipModel * _Nonnull vipModel, DBUserActivityModel * _Nonnull activityModel) {
+        DBStrongSelfElseReturn
+        if (vipModel.level == 1 && activityModel.rules.free_vip_rules.seconds > 0){
+            if (vipModel.free_vip_seconds == 0){
+                self.readerAdViewModel.activityView.activityModel = activityModel;
+                [self.view addSubview:self.readerAdViewModel.activityView];
+                
+                DBWeakSelf
+                self.readerAdViewModel.activityView.didRewardBlock = ^(NSInteger freeSeconds) {
+                    DBStrongSelfElseReturn
+                    if (freeSeconds > 0){
+                        self.freeSeconds = freeSeconds;
+                        [self.readerAdViewModel clearAllReaderAdView];
+                        vipModel.free_vip_seconds = freeSeconds;
+                        [NSUserDefaults saveValue:vipModel.modelToJSONString forKey:DBUserVipInfoValue];
+                        [self switchReaderTransitionStyleSwitch:YES];
+                    }
+                };
+            }else{
+                self.freeSeconds = vipModel.free_vip_seconds;
+            }
+        }
+    }];
 }
 
 #pragma readerContentViewModel action
@@ -369,7 +427,7 @@
     if ([self.readerVc isKindOfClass:DBPageRollingViewController.class]) {
         self.readerContentViewModel.batteryDateView.pageStr = @"";
     }else{
-        self.readerContentViewModel.batteryDateView.pageStr = [NSString stringWithFormat:DBConstantString.ks_pageNumber,MIN(self.model.currentPage+1, self.model.contentList.count),self.model.contentList.count];
+        self.readerContentViewModel.batteryDateView.pageStr = [NSString stringWithFormat:@"第%ld/%ld页",MIN(self.model.currentPage+1, self.model.contentList.count),self.model.contentList.count];
     }
     
     ((DBPageLinearViewController *)self.readerVc).model = self.model;
@@ -438,7 +496,7 @@
 - (DBEmptyView *)errorDataView{
     if (!_errorDataView){
         _errorDataView = [[DBEmptyView alloc] init];
-        _errorDataView.imageObj = [UIImage imageNamed:@"jjNullCanvas"];
+        _errorDataView.imageObj = [UIImage imageNamed:@"empty_icon"];
         _errorDataView.content = [NSString stringWithFormat:@"加载第%ld章节失败",self.model.currentChapter+1];
         _errorDataView.reloadButton.hidden = NO;
         [self.view addSubview:_errorDataView];
@@ -496,6 +554,8 @@
     }
     return _readerAdViewModel;
 }
+
+
 
 - (NSMutableSet *)loadingSet{
     if (!_loadingSet){

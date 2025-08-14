@@ -29,6 +29,7 @@ typedef NS_ENUM(NSInteger,DBSelfAdType) {
 - (void)selfAdViewDidRemoved:(UIView *)adContainerView spaceType:(DBAdSpaceType)spaceType;
 - (void)selfAdObjectDidRemoved:(DBSelfAdConfig *)adObject spaceType:(DBAdSpaceType)spaceType;
 - (void)selfAdDidClick:(DBSelfAdConfig *)splashAd;
+- (void)selfAdViewDidFinishReward:(DBSelfAdConfig *)adObject spaceType:(DBAdSpaceType)spaceType;
 
 @end
 

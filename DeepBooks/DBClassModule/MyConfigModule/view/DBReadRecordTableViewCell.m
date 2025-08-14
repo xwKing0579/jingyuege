@@ -73,7 +73,7 @@
         DBWeakSelf
  
         self.bookselfButton.userInteractionEnabled = NO;
-        [DBUnityAdConfig.manager openRewardAdSpaceType:DBAdSpaceAddToBookshelf completion:^(BOOL removed) {
+        [DBUnityAdConfig.manager openRewardAdSpaceType:DBAdSpaceAddToBookshelf completion:^(BOOL removed,BOOL reward) {
             DBStrongSelfElseReturn
             self.bookselfButton.userInteractionEnabled = YES;
             

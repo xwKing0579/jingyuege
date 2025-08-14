@@ -73,7 +73,7 @@ static NSString *DBsecondsTimeChange = @"DBsecondsTimeChange";
 static NSString *DBNetReachableChange = @"DBNetReachableChange";
 static NSString *DBLocalLanguageChange = @"DBLocalLanguageChange";
 static NSString *DBUpdateMarqueeContent = @"DBUpdateMarqueeContent";
-
+static NSString *DBUserVipInfoValue = @"DBUserAdInfoValue"; 
 
 typedef NS_ENUM(NSInteger,DBBookType) {
     DBBookIndex,

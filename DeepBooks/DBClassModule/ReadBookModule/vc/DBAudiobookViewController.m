@@ -65,7 +65,7 @@
         self.audioDate = NSDate.now;
         if (adSetting.listenBookCount <= 0){
             DBWeakSelf
-            [DBUnityAdConfig.manager openRewardAdSpaceType:DBAdSpaceListenBooks completion:^(BOOL removed) {
+            [DBUnityAdConfig.manager openRewardAdSpaceType:DBAdSpaceListenBooks completion:^(BOOL removed,BOOL reward) {
                 DBStrongSelfElseReturn
                 if (removed) {
                     adSetting.listenBookCount += MAX(1, posAd.extra.limit)*60;
@@ -91,7 +91,7 @@
     }
    
     NSString *audioText = self.currentAudioText.string;
-    if (audioText.length == 0 || [audioText isEqualToString:DBConstantString.ks_chapterLoadFailed.textMultilingual]) {
+    if (audioText.length == 0 || [audioText isEqualToString:@"获取本章失败".textMultilingual]) {
         [self finishAudiobookAction];
         return;
     }
@@ -123,7 +123,7 @@
         NSTimeInterval end = [NSDate.now timeIntervalSince1970];
         if (end - start > self.audioTime) {
            
-            [UIScreen.currentViewController.view showAlertText:DBConstantString.ks_autoReadEnded];
+            [UIScreen.currentViewController.view showAlertText:@"今日自动阅读时间已结束"];
             [self finishAudiobookAction];
             return;
         }
@@ -175,7 +175,7 @@
 
 //- (NSArray <NSTextCheckingResult *>*)splitTextForAudio:(NSString *)text{
 //    if (text.whitespace.length == 0) return @[];
-//    
+//
 //    NSString *pattern = @"[^。！？\n\\s]+";
 //    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:nil];
 //    NSArray <NSTextCheckingResult *> *matches = [regex matchesInString:text options:0 range:NSMakeRange(0, text.length)];

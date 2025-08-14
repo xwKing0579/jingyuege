@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DBRewardAdConfig : DBAdBase
 - (void)setRewardAdPreLoadSpaceType:(DBAdSpaceType)spaceType;
-- (void)getRewardAdsAndSpaceType:(DBAdSpaceType)spaceType reload:(BOOL)reload completion:(void (^ _Nullable)(NSObject *adObject))completion;
+- (void)getRewardAdsAndSpaceType:(DBAdSpaceType)spaceType reload:(BOOL)reload completion:(void (^ _Nullable)(NSObject *adObject, BOOL reward))completion;
 @end
 
 NS_ASSUME_NONNULL_END

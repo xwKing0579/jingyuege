@@ -69,6 +69,8 @@ typedef NS_ENUM(NSInteger,DBAdSpaceType) {
     DBAdSpaceListenBooks,
     DBAdSpaceRequestBooks,
  
+    //vip
+    DBAdSpaceUserFreeVip,
 };
 
 @interface DBUnityAdConfig : NSObject
@@ -97,7 +99,7 @@ typedef NS_ENUM(NSInteger,DBAdSpaceType) {
 
 //激励广告
 - (void)preloadingRewardAdPreLoadSpaceType:(DBAdSpaceType)spaceType;
-- (void)openRewardAdSpaceType:(DBAdSpaceType)spaceType completion:(void (^ _Nullable)(BOOL removed))completion;
+- (void)openRewardAdSpaceType:(DBAdSpaceType)spaceType completion:(void (^ _Nullable)(BOOL removed,BOOL reward))completion;
 
 //插屏广告
 - (void)openSlotAdSpaceType:(DBAdSpaceType)spaceType showAdController:(UIViewController *)showAdController completion:(void (^ _Nullable)(BOOL removed))completion;

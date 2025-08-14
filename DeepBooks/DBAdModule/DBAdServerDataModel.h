@@ -76,6 +76,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *image;
 @property (nonatomic, copy) NSString *video;
 @property (nonatomic, copy) NSString *logo;
+@property (nonatomic, assign) NSInteger close_sec;
+@property (nonatomic, assign) NSInteger reward_sec;
 @property (nonatomic, strong) NSArray <NSArray <DBSelfAdModel *> *> *grid;
 
 @property (nonatomic, assign) BOOL hiddenCloseAd;

@@ -61,7 +61,21 @@ typedef NS_ENUM(NSInteger,DBCombineType) {
         case DBLinkSearchClickReport:
             path = [NSString stringWithFormat:@"%@/log/v4/book.api",combineDomain];
             break;
-            
+        case DBLinkUserVipInfo:
+            path = [NSString stringWithFormat:@"%@/v12/membership/status",combineDomain];
+            break;
+        case DBLinkUserActivities:
+            path = [NSString stringWithFormat:@"%@/v12/coin_activity/activities?type=%@",combineDomain,combine];
+            break;
+        case DBLinkCheckActivity:
+            path = [NSString stringWithFormat:@"%@/v12/coin_activity/participate/check",combineDomain];
+            break;
+        case DBLinkActivityReward:
+            path = [NSString stringWithFormat:@"%@/v12/coin_activity/participate",combineDomain];
+            break;
+        case DBLinkFreeVipConsume:
+            path = [NSString stringWithFormat:@"%@/v12/membership/consume_free_vip",combineDomain];
+            break;
             
             
             
@@ -331,6 +345,11 @@ typedef NS_ENUM(NSInteger,DBCombineType) {
         case DBLinkInviteCode:
         case DBLinkUserPlane:
         case DBUserClickReport:
+        case DBLinkUserVipInfo:
+        case DBLinkUserActivities:
+        case DBLinkCheckActivity:
+        case DBLinkActivityReward:
+        case DBLinkFreeVipConsume:
             combineType = DBCombineMy;
             break;
         case DBLinkBookQualityChoice:

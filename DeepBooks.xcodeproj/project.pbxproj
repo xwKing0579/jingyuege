@@ -228,6 +228,11 @@
 		F88C72E22D8DAE4E0092AD6B /* DBBooksListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F88C72E12D8DAE4E0092AD6B /* DBBooksListViewController.m */; };
 		F88C72E52D8DB8C60092AD6B /* DBAppSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = F88C72E42D8DB8C60092AD6B /* DBAppSetting.m */; };
 		F88C72E82D8DC8610092AD6B /* DBHotWordsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F88C72E72D8DC8610092AD6B /* DBHotWordsModel.m */; };
+		F88E788A2E4E342000A8ABA6 /* DBActivityEntranceView.m in Sources */ = {isa = PBXBuildFile; fileRef = F88E78892E4E342000A8ABA6 /* DBActivityEntranceView.m */; };
+		F88E788B2E4E342000A8ABA6 /* DBUserVipConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = F88E78812E4E342000A8ABA6 /* DBUserVipConfig.m */; };
+		F88E788C2E4E342000A8ABA6 /* DBUserActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F88E78832E4E342000A8ABA6 /* DBUserActivityModel.m */; };
+		F88E788D2E4E342000A8ABA6 /* DBActivityPermissionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F88E78852E4E342000A8ABA6 /* DBActivityPermissionModel.m */; };
+		F88E788E2E4E342000A8ABA6 /* DBFreeVipConsumeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F88E78872E4E342000A8ABA6 /* DBFreeVipConsumeModel.m */; };
 		F88EF36B2D79DBDD009C5DE2 /* DBBatteryView.m in Sources */ = {isa = PBXBuildFile; fileRef = F88EF36A2D79DBDD009C5DE2 /* DBBatteryView.m */; };
 		F88F965F2E23AFD200D11278 /* DBHottestListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F88F965E2E23AFD200D11278 /* DBHottestListViewController.m */; };
 		F88F96622E23AFDD00D11278 /* DBHottestIndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F88F96612E23AFDD00D11278 /* DBHottestIndexViewController.m */; };
@@ -874,6 +879,16 @@
 		F88C72E42D8DB8C60092AD6B /* DBAppSetting.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBAppSetting.m; sourceTree = "<group>"; };
 		F88C72E62D8DC8610092AD6B /* DBHotWordsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBHotWordsModel.h; sourceTree = "<group>"; };
 		F88C72E72D8DC8610092AD6B /* DBHotWordsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBHotWordsModel.m; sourceTree = "<group>"; };
+		F88E78802E4E342000A8ABA6 /* DBUserVipConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBUserVipConfig.h; sourceTree = "<group>"; };
+		F88E78812E4E342000A8ABA6 /* DBUserVipConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBUserVipConfig.m; sourceTree = "<group>"; };
+		F88E78822E4E342000A8ABA6 /* DBUserActivityModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBUserActivityModel.h; sourceTree = "<group>"; };
+		F88E78832E4E342000A8ABA6 /* DBUserActivityModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBUserActivityModel.m; sourceTree = "<group>"; };
+		F88E78842E4E342000A8ABA6 /* DBActivityPermissionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBActivityPermissionModel.h; sourceTree = "<group>"; };
+		F88E78852E4E342000A8ABA6 /* DBActivityPermissionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBActivityPermissionModel.m; sourceTree = "<group>"; };
+		F88E78862E4E342000A8ABA6 /* DBFreeVipConsumeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBFreeVipConsumeModel.h; sourceTree = "<group>"; };
+		F88E78872E4E342000A8ABA6 /* DBFreeVipConsumeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBFreeVipConsumeModel.m; sourceTree = "<group>"; };
+		F88E78882E4E342000A8ABA6 /* DBActivityEntranceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBActivityEntranceView.h; sourceTree = "<group>"; };
+		F88E78892E4E342000A8ABA6 /* DBActivityEntranceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBActivityEntranceView.m; sourceTree = "<group>"; };
 		F88EF3692D79DBDD009C5DE2 /* DBBatteryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBBatteryView.h; sourceTree = "<group>"; };
 		F88EF36A2D79DBDD009C5DE2 /* DBBatteryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBBatteryView.m; sourceTree = "<group>"; };
 		F88F965D2E23AFD200D11278 /* DBHottestListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBHottestListViewController.h; sourceTree = "<group>"; };
@@ -1883,6 +1898,16 @@
 		F88EA8102D77077200628EC5 /* ReadBookModule */ = {
 			isa = PBXGroup;
 			children = (
+				F88E78802E4E342000A8ABA6 /* DBUserVipConfig.h */,
+				F88E78812E4E342000A8ABA6 /* DBUserVipConfig.m */,
+				F88E78822E4E342000A8ABA6 /* DBUserActivityModel.h */,
+				F88E78832E4E342000A8ABA6 /* DBUserActivityModel.m */,
+				F88E78842E4E342000A8ABA6 /* DBActivityPermissionModel.h */,
+				F88E78852E4E342000A8ABA6 /* DBActivityPermissionModel.m */,
+				F88E78862E4E342000A8ABA6 /* DBFreeVipConsumeModel.h */,
+				F88E78872E4E342000A8ABA6 /* DBFreeVipConsumeModel.m */,
+				F88E78882E4E342000A8ABA6 /* DBActivityEntranceView.h */,
+				F88E78892E4E342000A8ABA6 /* DBActivityEntranceView.m */,
 				F8CF6BA12E2AC82B006A7711 /* Rolling */,
 				F8D01B382DAFE5CD00851017 /* vc */,
 				F8D01B372DAFE5BB00851017 /* model */,
@@ -3190,6 +3215,11 @@
 				F89D69982D939D4500C72DD6 /* DBWantBooksViewController.m in Sources */,
 				F83A4E822E029A8700D12920 /* DBMuteLanguageModel.m in Sources */,
 				F8A6FBC92DE0DD1100F92A00 /* DBAdReadSetting.m in Sources */,
+				F88E788A2E4E342000A8ABA6 /* DBActivityEntranceView.m in Sources */,
+				F88E788B2E4E342000A8ABA6 /* DBUserVipConfig.m in Sources */,
+				F88E788C2E4E342000A8ABA6 /* DBUserActivityModel.m in Sources */,
+				F88E788D2E4E342000A8ABA6 /* DBActivityPermissionModel.m in Sources */,
+				F88E788E2E4E342000A8ABA6 /* DBFreeVipConsumeModel.m in Sources */,
 				F8327CAD2D7ADE5C003AF2C7 /* DBReadBookCatalogsViewController.m in Sources */,
 				F8841DDD2D709E9D00E771EA /* DBMyConfigViewController.m in Sources */,
 				F8268E262E47C9630057AE98 /* DBImagePicker.m in Sources */,

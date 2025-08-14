@@ -27,7 +27,7 @@
     splashAdConfig.intervalTime = 0;
     SFVideoConfig *videoConfig = [[SFVideoConfig alloc] init];
     videoConfig.videoMuted = YES;
-    videoConfig.isVideoMutedConfig = YES;
+    videoConfig.isVideoMutedConfig = NO;
     splashAdConfig.videoConfig = videoConfig;
     splashAdConfig.showAdController = self.showAdController;
     [splashAdConfig loadAdData];
@@ -42,7 +42,7 @@
     bannerAdConfig.size = DBReadBookSetting.setting.canvasAdSize;
     SFVideoConfig *videoConfig = [[SFVideoConfig alloc] init];
     videoConfig.videoMuted = YES;
-    videoConfig.isVideoMutedConfig = YES;
+    videoConfig.isVideoMutedConfig = NO;
     bannerAdConfig.videoConfig = videoConfig;
     bannerAdConfig.showAdController = self.showAdController;
     [bannerAdConfig loadAdData];
@@ -191,6 +191,14 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(mangoAdLoadDidClick:)]){
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.delegate mangoAdLoadDidClick:self];
+        });
+    }
+}
+
+- (void)rewardedVideoDidRewardEffectiveWithExtra:(NSDictionary *)extra{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(rewardedVideoDidRewardEffectiveWithExtra:)]){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.delegate mangoAdObjectDidReward:self rewardAd:self.rewardAdConfig extra:extra];
         });
     }
 }

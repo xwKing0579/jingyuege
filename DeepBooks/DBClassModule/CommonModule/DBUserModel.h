@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@class DBUserDataModel,DBUserInfoModel,DBUserAdModel,DBUserInviteCodeModel;
+@class DBUserDataModel,DBUserInfoModel,DBUserAdModel,DBUserInviteCodeModel,DBUserVipModel;
 @interface DBUserModel : NSObject
 @property (nonatomic, copy) NSString *account;
 @property (nonatomic, copy) NSString *user_id;
@@ -32,6 +32,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)getUserCenterCompletion:(void (^ __nullable)(BOOL success))completion;
 + (void)getUserInviteCompletion:(void (^ __nullable)(BOOL successfulRequest, DBUserInviteCodeModel *model))completion;
+
++ (void)getUserVipInfoCompletion:(void (^ __nullable)(BOOL successfulRequest, DBUserVipModel *model))completion;
 @end
 
 @interface DBUserDataModel : NSObject
@@ -69,5 +71,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *inviter;
 @property (nonatomic, copy) NSString *invite_id;
 @property (nonatomic, copy) NSString *share_link;
+@end
+
+@interface DBUserVipModel : NSObject
+@property (nonatomic, copy) NSString *user_id;
+@property (nonatomic, assign) NSInteger free_vip_seconds; //剩余的免费VIP秒数
+@property (nonatomic, assign) NSInteger level; //会员等级 (0:非会员, 1:免费会员, 2:包月会员, 3:包年会员)
+@property (nonatomic, assign) BOOL is_member; // 是否是有效付费会员
+@property (nonatomic, copy) NSString *end_time;
+@property (nonatomic, copy) NSString *remaining_days;
+@property (nonatomic, copy) NSString *today_read_seconds;
+@property (nonatomic, copy) NSString *read_seconds; //总共的阅读时长（使用track.api更新）
+@property (nonatomic, copy) NSString *coins;
 @end
 NS_ASSUME_NONNULL_END

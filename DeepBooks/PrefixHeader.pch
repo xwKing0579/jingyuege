@@ -54,7 +54,7 @@
 
 #import "DBBaseLabel.h"
 #import "DBConstantString.h"
-
+#import "DBUserVipConfig.h"
 static inline BOOL DBEmptyObj(id thing) {
     return thing == nil || [thing isEqual:[NSNull null]]
     || ([thing respondsToSelector:@selector(length)]

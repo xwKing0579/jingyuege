@@ -28,8 +28,8 @@
     self.clipsToBounds = YES;
     [self addSubviews:@[self.carouselCycleView,self.customPageControl]];
     
-    NSArray *imageList = @[@"jjInfernoLibris",@"jjPinnacleAnthology",@"jjSummitArchive"];
-    NSArray *titleList = @[DBConstantString.ks_topBooks,DBConstantString.ks_bestsellers,DBConstantString.ks_allRankings];
+    NSArray *imageList = @[@"hotBook",@"sellBestBook",@"rankBook"];
+    NSArray *titleList = @[@"追书最热榜",@"畅销小说",@"全部榜单"];
     NSArray *starColors = @[DBColorExtension.peachCreamColor,DBColorExtension.blossomPinkColor,DBColorExtension.freshBlueColor];
     NSArray *endColors = @[DBColorExtension.ivoryWhiteColor,DBColorExtension.candyPinkColor,DBColorExtension.mistyBlueColor];
     CGFloat top = 182.0;
@@ -68,12 +68,16 @@
 
 - (void)setImageGroup:(NSArray *)imageGroup{
     _imageGroup = imageGroup;
+    if (imageGroup.count == 0) return;
+    
     self.customPageControl.numberOfPages = imageGroup.count;
     [self.carouselCycleView reloadData];
 }
 
 - (void)setImageModelGroup:(NSArray<DBBannerModel *> *)imageModelGroup{
     _imageModelGroup = imageModelGroup;
+    if (imageModelGroup.count == 0) return;
+    
     NSMutableArray *imageGroup = [NSMutableArray array];
     for (DBBannerModel *item in imageModelGroup) {
         if (item.image) [imageGroup addObject:item.image];

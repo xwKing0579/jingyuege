@@ -19,9 +19,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)mangoAdLoadSuccess:(DBMangoAdConfig *)splashAd rewardAd:(SFRewardVideoManager *)rewardAd;
 - (void)mangoAdObjectDidRemoved:(DBMangoAdConfig *)splashAd rewardAd:(SFRewardVideoManager *)rewardAd;
+- (void)mangoAdObjectDidReward:(DBMangoAdConfig *)splashAd rewardAd:(SFRewardVideoManager *)rewardAd extra:(NSDictionary *)extra;
 
 - (void)mangoAdLoadSuccess:(DBMangoAdConfig *)splashAd slotAd:(SFInterstitialManager *)slotAd;
 - (void)mangoAdObjectDidRemoved:(DBMangoAdConfig *)splashAd slotAd:(SFInterstitialManager *)slotAd;
+
 
 @end
 

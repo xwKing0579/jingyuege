@@ -8,6 +8,9 @@
 #import <Foundation/Foundation.h>
 #import "DBReaderManagerViewController.h"
 #import "DBReaderModel.h"
+#import "DBUserVipConfig.h"
+#import "DBActivityEntranceView.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_OPTIONS(NSUInteger, DBReaderAdType) {
@@ -22,6 +25,9 @@ typedef NS_OPTIONS(NSUInteger, DBReaderAdType) {
 
 @property (nonatomic, weak) DBReaderManagerViewController *readerVc;
 
+@property (nonatomic, assign) BOOL vipFree;
+@property (nonatomic, strong) DBActivityEntranceView *activityView;
+
 + (BOOL)slotEndReaderAd;
 + (BOOL)gridEndReaderAd;
 + (NSInteger)getReaderAdSlotValue;
@@ -34,6 +40,10 @@ typedef NS_OPTIONS(NSUInteger, DBReaderAdType) {
 + (DBReaderAdType)getReaderAdTypeWithModel:(DBReaderModel *)model after:(BOOL)after;
 
 + (DBReaderAdType)getReaderAdTypeWithPageNum:(NSInteger)pageNum isLastIndex:(BOOL)lastIndex;
+
++ (void)checkFreeAdActivityCompletion:(void (^ __nullable)(DBUserVipModel *vipModel, DBUserActivityModel *activityModel))completion;
++ (BOOL)freeVipReadingTime;
+- (void)clearAllReaderAdView;
 
 @end
 

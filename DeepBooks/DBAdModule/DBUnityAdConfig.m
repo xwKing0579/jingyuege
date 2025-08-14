@@ -45,7 +45,7 @@
 //是否开启广告
 + (BOOL)openAd{
 #ifdef DEBUG
-    return NO;
+    return YES;
     NSNumber *value = [NSUserDefaults takeValueForKey:@"DBAdvertisingSwitch"];
     if (value) return [value boolValue];
 #endif
@@ -160,17 +160,17 @@
     [self.rewardAd setRewardAdPreLoadSpaceType:spaceType];
 }
 
-- (void)openRewardAdSpaceType:(DBAdSpaceType)spaceType completion:(void (^ _Nullable)(BOOL removed))completion{
+- (void)openRewardAdSpaceType:(DBAdSpaceType)spaceType completion:(void (^ _Nullable)(BOOL removed, BOOL reward))completion{
     if (!DBUnityAdConfig.openAd || !self.isAdStart) return;
     
-    [self.rewardAd getRewardAdsAndSpaceType:spaceType reload:YES completion:^(NSObject * _Nonnull adObject) {
+    [self.rewardAd getRewardAdsAndSpaceType:spaceType reload:YES completion:^(NSObject * _Nonnull adObject, BOOL reward) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if ([adObject isKindOfClass:DBSelfAdConfig.class]){
                 [(DBSelfAdConfig *)adObject showAdInView:UIScreen.appWindow adType:DBSelfAdReward];
             }else if ([adObject isKindOfClass:SFRewardVideoManager.class]){
                 [(SFRewardVideoManager *)adObject showRewardVideoAdWithController:UIScreen.appWindow.rootViewController];
             }
-            if (completion) completion(adObject == nil);
+            if (completion) completion(adObject == nil, reward);
             [self trackDataAdDict:adObject.adTrackModel actionType:YES];
         });
     }];
@@ -429,6 +429,9 @@
             break;
         case DBAdSpaceListenBooks:
             position = @"listen_books";
+            break;
+        case DBAdSpaceUserFreeVip:
+            position = @"free_vip";
             break;
         default:
             break;
