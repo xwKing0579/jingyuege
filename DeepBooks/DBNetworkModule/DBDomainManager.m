@@ -160,7 +160,7 @@ void handleException(NSException *exception) {
         [self resetConfig];
         [self configThirdSDK];
         [self appBaseConfig];
-        
+        if (DBCommonConfig.isLogin) [DBUserModel getUserVipInfoCompletion:nil];
         if (completion) completion(successfulRequest);
     }];
 }

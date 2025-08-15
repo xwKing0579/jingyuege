@@ -31,9 +31,6 @@
 @property (nonatomic, strong) NSDate *begainTime;
 @property (nonatomic, strong) NSMutableSet *loadingSet;
 
-@property (nonatomic, assign) NSInteger freeCount;
-@property (nonatomic, assign) NSInteger freeSeconds;
-
 @property (nonatomic, strong) DBUserVipModel *vipModel;
 @end
 
@@ -143,18 +140,19 @@
         [self.readerAdViewModel loadReaderSlotAdInDiffTime:diffTime];
     }
     
-    
-    if (self.freeSeconds > 0){
-        self.freeSeconds--;
-        self.vipModel.free_vip_seconds = self.freeSeconds;
+    NSInteger freeSecond = self.vipModel.free_vip_seconds;
+    if (freeSecond > 0){
+        freeSecond--;
+        self.vipModel.free_vip_seconds = freeSecond;
         [NSUserDefaults saveValue:self.vipModel.modelToJSONString forKey:DBUserVipInfoValue];
-        if (self.freeSeconds%60 == 0){
+        if (freeSecond%60 == 0){
             DBWeakSelf
             [DBAFNetWorking postServiceRequestType:DBLinkFreeVipConsume combine:nil parameInterface:@{@"seconds":@"60"} modelClass:DBFreeVipConsumeModel.class serviceData:^(BOOL successfulRequest, DBFreeVipConsumeModel *result, NSString * _Nullable message) {
                 DBStrongSelfElseReturn
                 if (successfulRequest){
-                    self.freeSeconds = result.remaining_seconds;
-                    if (self.freeSeconds == 0){
+                    self.vipModel.free_vip_seconds = result.remaining_seconds;
+                    [NSUserDefaults saveValue:self.vipModel.modelToJSONString forKey:DBUserVipInfoValue];
+                    if (result.remaining_seconds == 0){
                         [self.readerAdViewModel resetFreeVipAdView];
                         [self switchReaderTransitionStyleSwitch:YES];
                     }
@@ -469,7 +467,7 @@
 - (DBEmptyView *)errorDataView{
     if (!_errorDataView){
         _errorDataView = [[DBEmptyView alloc] init];
-        _errorDataView.imageObj = [UIImage imageNamed:@"jjNullCanvas"];
+        _errorDataView.imageObj = [UIImage imageNamed:@"empty_icon"];
         _errorDataView.content = [NSString stringWithFormat:@"加载第%ld章节失败",self.model.currentChapter+1];
         _errorDataView.reloadButton.hidden = NO;
         [self.view addSubview:_errorDataView];
@@ -503,7 +501,6 @@
                     [self switchReaderTransitionStyleSwitch:YES];
                     break;
                 case DBMenuFreeVipReload:{
-                    self.freeCount = index;
                     [self.readerAdViewModel resetFreeVipAdView];
                     [self switchReaderTransitionStyleSwitch:YES];
                 }

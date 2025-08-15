@@ -365,14 +365,16 @@
             self.countdownTime--;
             NSString *secondTime = [NSString stringWithFormat:@"观看%ld秒后可获得奖励".textMultilingual,self.countdownTime];
             [self.skipAdButton setTitle:secondTime forState:UIControlStateNormal];
-        }else{
+        }else if (self.countdownTime == 1){
+            self.countdownTime--;
             [self.skipAdButton setTitle:@"获得奖励" forState:UIControlStateNormal];
             if (self.didFinishRewardBlock) self.didFinishRewardBlock(self, self.adType);
         }
         
         if (self.showAdTime > 1){
             self.showAdTime--;
-        }else{
+        }else if (self.showAdTime == 1){
+            self.showAdTime--;
             self.closeAdButton.hidden = NO;
         }
     }else{
@@ -380,7 +382,8 @@
             self.countdownTime--;
             NSString *secondTime = [NSString stringWithFormat:@"%ld秒跳过".textMultilingual,self.countdownTime];
             [self.skipAdButton setTitle:secondTime forState:UIControlStateNormal];
-        }else{
+        }else if (self.countdownTime == 1){
+            self.countdownTime--;
             [self.skipAdButton setTitle:@"跳过" forState:UIControlStateNormal];
         }
     }
@@ -451,8 +454,8 @@
 - (UIButton *)voiceButton{
     if (!_voiceButton){
         _voiceButton = [[UIButton alloc] init];
-        [_voiceButton setImage:[UIImage imageNamed:@"jjSoundlessSeal"] forState:UIControlStateNormal];
-        [_voiceButton setImage:[UIImage imageNamed:@"jjHarmonicRipple"] forState:UIControlStateSelected];
+        [_voiceButton setImage:[UIImage imageNamed:@"ad_mute"] forState:UIControlStateNormal];
+        [_voiceButton setImage:[UIImage imageNamed:@"ad_sound"] forState:UIControlStateSelected];
         [_voiceButton addTarget:self action:@selector(clickVoiceAction) forControlEvents:UIControlEventTouchUpInside];
         _voiceButton.enlargedEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
     }
@@ -478,7 +481,7 @@
 - (UIButton *)closeAdButton{
     if (!_closeAdButton){
         _closeAdButton = [[UIButton alloc] init];
-        [_closeAdButton setImage:[UIImage imageNamed:@"jjMistDissipate"] forState:UIControlStateNormal];
+        [_closeAdButton setImage:[UIImage imageNamed:@"ad_close"] forState:UIControlStateNormal];
         [_closeAdButton addTarget:self action:@selector(clickAdCloseAction) forControlEvents:UIControlEventTouchUpInside];
         _closeAdButton.enlargedEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
     }
@@ -522,6 +525,7 @@
         _skipAdButton.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
         _skipAdButton.layer.cornerRadius = 14;
         _skipAdButton.layer.masksToBounds = YES;
+        
         [_skipAdButton setTitle:@"跳过" forState:UIControlStateNormal];
         [_skipAdButton setTitleColor:DBColorExtension.whiteColor forState:UIControlStateNormal];
         [_skipAdButton addTarget:self action:@selector(clickAdCloseAction) forControlEvents:UIControlEventTouchUpInside];
