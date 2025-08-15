@@ -2,7 +2,7 @@
 //  DBReaderAdViewModel.m
 //  DeepBooks
 //
-//  Created by 王祥伟 on 2025/7/7.
+//  Created by king on 2025/7/7.
 //
 
 #import "DBReaderAdViewModel.h"
@@ -97,7 +97,7 @@
 + (BOOL)slotEndReaderAd{
     if (!DBUnityAdConfig.openAd) return NO;
     if (DBReaderAdViewModel.freeVipReadingTime) return NO;
-
+    
     DBAdPosModel *posAdEndPage = [DBUnityAdConfig adPosWithSpaceType:DBAdSpaceReaderChapterEnd];
     if (posAdEndPage.ads.count) {
         return YES;
@@ -212,45 +212,38 @@
 }
 
 + (void)checkFreeAdActivityCompletion:(void (^ __nullable)(DBUserVipModel *vipModel, DBUserActivityModel *activityModel))completion{
-    if (!DBCommonConfig.isLogin || DBUserVipConfig.isUserVip) {
+    if (!DBCommonConfig.isLogin || !DBUnityAdConfig.openAd || DBUserVipConfig.isUserVip) {
         if (completion) completion(nil, nil);
         return;
     }
     
-    [DBUserModel getUserVipInfoCompletion:^(BOOL successfulRequest, DBUserVipModel * _Nonnull model) {
-        if (successfulRequest){
-            if (model.level == 1){
-                
-                DBAdPosModel *posAdFreeVip = [DBUnityAdConfig adPosWithSpaceType:DBAdSpaceUserFreeVip];
-                DBAdPosModel *posAdBottom = [DBUnityAdConfig adPosWithSpaceType:DBAdSpaceReaderBottom];
-                DBAdPosModel *posAdInterstitial = [DBUnityAdConfig adPosWithSpaceType:DBAdSpaceReaderInterstitial];
-                DBAdPosModel *posAdChapterEnd = [DBUnityAdConfig adPosWithSpaceType:DBAdSpaceReaderChapterEnd];
-                DBAdPosModel *posAdChapterEndGrid = [DBUnityAdConfig adPosWithSpaceType:DBAdSpaceReaderChapterEndGrid];
-                DBAdPosModel *posAdPage = [DBUnityAdConfig adPosWithSpaceType:DBAdSpaceReaderPage];
-                DBAdPosModel *posAdPageGrid = [DBUnityAdConfig adPosWithSpaceType:DBAdSpaceReaderPageGrid];
-                
-                if (posAdFreeVip.ads.count &&
-                    (posAdBottom.ads.count ||
-                     posAdInterstitial.ads.count ||
-                     posAdChapterEnd.ads.count ||
-                     posAdChapterEndGrid.ads.count ||
-                     posAdPage.ads.count ||
-                     posAdPageGrid.ads.count)) {
-                    
-                    [DBUserVipConfig checkFreeVipActivityCompletion:^(DBUserActivityModel * _Nonnull activityModel) {
-                        if (completion) completion(model, activityModel);
-                    }];
-                    
-                }
-                
+    DBAdPosModel *posAdFreeVip = [DBUnityAdConfig adPosWithSpaceType:DBAdSpaceUserFreeVip];
+    DBAdPosModel *posAdBottom = [DBUnityAdConfig adPosWithSpaceType:DBAdSpaceReaderBottom];
+    DBAdPosModel *posAdInterstitial = [DBUnityAdConfig adPosWithSpaceType:DBAdSpaceReaderInterstitial];
+    DBAdPosModel *posAdChapterEnd = [DBUnityAdConfig adPosWithSpaceType:DBAdSpaceReaderChapterEnd];
+    DBAdPosModel *posAdChapterEndGrid = [DBUnityAdConfig adPosWithSpaceType:DBAdSpaceReaderChapterEndGrid];
+    DBAdPosModel *posAdPage = [DBUnityAdConfig adPosWithSpaceType:DBAdSpaceReaderPage];
+    DBAdPosModel *posAdPageGrid = [DBUnityAdConfig adPosWithSpaceType:DBAdSpaceReaderPageGrid];
+    
+    if (posAdFreeVip.ads.count &&
+        (posAdBottom.ads.count ||
+         posAdInterstitial.ads.count ||
+         posAdChapterEnd.ads.count ||
+         posAdChapterEndGrid.ads.count ||
+         posAdPage.ads.count ||
+         posAdPageGrid.ads.count)) {
+        [DBUserModel getUserVipInfoCompletion:^(BOOL successfulRequest, DBUserVipModel * _Nonnull model) {
+            if (successfulRequest && (model.level == 0 || (model.level == 1 && model.free_vip_seconds == 0))){
+                [DBUserVipConfig checkFreeVipActivityCompletion:^(DBUserActivityModel * _Nonnull activityModel) {
+                    if (completion) completion(model, activityModel);
+                }];
             }else{
-                if (completion) completion(model, nil);
+                if (completion) completion(nil, nil);
             }
-        }else{
-            if (completion) completion(nil, nil);
-        }
-    }];
- 
+        }];
+    }else{
+        if (completion) completion(nil, nil);
+    }
 }
 
 - (void)clearAllReaderAdView{

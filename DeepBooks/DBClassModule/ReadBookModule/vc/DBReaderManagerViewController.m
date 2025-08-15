@@ -289,7 +289,7 @@
     DBWeakSelf
     [DBReaderAdViewModel checkFreeAdActivityCompletion:^(DBUserVipModel * _Nonnull vipModel, DBUserActivityModel * _Nonnull activityModel) {
         DBStrongSelfElseReturn
-        if (vipModel.level == 1 && activityModel.rules.free_vip_rules.seconds > 0){
+        if (activityModel.rules.free_vip_rules.seconds > 0){
             if (vipModel.free_vip_seconds == 0){
                 self.readerAdViewModel.activityView.activityModel = activityModel;
                 [self.view addSubview:self.readerAdViewModel.activityView];
