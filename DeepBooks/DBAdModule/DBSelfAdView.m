@@ -274,7 +274,7 @@
                 make.height.mas_equalTo(28);
             }];
             
-            
+            _skipAdButton.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 10);
             if (adType == DBSelfAdReward){
                 time = selfAd.reward_sec ?: 10;
                 self.showAdTime = selfAd.close_sec ?: 5;
@@ -522,7 +522,6 @@
         _skipAdButton.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
         _skipAdButton.layer.cornerRadius = 14;
         _skipAdButton.layer.masksToBounds = YES;
-        _skipAdButton.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 10);
         [_skipAdButton setTitle:@"跳过" forState:UIControlStateNormal];
         [_skipAdButton setTitleColor:DBColorExtension.whiteColor forState:UIControlStateNormal];
         [_skipAdButton addTarget:self action:@selector(clickAdCloseAction) forControlEvents:UIControlEventTouchUpInside];
