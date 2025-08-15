@@ -114,11 +114,6 @@
                     [self rewardAdReadTimeTrack:seconds];
                 }
             }];
-        }else{
-            count++;
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(count * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self adRewardFreeVipRepeatCount:count activityModel:activityModel];
-            });
         }
     }];
 }
