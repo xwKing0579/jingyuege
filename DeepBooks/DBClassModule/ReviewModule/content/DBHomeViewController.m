@@ -135,7 +135,7 @@
 
         
         UIImageView *searchIconView = [[UIImageView alloc] init];
-        searchIconView.image = [UIImage imageNamed:@"searchIcon"];
+        searchIconView.image = [UIImage imageNamed:@"jjLensTotem"];
         [_searchButton addSubview:searchIconView];
         [searchIconView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(0);
@@ -146,7 +146,7 @@
         
         UIView *rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
         UIButton *closeButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 7, 16, 16)];
-        [closeButton setImage:[UIImage imageNamed:@"close_icon"] forState:UIControlStateNormal];
+        [closeButton setImage:[UIImage imageNamed:@"jjCrystallineBarrier"] forState:UIControlStateNormal];
         [closeButton addTarget:self action:@selector(clearSearchContent) forControlEvents:UIControlEventTouchUpInside];
         [rightView addSubview:closeButton];
         _searchButton.rightView = rightView;
