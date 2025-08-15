@@ -21,6 +21,7 @@
 - (instancetype)init{
     if (self == [super init]){
         [self loadReaderAd];
+        [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(userLoginSuccess) name:DBUserLoginSuccess object:nil];
     }
     return self;
 }
@@ -35,6 +36,7 @@
     DBWeakSelf
     [DBUnityAdConfig.manager openBannerAdSpaceType:DBAdSpaceReaderBottom showAdController:self.readerVc reload:reload completion:^(UIView * _Nonnull adContainerView) {
         DBStrongSelfElseReturn
+        if (DBReaderAdViewModel.freeVipReadingTime) return;
         if (!adContainerView) return;
         if (!self.readerVc) return;
         
@@ -203,59 +205,31 @@
     return DBReaderNoAd;
 }
 
-+ (BOOL)freeVipReadingTime{
-    if (!DBCommonConfig.isLogin) return NO;
++ (NSInteger)freeVipReadingTime{
+    if (!DBCommonConfig.isLogin) return 0;
     id obj = [NSUserDefaults takeValueForKey:DBUserVipInfoValue];
     DBUserVipModel *vipModel = [DBUserVipModel modelWithJSON:obj];
-    if (vipModel.level == 1 && vipModel.free_vip_seconds > 0) return YES;
-    return NO;
+    if (vipModel.level == 1 && vipModel.free_vip_seconds > 0) {
+        return vipModel.free_vip_seconds;
+    }
+    return 0;
 }
 
-+ (void)checkFreeAdActivityCompletion:(void (^ __nullable)(DBUserVipModel *vipModel, DBUserActivityModel *activityModel))completion{
-    if (!DBCommonConfig.isLogin || !DBUnityAdConfig.openAd || DBUserVipConfig.isUserVip) {
-        if (completion) completion(nil, nil);
-        return;
-    }
-    
-    DBAdPosModel *posAdFreeVip = [DBUnityAdConfig adPosWithSpaceType:DBAdSpaceUserFreeVip];
-    DBAdPosModel *posAdBottom = [DBUnityAdConfig adPosWithSpaceType:DBAdSpaceReaderBottom];
-    DBAdPosModel *posAdInterstitial = [DBUnityAdConfig adPosWithSpaceType:DBAdSpaceReaderInterstitial];
-    DBAdPosModel *posAdChapterEnd = [DBUnityAdConfig adPosWithSpaceType:DBAdSpaceReaderChapterEnd];
-    DBAdPosModel *posAdChapterEndGrid = [DBUnityAdConfig adPosWithSpaceType:DBAdSpaceReaderChapterEndGrid];
-    DBAdPosModel *posAdPage = [DBUnityAdConfig adPosWithSpaceType:DBAdSpaceReaderPage];
-    DBAdPosModel *posAdPageGrid = [DBUnityAdConfig adPosWithSpaceType:DBAdSpaceReaderPageGrid];
-    
-    if (posAdFreeVip.ads.count &&
-        (posAdBottom.ads.count ||
-         posAdInterstitial.ads.count ||
-         posAdChapterEnd.ads.count ||
-         posAdChapterEndGrid.ads.count ||
-         posAdPage.ads.count ||
-         posAdPageGrid.ads.count)) {
-        [DBUserModel getUserVipInfoCompletion:^(BOOL successfulRequest, DBUserVipModel * _Nonnull model) {
-            if (successfulRequest && (model.level == 0 || (model.level == 1 && model.free_vip_seconds == 0))){
-                [DBUserVipConfig checkFreeVipActivityCompletion:^(DBUserActivityModel * _Nonnull activityModel) {
-                    if (completion) completion(model, activityModel);
-                }];
-            }else{
-                if (completion) completion(nil, nil);
-            }
-        }];
+- (void)userLoginSuccess{
+    [self resetFreeVipAdView];
+}
+
+- (void)resetFreeVipAdView{
+    if (DBReaderAdViewModel.freeVipReadingTime){
+        if (_adContainerView) [self clearAllReaderAdView];
     }else{
-        if (completion) completion(nil, nil);
+        if (!_adContainerView || _adContainerView.window == nil) [self loadReaderAd];
     }
 }
 
 - (void)clearAllReaderAdView{
-    [self.activityView removeFromSuperview];
     [self.adContainerView removeFromSuperview];
-}
-
-- (DBActivityEntranceView *)activityView{
-    if (!_activityView){
-        _activityView = [[DBActivityEntranceView alloc] init];
-    }
-    return _activityView;
+    self.adContainerView = nil;
 }
 
 @end

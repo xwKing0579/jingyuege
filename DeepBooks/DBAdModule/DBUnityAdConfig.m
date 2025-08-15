@@ -2,7 +2,7 @@
 //  DBUnityAdConfig.m
 //  DeepBooks
 //
-//  Created by 王祥伟 on 2025/4/23.
+//  Created by king on 2025/4/23.
 //
 
 #import "DBUnityAdConfig.h"
@@ -165,13 +165,18 @@
     
     [self.rewardAd getRewardAdsAndSpaceType:spaceType reload:YES completion:^(NSObject * _Nonnull adObject, BOOL reward) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            if ([adObject isKindOfClass:DBSelfAdConfig.class]){
-                [(DBSelfAdConfig *)adObject showAdInView:UIScreen.appWindow adType:DBSelfAdReward];
-            }else if ([adObject isKindOfClass:SFRewardVideoManager.class]){
-                [(SFRewardVideoManager *)adObject showRewardVideoAdWithController:UIScreen.appWindow.rootViewController];
+            if (reward) {
+                if (completion) completion(adObject, YES);
+            }else if (adObject){
+                if ([adObject isKindOfClass:DBSelfAdConfig.class]){
+                    [(DBSelfAdConfig *)adObject showAdInView:UIScreen.appWindow adType:DBSelfAdReward];
+                }else if ([adObject isKindOfClass:SFRewardVideoManager.class]){
+                    [(SFRewardVideoManager *)adObject showRewardVideoAdWithController:UIScreen.appWindow.rootViewController];
+                }
+            }else{
+                if (completion) completion(adObject == nil, NO);
+                [self trackDataAdDict:adObject.adTrackModel actionType:YES];
             }
-            if (completion) completion(adObject == nil, reward);
-            [self trackDataAdDict:adObject.adTrackModel actionType:YES];
         });
     }];
 }
@@ -180,14 +185,16 @@
     if (!DBUnityAdConfig.openAd || self.isBackground) return;
     if (self.isAdStart){
         [self.slotAd getSlotAdsAndSpaceType:spaceType showAdController:showAdController reload:YES completion:^(NSObject * _Nonnull adObject) {
-            if ([adObject isKindOfClass:DBSelfAdConfig.class]){
-                [(DBSelfAdConfig *)adObject showAdInView:UIScreen.appWindow adType:DBSelfAdSlot];
-            }else if ([adObject isKindOfClass:SFInterstitialManager.class]){
-                [(SFInterstitialManager *)adObject showInterstitialAd];
+            if (adObject){
+                if ([adObject isKindOfClass:DBSelfAdConfig.class]){
+                    [(DBSelfAdConfig *)adObject showAdInView:UIScreen.appWindow adType:DBSelfAdSlot];
+                }else if ([adObject isKindOfClass:SFInterstitialManager.class]){
+                    [(SFInterstitialManager *)adObject showInterstitialAd];
+                }
+            }else{
+                if (completion) completion(adObject == nil);
+                [self trackDataAdDict:adObject.adTrackModel actionType:YES];
             }
-            
-            if (completion) completion(adObject == nil);
-            [self trackDataAdDict:adObject.adTrackModel actionType:YES];
         }];
     }else{
         if (self.attemptCount > 5) return;

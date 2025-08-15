@@ -139,7 +139,7 @@
 
 + (BOOL)switchAudit{
 #ifdef DEBUG
-    return YES;
+    return NO;
 #endif
     BOOL shareSwitch = [NSUserDefaults takeValueForKey:DBBooksSwitchValue];
     if (shareSwitch) return NO;

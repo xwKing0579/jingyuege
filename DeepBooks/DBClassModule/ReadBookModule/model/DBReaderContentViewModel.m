@@ -2,7 +2,7 @@
 //  DBReaderContentViewModel.m
 //  DeepBooks
 //
-//  Created by 王祥伟 on 2025/7/5.
+//  Created by king on 2025/7/5.
 //
 
 #import "DBReaderContentViewModel.h"
@@ -17,6 +17,7 @@
 #import "DBReaderSetting.h"
 #import "DBBookSettingView.h"
 #import "DBScanningView.h"
+#import "DBActivityEntranceView.h"
 
 @interface DBReaderContentViewModel ()
 @property (nonatomic, assign) NSInteger speechTime;
@@ -24,7 +25,7 @@
 @property (nonatomic, strong) NSMutableArray <NSTextCheckingResult *> *speechMatches;
 @property (nonatomic, strong) DBBookSettingView *readerSettingView;
 @property (nonatomic, strong) DBScanningView *scanningView;
-
+@property (nonatomic, strong) DBActivityEntranceView *activityView;
 @end
 
 @implementation DBReaderContentViewModel
@@ -77,6 +78,29 @@
     [self.readerVc.view addSubview:self.readerPanelView];
     self.readerPanelView.bookgroundColor = DBReadBookSetting.setting.backgroundColor;
     [self.readerPanelView showPanelViewAnimation];
+    
+    if (DBUnityAdConfig.openAd){
+        DBAdPosModel *posAdFreeVip = [DBUnityAdConfig adPosWithSpaceType:DBAdSpaceUserFreeVip];
+        DBAdPosModel *posAdBottom = [DBUnityAdConfig adPosWithSpaceType:DBAdSpaceReaderBottom];
+        DBAdPosModel *posAdInterstitial = [DBUnityAdConfig adPosWithSpaceType:DBAdSpaceReaderInterstitial];
+        DBAdPosModel *posAdChapterEnd = [DBUnityAdConfig adPosWithSpaceType:DBAdSpaceReaderChapterEnd];
+        DBAdPosModel *posAdChapterEndGrid = [DBUnityAdConfig adPosWithSpaceType:DBAdSpaceReaderChapterEndGrid];
+        DBAdPosModel *posAdPage = [DBUnityAdConfig adPosWithSpaceType:DBAdSpaceReaderPage];
+        DBAdPosModel *posAdPageGrid = [DBUnityAdConfig adPosWithSpaceType:DBAdSpaceReaderPageGrid];
+        if (posAdFreeVip.ads.count &&
+            (posAdBottom.ads.count || posAdInterstitial.ads.count ||  posAdChapterEnd.ads.count || posAdChapterEndGrid.ads.count || posAdPage.ads.count || posAdPageGrid.ads.count)) {
+            if (DBCommonConfig.isLogin){
+                [DBUserVipConfig checkFreeVipActivityCompletion:^(DBUserActivityModel * _Nonnull activityModel) {
+                    if (activityModel.rules.free_vip_rules.seconds > 0){
+                        self.activityView.bookID = self.readerVc.book.book_id;
+                        [self.readerPanelView addSubview:self.activityView];
+                    }
+                }];
+            }else{
+                [self.readerPanelView addSubview:self.activityView];
+            }
+        }
+    }
 }
 
 - (void)removeReaderPanelClickAction{
@@ -504,4 +528,16 @@
     return _batteryDateView;
 }
 
+- (DBActivityEntranceView *)activityView{
+    if (!_activityView){
+        _activityView = [[DBActivityEntranceView alloc] init];
+        
+        DBWeakSelf
+        _activityView.didRewardBlock = ^(NSInteger freeSeconds) {
+            DBStrongSelfElseReturn
+            if (self.menuBlock) self.menuBlock(DBMenuFreeVipReload, freeSeconds);
+        };
+    }
+    return _activityView;
+}
 @end

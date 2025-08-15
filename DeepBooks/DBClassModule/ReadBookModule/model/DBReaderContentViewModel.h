@@ -2,7 +2,7 @@
 //  DBReaderContentViewModel.h
 //  DeepBooks
 //
-//  Created by 王祥伟 on 2025/7/5.
+//  Created by king on 2025/7/5.
 //
 
 #import <Foundation/Foundation.h>
@@ -30,6 +30,7 @@ typedef NS_ENUM(NSInteger, DBMenuType) {
     DBMenuReaderAudiobook,
     DBMenuSpeechNext,
     DBMenuSpeechEnd,
+    DBMenuFreeVipReload,
 };
 
 
@@ -52,7 +53,6 @@ typedef NS_ENUM(NSInteger, DBMenuType) {
 - (void)removeReaderPanelView;
 
 - (void)getChapterContentWithChapterForm:(NSString *)chapterForm chapterId:(NSString *)chapterId chapterIndex:(NSInteger)chapterIndex completion:(void (^ _Nullable)(BOOL successfulRequest, NSInteger chapterIndex, NSString * _Nullable message))completion;
-
 
 @end
 

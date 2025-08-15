@@ -2,7 +2,7 @@
 //  DBSelfAdView.m
 //  DeepBooks
 //
-//  Created by 王祥伟 on 2025/5/20.
+//  Created by king on 2025/5/20.
 //
 
 #import "DBSelfAdView.h"
@@ -251,6 +251,7 @@
                 make.left.mas_equalTo(26);
                 make.top.mas_equalTo(20+UIScreen.navbarSafeHeight);
                 make.right.mas_equalTo(-140);
+                make.height.mas_equalTo(20);
             }];
             [self.adSubTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.right.mas_equalTo(self.adTitleLabel);
@@ -263,19 +264,20 @@
             }];
             [self.closeAdButton mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.right.mas_equalTo(-20);
-                make.top.mas_equalTo(20+UIScreen.navbarSafeHeight);
-                make.width.height.mas_equalTo(34);
+                make.top.mas_equalTo(15+UIScreen.navbarSafeHeight);
+                make.width.height.mas_equalTo(30);
             }];
             [self.skipAdButton mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.right.mas_equalTo(-50);
+                make.right.mas_equalTo(self.closeAdButton.mas_left).offset(-12);
                 make.centerY.mas_equalTo(self.closeAdButton);
-                make.width.mas_equalTo(68);
+                make.width.mas_greaterThanOrEqualTo(68);
                 make.height.mas_equalTo(28);
             }];
             
             
             if (adType == DBSelfAdReward){
-                time = selfAd.close_sec > 0 ? selfAd.close_sec : 5;
+                time = selfAd.reward_sec ?: 10;
+                self.showAdTime = selfAd.close_sec ?: 5;
                 self.closeAdButton.hidden = YES;
                 self.skipAdButton.userInteractionEnabled = NO;
             }else{
@@ -343,6 +345,9 @@
     
     if (time > 0){
         NSString *secondTime = [NSString stringWithFormat:@"%ld秒跳过".textMultilingual,time];
+        if (self.adType == DBSelfAdReward) {
+            secondTime = [NSString stringWithFormat:@"观看%ld秒后可获得奖励".textMultilingual,time];
+        }
         [self.skipAdButton setTitle:secondTime forState:UIControlStateNormal];
         self.countdownTime = time;
     }
@@ -355,21 +360,26 @@
 }
 
 - (void)secondsTimeChange{
-    if (self.adType == DBSelfAdReward) {
-        self.showAdTime++;
-        if (self.showAdTime == self.selfAd.reward_sec){
+    if (self.adType == DBSelfAdReward){
+        if (self.countdownTime > 1){
+            self.countdownTime--;
+            NSString *secondTime = [NSString stringWithFormat:@"观看%ld秒后可获得奖励".textMultilingual,self.countdownTime];
+            [self.skipAdButton setTitle:secondTime forState:UIControlStateNormal];
+        }else{
+            [self.skipAdButton setTitle:@"获得奖励" forState:UIControlStateNormal];
             if (self.didFinishRewardBlock) self.didFinishRewardBlock(self, self.adType);
         }
-    }
-    
-    if (self.countdownTime > 1){
-        self.countdownTime--;
-        NSString *secondTime = [NSString stringWithFormat:@"%ld秒跳过".textMultilingual,self.countdownTime];
-        [self.skipAdButton setTitle:secondTime forState:UIControlStateNormal];
-    }else{
-        if (self.adType == DBSelfAdReward){
-            self.skipAdButton.hidden = YES;
+        
+        if (self.showAdTime > 1){
+            self.showAdTime--;
+        }else{
             self.closeAdButton.hidden = NO;
+        }
+    }else{
+        if (self.countdownTime > 1){
+            self.countdownTime--;
+            NSString *secondTime = [NSString stringWithFormat:@"%ld秒跳过".textMultilingual,self.countdownTime];
+            [self.skipAdButton setTitle:secondTime forState:UIControlStateNormal];
         }else{
             [self.skipAdButton setTitle:@"跳过" forState:UIControlStateNormal];
         }
@@ -512,6 +522,7 @@
         _skipAdButton.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
         _skipAdButton.layer.cornerRadius = 14;
         _skipAdButton.layer.masksToBounds = YES;
+        _skipAdButton.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 10);
         [_skipAdButton setTitle:@"跳过" forState:UIControlStateNormal];
         [_skipAdButton setTitleColor:DBColorExtension.whiteColor forState:UIControlStateNormal];
         [_skipAdButton addTarget:self action:@selector(clickAdCloseAction) forControlEvents:UIControlEventTouchUpInside];

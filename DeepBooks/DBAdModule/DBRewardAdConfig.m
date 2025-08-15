@@ -2,7 +2,7 @@
 //  DBRewardAdConfig.m
 //  DeepBooks
 //
-//  Created by 王祥伟 on 2025/4/23.
+//  Created by king on 2025/4/23.
 //
 
 #import "DBRewardAdConfig.h"
@@ -85,6 +85,7 @@
     if (self.isShowingAd){
         self.isShowingAd = NO;
         if (self.completion) self.completion(nil, NO);
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(timeoutCompletionBack) object:nil];
     }
 }
 
@@ -95,13 +96,13 @@
     if (self.isShowingAd && self.completion){
         self.isShowingAd = NO;
         self.completion(splashAd, NO);
-        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(timeoutCompletionBack) object:nil];
     }else{
         NSArray *adArray = [self.adViewsDict objectForKey:key];
         NSMutableArray *adObjects = [NSMutableArray arrayWithArray:adArray];
         [adObjects addObject:splashAd];
         [self.adViewsDict setObject:adObjects forKey:key];
     }
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(timeoutCompletionBack) object:nil];
 }
 
 - (void)selfAdLoadFailure:(DBSelfAdConfig *)splashAd{

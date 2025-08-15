@@ -2,7 +2,7 @@
 //  DBReaderManagerViewController.m
 //  DeepBooks
 //
-//  Created by 王祥伟 on 2025/7/5.
+//  Created by king on 2025/7/5.
 //
 
 #import "DBReaderManagerViewController.h"
@@ -33,6 +33,8 @@
 
 @property (nonatomic, assign) NSInteger freeCount;
 @property (nonatomic, assign) NSInteger freeSeconds;
+
+@property (nonatomic, strong) DBUserVipModel *vipModel;
 @end
 
 @implementation DBReaderManagerViewController
@@ -52,7 +54,6 @@
     
     [self setUpSubViews];
     [self getDataSource];
-    [self freeVipConfig];
     [self addObserver];
     
 }
@@ -142,25 +143,20 @@
         [self.readerAdViewModel loadReaderSlotAdInDiffTime:diffTime];
     }
     
+    
     if (self.freeSeconds > 0){
         self.freeSeconds--;
-        if (self.freeSeconds%60 == 0 || self.freeSeconds < 0){
+        self.vipModel.free_vip_seconds = self.freeSeconds;
+        [NSUserDefaults saveValue:self.vipModel.modelToJSONString forKey:DBUserVipInfoValue];
+        if (self.freeSeconds%60 == 0){
             DBWeakSelf
             [DBAFNetWorking postServiceRequestType:DBLinkFreeVipConsume combine:nil parameInterface:@{@"seconds":@"60"} modelClass:DBFreeVipConsumeModel.class serviceData:^(BOOL successfulRequest, DBFreeVipConsumeModel *result, NSString * _Nullable message) {
                 DBStrongSelfElseReturn
                 if (successfulRequest){
-                    if (result.remaining_seconds > 0) {
-                        self.freeSeconds = result.remaining_seconds;
-                    }else{
-                        self.freeSeconds = 0;
-                        id obj = [NSUserDefaults takeValueForKey:DBUserVipInfoValue];
-                        DBUserVipModel *vipModel = [DBUserVipModel modelWithJSON:obj];
-                        if (vipModel) {
-                            vipModel.free_vip_seconds = 0;
-                            [NSUserDefaults saveValue:vipModel.modelToJSONString forKey:DBUserVipInfoValue];
-                        }
+                    self.freeSeconds = result.remaining_seconds;
+                    if (self.freeSeconds == 0){
+                        [self.readerAdViewModel resetFreeVipAdView];
                         [self switchReaderTransitionStyleSwitch:YES];
-                        [self freeVipConfig];
                     }
                 }
             }];
@@ -171,6 +167,9 @@
 
 
 - (void)getDataSource{
+    id obj = [NSUserDefaults takeValueForKey:DBUserVipInfoValue];
+    self.vipModel = [DBUserVipModel modelWithJSON:obj] ?: DBUserVipModel.new;
+    
     NSArray <DBBookCatalogModel *>*chapterList = [DBBookCatalogModel getBookCatalogs:self.book.catalogForm];
     self.model.catalogForm = self.book.catalogForm;
     self.model.chapterForm = self.book.chapterForm;
@@ -285,32 +284,6 @@
     }
 }
 
-- (void)freeVipConfig{
-    DBWeakSelf
-    [DBReaderAdViewModel checkFreeAdActivityCompletion:^(DBUserVipModel * _Nonnull vipModel, DBUserActivityModel * _Nonnull activityModel) {
-        DBStrongSelfElseReturn
-        if (activityModel.rules.free_vip_rules.seconds > 0){
-            if (vipModel.free_vip_seconds == 0){
-                self.readerAdViewModel.activityView.activityModel = activityModel;
-                [self.view addSubview:self.readerAdViewModel.activityView];
-                
-                DBWeakSelf
-                self.readerAdViewModel.activityView.didRewardBlock = ^(NSInteger freeSeconds) {
-                    DBStrongSelfElseReturn
-                    if (freeSeconds > 0){
-                        self.freeSeconds = freeSeconds;
-                        [self.readerAdViewModel clearAllReaderAdView];
-                        vipModel.free_vip_seconds = freeSeconds;
-                        [NSUserDefaults saveValue:vipModel.modelToJSONString forKey:DBUserVipInfoValue];
-                        [self switchReaderTransitionStyleSwitch:YES];
-                    }
-                };
-            }else{
-                self.freeSeconds = vipModel.free_vip_seconds;
-            }
-        }
-    }];
-}
 
 #pragma readerContentViewModel action
 - (void)switchBookChaptrInIndex:(NSInteger)index{
@@ -528,6 +501,12 @@
                     break;
                 case DBMenuChangeTransition:
                     [self switchReaderTransitionStyleSwitch:YES];
+                    break;
+                case DBMenuFreeVipReload:{
+                    self.freeCount = index;
+                    [self.readerAdViewModel resetFreeVipAdView];
+                    [self switchReaderTransitionStyleSwitch:YES];
+                }
                     break;
                 case DBMenuReaderAutomatic:
                     [self switchReaderAutoScanStyle];
