@@ -2,7 +2,7 @@
 //  DBReaderModel.m
 //  DeepBooks
 //
-//  Created by 王祥伟 on 2025/7/5.
+//  Created by king on 2025/7/5.
 //
 
 #import "DBReaderModel.h"
@@ -89,7 +89,6 @@
 
 - (DBReaderModel *)getNextPageChapterModelWithDiff:(NSInteger)diff{
     DBReaderModel *model = self;
-    
     NSInteger pageIndex = model.currentPage;
     NSInteger nextPageIndex = pageIndex + diff;
  
@@ -109,33 +108,19 @@
 
 - (DBReaderModel *)getNextPageChapterNosetModelWithDiff:(NSInteger)diff{
     DBReaderModel *model = DBReaderModel.new;
-    model.chapterForm = self.chapterForm;
-    model.chapterCacheList = self.chapterCacheList;
-    model.contentList = self.contentList;
-    model.currentChapter = self.currentChapter;
-    model.currentPage = self.currentPage;
-    model.readPageNum = self.readPageNum;
-    model.content = self.content;
-    model.slotEndAd = self.slotEndAd;
-    model.gridEndAd = self.gridEndAd;
-    model.slotAdDiff = self.slotAdDiff;
-    model.gridAdDiff = self.gridAdDiff;
+    model->_chapterForm = self.chapterForm;
+    model->_chapterCacheList = self.chapterCacheList;
+    model->_contentList = self.contentList;
+    model->_currentChapter = self.currentChapter;
+    model->_currentPage = self.currentPage;
+    model->_readPageNum = self.readPageNum;
+    model->_content = self.content;
+    model->_slotEndAd = self.slotEndAd;
+    model->_gridEndAd = self.gridEndAd;
+    model->_slotAdDiff = self.slotAdDiff;
+    model->_gridAdDiff = self.gridAdDiff;
 
-    NSInteger pageIndex = model.currentPage;
-    NSInteger nextPageIndex = pageIndex + diff;
- 
-    if (nextPageIndex < 0){
-        model.currentChapter -= 1;
-        model.currentPage = model.contentList.count-1;
-    }else if (nextPageIndex > model.contentList.count-1){
-        if (model.currentChapter+1 >= model.chapterCacheList.count) return model;
-        model.currentChapter += 1;
-        model.currentPage = 0;
-    } else{
-        model.currentPage = nextPageIndex;
-    }
-    model.readPageNum += diff;
-    return model;
+    return [model getNextPageChapterModelWithDiff:diff];
 }
 
 @end
