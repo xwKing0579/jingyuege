@@ -100,8 +100,6 @@
 }
 
 - (void)adRewardFreeVipRepeatCount:(NSInteger)repeatCount activityModel:(DBUserActivityModel *)activityModel{
-    if (repeatCount > 3) return;
-    __block NSInteger count = repeatCount;
     DBWeakSelf
     [DBAFNetWorking postServiceRequestType:DBLinkActivityReward combine:nil parameInterface:@{@"activityId":DBSafeString(activityModel.idStr)} serviceData:^(BOOL successfulRequest, id  _Nullable result, NSString * _Nullable message) {
         DBStrongSelfElseReturn

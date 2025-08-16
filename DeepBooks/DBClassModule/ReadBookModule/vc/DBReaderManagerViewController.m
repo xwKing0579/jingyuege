@@ -133,25 +133,25 @@
 }
 
 - (void)secondsTimeChange{
-    if (self.isViewLoaded && self.view.window != nil) {
-        self.readerContentViewModel.batteryDateView.timeStr = NSDate.hourMinuteString;
-        NSInteger diffTime = DBUnityAdConfig.manager.cumulativeTime - self.model.cumulativeTime;
-        [self.readerAdViewModel loadReaderBottomBannerAdInDiffTime:diffTime];
-        [self.readerAdViewModel loadReaderSlotAdInDiffTime:diffTime];
-    }
+    if (!self.isViewLoaded || self.view.window == nil) return;
+    
+    self.readerContentViewModel.batteryDateView.timeStr = NSDate.hourMinuteString;
+    NSInteger diffTime = DBUnityAdConfig.manager.cumulativeTime - self.model.cumulativeTime;
+    [self.readerAdViewModel loadReaderBottomBannerAdInDiffTime:diffTime];
+    [self.readerAdViewModel loadReaderSlotAdInDiffTime:diffTime];
     
     NSInteger freeSecond = self.vipModel.free_vip_seconds;
-    if (freeSecond > 0){
+    if (self.vipModel.level == 1 && freeSecond > 0){
         freeSecond--;
         self.vipModel.free_vip_seconds = freeSecond;
-        [NSUserDefaults saveValue:self.vipModel.modelToJSONString forKey:DBUserVipInfoValue];
+        [NSUserDefaults saveValue:self.vipModel.yy_modelToJSONString forKey:DBUserVipInfoValue];
         if (freeSecond%60 == 0){
             DBWeakSelf
             [DBAFNetWorking postServiceRequestType:DBLinkFreeVipConsume combine:nil parameInterface:@{@"seconds":@"60"} modelClass:DBFreeVipConsumeModel.class serviceData:^(BOOL successfulRequest, DBFreeVipConsumeModel *result, NSString * _Nullable message) {
                 DBStrongSelfElseReturn
                 if (successfulRequest){
                     self.vipModel.free_vip_seconds = result.remaining_seconds;
-                    [NSUserDefaults saveValue:self.vipModel.modelToJSONString forKey:DBUserVipInfoValue];
+                    [NSUserDefaults saveValue:self.vipModel.yy_modelToJSONString forKey:DBUserVipInfoValue];
                     if (result.remaining_seconds == 0){
                         [self.readerAdViewModel resetFreeVipAdView];
                         [self switchReaderTransitionStyleSwitch:YES];
@@ -166,7 +166,7 @@
 
 - (void)getDataSource{
     id obj = [NSUserDefaults takeValueForKey:DBUserVipInfoValue];
-    self.vipModel = [DBUserVipModel modelWithJSON:obj] ?: DBUserVipModel.new;
+    self.vipModel = [DBUserVipModel yy_modelWithJSON:obj] ?: DBUserVipModel.new;
     
     NSArray <DBBookCatalogModel *>*chapterList = [DBBookCatalogModel getBookCatalogs:self.book.catalogForm];
     self.model.catalogForm = self.book.catalogForm;
@@ -501,6 +501,8 @@
                     [self switchReaderTransitionStyleSwitch:YES];
                     break;
                 case DBMenuFreeVipReload:{
+                    id obj = [NSUserDefaults takeValueForKey:DBUserVipInfoValue];
+                    self.vipModel = [DBUserVipModel yy_modelWithJSON:obj] ?: DBUserVipModel.new;
                     [self.readerAdViewModel resetFreeVipAdView];
                     [self switchReaderTransitionStyleSwitch:YES];
                 }
