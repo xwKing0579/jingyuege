@@ -2,7 +2,7 @@
 //  DBPageLinearViewController.m
 //  DeepBooks
 //
-//  Created by 王祥伟 on 2025/7/5.
+//  Created by king on 2025/7/5.
 //
 
 #import "DBPageLinearViewController.h"
@@ -107,6 +107,7 @@
 }
 
 - (nullable UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController{
+    CFAbsoluteTime startTime = CFAbsoluteTimeGetCurrent();
     if (![viewController isEqual:self.mirrorVc]){
         self.mirrorVc.backImage = viewController.view.captureMirrorImage;
         return self.mirrorVc;
@@ -122,8 +123,10 @@
     
     DBReaderAdViewController *readerAdVc = [self getReaderAdViewController:YES];
     if (readerAdVc) return readerAdVc;
-    
-    return [self getReaderPageController:YES isTap:NO];
+    UIViewController *vc = [self getReaderPageController:YES isTap:NO];
+    CFAbsoluteTime executionTime = CFAbsoluteTimeGetCurrent() - startTime;
+    NSLog(@"执行时间: %f 秒", executionTime);
+    return vc;
 }
 
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed {
@@ -133,8 +136,14 @@
             self.model.contentList = pageVc.model.contentList;
             self.model.content = pageVc.model.content;
             self.model.readPageNum = pageVc.model.readPageNum;
-            self.model.currentPage = pageVc.model.currentPage;
-            self.model.currentChapter = pageVc.model.currentChapter;
+            
+            if (self.model.currentPage != pageVc.model.currentPage){
+                self.model.currentPage = pageVc.model.currentPage;
+            }
+            if (self.model.currentChapter != pageVc.model.currentChapter){
+                self.model.currentChapter = pageVc.model.currentChapter;
+            }
+            
         }
     }
     self.model.isAdPage = [pageVc isKindOfClass:DBReaderAdViewController.class];
@@ -169,6 +178,7 @@
         }
         nextVc.model = isTap ? [self.model getNextPageChapterModelWithDiff:-1] : [pageVc.model getNextPageChapterNosetModelWithDiff:-1];
     }
+  
     return nextVc;
 }
 
@@ -199,11 +209,11 @@
         _pageBoyViewController.dataSource = self;
         _pageBoyViewController.doubleSided = YES;
         
-        for (UIGestureRecognizer *gestureRecognizer in _pageBoyViewController.gestureRecognizers) {
-            if ([gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]]) {
-                gestureRecognizer.enabled = NO;
-            }
-        }
+//        for (UIGestureRecognizer *gestureRecognizer in _pageBoyViewController.gestureRecognizers) {
+//            if ([gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]]) {
+//                gestureRecognizer.enabled = NO;
+//            }
+//        }
     }
     return _pageBoyViewController;
 }
