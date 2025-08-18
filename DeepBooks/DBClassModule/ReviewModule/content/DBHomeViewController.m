@@ -57,7 +57,7 @@
     [self.view endEditing:YES];
     [self.view showHudLoading];
     NSString *textResult = [text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    [DBAFNetWorking postServiceRequestType:DBLinkBaseKeyword combine:textResult parameInterface:nil modelClass:DBKeywordModel.class serviceData:^(BOOL successfulRequest, DBKeywordModel *result, NSString * _Nullable message) {
+    [DBAFNetWorking postServiceRequestType:DBLinkBaseKeyword combine:textResult parameInterface:@{@"deviceToken":DBSafeString(DBAppSetting.setting.deviceCheck)} modelClass:DBKeywordModel.class serviceData:^(BOOL successfulRequest, DBKeywordModel *result, NSString * _Nullable message) {
         [self.view removeHudLoading];
         
         if ([result isKindOfClass:DBKeywordModel.class] && result.fttg.length > 0){
