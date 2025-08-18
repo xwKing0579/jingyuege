@@ -2,7 +2,7 @@
 //  DBScanningView.m
 //  DeepBooks
 //
-//  Created by 王祥伟 on 2025/3/14.
+//  Created by king on 2025/3/14.
 //
 
 #import "DBScanningView.h"
@@ -28,8 +28,25 @@
         self.backgroundColor = DBColorExtension.noColor;
         [self setupScanBar];
         [self setupGestureRecognizer];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                               selector:@selector(appDidEnterBackground)
+                                                   name:UIApplicationDidEnterBackgroundNotification
+                                                 object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                               selector:@selector(appWillEnterForeground)
+                                                   name:UIApplicationWillEnterForegroundNotification
+                                                 object:nil];
     }
     return self;
+}
+
+- (void)appDidEnterBackground {
+    [self stopAutoScan];
+}
+
+- (void)appWillEnterForeground {
+    [self startAutoScan];
 }
 
 - (void)setNextPageContentView:(UIView *)nextPageContentView{
@@ -57,7 +74,7 @@
 - (void)setupScanBar {
     self.scanBar = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 8)];
     self.scanBar.userInteractionEnabled = YES;
-    self.scanBar.image = [UIImage imageNamed:@"jjLuminousBeam"];
+    self.scanBar.image = [UIImage imageNamed:@"scanBar_icon"];
     [self addSubview:self.scanBar];
 }
 
@@ -107,7 +124,6 @@
             self.scanBar.center = CGPointMake(self.scanBar.center.x, newY);
             self.scanProgress = newY / self.bounds.size.height;
             [gesture setTranslation:CGPointZero inView:self];
-            [self setNeedsDisplay];
         }
             break;
         case UIGestureRecognizerStateEnded:
@@ -124,20 +140,17 @@
 // 重写 scanProgress 的 setter 方法
 - (void)setScanProgress:(CGFloat)scanProgress {
     _scanProgress = scanProgress;
-    // 更新扫描杆的位置
+    
     self.scanBar.center = CGPointMake(self.scanBar.center.x, self.bounds.size.height * scanProgress);
     [self updateMaskWithProgress:scanProgress];
-    [self setNeedsDisplay];
 }
 
 // 开始自动扫描
 - (void)startAutoScan {
-    if (self.isAutoScanning) {
-        return;
-    }
+    if (self.isAutoScanning || !self.window) return;
     
     self.isAutoScanning = YES;
-    
+
     self.displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateAutoScan)];
     self.displayLink.preferredFramesPerSecond = 30;
     [self.displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
@@ -156,7 +169,6 @@
     }
 }
 
-
 - (void)updateAutoScan {
     self.scanProgress += DBReadBookSetting.setting.scrollSpeed;
     if (self.scanProgress >= 1.0) {
@@ -164,30 +176,6 @@
         [_nextPageContentView removeFromSuperview];
         if (self.scanCompletionBlock) self.scanCompletionBlock();
     }
-}
-
-
-- (void)drawRect:(CGRect)rect {
-    [super drawRect:rect];
-    
-    if (!self.targetView) {
-        return;
-    }
-    
-    UIGraphicsImageRenderer *renderer = [[UIGraphicsImageRenderer alloc] initWithSize:self.targetView.bounds.size];
-    UIImage *snapshot = [renderer imageWithActions:^(UIGraphicsImageRendererContext * _Nonnull rendererContext) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.targetView setNeedsDisplay];
-            [self.targetView drawViewHierarchyInRect:self.targetView.bounds afterScreenUpdates:YES];
-        });
-    }];
-    
-    [snapshot drawInRect:rect];
-    CGRect scanRect = CGRectMake(0, 0, rect.size.width, rect.size.height * self.scanProgress);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetBlendMode(context, kCGBlendModeMultiply);
-    CGContextSetFillColorWithColor(context, [UIColor colorWithWhite:0.5 alpha:0.1].CGColor);
-    CGContextFillRect(context, scanRect);
 }
 
 @end
