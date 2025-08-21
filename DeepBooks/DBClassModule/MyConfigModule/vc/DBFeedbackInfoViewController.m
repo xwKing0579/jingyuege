@@ -82,7 +82,9 @@
     }
     
     NSDictionary *parameInterface = @{@"content":content,@"contact":contact,@"serial":UIDevice.deviceuuidString,@"device":UIDevice.currentDeviceModel,@"os_version":UIDevice.systemVersion,@"app_version":UIApplication.appVersion};
+    [self.view showHudLoading];
     [DBAFNetWorking postServiceRequestType:DBLinkFeedBackSubmit combine:nil parameInterface:parameInterface serviceData:^(BOOL successfulRequest, id  _Nullable result, NSString * _Nullable message) {
+        [self.view removeHudLoading];
         if (successfulRequest){
             [DBRouter closePage];
         }
