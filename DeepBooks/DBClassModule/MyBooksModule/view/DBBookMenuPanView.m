@@ -288,6 +288,31 @@
     [DBCommonConfig getPushAuthorizationCompletion:^(BOOL open) {
         self.menuView2.isSwitch = open && !model.isClosePush;
     }];
+    
+    [DBAFNetWorking getServiceRequestType:DBLinkBookSelfDetailData combine:model.book_id parameInterface:nil modelClass:DBBookModel.class serviceData:^(BOOL successfulRequest, DBBookModel *result, NSString * _Nullable message) {
+        if (successfulRequest){
+            self.pictureImageView.imageObj = result.image;
+            self.titleTextLabel.text = result.name;
+            self.contentTextLabel.text = result.author;
+            self.updateLabel.text = [NSString stringWithFormat:@"最新：%@",result.last_chapter_name];
+            
+            model.last_chapter_name = result.last_chapter_name;
+            model.image = result.image;
+            model.updated_at = result.updated_at;
+            model.score = result.score;
+            model.name = result.name;
+
+            model.is_vip = result.is_vip;
+            model.vip_chapter_count = result.vip_chapter_count;
+            model.vip_chapter_day = result.vip_chapter_day;
+        
+            model.ltype = result.ltype;
+            model.author = result.author;
+            model.words_number = result.words_number;
+            [model updateCollectBook];
+            [model updateReadingBook];
+        }
+    }];
 }
 
 - (UIView *)headView{

@@ -97,6 +97,7 @@ typedef NS_ENUM(NSInteger,DBLinkType) {
     DBLinkBookStoreRankCatalog, // 榜单目录
     DBLinkBookStoreRankDetailData, // 榜单数据
     DBLinkBookDetailData, // 书籍详情
+    DBLinkBookSelfDetailData,
     DBLinkBookSummary, // 书籍换源
     DBLinkBookCatalog, // 书籍目录 site_path 是加载目录   site_path_reload是判断目录是否更新
     DBLinkBookChapter, // 章节内容

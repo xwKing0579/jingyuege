@@ -23,6 +23,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL isLocal;
 @property (nonatomic, assign) BOOL isLastRead;
 
+@property (nonatomic, assign) NSInteger is_vip;
+@property (nonatomic, assign) NSInteger vip_chapter_count;
+@property (nonatomic, assign) NSInteger vip_chapter_day;
+
 @property (nonatomic, copy) NSString *site_path; //阅读源
 @property (nonatomic, copy) NSString *site_path_reload; //目录是否更新
 @property (nonatomic, copy) NSString *last_chapter_name; //最新章节

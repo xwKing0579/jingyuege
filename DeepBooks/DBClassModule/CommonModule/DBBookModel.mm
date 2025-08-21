@@ -37,6 +37,10 @@ WCDB_SYNTHESIZE(updateTime)
 WCDB_SYNTHESIZE(lastReadTime)
 WCDB_SYNTHESIZE(updated_at)
 
+WCDB_SYNTHESIZE(is_vip)
+WCDB_SYNTHESIZE(vip_chapter_count)
+WCDB_SYNTHESIZE(vip_chapter_day)
+
 WCDB_SYNTHESIZE(sourceForm)
 WCDB_SYNTHESIZE(catalogForm)
 WCDB_SYNTHESIZE(chapterForm)

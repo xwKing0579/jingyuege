@@ -156,6 +156,12 @@ typedef NS_ENUM(NSInteger,DBCombineType) {
             path = [NSString stringWithFormat:@"%@/book/details/%@/%d/%@.html",combineDomain,v4,bookId.intValue/1000,bookId];
         }
             break;
+        case DBLinkBookSelfDetailData:
+        {
+            NSString *bookId = combine;
+            path = [NSString stringWithFormat:@"%@/book/base/v12/%d/%@.html",combineDomain,bookId.intValue/1000,bookId];
+        }
+            break;
         case DBLinkBookAuthorRelate:
             path = [NSString stringWithFormat:@"%@/%@/2/author.api",combineDomain,[self searchType]];
             break;
@@ -359,6 +365,7 @@ typedef NS_ENUM(NSInteger,DBCombineType) {
         case DBLinkBookStoreRankCatalog:
         case DBLinkBookStoreRankDetailData:
         case DBLinkBookDetailData:
+        case DBLinkBookSelfDetailData:
         case DBLinkBookSummary:
         case DBLinkBookClassifyCatalog:
         case DBLinkBookClassifyWhole:
