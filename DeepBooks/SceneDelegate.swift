@@ -6,8 +6,7 @@
 //
 
 import UIKit
-import AppTrackingTransparency
-import AdSupport
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
@@ -41,12 +40,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //配置域名
         DBDomainManager.setAppConfig()
         
-        for i in 1...3 {
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(i*2)) {
-                ATTrackingManager.requestTrackingAuthorization { status in
-                }
-            }
-        }
+     
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
