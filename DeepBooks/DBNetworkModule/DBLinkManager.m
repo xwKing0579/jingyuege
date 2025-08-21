@@ -257,7 +257,7 @@ typedef NS_ENUM(NSInteger,DBCombineType) {
             path = [NSString stringWithFormat:@"%@/v1/book/list/del.api",combineDomain];
             break;
         case DBLinkChapterContentSubmit:
-            path = [NSString stringWithFormat:@"%@/v1/service/chapter/err.api",combineDomain];
+            path = [NSString stringWithFormat:@"%@/v2/service/add.api",combineDomain];
             break;
         case DBLinkBookShelfBookTop:
             path = [NSString stringWithFormat:@"%@/v4/book/fav/top.api",combineDomain];
