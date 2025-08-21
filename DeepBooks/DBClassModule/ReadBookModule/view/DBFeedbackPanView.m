@@ -130,7 +130,7 @@
     [UIScreen.appWindow showHudLoading];
     NSArray <DBBookCatalogModel *>*chapterList = [DBBookCatalogModel getBookCatalogs:self.book.catalogForm];
     DBBookCatalogModel *catalogModel = chapterList[self.book.chapter_index];
-    NSString *other_data = [NSString stringWithFormat:@"bookId:%@,book_name:%@,chapter_name:%@,path:%@",self.book.book_id,self.book.name,catalogModel.title,self.book.site_path];
+    NSString *other_data = [NSString stringWithFormat:@"bookId:%@,book_name:%@,chapter_name:%@,path:%@",self.book.book_id,self.book.name,catalogModel.title,catalogModel.path];
     NSDictionary *parameInterface = @{@"content":content,@"contact":@"无联系方式",@"other_data":other_data,@"serial":UIDevice.deviceuuidString,@"device":UIDevice.currentDeviceModel,@"os_version":UIDevice.systemVersion,@"app_version":UIApplication.appVersion};
     [DBAFNetWorking postServiceRequestType:DBLinkChapterContentSubmit combine:nil parameInterface:parameInterface serviceData:^(BOOL successfulRequest, id  _Nullable result, NSString * _Nullable message) {
         [UIScreen.appWindow removeHudLoading];
