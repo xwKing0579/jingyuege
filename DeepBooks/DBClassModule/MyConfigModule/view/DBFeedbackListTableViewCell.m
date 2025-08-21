@@ -73,6 +73,7 @@
     }else{
         self.replyContentLabel.text = nil;
     }
+    self.replyContentLabel.textColor = textColor;
 }
 
 - (DBBaseLabel *)titleTextLabel{

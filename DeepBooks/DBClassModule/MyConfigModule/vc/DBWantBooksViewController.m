@@ -2,7 +2,7 @@
 //  DBWantBooksViewController.m
 //  DeepBooks
 //
-//  Created by 王祥伟 on 2025/3/26.
+//  Created by king on 2025/3/26.
 //
 
 #import "DBWantBooksViewController.h"
@@ -52,12 +52,12 @@
     if (!_categoryView){
         _categoryView = [[JXCategoryTitleView alloc] initWithFrame:CGRectZero];
         _categoryView.delegate = self;
-        _categoryView.titleColor = DBColorExtension.charcoalColor;
-        _categoryView.titleSelectedColor = DBColorExtension.charcoalColor;
+        _categoryView.titleColor = DBColorExtension.blackAltColor;
+        _categoryView.titleSelectedColor = DBColorExtension.blackAltColor;
         _categoryView.titleFont = DBFontExtension.bodySixTenFont;
         _categoryView.titleSelectedFont = DBFontExtension.pingFangSemiboldXLarge;
         _categoryView.listContainer = self.categoryContainerView;
-        _categoryView.titles = @[DBConstantString.ks_requestBook.textMultilingual,DBConstantString.ks_requestHistory.textMultilingual];
+        _categoryView.titles = @[@"我要求书".textMultilingual,@"求书历史".textMultilingual];
         
         JXCategoryIndicatorLineView *partingLineView = [[JXCategoryIndicatorLineView alloc] init];
         partingLineView.indicatorColor = DBColorExtension.azureColor;
@@ -78,5 +78,15 @@
         self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     }
     return _categoryContainerView;
+}
+
+- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {
+    [super traitCollectionDidChange:previousTraitCollection];
+    if (DBColorExtension.userInterfaceStyle) {
+        self.categoryView.titleSelectedColor = DBColorExtension.whiteAltColor;
+    }else{
+        self.categoryView.titleSelectedColor = DBColorExtension.blackAltColor;
+    }
+    [self.categoryView reloadData];
 }
 @end

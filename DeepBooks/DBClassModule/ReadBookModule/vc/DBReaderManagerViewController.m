@@ -144,14 +144,14 @@
     if (self.vipModel.level == 1 && freeSecond > 0){
         freeSecond--;
         self.vipModel.free_vip_seconds = freeSecond;
-        [NSUserDefaults saveValue:self.vipModel.yy_modelToJSONString forKey:DBUserVipInfoValue];
+        [NSUserDefaults saveValue:self.vipModel.modelToJSONString forKey:DBUserVipInfoValue];
         if (freeSecond%60 == 0){
             DBWeakSelf
             [DBAFNetWorking postServiceRequestType:DBLinkFreeVipConsume combine:nil parameInterface:@{@"seconds":@"60"} modelClass:DBFreeVipConsumeModel.class serviceData:^(BOOL successfulRequest, DBFreeVipConsumeModel *result, NSString * _Nullable message) {
                 DBStrongSelfElseReturn
                 if (successfulRequest){
                     self.vipModel.free_vip_seconds = result.remaining_seconds;
-                    [NSUserDefaults saveValue:self.vipModel.yy_modelToJSONString forKey:DBUserVipInfoValue];
+                    [NSUserDefaults saveValue:self.vipModel.modelToJSONString forKey:DBUserVipInfoValue];
                     if (result.remaining_seconds == 0){
                         [self.readerAdViewModel resetFreeVipAdView];
                         [self switchReaderTransitionStyleSwitch:YES];
@@ -166,7 +166,7 @@
 
 - (void)getDataSource{
     id obj = [NSUserDefaults takeValueForKey:DBUserVipInfoValue];
-    self.vipModel = [DBUserVipModel yy_modelWithJSON:obj] ?: DBUserVipModel.new;
+    self.vipModel = [DBUserVipModel modelWithJSON:obj] ?: DBUserVipModel.new;
     
     NSArray <DBBookCatalogModel *>*chapterList = [DBBookCatalogModel getBookCatalogs:self.book.catalogForm];
     self.model.catalogForm = self.book.catalogForm;
@@ -502,7 +502,7 @@
                     break;
                 case DBMenuFreeVipReload:{
                     id obj = [NSUserDefaults takeValueForKey:DBUserVipInfoValue];
-                    self.vipModel = [DBUserVipModel yy_modelWithJSON:obj] ?: DBUserVipModel.new;
+                    self.vipModel = [DBUserVipModel modelWithJSON:obj] ?: DBUserVipModel.new;
                     [self.readerAdViewModel resetFreeVipAdView];
                     [self switchReaderTransitionStyleSwitch:YES];
                 }

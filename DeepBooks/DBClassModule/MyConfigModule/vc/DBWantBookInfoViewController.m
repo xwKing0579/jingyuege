@@ -2,7 +2,7 @@
 //  DBWantBookInfoViewController.m
 //  DeepBooks
 //
-//  Created by 王祥伟 on 2025/3/26.
+//  Created by king on 2025/3/26.
 //
 
 #import "DBWantBookInfoViewController.h"
@@ -92,40 +92,40 @@
     NSString *hero = self.heroTextField.text.whitespace;
     NSString *net = self.netTextField.text.whitespace;
     if (name.length == 0){
-        [self.view showAlertText:DBConstantString.ks_enterBookTitle];
+        [self.view showAlertText:@"请输入小说名"];
         return;
     }
     if (author.length == 0){
-        [self.view showAlertText:DBConstantString.ks_enterAuthorName];
+        [self.view showAlertText:@"请输入作者名"];
         return;
     }
     if (hero.length == 0){
-        [self.view showAlertText:DBConstantString.ks_enterProtagonist];
+        [self.view showAlertText:@"请输入主角名"];
         return;
     }
     if (net.length == 0){
-        [self.view showAlertText:DBConstantString.ks_enterOriginalUrl];
+        [self.view showAlertText:@"请输入原网站网址"];
         return;
     }
     
     for (DBBookModel *book in DBBookModel.getAllCollectBooks) {
         if ([book.name isEqualToString:name]){
-            [self.view showAlertText:DBConstantString.ks_alreadyInShelf];
+            [self.view showAlertText:@"书架上已经有这本书啦"];
             return;
         }
     }
     
-    NSString *remark = [NSString stringWithFormat:DBConstantString.ks_urlProtagonistFormat,net,hero];
+    NSString *remark = [NSString stringWithFormat:@"原网址:%@ 主角名:%@",net,hero];
     NSDictionary *parameInterface = @{@"author":author,@"name":name,@"remark":remark,@"form":@"1"};
    
     
     DBAdPosModel *posAd = [DBUnityAdConfig adPosWithSpaceType:DBAdSpaceRequestBooks];
-    if (DBUnityAdConfig.openAd && posAd.ads.count && posAd.extra.free_count > 0){
+    if (DBUnityAdConfig.openAd && posAd.ads.count && posAd.extra.free_count >= 0){
         DBWeakSelf
         DBAdReadSetting *adSetting = DBAdReadSetting.setting;
         if (!adSetting.isFreeRequestBook){
             adSetting.isFreeRequestBook = YES;
-            adSetting.seekingBookCount = posAd.extra.limit;
+            adSetting.seekingBookCount = posAd.extra.free_count;
             [adSetting reloadSetting];
         }
         
@@ -166,14 +166,20 @@
 }
 
 - (void)setDarkModel{
-    UIColor *textColor = DBColorExtension.charcoalColor;
+    UIColor *textColor = DBColorExtension.blackAltColor;
+    UIColor *backgroundColor = DBColorExtension.paleGrayAltColor;
     if (DBColorExtension.userInterfaceStyle) {
-        textColor = DBColorExtension.lightGrayColor;
+        textColor = DBColorExtension.whiteAltColor;
+        backgroundColor = DBColorExtension.jetBlackColor;
     }
     self.nameTextField.textColor = textColor;
     self.authorTextField.textColor = textColor;
     self.heroTextField.textColor = textColor;
     self.netTextField.textColor = textColor;
+    self.nameTextField.backgroundColor = backgroundColor;
+    self.authorTextField.backgroundColor = backgroundColor;
+    self.heroTextField.backgroundColor = backgroundColor;
+    self.netTextField.backgroundColor = backgroundColor;
 }
 
 
@@ -186,7 +192,7 @@
         _titlePageLabel = [[DBBaseLabel alloc] init];
         _titlePageLabel.font = DBFontExtension.bodyMediumFont;
         _titlePageLabel.textColor = DBColorExtension.charcoalColor;
-        _titlePageLabel.text = DBConstantString.ks_selectRequestType;
+        _titlePageLabel.text = @"请选择求书的类型";
     }
     return _titlePageLabel;
 }
@@ -197,11 +203,11 @@
         _bookButton.titleLabel.font = DBFontExtension.pingFangMediumXLarge;
         _bookButton.size = CGSizeMake(80, 30);
         _bookButton.selected = YES;
-        [_bookButton setTitle:DBConstantString.ks_book forState:UIControlStateNormal];
+        [_bookButton setTitle:@"小说" forState:UIControlStateNormal];
         [_bookButton setTitleColor:DBColorExtension.charcoalColor forState:UIControlStateNormal];
         [_bookButton setTitleColor:DBColorExtension.redColor forState:UIControlStateSelected];
-        [_bookButton setImage:[UIImage imageNamed:@"jjNeutralToken"] forState:UIControlStateNormal];
-        [_bookButton setImage:[UIImage imageNamed:@"jjFatedMarker"] forState:UIControlStateSelected];
+        [_bookButton setImage:[UIImage imageNamed:@"unsel_icon"] forState:UIControlStateNormal];
+        [_bookButton setImage:[UIImage imageNamed:@"sel_icon"] forState:UIControlStateSelected];
         [_bookButton addTarget:self action:@selector(clickBookTypeAction) forControlEvents:UIControlEventTouchUpInside];
         [_bookButton setTitlePosition:TitlePositionLeft spacing:8];
     }
@@ -213,7 +219,7 @@
         _contentTextLabel = [[DBBaseLabel alloc] init];
         _contentTextLabel.font = DBFontExtension.bodyMediumFont;
         _contentTextLabel.textColor = DBColorExtension.charcoalColor;
-        _contentTextLabel.text = DBConstantString.ks_enterRequiredInfo;
+        _contentTextLabel.text = @"请输入以下必要信息";
     }
     return _contentTextLabel;
 }
@@ -223,10 +229,9 @@
         _nameTextField = [[UITextField alloc] init];
         _nameTextField.layer.cornerRadius = 4;
         _nameTextField.layer.masksToBounds = YES;
-        _nameTextField.backgroundColor = DBColorExtension.paleGrayColor;
         _nameTextField.font = DBFontExtension.bodySixTenFont;
         _nameTextField.textColor = DBColorExtension.charcoalColor;
-        _nameTextField.placeholder = DBConstantString.ks_requiredBookField;
+        _nameTextField.placeholder = @"需要求书的小说名(必填)";
         _nameTextField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 0)];
         _nameTextField.leftViewMode = UITextFieldViewModeAlways;
         _nameTextField.rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 0)];
@@ -240,10 +245,9 @@
         _authorTextField = [[UITextField alloc] init];
         _authorTextField.layer.cornerRadius = 4;
         _authorTextField.layer.masksToBounds = YES;
-        _authorTextField.backgroundColor = DBColorExtension.paleGrayColor;
         _authorTextField.font = DBFontExtension.bodySixTenFont;
         _authorTextField.textColor = DBColorExtension.charcoalColor;
-        _authorTextField.placeholder = DBConstantString.ks_requiredAuthorField;
+        _authorTextField.placeholder = @"需要求书的作者名(必填)";
         _authorTextField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 0)];
         _authorTextField.leftViewMode = UITextFieldViewModeAlways;
         _authorTextField.rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 0)];
@@ -257,10 +261,9 @@
         _heroTextField = [[UITextField alloc] init];
         _heroTextField.layer.cornerRadius = 4;
         _heroTextField.layer.masksToBounds = YES;
-        _heroTextField.backgroundColor = DBColorExtension.paleGrayColor;
         _heroTextField.font = DBFontExtension.bodySixTenFont;
         _heroTextField.textColor = DBColorExtension.charcoalColor;
-        _heroTextField.placeholder = DBConstantString.ks_requiredProtagonist;
+        _heroTextField.placeholder = @"需要求书的主角名(必填)";
         _heroTextField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 0)];
         _heroTextField.leftViewMode = UITextFieldViewModeAlways;
         _heroTextField.rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 0)];
@@ -274,7 +277,7 @@
         _descTextLabel = [[DBBaseLabel alloc] init];
         _descTextLabel.font = DBFontExtension.bodyMediumFont;
         _descTextLabel.textColor = DBColorExtension.charcoalColor;
-        _descTextLabel.text = DBConstantString.ks_bookDiscoverySource;
+        _descTextLabel.text = @"您是在那个网站知道这本书的";
     }
     return _descTextLabel;
 }
@@ -284,10 +287,9 @@
         _netTextField = [[UITextField alloc] init];
         _netTextField.layer.cornerRadius = 4;
         _netTextField.layer.masksToBounds = YES;
-        _netTextField.backgroundColor = DBColorExtension.paleGrayColor;
         _netTextField.font = DBFontExtension.bodySixTenFont;
         _netTextField.textColor = DBColorExtension.charcoalColor;
-        _netTextField.placeholder = DBConstantString.ks_requiredSourceUrl;
+        _netTextField.placeholder = @"请输入求书的网站网址(必填)";
         _netTextField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 0)];
         _netTextField.leftViewMode = UITextFieldViewModeAlways;
         _netTextField.rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 0)];
@@ -303,7 +305,7 @@
         _submitButton.backgroundColor = DBColorExtension.redColor;
         _submitButton.layer.cornerRadius = 24;
         _submitButton.layer.masksToBounds = YES;
-        [_submitButton setTitle:DBConstantString.ks_submit forState:UIControlStateNormal];
+        [_submitButton setTitle:@"提交" forState:UIControlStateNormal];
         [_submitButton setTitleColor:DBColorExtension.whiteColor forState:UIControlStateNormal];
         [_submitButton addTarget:self action:@selector(clickSubmitAction) forControlEvents:UIControlEventTouchUpInside];
     }
