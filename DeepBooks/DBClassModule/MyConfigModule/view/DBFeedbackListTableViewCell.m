@@ -10,6 +10,7 @@
 @interface DBFeedbackListTableViewCell ()
 @property (nonatomic, strong) DBBaseLabel *titleTextLabel;
 @property (nonatomic, strong) DBBaseLabel *dateLabel;
+@property (nonatomic, strong) DBBaseLabel *replyContentLabel;
 @property (nonatomic, strong) DBBaseLabel *contentTextLabel;
 @property (nonatomic, strong) UIView *partingLineView;
 @end
@@ -17,14 +18,26 @@
 @implementation DBFeedbackListTableViewCell
 
 - (void)setUpSubViews{
-    NSArray *views = @[self.titleTextLabel,self.dateLabel,self.contentTextLabel];
-    [self.contentView addSubviews:views];
-   
-    [views mas_distributeViewsAlongAxis:MASAxisTypeVertical withFixedSpacing:10 leadSpacing:16 tailSpacing:16];
-    [views mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(16);
-        make.right.mas_equalTo(-16);
-    }];
+    NSArray *views = @[self.titleTextLabel,self.dateLabel,self.replyContentLabel,self.contentTextLabel];
+    
+    UIView *lastView = nil;
+    for (UIView *subview in views) {
+        [self.contentView addSubview:subview];
+        [subview mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(16);
+            make.right.mas_equalTo(-16);
+            if (lastView) {
+                make.top.mas_equalTo(lastView.mas_bottom).offset(3);
+            }else{
+                make.top.mas_equalTo(8);
+            }
+            if ([subview isEqual:views.lastObject]){
+                make.bottom.mas_equalTo(-8);
+            }
+        }];
+        
+        lastView = subview;
+    }
     
     [self.contentView addSubview:self.partingLineView];
     [self.partingLineView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -54,13 +67,18 @@
         color = DBColorExtension.skyBlueColor;
     }
     self.contentTextLabel.attributedText = [NSAttributedString combineAttributeTexts:@[DBConstantString.ks_feedbackStatus.textMultilingual,state.textMultilingual] colors:@[textColor,color] fonts:@[DBFontExtension.bodyMediumFont,DBFontExtension.bodySixTenFont]];
+    
+    if (self.model.reply.length > 0){
+        self.replyContentLabel.text = [NSString stringWithFormat:@"回复内容：%@",self.model.reply];
+    }else{
+        self.replyContentLabel.text = nil;
+    }
 }
 
 - (DBBaseLabel *)titleTextLabel{
     if (!_titleTextLabel){
         _titleTextLabel = [[DBBaseLabel alloc] init];
         _titleTextLabel.font = DBFontExtension.titleSmallFont;
-        _titleTextLabel.textColor = DBColorExtension.whiteColor;
     }
     return _titleTextLabel;
 }
@@ -69,16 +87,25 @@
     if (!_dateLabel){
         _dateLabel = [[DBBaseLabel alloc] init];
         _dateLabel.font = DBFontExtension.titleSmallFont;
-        _contentTextLabel.textColor = DBColorExtension.whiteColor;
     }
     return _dateLabel;
+}
+
+- (DBBaseLabel *)replyContentLabel{
+    if (!_replyContentLabel){
+        _replyContentLabel = [[DBBaseLabel alloc] init];
+        _replyContentLabel.font = DBFontExtension.bodyMediumFont;
+        _replyContentLabel.textColor = DBColorExtension.charcoalColor;
+        _replyContentLabel.numberOfLines = 0;
+    }
+    return _replyContentLabel;
 }
 
 - (DBBaseLabel *)contentTextLabel{
     if (!_contentTextLabel){
         _contentTextLabel = [[DBBaseLabel alloc] init];
         _contentTextLabel.font = DBFontExtension.bodySixTenFont;
-        _contentTextLabel.textColor = DBColorExtension.whiteColor;
+        _contentTextLabel.numberOfLines = 0;
     }
     return _contentTextLabel;
 }
