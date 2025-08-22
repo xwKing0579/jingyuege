@@ -221,6 +221,8 @@
 }
 
 - (void)getBookContentDataSource{
+    if (self.model.chapterCacheList == nil) return;
+    
     [self.view showHudLoading];
     self.readerVc.view.userInteractionEnabled = NO;
     
@@ -266,6 +268,8 @@
 }
 
 - (void)getMoreBookContentDataSource{
+    if (self.model.chapterCacheList == nil) return;
+    
     NSInteger index = self.model.currentChapter;
     NSInteger start = MAX(index-4, 0);
     NSInteger end = MIN(index+4, self.model.chapterCacheList.count-1);
